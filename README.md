@@ -34,8 +34,15 @@ Pour finir, en haut à droite de l'écran, le RRFTraker affiche l'heure. Et le b
 
 ### Installation de paquets complémentaires
 
-En partant de la version 1.9 de Spotnik, il faut procéder à l'installation de quelques paquets complémentaires. Depuis une connexion SSH, lancez les commandes suivantes:
+En partant de la version 1.9 de Spotnik, commencez par cloner ce projet dans le répertoire /opt. Donc, depuis une connexion SSH, lancez les commandes suivantes:
 
+`cd /opt`
+
+Puis, 
+
+`git clone https://github.com/armel/RRFTracker_Spotnik.git`
+
+Il faut également procéder à l'installation de quelques paquets complémentaires. Toujours depuis une connexion SSH, lancez les commandes suivantes:
 
 `sudo apt-get install i2c-tools libi2c-dev python-smbus python-pip python-dev python-imaging`
 
@@ -45,7 +52,7 @@ En partant de la version 1.9 de Spotnik, il faut procéder à l'installation de 
 
 `sudo -H pip install --upgrade luma.oled`
 
-Enfin, si ce n'est pas déjà fait, il reste à activer le support du protocole I2C afin de pouvoir dialoguer avec l'écran OLED.
+Enfin, si ce n'est pas déjà fait, il reste à activer le support du protocole I2C afin de pouvoir dialoguer avec l'écran OLED. Ce sera l'étape la plus compliquée...
 
 ### Activation du support I2C sur Raspberry Pi
 
@@ -87,6 +94,18 @@ Votre écran utilise donc ici le port 0 et l'adresse 3c. Editer le code du RRFTr
 `i2cdetect -y 1`
 
 Dans ce cas, le port à indiquer dans le code du RRFTracker sera 1.
+
+## Lancement
+
+Il ne reste plus qu'à lancer le RRFTracker,
+
+`python /opt/RRFTracker_Spotnik/RRFTracker.py`
+
+Et si vous voulez le laisser tourner en tache de fond,
+
+`nohup python /opt/RRFTracker_Spotnik/RRFTracker.py &`
+
+Et voilà ;)
 
 ## Liste des composants
 
