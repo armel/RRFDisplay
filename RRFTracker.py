@@ -305,8 +305,8 @@ def main():
 
             legacy.text(draw,   (4, 59), chr(0) + chr(0), fill = 'white', font=SMALL_BITMAP_FONT)
             legacy.text(draw,  (32, 59), chr(0) + chr(6), fill = 'white', font=SMALL_BITMAP_FONT)
-            legacy.text(draw,  (57, 59), chr(1) + chr(2), fill = 'white', font=SMALL_BITMAP_FONT)
-            legacy.text(draw,  (87, 59), chr(1) + chr(8), fill = 'white', font=SMALL_BITMAP_FONT)
+            legacy.text(draw,  (62, 59), chr(1) + chr(2), fill = 'white', font=SMALL_BITMAP_FONT)
+            legacy.text(draw,  (92, 59), chr(1) + chr(8), fill = 'white', font=SMALL_BITMAP_FONT)
             legacy.text(draw, (115, 59), chr(2) + chr(3), fill = 'white', font=SMALL_BITMAP_FONT)
 
             # Draw clock
