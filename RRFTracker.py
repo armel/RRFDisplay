@@ -115,6 +115,7 @@ def main():
     qso = 0
     qso_total = 0
     qso_hour = [0] * 24
+    qso_hour = [10, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 10]
 
     wake_up = True
 
