@@ -37,4 +37,4 @@ Voici la liste des composants dont vous aurez besoin:
  
 ## Schéma de montage
 
-![alt text](https://github.com/armel/RRFTracker_Spotnik/blob/master/RRFTracker.png)
+![alt text](https://github.com/armel/RRFTracker_Spotnik/blob/master/doc/RRFTracker.png)
