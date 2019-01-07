@@ -21,12 +21,12 @@ Si un QSO est en cours, le RRFTracker affichera,
 * l'indicatif des 2 derniers noeuds étant passés en émission,
 * l'indicatif du noeud en cours d'émission.
 
-En complement, sur la ligne centrale, au milieu de l'écran, on retrouve
+En complement, sur la ligne centrale, au milieu de l'écran, on dispose,
 
-* le nombre de passages en émission sur la journée (depuis 00h00),
-* le temps depuis lequel fonctionne le RRFTracker (uptime),
-* le nombre de passages en émission depuis l'allumage du RRFTracker,
-* l'indicatif du link le plus actif avec le nombre de passage en émission.
+* du nombre de passages en émission sur la journée (depuis 00h00),
+* du temps depuis lequel fonctionne le RRFTracker (uptime),
+* du nombre de passages en émission depuis l'allumage du RRFTracker,
+* de l'indicatif du noeud le plus actif avec le nombre de passage en émission.
 
 Pour finir, en haut à droite de l'écran, le RRFTraker affiche l'heure. Et le bas de l'écran présente un histogramme du trafic dans la journée, heure par heure.
 
