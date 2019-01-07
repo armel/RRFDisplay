@@ -49,7 +49,12 @@ Enfin, si ce n'est pas déjà fait, il reste à activer le support du protocole 
 
 ### Activation du support I2C sur Raspberry Pi
 
-Utiliser raspbian-config
+Utiliser l'utilitaire `raspi-config`. Une fois lancé,
+
+* option 5 - Interfacing Options
+* sous option P5 - I2C
+* répondez oui ;)
+ 
 
 ### Activation du support I2C sur Orange Pi Zero
 
