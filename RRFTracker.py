@@ -120,7 +120,7 @@ def main():
 
     # Set serial
 
-    serial = i2c(port=i2c_port, address=i2c_adress)
+    serial = i2c(port=i2c_port, address=i2c_address)
     device = sh1106(serial, rotate=0)
 
     # Set date
