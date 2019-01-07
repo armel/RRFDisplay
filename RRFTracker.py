@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 '''
-RRFTracker version RPi
+RRFTracker version Raspberry Pi 3B et Orange Pi Zero
 Learn more about RRF on https://f5nlg.wordpress.com
 Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 '''
