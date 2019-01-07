@@ -245,7 +245,7 @@ def main():
             blanc_alternate = 3
 
         elif(blanc_alternate == 3):         # Best link
-            if len(history) > 0:
+            if len(history) > 4:
                 best = max(history, key=history.get)
                 line[4] = best + ' - ' + str(history[best]) + ' TX'
             else:
