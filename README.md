@@ -30,6 +30,8 @@ En complement, sur la ligne centrale, au milieu de l'écran, on dispose,
 
 Pour finir, en haut à droite de l'écran, le RRFTraker affiche l'heure. Et le bas de l'écran présente un histogramme du trafic dans la journée, heure par heure.
 
+A noter qu'à minuit, le nombre de passages en émission sur la journée ainsi que l'histogramme sont réinitialisés (à zéro). 
+
 ## Post installation sur Spotnik 1.9
 
 ### Installation de paquets complémentaires
@@ -56,7 +58,7 @@ Enfin, si ce n'est pas déjà fait, il reste à activer le support du protocole 
 
 ### Activation du support I2C sur Raspberry Pi
 
-Utiliser l'utilitaire `raspi-config`. Une fois lancé,
+Utilisez l'utilitaire `raspi-config`. Une fois lancé,
 
 * option 5 - Interfacing Options
 * sous option P5 - I2C
@@ -65,9 +67,9 @@ Utiliser l'utilitaire `raspi-config`. Une fois lancé,
 
 ### Activation du support I2C sur Orange Pi Zero
 
-C'est un peu plus compliqué ;) Vous allez devoir éditer le fichier /boot/script.fex. Ligne 147, changer la ligne `twi_used = 0` par `twi_used = 1`.
+C'est un peu plus compliqué ;) Vous allez devoir éditer le fichier `/boot/script.fex`. Ligne 147, changer la ligne `twi_used = 0` par `twi_used = 1`.
 
-Puis exécuté la commande `fex2bin boot/script.fex boot/script.bin` puis rebooté...
+Puis exécutez la commande `fex2bin boot/script.fex boot/script.bin` et enfin rebootez...
 
 ### Vérification
 
@@ -89,7 +91,7 @@ Cette commande devrait retourner quelque chose comme:
 70: -- -- -- -- -- -- -- --
 ```
 
-Votre écran utilise donc ici le port 0 et l'adresse 3c. Editer le code du RRFTracker et modifier les variables `i2c_port` et `i2c_adresse` en fonction de ce que vous retourne la commande. Et si elle ne fonctionne pas, essayez:
+Votre écran est bien raccordé. Et il utilise le port 0 et l'adresse 3c. Editez le code du fichier `RRFTracker.py` et modifier les variables `i2c_port` et `i2c_adresse` en fonction de ce que vous retourne la commande. Et si la commande n'a pas fonctionné, essayez:
 
 `i2cdetect -y 1`
 
