@@ -7,7 +7,7 @@ Cette implémentation du RRFTracker permet de suivre en temps réel l'activité 
 
 Ce dispositif peut donc être associé sans (_trop de_) difficulté à un Spotniks Gamma, Delta, etc. afin de profiter d'un minimum de remontée d'informations, à l'image des Hotspots MMDVM type ZUMspot, Jumbo SPOT, etc. si precieux aux porteurs de casques de chantier... j'ai nommé les DMRistes ;)
 
-À noter qu'un projet plus évolué, porté par F8ASB (Juan), F5SWB (Dimitri) et F0DEI (Toufik), basé sur l'utilisation d'un écran type Nextion est également en cours de développement. Du fait des possibilités beaucoup plus évoluées de ce type d'écran, en particulier du fait qu'il soit tactile, ce projet offre plus de possibilité en terme d'interactivité (changement de salon, etc.). Je ne peux que vous encourager à le tester !
+À noter qu'un projet plus évolué, porté par F8ASB (Juan), F5SWB (Dimitri) et F0DEI (Toufik), basé sur l'utilisation d'un écran type Nextion est également en cours de développement. Du faits des caractéristiques beaucoup plus évoluées de ce type d'écrans tactiles, ce projet offre plus de possibilités, notamment en terme d'interactivité (changement de salon, etc.). Je ne peux que vous encourager à le tester. 
 
 ## Principe de fonctionnement
 
