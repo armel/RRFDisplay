@@ -3,11 +3,11 @@ Suivi temps réel de l'activité du réseau [RRF](https://f5nlg.wordpress.com/20
 
 ## Présentation
 
-Cette implémentation du RRFTracker permet de suivre en temps réel l'activité du réseau RRF, en utilisant un Rasbperry Pi ou un Orange Pi et un écran OLED 0.96" 128x64 type SH1106 ou SSD1306. Il fait suite à un [premier projet](https://github.com/armel/RRFTracker), réalisé fin novembre 2018 à partir d'un Nodemcu ESP8266 et d'un écran LCD 16x2.
+Cette implémentation du RRFTracker permet de suivre en temps réel l'activité du réseau RRF, en utilisant un Rasbperry Pi ou un Orange Pi et un écran OLED 0.96" 128x64 type SH1106 ou SSD1306, à moins de 5€. Il fait suite à un [premier projet](https://github.com/armel/RRFTracker), réalisé fin novembre 2018 à partir d'un Nodemcu ESP8266 et d'un écran LCD 16x2.
 
 Ce dispositif peut donc être associé sans (_trop de_) difficulté à un Spotnik Gamma, Delta, etc. afin de profiter d'un minimum de remontée d'informations, à l'image des Hotspots MMDVM type ZUMspot, Jumbo SPOT, etc. si precieux aux porteurs de casques de chantier... j'ai nommé les DMRistes ;)
 
-À noter qu'un projet plus évolué, porté par F8ASB (Juan), F5SWB (Dimitri) et F0DEI (Toufik), basé sur l'utilisation d'un écran type Nextion est également en cours de développement. Du faits des caractéristiques beaucoup plus évoluées de ce type d'écrans tactiles, ce projet offre plus de possibilités, notamment en terme d'interactivité (changement de salon, etc.). Je ne peux que vous encourager à le tester. 
+À noter qu'un projet plus évolué, porté par F8ASB (Juan), F5SWB (Dimitri) et F0DEI (Toufik), basé sur l'utilisation d'un écran type Nextion est également en cours de développement. Du fait des caractéristiques beaucoup plus évoluées de ce type d'écrans tactiles, ce projet offre plus de possibilités, notamment en terme d'interactivité (changement de salon, etc.). Je ne peux que vous encourager à le tester, si le QSJ d'un écran Nextion ne vous fait pas peur. 
 
 ## Principe de fonctionnement
 
