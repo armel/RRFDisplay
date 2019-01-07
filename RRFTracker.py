@@ -195,10 +195,7 @@ def main():
             now = tmp.strftime("%H:%M:%S")
             hour = int(tmp.strftime("%H"))
 
-            if hour == 0:
-                qso_hour[hour] = qso
-            else:
-                qso_hour[hour] = qso - qso_hour[hour - 1]
+            qso_hour[hour] = qso - sum(qso_hour[:hour])
 
             call_time += now
 
