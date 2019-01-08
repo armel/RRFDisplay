@@ -69,7 +69,7 @@ Utilisez l'utilitaire `raspi-config`. Une fois lancé,
 
 C'est un peu plus compliqué ;) Vous allez devoir éditer le fichier `/boot/script.fex`. Ligne 147, changer la ligne `twi_used = 0` par `twi_used = 1`.
 
-Puis exécutez la commande `fex2bin boot/script.fex boot/script.bin` et enfin rebootez...
+Puis exécutez la commande `fex2bin /boot/script.fex /boot/script.bin` et enfin rebootez...
 
 ### Vérification
 
