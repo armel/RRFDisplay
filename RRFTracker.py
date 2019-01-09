@@ -260,7 +260,9 @@ def main():
                 draw.point((i, 25), fill = 'white') 
                 draw.point((i, 40), fill = 'white')
             
-            draw.text((-1, -1), chr(98), font = icon, fill = 'white')       # Icon talk
+            if wake_up is True:
+                draw.text((-1, -1), chr(98), font = icon, fill = 'white')   # Icon talk
+            
             draw.text((0,26), chr(118), font = icon, fill = 'white')        # Icon Stat
             if blanc_alternate == 0:                                        # Icon Best
                 draw.rectangle((0, 27, 11, 38), fill = 'black')
