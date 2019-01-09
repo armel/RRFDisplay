@@ -252,8 +252,9 @@ def main():
 
         # Print screen
 
-        font = ImageFont.truetype('fonts/7x5.ttf', 8)                 # Text font
-        icon = ImageFont.truetype('fonts/heydings_icons.ttf', 12)     # Icon font
+        font   = ImageFont.truetype('fonts/7x5.ttf', 8)                 # Text font
+        icon_1 = ImageFont.truetype('fonts/heydings_icons.ttf', 15)     # Icon font
+        icon_2 = ImageFont.truetype('fonts/fontello.ttf', 14)           # Icon font
                   
         with canvas(device) as draw:
             for i in xrange(0, 128, 2):
@@ -261,15 +262,16 @@ def main():
                 draw.point((i, 40), fill = 'white')
             
             if wake_up is True:
-                draw.text((-1, -1), chr(98), font = icon, fill = 'white')   # Icon talk
+                draw.text((0, 0), u"\uf130", font = icon_2, fill = 'white') # Icon talk
             
-            draw.text((0,26), chr(118), font = icon, fill = 'white')        # Icon Stat
+            draw.text((0,26), u"\ue801", font = icon_2, fill = 'white')     # Icon Stat
+
             if blanc_alternate == 0:                                        # Icon Best
-                draw.rectangle((0, 27, 11, 38), fill = 'black')
-                draw.text((0,26), chr(102), font = icon, fill = 'white') 
+                draw.rectangle((0, 26, 15, 39), fill = 'black')
+                draw.text((0,26), u"\ue802", font = icon_2, fill = 'white')
 
             if line[2][:4] == 'Last':                                       # Icon Clock
-                draw.text((-1,12), chr(84), font = icon, fill = 'white')   
+                draw.text((0, 8), chr(84), font = icon_1, fill = 'white')   
        
             # Print data
 
