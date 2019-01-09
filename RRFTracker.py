@@ -262,7 +262,7 @@ def main():
                 draw.point((i, 40), fill = 'white')
             
             if wake_up is True:
-                draw.text((0, 0), u"\uf130", font = icon_2, fill = 'white') # Icon talk
+                draw.text((2, 0), u"\uf130", font = icon_2, fill = 'white') # Icon talk
             
             draw.text((0,26), u"\ue801", font = icon_2, fill = 'white')     # Icon Stat
 
