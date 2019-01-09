@@ -271,7 +271,7 @@ def main():
                 draw.text((0,26), u"\ue802", font = icon_2, fill = 'white')
 
             if line[2][:4] == 'Last':                                       # Icon Clock
-                draw.text((0, 8), chr(84), font = icon_1, fill = 'white')   
+                draw.text((-1, 8), chr(84), font = icon_1, fill = 'white')   
        
             # Print data
 
