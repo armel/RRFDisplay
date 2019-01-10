@@ -10,6 +10,7 @@ import requests
 import datetime
 import time
 import sys, getopt
+import os
 
 from luma.core.interface.serial import i2c
 from luma.core.render import canvas
@@ -162,6 +163,18 @@ def main(argv):
 
     history = dict()
     line = [None] * 7
+
+    # Check board
+
+    tmp = os.popen("uname -a").readline()
+    if tmp.find('sun8i'):
+        board = 'orangepi'
+    else:
+        board = 'raspi'
+
+    print board
+
+    exit(0)
 
     # Boucle principale
 
