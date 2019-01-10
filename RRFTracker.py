@@ -11,6 +11,7 @@ import datetime
 import time
 import sys, getopt
 import os
+import re
 
 from luma.core.interface.serial import i2c
 from luma.core.render import canvas
@@ -294,7 +295,20 @@ def main(argv):
             else:
                 line[4] = 'Need more datas'
 
+            blanc_alternate = 4
+
+        elif(blanc_alternate == 4):         # Thermal monitor
+            if board == 'orangepi':
+                tmp = os.popen("cat /sys/devices/virtual/thermal/thermal_zone0/temp").readline()
+            else:
+                tmp = os.popen("vcgencmd measure_temp")
+            
+            tmp = re.findall('\d+\.\d+', tmp)
+
+            line[4] = tmp + ' °C'
+
             blanc_alternate = 0
+
 
         # Print screen
 
