@@ -94,13 +94,14 @@ def main(argv):
     i2c_port = 0                            # Default value ! Check port with i2cdetect...
     i2c_address = 0x3C                      # Default value ! Check adress with i2cdetect...
     display = 'sh1106'                      # Default value !
+    room = 'RRF'
 
     # Check and get arguments
 
     try:
-        options, remainder = getopt.getopt(argv, 'hp:a:d:', ['i2c-port=','i2c-address=', 'display='])
+        options, remainder = getopt.getopt(argv, 'hp:a:d:r:', ['i2c-port=','i2c-address=', 'display=', 'room='])
     except getopt.GetoptError:
-        print 'usage: RRFTracker.py -p <i2c_port> -a <i2c_address>'
+        print 'usage: RRFTracker.py -p <i2c_port> -a <i2c_address> -r <room>'
         sys.exit(2)
     for opt, arg in options:
         if opt == '-h':
@@ -109,6 +110,7 @@ def main(argv):
             print '-p, --i2c-port I2C_PORT'
             print '-a, --i2c-address I2C_ADDRESS'
             print '-d, --display DISPLAY (choose from \'sh1106\', \'ssd1306\')'
+            print '-r, --room ROOM (choose from \'RRF\', \'TEC\')'
             sys.exit()
         elif opt in ('-p', '--i2c-port'):
             i2c_port = arg
@@ -119,10 +121,13 @@ def main(argv):
                 print 'Unknown display type (choose between \'sh1106\' and \'ssd1306\')'
                 sys.exit()
             display = arg
+        elif opt in ('-r', '--room'):
+            if arg not in ['RRF', 'TEC']:
+                print 'Unknown room name (choose between \'RRF\' and \'TEC\')'
+                sys.exit()
+            room = arg
 
     # Set constants & variables
-
-    url = 'http://rrf.f5nlg.ovh/'
 
     SMALL_BITMAP_FONT = [
         [0x1f, 0x11, 0x1f, 0x00],           # 0
@@ -159,6 +164,13 @@ def main(argv):
         device = sh1106(serial, width = 128, height = 64, rotate = 0)
     else:                                   # 128 x 32 pixels
         device = ssd1306(serial, width = 128, height = 32, rotate = 0)
+
+    # Set url
+
+    if room == 'RRF':
+        url = 'http://rrf.f5nlg.ovh'
+    else :
+        url = 'http://rrf.f5nlg.ovh:82'
 
     # Set date
 
