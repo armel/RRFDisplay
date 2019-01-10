@@ -303,7 +303,7 @@ def main(argv):
                 tmp = re.findall('\d+', tmp)
                 tmp = tmp[0]
 
-            line[4] = 'Spotnik Temp ' + str(tmp).strip() + ' ' + chr(96) + 'C'
+            line[4] = 'Spotnik Temp ' + str(tmp).strip() + ' C'
 
             blanc_alternate = 0
 
