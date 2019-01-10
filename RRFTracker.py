@@ -303,9 +303,9 @@ def main(argv):
             else:
                 tmp = os.popen("vcgencmd measure_temp")
 
-            tmp = re.findall('\d+', tmp)
-            
-            line[4] = tmp + ' °C'
+            tmp = re.findall('\d+\.\d+', tmp)
+
+            line[4] = tmp + ' C'
 
             blanc_alternate = 0
 
