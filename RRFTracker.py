@@ -9,11 +9,13 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 import requests
 import datetime
 import time
+import sys, getopt
 
 from luma.core.interface.serial import i2c
 from luma.core.render import canvas
 from luma.core.virtual import viewport
 from luma.oled.device import sh1106
+from luma.oled.device import ssd1306
 from luma.core import legacy
 
 from PIL import ImageFont
@@ -81,12 +83,40 @@ def interpolation(value, in_min, in_max, out_min, out_max):
         return 0
 
 
-def main():
+def main(argv):
+
+    # Default i2c_port and i2c_address
+
+    i2c_port = 0                            # Default value ! Check port with i2cdetect...
+    i2c_address = 0x3C                      # Default value ! Check adress with i2cdetect...
+    display= 'sh1106'                       # Default value !
+
+    # Check and get arguments
+
+    try:
+        options, remainder = getopt.getopt(argv, 'hp:a:d:', ['i2c-port=','i2c-address=', 'display='])
+    except getopt.GetoptError:
+        print 'usage: RRFTracker.py -p <i2c_port> -a <i2c_address>'
+        sys.exit(2)
+    for opt, arg in options:
+        if opt == '-h':
+            print 'usage: RRFTracker.py'
+            print '-h, --help'
+            print '-p, --i2c-port I2C_PORT'
+            print '-a, --i2c-address I2C_ADDRESS'
+            print '-d, --display DISPLAY (choose from \'sh1106\', \'ssd1306\')'
+            sys.exit()
+        elif opt in ('-p', '--i2c-port'):
+            i2c_port = arg
+        elif opt in ('-a', '--i2c-address'):
+            i2c_address = int(arg, 16)
+        elif opt in ('-d', '--display'):
+            if arg not in ['sh1106', 'ssd1306']:
+                print 'Unknown display type (choose between \'sh1106\' and \'ssd1306\')'
+                sys.exit()
+            display = arg
 
     # Set constants & variables
-
-    i2c_port = 0                            # Change it ! Check port with i2cdetect...
-    i2c_address = 0x3C                      # Change it ! Check adress with i2cdetect...
 
     url = 'http://rrf.f5nlg.ovh/'
 
@@ -121,7 +151,10 @@ def main():
     # Set serial
 
     serial = i2c(port = i2c_port, address = i2c_address)
-    device = sh1106(serial, rotate = 0)
+    if display == 'sh1106':                 # 128 x 64 pixels
+        device = sh1106(serial, width = 128, height = 64, rotate = 0)
+    else:                                   # 128 x 32 pixels
+        device = ssd1306(serial, width = 128, height = 32, rotate = 0)
 
     # Set date
 
@@ -252,20 +285,21 @@ def main():
 
         # Print screen
 
-        font = ImageFont.truetype('fonts/7x5.ttf', 8)                       # Text font
-        icon = ImageFont.truetype('fonts/fontello.ttf', 14)                 # Icon font
+        font = ImageFont.truetype('fonts/7x5.ttf', 8)                           # Text font
+        icon = ImageFont.truetype('fonts/fontello.ttf', 14)                     # Icon font
                   
         with canvas(device) as draw:
-            for i in xrange(0, 128, 2):
-                draw.point((i, 25), fill = 'white') 
-                draw.point((i, 40), fill = 'white')
+            if device.height == 64:     # Only if 128 x 64 pixels
+                for i in xrange(0, 128, 2):
+                    draw.point((i, 25), fill = 'white')
+                    draw.point((i, 40), fill = 'white')
+                    draw.text((0,26), u"\ue801", font = icon, fill = 'white')   # Icon stat
+
             
             if wake_up is True:
-                draw.text((2, 0), u"\uf130", font = icon, fill = 'white')   # Icon talk
+                draw.text((2, 0), u"\uf130", font = icon, fill = 'white')       # Icon talk
             
-            draw.text((0,26), u"\ue801", font = icon, fill = 'white')       # Icon stat
-
-            if line[2][:4] == 'Last':                                       # Icon clock (DIY...)
+            if line[2][:4] == 'Last':                                           # Icon clock (DIY...)
                 x = 6
                 y = 17
                 draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline = 'white')
@@ -280,33 +314,38 @@ def main():
                 if l is not None:
                     w, h = draw.textsize(text = l, font = font)
                     tab = (device.width - w) / 2
-                    vide = ' ' * 22     # Hack to speed clear screen line... 
+                    vide = ' ' * 22             # Hack to speed clear screen line... 
                     draw.text((0, i), vide, font = font, fill = 'white')
                     draw.text((tab, i), l, font = font, fill = 'white')
                     i += h 
                     if i == 24:
+                        if device.height != 64:  # Break if 128 x 32 pixels
+                            break
                         i += 6
+
 
             # Draw stats histogram
 
-            qso_hour_max = max(qso_hour)
+            if device.height == 64:              # Only if 128 x 64 pixels
 
-            i = 4
+                qso_hour_max = max(qso_hour)
 
-            for q in qso_hour:
-                if q != 0:
-                    h = interpolation(q, 1, qso_hour_max, 1, 15)
-                else:
-                    h = 0
-                draw.rectangle((0 + i, 57, i + 2, (57 - 15)), fill = 'black')
-                draw.rectangle((0 + i, 57, i + 2, (57 - h)), fill = 'white')
-                i += 5
+                i = 4
 
-            legacy.text(draw,   (4, 59), chr(0) + chr(0), fill = 'white', font=SMALL_BITMAP_FONT)
-            legacy.text(draw,  (32, 59), chr(0) + chr(6), fill = 'white', font=SMALL_BITMAP_FONT)
-            legacy.text(draw,  (62, 59), chr(1) + chr(2), fill = 'white', font=SMALL_BITMAP_FONT)
-            legacy.text(draw,  (92, 59), chr(1) + chr(8), fill = 'white', font=SMALL_BITMAP_FONT)
-            legacy.text(draw, (115, 59), chr(2) + chr(3), fill = 'white', font=SMALL_BITMAP_FONT)
+                for q in qso_hour:
+                    if q != 0:
+                        h = interpolation(q, 1, qso_hour_max, 1, 15)
+                    else:
+                        h = 0
+                    draw.rectangle((0 + i, 57, i + 2, (57 - 15)), fill = 'black')
+                    draw.rectangle((0 + i, 57, i + 2, (57 - h)), fill = 'white')
+                    i += 5
+
+                legacy.text(draw,   (4, 59), chr(0) + chr(0), fill = 'white', font=SMALL_BITMAP_FONT)
+                legacy.text(draw,  (32, 59), chr(0) + chr(6), fill = 'white', font=SMALL_BITMAP_FONT)
+                legacy.text(draw,  (62, 59), chr(1) + chr(2), fill = 'white', font=SMALL_BITMAP_FONT)
+                legacy.text(draw,  (92, 59), chr(1) + chr(8), fill = 'white', font=SMALL_BITMAP_FONT)
+                legacy.text(draw, (115, 59), chr(2) + chr(3), fill = 'white', font=SMALL_BITMAP_FONT)
 
             # Draw clock
 
@@ -324,6 +363,6 @@ def main():
 
 if __name__ == '__main__':
     try:
-        main()
+        main(sys.argv[1:])
     except KeyboardInterrupt:
         pass
