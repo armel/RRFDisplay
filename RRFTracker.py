@@ -297,9 +297,8 @@ def main(argv):
             if board == 'orangepi':
                 tmp = os.popen("cat /sys/devices/virtual/thermal/thermal_zone0/temp").readline()
             else:
-                tmp = os.popen("vcgencmd measure_temp")
-
-            tmp = re.findall('\d+\.\d+', tmp)
+                tmp = os.popen("/usr/bin/vcgencmd measure_temp")
+                tmp = re.findall('\d+\.\d+', tmp)
 
             print tmp
 
