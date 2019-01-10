@@ -133,7 +133,7 @@ Par défaut, sans argument, le RRFTracker va démarrer avec les paramètres suiv
 
 Cela revient à lancer le RRFTracker avec les arguments suivants,
 
-`python /opt/RRFTracker_Spotnik/RRFTracker.py -p 0 -a 0x3C -d sh1106`
+`python /opt/RRFTracker_Spotnik/RRFTracker.py -p 0 -a 0x3C -d sh1106 -room RRF`
 
 Il est donc possible d'affiner les paramètres, en fonction de ce que vous retournera la commande `i2cdetect` décrite ci dessus.
 
@@ -142,10 +142,13 @@ Par exemple, avec les paramètres suivants,
 - i2c_port = 1
 - i2c_address = 0x3C
 - display = ssd1306  (en 128 x 32)
+- room = RRF
 
 Il vous siffira de lancer le RRFTracker avec les arguments suivants,
 
-`python /opt/RRFTracker_Spotnik/RRFTracker.py -p 1 -a 0x3C -d ssd1306`
+`python /opt/RRFTracker_Spotnik/RRFTracker.py -p 1 -d ssd1306`
+
+Notez qu'il n'est pas nécessaire de préciser l'i2c_address et la room, puisque ce sont déjà les valeurs par défaut.
 
 Et si vous voulez le laisser tourner en tache de fond, utilisez la commande `nohup` et l'_esperluette_ ;) Par exemple, 
 
