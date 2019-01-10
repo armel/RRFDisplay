@@ -307,7 +307,6 @@ def main(argv):
 
             blanc_alternate = 0
 
-
         # Print screen
 
         font = ImageFont.truetype('fonts/7x5.ttf', 8)                           # Text font
