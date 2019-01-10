@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 '''
 RRFTracker version Raspberry Pi 3B et Orange Pi Zero
 Learn more about RRF on https://f5nlg.wordpress.com
 Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
+73 & 88 de F4HWN Armel
 '''
 
 import requests
@@ -302,7 +304,7 @@ def main(argv):
                 tmp = int(re.findall('\d+\.\d+', tmp))
                 tmp = int(tmp[0])
 
-            line[4] = str(tmp) + ' C'
+            line[4] = 'Spotnik Temp' + str(tmp) + ' °C'
 
             blanc_alternate = 0
 
