@@ -5,7 +5,7 @@ Suivi temps réel de l'activité du réseau [RRF](https://f5nlg.wordpress.com/20
 
 Cette version du RRFTracker et une évolution d'un [premier projet](https://github.com/armel/RRFTracker) réalisé mi novembre 2018 à partir d'un Nodemcu ESP8266 et d'un écran LCD 16x2.
 
-Il permet de suivre en temps réel l'activité du réseau RRF, en utilisant un Rasbperry Pi ou un Orange Pi et un écran OLED type SH1106 ou SSD1306 piloté par I2C. Ces écrans ont un QSJ de moins de 5€.
+Il permet de suivre en temps réel l'activité du réseau RRF, en utilisant un Rasbperry Pi ou un Orange Pi Zero et un écran OLED type SH1106 ou SSD1306 piloté par I2C. Ces écrans ont un QSJ de moins de 5€.
 
 Pour le moment, cette version du RRFTracker prend en charge [2 tailles d'écrans](http://www.dsdtech-global.com/2018/05/iic-oled-lcd-u8glib.html). 
 
@@ -155,7 +155,7 @@ Et voilà ;)
 
 Voici la liste des composants dont vous aurez besoin:
 
-* 1 Raspberry Pi ou 1 Orange Pi
+* 1 Raspberry Pi ou 1 Orange Pi Zero
 * 1 écran OLED 1.3" 128 x 64 ou 0.9" 128 x 32, type SH1106 ou SSD1306
 * 4 cables Dupont femelle / femelle
  
