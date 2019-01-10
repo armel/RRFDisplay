@@ -121,6 +121,7 @@ usage: RRFTracker.py
 -p, --i2c-port I2C_PORT
 -a, --i2c-address I2C_ADDRESS
 -d, --display DISPLAY (choose from 'sh1106', 'ssd1306')
+-r, --room ROOM (choose from 'RRF', 'TEC')
 ```
 
 Par défaut, sans argument, le RRFTracker va démarrer avec les paramètres suivants,
@@ -128,6 +129,7 @@ Par défaut, sans argument, le RRFTracker va démarrer avec les paramètres suiv
 - i2c_port = 0
 - i2c_address = 0x3C
 - display = sh1106  (en 128 x 64)
+- room = RRF
 
 Cela revient à lancer le RRFTracker avec les arguments suivants,
 
