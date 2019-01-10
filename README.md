@@ -3,7 +3,15 @@ Suivi temps réel de l'activité du réseau [RRF](https://f5nlg.wordpress.com/20
 
 ## Présentation
 
-Cette implémentation du RRFTracker permet de suivre en temps réel l'activité du réseau RRF, en utilisant un Rasbperry Pi ou un Orange Pi et un écran OLED 0.96" 128x64 type SH1106 ou SSD1306, à moins de 5€. Il fait suite à un [premier projet](https://github.com/armel/RRFTracker), réalisé mi novembre 2018 à partir d'un Nodemcu ESP8266 et d'un écran LCD 16x2.
+Cette version du RRFTracker et une évolution d'un [premier projet](https://github.com/armel/RRFTracker) réalisé mi novembre 2018 à partir d'un Nodemcu ESP8266 et d'un écran LCD 16x2.
+
+Il permet de suivre en temps réel l'activité du réseau RRF, en utilisant un Rasbperry Pi ou un Orange Pi et un écran OLED type SH1106 ou SSD1306 piloté par I2C. Ces écrans ont un QSJ de moins de 5€.
+
+Pour le moment, cette version du RRFTracker prend en charge [2 tailles d'écrans](http://www.dsdtech-global.com/2018/05/iic-oled-lcd-u8glib.html). 
+
+- 1.3" 128 x 64
+- 0.9" 128 x 32
+
 
 Ce dispositif peut donc être associé sans (_trop de_) difficulté à un Spotnik Gamma, Delta, etc. afin de profiter d'un minimum de remontée d'informations, à l'image des Hotspots MMDVM type ZUMspot, Jumbo SPOT, etc. si precieux aux porteurs de casques de chantier... j'ai nommé les DMRistes ;)
 
@@ -91,21 +99,48 @@ Cette commande devrait retourner quelque chose comme:
 70: -- -- -- -- -- -- -- --
 ```
 
-Votre écran est bien raccordé. Et il utilise le port 0 et l'adresse 3c. Editez le code du fichier `RRFTracker.py` et modifier les variables `i2c_port` et `i2c_adresse` en fonction de ce que vous retourne la commande. Et si la commande n'a pas fonctionné, essayez:
+Votre écran est bien raccordé. Et il utilise le port 0 et l'adresse 3c. Si la commande n'a pas fonctionné, essayez:
 
 `i2cdetect -y 1`
 
-Dans ce cas, le port à indiquer dans le code du RRFTracker sera 1.
-
 ## Lancement
 
-Il ne reste plus qu'à lancer le RRFTracker,
+Le script `RRFTracker.py` peut recevoir des arguments au lancement.
 
-`python /opt/RRFTracker_Spotnik/RRFTracker.py`
+```
+root@spotnik:/opt/RRFTracker_Spotnik# python RRFTracker.py -h
+usage: RRFTracker.py
+-h, --help
+-p, --i2c-port I2C_PORT
+-a, --i2c-address I2C_ADDRESS
+-d, --display DISPLAY (choose from 'sh1106', 'ssd1306')
+```
 
-Et si vous voulez le laisser tourner en tache de fond,
+Par défaut, sans argument, le RRFTracker va démarrer avec les paramètres suivants,
 
-`nohup python /opt/RRFTracker_Spotnik/RRFTracker.py &`
+- i2c_port = 0
+- i2c_address = 0x3C
+- display = sh1106  (en 128 x 64)
+
+Cela revient à lancer le RRFTracker avec les arguments suivants,
+
+`python /opt/RRFTracker_Spotnik/RRFTracker.py -p 0 -a 0x3C -d sh1106`
+
+Il est donc possible d'affiner les paramètres, en fonction de ce que vous retournera la commande `i2cdetect` décrite ci dessus.
+
+Par exemple, avec les paramètres suivants,
+
+- i2c_port = 1
+- i2c_address = 0x3C
+- display = ssd1306  (en 128 x 32)
+
+Il vous siffira de lancer le RRFTracker avec les arguments suivants,
+
+`python /opt/RRFTracker_Spotnik/RRFTracker.py -p 1 -a 0x3C -d ssd1306`
+
+Et si vous voulez le laisser tourner en tache de fond, utilisez la commande `nohup` et l'_esperluette_ ;) Par exemple, 
+
+`nohup python /opt/RRFTracker_Spotnik/RRFTracker.py -p 0 -a 0x3C -d sh1106 &`
 
 Et voilà ;)
 
@@ -114,7 +149,7 @@ Et voilà ;)
 Voici la liste des composants dont vous aurez besoin:
 
 * 1 Raspberry Pi ou 1 Orange Pi
-* 1 écran OLED 0.96" 128x64 type SH1106 ou SSD1306
+* 1 écran OLED 1.3" 128 x 64 ou 0.9" 128 x 32, type SH1106 ou SSD1306
 * 4 cables Dupont femelle / femelle
  
 ## Schéma de montage
