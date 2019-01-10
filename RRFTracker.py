@@ -302,7 +302,7 @@ def main(argv):
             else:
                 tmp = os.popen("vcgencmd measure_temp").readline()
                 tmp = re.findall('\d+\.\d+', tmp)
-                tmp = int(tmp[0])
+                tmp = tmp[0]
 
             line[4] = 'Spotnik Temp ' + str(tmp) + ' C'
 
