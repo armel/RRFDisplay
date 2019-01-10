@@ -173,10 +173,6 @@ def main(argv):
     else:
         board = 'raspi'
 
-    print board
-
-    exit(0)
-
     # Boucle principale
 
     while(True):
