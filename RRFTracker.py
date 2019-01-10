@@ -298,13 +298,10 @@ def main(argv):
                 tmp = os.popen("cat /sys/devices/virtual/thermal/thermal_zone0/temp").readline()
             else:
                 tmp = os.popen("vcgencmd measure_temp").readline()
-                tmp = re.findall('\d+\.\d+', tmp)
+                tmp = int(re.findall('\d+\.\d+', tmp))
+                tmp = tmp[0]
 
-            print tmp
-
-            exit(0)
-
-            line[4] = str(tmp[0]) + ' C'
+            line[4] = str(tmp) + ' C'
 
             blanc_alternate = 0
 
