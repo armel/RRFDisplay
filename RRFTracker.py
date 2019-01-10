@@ -301,10 +301,10 @@ def main(argv):
                 tmp = int(tmp)
             else:
                 tmp = os.popen("vcgencmd measure_temp").readline()
-                tmp = int(re.findall('\d+\.\d+', tmp))
+                tmp = re.findall('\d+\.\d+', tmp)
                 tmp = int(tmp[0])
 
-            line[4] = 'Spotnik Temp' + str(tmp) + ' C'
+            line[4] = 'Spotnik Temp ' + str(tmp) + ' C'
 
             blanc_alternate = 0
 
