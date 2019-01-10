@@ -301,7 +301,7 @@ def main(argv):
 
             tmp = re.findall('\d+\.\d+', tmp)
 
-            line[4] = tmp + ' C'
+            line[4] = str(tmp[0]) + ' C'
 
             blanc_alternate = 0
 
