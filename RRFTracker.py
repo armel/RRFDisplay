@@ -301,7 +301,7 @@ def main(argv):
         elif(blanc_alternate == 3):         # Best link
             if len(history) > 4:
                 best = max(history, key=history.get)
-                line[4] = best + ' - ' + str(history[best]) + ' TX'
+                line[4] = best + ' ' + str(history[best]) + ' TX'
             else:
                 line[4] = 'Need more datas'
 
