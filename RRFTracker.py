@@ -69,11 +69,11 @@ def save_stat(history, call):
 
 def wake_up_screen(device, wake_up):
     if wake_up == True:
-        for i in xrange(255, 32, -1):
+        for i in xrange(225, 32, -1):
             device.contrast(i)         # No Transmitter
         return False
     else:
-        for i in xrange(32, 255):
+        for i in xrange(32, 225):
             device.contrast(i)         # Transmitter
         return True
 
