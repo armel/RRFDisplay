@@ -170,7 +170,7 @@ def main(argv):
     # Check board
 
     tmp = os.popen("uname -a").readline()
-    if tmp.find('sun8i'):
+    if 'sun8i' in tmp:
         board = 'orangepi'
     else:
         board = 'raspi'
