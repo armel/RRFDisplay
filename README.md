@@ -40,7 +40,8 @@ Sur la ligne centrale, au milieu de l'écran, on dispose,
 * du nombre de passages en émission sur la journée (depuis 00h00),
 * du temps depuis lequel fonctionne le RRFTracker (uptime),
 * du nombre de passages en émission depuis l'allumage du RRFTracker,
-* de l'indicatif du noeud le plus actif avec le nombre de passage en émission.
+* de l'indicatif du noeud le plus actif avec le nombre de passage en émission,
+* de la température du Spotnik.
 
 Pour finir, en bas de l'écran, on retrouve l'histogramme du trafic dans la journée, heure par heure.
 
