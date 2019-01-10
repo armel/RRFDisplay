@@ -120,8 +120,8 @@ def main():
 
     # Set serial
 
-    serial = i2c(port=i2c_port, address=i2c_address)
-    device = sh1106(serial, rotate=0)
+    serial = i2c(port = i2c_port, address = i2c_address)
+    device = sh1106(serial, rotate = 0)
 
     # Set date
 
@@ -138,7 +138,7 @@ def main():
 
         tmp = datetime.datetime.now()
         now = tmp.strftime('%H:%M')
-        hour = int(tmp.strftime("%H"))
+        hour = int(tmp.strftime('%H'))
 
         if(now == '00:00'):
             qso_total += qso
@@ -152,9 +152,9 @@ def main():
             r = requests.get(url, verify = False, timeout = 10)
             page = r.content
         except requests.exceptions.ConnectionError as errc:
-            print ("Error Connecting:",errc)
+            print ('Error Connecting:', errc)
         except requests.exceptions.Timeout as errt:
-            print ("Timeout Error:",errt)            
+            print ('Timeout Error:', errt)            
 
         search_start = page.find('transmitter":"')      # Search this pattern
         search_start += 14                              # Shift...
@@ -192,8 +192,8 @@ def main():
 
             call_time = 'Last TX '
             tmp = datetime.datetime.now()
-            now = tmp.strftime("%H:%M:%S")
-            hour = int(tmp.strftime("%H"))
+            now = tmp.strftime('%H:%M:%S')
+            hour = int(tmp.strftime('%H'))
 
             qso_hour[hour] = qso - sum(qso_hour[:hour])
 
@@ -252,9 +252,8 @@ def main():
 
         # Print screen
 
-        font   = ImageFont.truetype('fonts/7x5.ttf', 8)                 # Text font
-        icon_1 = ImageFont.truetype('fonts/heydings_icons.ttf', 15)     # Icon font
-        icon_2 = ImageFont.truetype('fonts/fontello.ttf', 14)           # Icon font
+        font = ImageFont.truetype('fonts/7x5.ttf', 8)                       # Text font
+        icon = ImageFont.truetype('fonts/fontello.ttf', 14)                 # Icon font
                   
         with canvas(device) as draw:
             for i in xrange(0, 128, 2):
@@ -262,24 +261,24 @@ def main():
                 draw.point((i, 40), fill = 'white')
             
             if wake_up is True:
-                draw.text((2, 0), u"\uf130", font = icon_2, fill = 'white') # Icon talk
+                draw.text((2, 0), u"\uf130", font = icon, fill = 'white')   # Icon talk
             
-            draw.text((0,26), u"\ue801", font = icon_2, fill = 'white')     # Icon Stat
+            draw.text((0,26), u"\ue801", font = icon, fill = 'white')       # Icon stat
 
-            if blanc_alternate == 0:                                        # Icon Best
-                draw.rectangle((0, 26, 15, 39), fill = 'black')
-                draw.text((0,26), u"\ue802", font = icon_2, fill = 'white')
+            if line[2][:4] == 'Last':                                       # Icon clock (DIY...)
+                x = 6
+                y = 17
+                draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline = 'white')
+                draw.line((x, y, x + 2, y + 2), fill = 'white')
+                draw.line((x, y, x, y - 3), fill = 'white')
 
-            if line[2][:4] == 'Last':                                       # Icon Clock
-                draw.text((-1, 8), chr(84), font = icon_1, fill = 'white')   
-       
             # Print data
 
             i = 0
 
             for l in line:
                 if l is not None:
-                    w, h = draw.textsize(text=l, font = font)
+                    w, h = draw.textsize(text = l, font = font)
                     tab = (device.width - w) / 2
                     vide = ' ' * 22     # Hack to speed clear screen line... 
                     draw.text((0, i), vide, font = font, fill = 'white')
