@@ -296,10 +296,11 @@ def main(argv):
         elif(blanc_alternate == 4):         # Thermal monitor
             if board == 'orangepi':
                 tmp = os.popen("cat /sys/devices/virtual/thermal/thermal_zone0/temp").readline()
+                tmp = int(tmp)
             else:
                 tmp = os.popen("vcgencmd measure_temp").readline()
                 tmp = int(re.findall('\d+\.\d+', tmp))
-                tmp = tmp[0]
+                tmp = int(tmp[0])
 
             line[4] = str(tmp) + ' C'
 
