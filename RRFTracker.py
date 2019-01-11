@@ -150,6 +150,8 @@ def main(argv):
         [0x1f, 0x15, 0x11, 0x00]            # E
     ]
 
+    letter = {'C': 16, 'E': 17, 'F': 12, 'N': 15, 'O': 13, 'R': 11, 'T': 14}
+
     call = ['F4HWN', 'RRFTracker', '']
     call_current = call[0]
     call_previous = call[1]
@@ -392,7 +394,7 @@ def main(argv):
                 legacy.text(draw,  (92, 59), chr(1) + chr(8), fill = 'white', font=SMALL_BITMAP_FONT)
                 legacy.text(draw, (115, 59), chr(2) + chr(3), fill = 'white', font=SMALL_BITMAP_FONT)
 
-            # Draw clock
+            # Print Clock
 
             i = 108
 
@@ -404,7 +406,7 @@ def main(argv):
                 legacy.text(draw,  (i, 0), chr(c), fill = 'white', font=SMALL_BITMAP_FONT)
                 i += 4
 
-            letter = {'C': 16, 'E': 17, 'F': 12, 'N': 15, 'O': 13, 'R': 11, 'T': 14}
+            # Print Room
 
             i = 115
 
