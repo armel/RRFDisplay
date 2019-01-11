@@ -409,7 +409,7 @@ def main(argv):
             i = 108
 
             for c in room:
-                legacy.text(draw,  (i, 5), chr(c), fill = 'white', font=SMALL_BITMAP_FONT)
+                legacy.text(draw,  (i, 5), chr(letter[c]), fill = 'white', font=SMALL_BITMAP_FONT)
                 i += 4
 
 
