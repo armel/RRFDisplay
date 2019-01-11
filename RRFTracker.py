@@ -94,7 +94,7 @@ def main(argv):
     i2c_port = 0                            # Default value ! Check port with i2cdetect...
     i2c_address = 0x3C                      # Default value ! Check adress with i2cdetect...
     display = 'sh1106'                      # Default value !
-    room = 'RRF'
+    room = 'RRF'                            # Default value !
 
     # Check and get arguments
 
@@ -110,7 +110,7 @@ def main(argv):
             print '-p, --i2c-port I2C_PORT'
             print '-a, --i2c-address I2C_ADDRESS'
             print '-d, --display DISPLAY (choose from \'sh1106\', \'ssd1306\')'
-            print '-r, --room ROOM (choose from \'RRF\', \'TEC\')'
+            print '-r, --room ROOM (choose from \'RRF\', \'TEC\', \'FON\')'
             sys.exit()
         elif opt in ('-p', '--i2c-port'):
             i2c_port = arg
@@ -122,8 +122,8 @@ def main(argv):
                 sys.exit()
             display = arg
         elif opt in ('-r', '--room'):
-            if arg not in ['RRF', 'TEC']:
-                print 'Unknown room name (choose between \'RRF\' and \'TEC\')'
+            if arg not in ['RRF', 'TEC', 'FON']:
+                print 'Unknown room name (choose between \'RRF\', \'TEC\' and \'FON\')'
                 sys.exit()
             room = arg
 
@@ -169,8 +169,10 @@ def main(argv):
 
     if room == 'RRF':
         url = 'http://rrf.f5nlg.ovh'
-    else :
+    elif room == 'TEC':
         url = 'http://rrf.f5nlg.ovh:82'
+    elif room == 'FON':
+        url = 'http://fon.f1tzo.com:81/'
 
     # Set date
 
