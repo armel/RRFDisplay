@@ -140,7 +140,14 @@ def main(argv):
         [0x11, 0x09, 0x07, 0x00],           # 7
         [0x1f, 0x15, 0x1f, 0x00],           # 8
         [0x17, 0x15, 0x1f, 0x00],           # 9
-        [0x00, 0x1b, 0x00, 0x00]            # :
+        [0x00, 0x1b, 0x00, 0x00],           # :
+        [0x1f, 0x05, 0x1a, 0x00],           # R
+        [0x1f, 0x05, 0x01, 0x00],           # F
+        [0x1f, 0x11, 0x1f, 0x00],           # O
+        [0x01, 0x1f, 0x01, 0x00],           # T
+        [0x1f, 0x02, 0x04, 0x1f],           # N
+        [0x1f, 0x11, 0x11, 0x00],           # C
+        [0x1f, 0x15, 0x11, 0x00]            # E
     ]
 
     call = ['F4HWN', 'RRFTracker', '']
@@ -396,6 +403,15 @@ def main(argv):
                     c = int(c)
                 legacy.text(draw,  (i, 0), chr(c), fill = 'white', font=SMALL_BITMAP_FONT)
                 i += 4
+
+            letter = {'C': 16, 'E': 17, 'F': 12, 'N': 15, 'O': 13, 'R': 11}
+
+            i = 108
+
+            for c in room:
+                legacy.text(draw,  (i, 5), chr(c), fill = 'white', font=SMALL_BITMAP_FONT)
+                i += 4
+
 
         time.sleep(2)
 
