@@ -404,7 +404,7 @@ def main(argv):
                 legacy.text(draw,  (i, 0), chr(c), fill = 'white', font=SMALL_BITMAP_FONT)
                 i += 4
 
-            letter = {'C': 16, 'E': 17, 'F': 12, 'N': 15, 'O': 13, 'R': 11}
+            letter = {'C': 16, 'E': 17, 'F': 12, 'N': 15, 'O': 13, 'R': 11, 'T': 14}
 
             i = 115
 
