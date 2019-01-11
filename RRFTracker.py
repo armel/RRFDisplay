@@ -192,7 +192,7 @@ def main(argv):
 
     # Check board
 
-    tmp = os.popen("uname -a").readline()
+    tmp = os.popen('uname -a').readline()
     if 'sun8i' in tmp:
         board = 'orangepi'
     else:
@@ -320,9 +320,9 @@ def main(argv):
 
         elif(blanc_alternate == 4):         # Thermal monitor
             if board == 'orangepi':
-                tmp = os.popen("cat /sys/devices/virtual/thermal/thermal_zone0/temp").readline()
+                tmp = os.popen('cat /sys/devices/virtual/thermal/thermal_zone0/temp').readline()
             else:
-                tmp = os.popen("vcgencmd measure_temp").readline()
+                tmp = os.popen('vcgencmd measure_temp').readline()
                 tmp = re.findall('\d+', tmp)
                 tmp = tmp[0]
 
