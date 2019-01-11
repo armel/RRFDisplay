@@ -94,12 +94,14 @@ def main(argv):
     i2c_port = 0                            # Default value ! Check port with i2cdetect...
     i2c_address = 0x3C                      # Default value ! Check adress with i2cdetect...
     display = 'sh1106'                      # Default value !
+    whidth = 128                            # Default value !
+    height = 64                             # Default value                    
     room = 'RRF'                            # Default value !
 
     # Check and get arguments
 
     try:
-        options, remainder = getopt.getopt(argv, 'hp:a:d:r:', ['i2c-port=','i2c-address=', 'display=', 'room='])
+        options, remainder = getopt.getopt(argv, 'hp:a:d:r:', ['i2c-port=','i2c-address=', 'display=', 'whidth=', 'height=', 'room='])
     except getopt.GetoptError:
         print 'usage: RRFTracker.py -p <i2c_port> -a <i2c_address> -r <room>'
         sys.exit(2)
@@ -111,6 +113,8 @@ def main(argv):
             print '-a, --i2c-address I2C_ADDRESS'
             print '-d, --display DISPLAY (choose from \'sh1106\', \'ssd1306\')'
             print '-r, --room ROOM (choose from \'RRF\', \'TEC\', \'FON\')'
+            print '--width WIDTH'
+            print '--height HEIGHT'
             sys.exit()
         elif opt in ('-p', '--i2c-port'):
             i2c_port = arg
@@ -121,6 +125,10 @@ def main(argv):
                 print 'Unknown display type (choose between \'sh1106\' and \'ssd1306\')'
                 sys.exit()
             display = arg
+        elif opt in ('--whidth'):
+            whidth = arg
+        elif opt in ('--height'):
+            height = arg
         elif opt in ('-r', '--room'):
             if arg not in ['RRF', 'TEC', 'FON']:
                 print 'Unknown room name (choose between \'RRF\', \'TEC\' and \'FON\')'
@@ -170,9 +178,9 @@ def main(argv):
 
     serial = i2c(port = i2c_port, address = i2c_address)
     if display == 'sh1106':                 # 128 x 64 pixels
-        device = sh1106(serial, width = 128, height = 64, rotate = 0)
+        device = sh1106(serial, width = width, height = height, rotate = 0)
     else:                                   # 128 x 32 pixels
-        device = ssd1306(serial, width = 128, height = 32, rotate = 0)
+        device = ssd1306(serial, width = width, height = height, rotate = 0)
 
     # Set url
 
