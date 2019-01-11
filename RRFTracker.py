@@ -340,11 +340,11 @@ def main(argv):
                 for i in xrange(0, 128, 2):
                     draw.point((i, 25), fill = 'white')
                     draw.point((i, 40), fill = 'white')
-                    draw.text((0,26), u"\ue801", font = icon, fill = 'white')   # Icon stat
+                    draw.text((0,26), u'\ue801', font = icon, fill = 'white')   # Icon stat
 
             
             if wake_up is True:
-                draw.text((2, 0), u"\uf130", font = icon, fill = 'white')       # Icon talk
+                draw.text((2, 0), u'\uf130', font = icon, fill = 'white')       # Icon talk
             
             if line[2][:4] == 'Last':                                           # Icon clock (DIY...)
                 x = 6
