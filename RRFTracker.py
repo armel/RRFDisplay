@@ -126,9 +126,9 @@ def main(argv):
                 sys.exit()
             display = arg
         elif opt in ('--whidth'):
-            whidth = arg
+            whidth = int(arg)
         elif opt in ('--height'):
-            height = arg
+            height = int(arg)
         elif opt in ('-r', '--room'):
             if arg not in ['RRF', 'TEC', 'FON']:
                 print 'Unknown room name (choose between \'RRF\', \'TEC\' and \'FON\')'
