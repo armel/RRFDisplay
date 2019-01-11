@@ -94,7 +94,7 @@ def main(argv):
     i2c_port = 0                            # Default value ! Check port with i2cdetect...
     i2c_address = 0x3C                      # Default value ! Check adress with i2cdetect...
     display = 'sh1106'                      # Default value !
-    whidth = 128                            # Default value !
+    width = 128                             # Default value !
     height = 64                             # Default value                    
     room = 'RRF'                            # Default value !
 
