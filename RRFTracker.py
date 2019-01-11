@@ -406,10 +406,10 @@ def main(argv):
 
             letter = {'C': 16, 'E': 17, 'F': 12, 'N': 15, 'O': 13, 'R': 11}
 
-            i = 108
+            i = 115
 
             for c in room:
-                legacy.text(draw,  (i, 5), chr(letter[c]), fill = 'white', font=SMALL_BITMAP_FONT)
+                legacy.text(draw,  (i, 6), chr(letter[c]), fill = 'white', font=SMALL_BITMAP_FONT)
                 i += 4
 
 
