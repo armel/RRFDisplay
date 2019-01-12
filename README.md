@@ -7,10 +7,11 @@ Cette version du RRFTracker et une évolution d'un [premier projet](https://gith
 
 Il permet de suivre en temps réel l'activité du réseau [RRF](https://f5nlg.wordpress.com/2015/12/28/nouveau-reseau-french-repeater-network/) (Réseau des Répéteurs Francophones), mais également du [FON](http://www.f1tzo.com/) (French Open Networks), en utilisant un Rasbperry Pi 3 ou un Orange Pi Zero et un écran OLED type SH1106 ou SSD1306 piloté par I2C. Ces écrans ont un QSJ de moins de 5€.
 
-Pour le moment, cette version du RRFTracker prend en charge [2 tailles d'écrans](http://www.dsdtech-global.com/2018/05/iic-oled-lcd-u8glib.html). 
+Pour le moment, cette version du RRFTracker prend en charge [3 tailles d'écrans](http://www.dsdtech-global.com/2018/05/iic-oled-lcd-u8glib.html). 
 
-- 1.3" 128 x 64
-- 0.9" 128 x 32
+- 1.30" en 128 x 64
+- 0.96" en 128 x 64 
+- 0.91" en 128 x 32
 
 Ce dispositif peut donc être associé sans (_trop de_) difficulté à un Spotnik Gamma, Delta, etc. afin de profiter d'un minimum de remontée d'informations, à l'image des Hotspots MMDVM type ZUMspot, Jumbo SPOT, etc. si precieux aux porteurs de casques de chantier... j'ai nommé les DMRistes ;)
 
@@ -121,6 +122,8 @@ usage: RRFTracker.py
 -p, --i2c-port I2C_PORT
 -a, --i2c-address I2C_ADDRESS
 -d, --display DISPLAY (choose from 'sh1106', 'ssd1306')
+--width WIDTH
+--height HEIGHT
 -r, --room ROOM (choose from 'RRF', 'TEC', 'FON')
 ```
 
@@ -128,12 +131,18 @@ Par défaut, sans argument, le RRFTracker va démarrer avec les paramètres suiv
 
 - i2c_port = 0
 - i2c_address = 0x3C
-- display = sh1106  (en 128 x 64)
+- display = sh1106
+- width = 128
+- height = 64
 - room = RRF
 
 Cela revient à lancer le RRFTracker avec les arguments suivants,
 
-`python /opt/RRFTracker_Spotnik/RRFTracker.py -p 0 -a 0x3C -d sh1106 -room RRF`
+`python /opt/RRFTracker_Spotnik/RRFTracker.py --i2c_port 0 --i2c_address 0x3C --display sh1106 --width 128 --height 64 --room RRF`
+
+Ou encore,
+
+`python /opt/RRFTracker_Spotnik/RRFTracker.py -p 0 -a 0x3C -d sh1106 --width 128 --height 64 -r RRF`
 
 Il est donc possible d'affiner les paramètres, en fonction de ce que vous retournera la commande `i2cdetect` décrite ci dessus.
 
@@ -161,7 +170,7 @@ Et voilà ;)
 Voici la liste des composants dont vous aurez besoin:
 
 * 1 Raspberry Pi 3 ou 1 Orange Pi Zero
-* 1 écran OLED 1.3" 128 x 64 ou 0.9" 128 x 32, type SH1106 ou SSD1306
+* 1 écran OLED 128 x 64 (1.30" ou 0.96") ou 128 x 32 (0.91"), type SH1106 ou SSD1306
 * 4 cables Dupont femelle / femelle
 
 Il est possible d'adapter ce projet à d'autres platines et d'autres écrans. Ne pas hésitez à me contacter pour avis si vous le souhaitez ;)
