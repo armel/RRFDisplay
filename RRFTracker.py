@@ -101,7 +101,7 @@ def main(argv):
     # Check and get arguments
 
     try:
-        options, remainder = getopt.getopt(argv, , ['help', 'i2c-port=','i2c-address=', 'display=', 'display-width=', 'display-height=', 'room='])
+        options, remainder = getopt.getopt(argv, ['help', 'i2c-port=','i2c-address=', 'display=', 'display-width=', 'display-height=', 'room='])
     except getopt.GetoptError:
         print 'usage: RRFTracker.py --i2c-port <i2c_port> --i2c-address <i2c_address> --display <display> --display_width <display_width> --display_height <display_height> --room <room>'
         sys.exit(2)
