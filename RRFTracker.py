@@ -115,8 +115,8 @@ def main(argv):
     i2c_port = 0                            # Default value ! Check port with i2cdetect...
     i2c_address = 0x3C                      # Default value ! Check adress with i2cdetect...
     display = 'sh1106'                      # Default value !
-    width = 128                             # Default value !
-    height = 64                             # Default value                    
+    display_width = 128                     # Default value !
+    display_height = 64                     # Default value !                  
     room = 'RRF'                            # Default value !
 
     # Check and get arguments
@@ -140,14 +140,16 @@ def main(argv):
                 sys.exit()
             display = arg
         elif opt in ('--display-width'):
-            width = int(arg)
+            display_width = int(arg)
         elif opt in ('--display-height'):
-            height = int(arg)
+            display_height = int(arg)
         elif opt in ('--room'):
             if arg not in ['RRF', 'TEC', 'FON']:
                 print 'Unknown room name (choose between \'RRF\', \'TEC\' and \'FON\')'
                 sys.exit()
             room = arg
+
+    print i2c_port, i2c_address, display, display_width, display_height, room
 
     # Set constants & variables
 
@@ -192,9 +194,9 @@ def main(argv):
 
     serial = i2c(port = i2c_port, address = i2c_address)
     if display == 'sh1106':
-        device = sh1106(serial, width = width, height = height, rotate = 0)
+        device = sh1106(serial, width = display_width, height = display_height, rotate = 0)
     else:
-        device = ssd1306(serial, width = width, height = height, rotate = 0)
+        device = ssd1306(serial, width = display_width, height = display_height, rotate = 0)
 
     # Set url
 
