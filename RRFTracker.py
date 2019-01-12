@@ -24,6 +24,25 @@ from luma.core import legacy
 
 from PIL import ImageFont
 
+# Usage
+
+def usage():
+    print 'usage: RRFTracker.py [options ...]'
+    print
+    print '--help'
+    print
+    print 'I2C settings'
+    print '--i2c-port I2C_PORT'
+    print '--i2c-address I2C_ADDRESS'
+    print
+    print 'Display settings'
+    print '--display DISPLAY (choose from \'sh1106\', \'ssd1306\')'
+    print '--display-width WIDTH'
+    print '--display-height HEIGHT'
+    print
+    print 'Room settings'
+    print '--room ROOM (choose from \'RRF\', \'TEC\', \'FON\')'
+
 # Calculate uptime with a microtime
 
 def calc_uptime(n):
@@ -103,18 +122,11 @@ def main(argv):
     try:
         options, remainder = getopt.getopt(argv, ['help', 'i2c-port=','i2c-address=', 'display=', 'display-width=', 'display-height=', 'room='])
     except getopt.GetoptError:
-        print 'usage: RRFTracker.py --i2c-port <i2c_port> --i2c-address <i2c_address> --display <display> --display_width <display_width> --display_height <display_height> --room <room>'
+        usage()
         sys.exit(2)
     for opt, arg in options:
         if opt == '--help':
-            print 'usage: RRFTracker.py'
-            print '--help'
-            print '--i2c-port I2C_PORT'
-            print '--i2c-address I2C_ADDRESS'
-            print '--display DISPLAY (choose from \'sh1106\', \'ssd1306\')'
-            print '--display-width WIDTH'
-            print '--display-height HEIGHT'
-            print '--room ROOM (choose from \'RRF\', \'TEC\', \'FON\')'
+            usage()
             sys.exit()
         elif opt in ('--i2c-port'):
             i2c_port = arg
