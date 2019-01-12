@@ -149,7 +149,6 @@ def main(argv):
                 sys.exit()
             room = arg
 
-    print i2c_port, i2c_address, display, display_width, display_height, room
 
     # Set constants & variables
 
