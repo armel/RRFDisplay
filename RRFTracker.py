@@ -17,7 +17,6 @@ import re
 
 from luma.core.interface.serial import i2c
 from luma.core.render import canvas
-from luma.core.virtual import viewport
 from luma.oled.device import sh1106
 from luma.oled.device import ssd1306
 from luma.core import legacy
