@@ -122,7 +122,7 @@ def main(argv):
     # Check and get arguments
 
     try:
-        options, remainder = getopt.getopt(argv, ['help', 'i2c-port=','i2c-address=', 'display=', 'display-width=', 'display-height=', 'room='])
+        options, remainder = getopt.getopt(argv, '', ['help', 'i2c-port=','i2c-address=', 'display=', 'display-width=', 'display-height=', 'room='])
     except getopt.GetoptError:
         usage()
         sys.exit(2)
