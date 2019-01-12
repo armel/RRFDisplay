@@ -27,7 +27,7 @@ from PIL import ImageFont
 # Usage
 
 def usage():
-    print 'usage: RRFTracker.py [options ...]'
+    print 'Usage: RRFTracker.py [options ...]'
     print
     print '--help               this help'
     print
