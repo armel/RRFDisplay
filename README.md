@@ -5,9 +5,9 @@ Suivi temps réel de l'activité du réseau [RRF](https://f5nlg.wordpress.com/20
 
 Cette version du RRFTracker et une évolution d'un [premier projet](https://github.com/armel/RRFTracker) réalisé mi novembre 2018 à partir d'un Nodemcu ESP8266 et d'un écran LCD 16x2.
 
-Il permet de suivre en temps réel l'activité du réseau [RRF](https://f5nlg.wordpress.com/2015/12/28/nouveau-reseau-french-repeater-network/) (Réseau des Répéteurs Francophones), mais également du [FON](http://www.f1tzo.com/) (French Open Networks), en utilisant un Rasbperry Pi 3 ou un Orange Pi Zero et un écran OLED type SH1106 ou SSD1306 piloté par I2C. Ces écrans ont un QSJ de moins de 5€.
+Il permet de suivre en temps réel l'activité du réseau [RRF](https://f5nlg.wordpress.com/2015/12/28/nouveau-reseau-french-repeater-network/) (Réseau des Répéteurs Francophones), mais également du [FON](http://www.f1tzo.com/) (French Open Networks), en utilisant un Raspberry Pi 3 ou un Orange Pi Zero et un écran OLED type SH1106 ou SSD1306 piloté par I2C. Ces écrans ont un QSJ de moins de 5€. C'était une des contraintes de mon cahier des charges. À noter que vous pouvez les trouver à moins de 3€ sur des boutiques chinoises, si vous acceptez de patienter 30 à 60 jours pour la livraison.  
 
-Pour le moment, cette version du RRFTracker prend en charge [3 tailles d'écrans](http://www.dsdtech-global.com/2018/05/iic-oled-lcd-u8glib.html). 
+Pour le moment, cette version du RRFTracker prend en charge [3 tailles d'écrans](http://www.dsdtech-global.com/2018/05/iic-oled-lcd-u8glib.html) OLED et 2 résolutions. 
 
 - 1.30" en 128 x 64
 - 0.96" en 128 x 64 
@@ -113,55 +113,62 @@ Votre écran est bien raccordé. Et il utilise le port 0 et l'adresse 3c. Si la 
 
 ## Lancement
 
-Le script `RRFTracker.py` peut recevoir des arguments au lancement.
+Le script `RRFTracker.py` peut recevoir des arguments au lancement afin d'affiner les paramètres. Par exemple,
 
 ```
 root@spotnik:/opt/RRFTracker_Spotnik# python RRFTracker.py -h
-usage: RRFTracker.py
--h, --help
--p, --i2c-port I2C_PORT
--a, --i2c-address I2C_ADDRESS
--d, --display DISPLAY (choose from 'sh1106', 'ssd1306')
---width WIDTH
---height HEIGHT
--r, --room ROOM (choose from 'RRF', 'TEC', 'FON')
+Usage: RRFTracker.py [options ...]
+
+--help               this help
+
+I2C settings:
+  --i2c-port         set i2c port (default = 0)
+  --i2c-address      set i2c address (default = 0x3C)
+
+Display settings:
+  --display          set display (default = sh1106, choose between [sh1106, ssd1306])
+  --display-width    set display width (default = 128)
+  --display-height   set display height (default = 64)
+
+Room settings:
+  --room ROOM        set room (default = RRF, choose between [RRF, TEC, FON])
+
+73 from F4HWN Armel
 ```
 
 Par défaut, sans argument, le RRFTracker va démarrer avec les paramètres suivants,
 
-- i2c_port = 0
-- i2c_address = 0x3C
+- i2c port = 0
+- i2c address = 0x3C
 - display = sh1106
-- width = 128
-- height = 64
+- display width = 128
+- display height = 64
 - room = RRF
 
 Cela revient à lancer le RRFTracker avec les arguments suivants,
 
-`python /opt/RRFTracker_Spotnik/RRFTracker.py --i2c_port 0 --i2c_address 0x3C --display sh1106 --width 128 --height 64 --room RRF`
+`python /opt/RRFTracker_Spotnik/RRFTracker.py --i2c-port 0 --i2c-address 0x3C --display sh1106 --display-width 128 --display-height 64 --room RRF`
 
-Ou encore,
-
-`python /opt/RRFTracker_Spotnik/RRFTracker.py -p 0 -a 0x3C -d sh1106 --width 128 --height 64 -r RRF`
-
-Il est donc possible d'affiner les paramètres, en fonction de ce que vous retournera la commande `i2cdetect` décrite ci dessus.
+Il est donc possible de modifier les paramètres, notamment en fonction de ce que vous retournera la commande `i2cdetect` décrite ci dessus.
 
 Par exemple, avec les paramètres suivants,
 
-- i2c_port = 1
-- i2c_address = 0x3C
-- display = ssd1306  (en 128 x 32)
-- room = RRF
+- i2c port = 1
+- i2c address = 0x3C
+- display = ssd1306
+- display width = 128
+- display height = 64
+- room = TEC
 
 Il vous siffira de lancer le RRFTracker avec les arguments suivants,
 
-`python /opt/RRFTracker_Spotnik/RRFTracker.py -p 1 -d ssd1306`
+`python /opt/RRFTracker_Spotnik/RRFTracker.py --i2c-port 1 --display ssd1306 --room TEC`
 
-Notez qu'il n'est pas nécessaire de préciser l'i2c_address et la room, puisque ce sont déjà les valeurs par défaut.
+Notez qu'il n'est pas nécessaire de préciser l'i2c-address, le display-width et display-height puisque ce sont déjà les valeurs par défaut.
 
 Et si vous voulez le laisser tourner en tache de fond, utilisez la commande `nohup` et l'_esperluette_ ;) Par exemple, 
 
-`nohup python /opt/RRFTracker_Spotnik/RRFTracker.py -p 0 -a 0x3C -d sh1106 &`
+`nohup python /opt/RRFTracker_Spotnik/RRFTracker.py --i2c-port 1 --display ssd1306 --room TEC &`
 
 Et voilà ;)
 
