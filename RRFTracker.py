@@ -103,33 +103,33 @@ def main(argv):
     try:
         options, remainder = getopt.getopt(argv, , ['help', 'i2c-port=','i2c-address=', 'display=', 'display-width=', 'display-height=', 'room='])
     except getopt.GetoptError:
-        print 'usage: RRFTracker.py -p <i2c_port> -a <i2c_address> -d <display> -dw <display_width> -dh <display_height> -r <room>'
+        print 'usage: RRFTracker.py --i2c-port <i2c_port> --i2c-address <i2c_address> --display <display> --display_width <display_width> --display_height <display_height> --room <room>'
         sys.exit(2)
     for opt, arg in options:
-        if opt == '-h':
+        if opt == '--help':
             print 'usage: RRFTracker.py'
-            print '-h, --help'
-            print '-p, --i2c-port I2C_PORT'
-            print '-a, --i2c-address I2C_ADDRESS'
-            print '-d, --display DISPLAY (choose from \'sh1106\', \'ssd1306\')'
-            print '-dw --display-width WIDTH'
-            print '-dh --display-height HEIGHT'
-            print '-r, --room ROOM (choose from \'RRF\', \'TEC\', \'FON\')'
+            print '--help'
+            print '--i2c-port I2C_PORT'
+            print '--i2c-address I2C_ADDRESS'
+            print '--display DISPLAY (choose from \'sh1106\', \'ssd1306\')'
+            print '--display-width WIDTH'
+            print '--display-height HEIGHT'
+            print '--room ROOM (choose from \'RRF\', \'TEC\', \'FON\')'
             sys.exit()
-        elif opt in ('-p', '--i2c-port'):
+        elif opt in ('--i2c-port'):
             i2c_port = arg
-        elif opt in ('-a', '--i2c-address'):
+        elif opt in ('--i2c-address'):
             i2c_address = int(arg, 16)
-        elif opt in ('-d', '--display'):
+        elif opt in ('--display'):
             if arg not in ['sh1106', 'ssd1306']:
                 print 'Unknown display type (choose between \'sh1106\' and \'ssd1306\')'
                 sys.exit()
             display = arg
-        elif opt in ('-dw', '--width'):
+        elif opt in ('--display-width'):
             width = int(arg)
-        elif opt in ('-dh', '--height'):
+        elif opt in ('--display-height'):
             height = int(arg)
-        elif opt in ('-r', '--room'):
+        elif opt in ('--room'):
             if arg not in ['RRF', 'TEC', 'FON']:
                 print 'Unknown room name (choose between \'RRF\', \'TEC\' and \'FON\')'
                 sys.exit()
