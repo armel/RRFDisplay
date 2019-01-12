@@ -13,7 +13,6 @@ import datetime
 import time
 import sys, getopt
 import os
-import re
 
 from luma.core.interface.serial import i2c
 from luma.core.render import canvas
@@ -341,12 +340,9 @@ def main(argv):
             blanc_alternate = 4
 
         elif(blanc_alternate == 4):         # Thermal monitor
-            if board == 'orangepi':
-                tmp = os.popen('cat /sys/devices/virtual/thermal/thermal_zone0/temp').readline()
-            else:
-                tmp = os.popen('vcgencmd measure_temp').readline()
-                tmp = re.findall('\d+', tmp)
-                tmp = tmp[0]
+            tmp = int(os.popen('cat /sys/class/thermal/thermal_zone0/temp').readline())
+            if tmp > 1000:
+                tmp /= 1000
 
             line[4] = 'Spotnik Temp ' + str(tmp).strip() + ' C'
 
