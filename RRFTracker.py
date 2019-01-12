@@ -101,9 +101,9 @@ def main(argv):
     # Check and get arguments
 
     try:
-        options, remainder = getopt.getopt(argv, 'hp:a:d:dw:dh:r:', ['i2c-port=','i2c-address=', 'display=', 'width=', 'height=', 'room='])
+        options, remainder = getopt.getopt(argv, 'hp:a:d:dw:dh:r:', ['i2c-port=','i2c-address=', 'display=', 'display-width=', 'display-height=', 'room='])
     except getopt.GetoptError:
-        print 'usage: RRFTracker.py -p <i2c_port> -a <i2c_address> -d <display> --dw <display_width> --dh <display_height> -r <room>'
+        print 'usage: RRFTracker.py -p <i2c_port> -a <i2c_address> -d <display> -dw <display_width> -dh <display_height> -r <room>'
         sys.exit(2)
     for opt, arg in options:
         if opt == '-h':
@@ -112,8 +112,8 @@ def main(argv):
             print '-p, --i2c-port I2C_PORT'
             print '-a, --i2c-address I2C_ADDRESS'
             print '-d, --display DISPLAY (choose from \'sh1106\', \'ssd1306\')'
-            print '-dw --width WIDTH'
-            print '-dh --height HEIGHT'
+            print '-dw --display-width WIDTH'
+            print '-dh --display-height HEIGHT'
             print '-r, --room ROOM (choose from \'RRF\', \'TEC\', \'FON\')'
             sys.exit()
         elif opt in ('-p', '--i2c-port'):
