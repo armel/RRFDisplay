@@ -33,15 +33,17 @@ def usage():
     print
     print 'I2C settings:'
     print '  --i2c-port         set i2c port (default = 0)'
-    print '  --i2c-address      set i2c address (default 0x3C)'
+    print '  --i2c-address      set i2c address (default = 0x3C)'
     print
     print 'Display settings:'
-    print '  --display          set display (default sh1106, choose between [sh1106, ssd1306])'
-    print '  --display-width    set display width (default 128)'
-    print '  --display-height   set display height (default 64)'
+    print '  --display          set display (default = sh1106, choose between [sh1106, ssd1306])'
+    print '  --display-width    set display width (default = 128)'
+    print '  --display-height   set display height (default = 64)'
     print
     print 'Room settings:'
-    print '  --room ROOM        set room (default RRF, choose between [RRF, TEC, FON])'
+    print '  --room ROOM        set room (default = RRF, choose between [RRF, TEC, FON])'
+    print 
+    print '73 from F4HWN Armel'
 
 # Calculate uptime with a microtime
 
