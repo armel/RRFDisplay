@@ -160,7 +160,7 @@ Par exemple, avec les paramètres suivants,
 - display height = 64
 - room = TEC
 
-Il vous siffira de lancer le RRFTracker avec les arguments suivants,
+Il vous suffira de lancer le RRFTracker avec les arguments suivants,
 
 `python /opt/RRFTracker_Spotnik/RRFTracker.py --i2c-port 1 --display ssd1306 --room TEC`
 
