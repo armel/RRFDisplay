@@ -152,7 +152,7 @@ def main(argv):
 
     # Set constants & variables
 
-    SMALL_BITMAP_FONT=[
+    SMALL_BITMAP_FONT = [
         [0x1f, 0x11, 0x1f, 0x00],           # 0
         [0x00, 0x1f, 0x00, 0x00],           # 1
         [0x1d, 0x15, 0x17, 0x00],           # 2
