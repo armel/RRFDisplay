@@ -425,7 +425,42 @@ def main(argv):
                 if 'Waiting TX' not in call_time and len(history) >= 5 and device.height == 64:
                     extended = True
 
-            if wake_up is False and extended is True and minute % 4 == 0:       # History log extended
+            if wake_up is False and extended is True and minute % 1 == 0:       # System log extended
+
+                draw.rectangle((0, 0, 127, 63), fill='black')
+
+                for i in xrange(0, 128, 2):
+                    draw.point((i, 10), fill='white')
+
+                w, h = draw.textsize(text=room + ' Last TX', font=font)
+                tab = (device.width - w) / 2
+                draw.text((tab, 0), room + ' Last TX', font=font, fill='white')
+
+                sys = {'Temp': '', 'Freq': '', 'Mem': '', 'Disk': ''}
+
+                sys['Temp'] = system_info('temp') + ' C'
+                sys['Freq'] = system_info('freq') + ' MHz'
+
+                percent, mem = system_info('mem')
+                sys['Mem'] = percent + '% of ' + mem
+
+                percent, disk = system_info('disk')
+                sys['Disk'] = percent + '% of ' + disk
+
+                i = 16
+
+                for j in ['Temp', 'Freq', 'Mem', 'Disk']:
+                    draw.rectangle((0, i - 1, 42, i + 7), fill='white')
+                    draw.line((43, i, 43, i + 6), fill='white')
+                    draw.line((44, i + 2, 44, i + 4), fill='white')
+                    draw.point((45, i + 3), fill='white')
+
+                    draw.text((1, i), j, font=font, fill='black')
+                    draw.text((54, i), sys[j], font=font, fill='white')
+
+                    i += 10
+
+            elif wake_up is False and extended is True and minute % 4 == 0:       # History log extended
 
                 draw.rectangle((0, 0, 127, 63), fill='black')
 
