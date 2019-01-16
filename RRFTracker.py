@@ -369,7 +369,7 @@ def main(argv):
         with canvas(device) as draw:
 
             if wake_up is False and device.height == 64:                        # If sleep
-                if 'Waiting' not in call_time[0] and minute % 2 == 0:           # History log extended
+                if 'Waiting TX' not in call_time and minute % 2 == 0:           # History log extended
 
                     draw.rectangle((0, 0, 127, 63), fill = 'black')
 
@@ -383,9 +383,6 @@ def main(argv):
                     i = 16
                     
                     for j in xrange(0, 5):
-                        if 'Waiting' in call_time[j]:
-                            break
-
                         draw.rectangle((0, i - 1, 42, i + 7), fill = 'white')
                         draw.line((43, i, 43, i + 6), fill = 'white')
                         draw.line((44, i + 2, 44, i + 4), fill = 'white')
