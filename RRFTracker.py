@@ -114,7 +114,7 @@ def main(argv):
     # Default i2c_port and i2c_address
 
     i2c_port = 0                            # Default value ! Check port with i2cdetect...
-    i2c_address = 0x3C                      # Default value ! Check adress with i2cdetect...
+    i2c_address = 0x3C                      # Default value ! Check address with i2cdetect...
     display = 'sh1106'                      # Default value !
     display_width = 128                     # Default value !
     display_height = 64                     # Default value !
@@ -424,18 +424,18 @@ def main(argv):
 
                         i += 10
 
-            else:                                                                   # If not sleep
+            else:                                                               # If not sleep
 
                 if device.height == 64:     # Only if 128 x 64 pixels
                     for i in xrange(0, 128, 2):
                         draw.point((i, 25), fill='white')
                         draw.point((i, 40), fill='white')
-                        draw.text((0, 26), u'\ue801', font=icon, fill='white')   # Icon stat
+                        draw.text((0, 26), u'\ue801', font=icon, fill='white')  # Icon stat
 
                 if wake_up is True:
                     draw.text((2, 0), u'\uf130', font=icon, fill='white')       # Icon talk
 
-                if line[2][:4] == 'Last':                                           # Icon clock (DIY...)
+                if line[2][:4] == 'Last':                                       # Icon clock (DIY...)
                     x = 6
                     y = 17
                     draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline='white')
