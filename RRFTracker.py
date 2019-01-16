@@ -391,24 +391,24 @@ def main(argv):
             blanc_alternate = 4
 
         elif(blanc_alternate == 4):         # Thermal monitor
-            line[4] = 'Spotnik Temp ' + system_info('temp') + ' C'
+            line[4] = 'Temp ' + system_info('temp') + ' C'
 
             blanc_alternate = 5
 
         elif(blanc_alternate == 5):         # Freq monitor
-            line[4] = 'Spotnik Freq ' + system_info('freq') + ' MHz'
+            line[4] = 'Freq ' + system_info('freq') + ' MHz'
 
             blanc_alternate = 6
 
         elif(blanc_alternate == 6):         # Mem monitor
             percent, mem = system_info('mem')
-            line[4] = 'Spotnik Mem ' + percent + ' % of ' + mem
+            line[4] = 'Mem ' + percent + ' % of ' + mem
 
             blanc_alternate = 7
 
         elif(blanc_alternate == 7):         # Disk monitor
             percent, disk = system_info('disk')
-            line[4] = 'Spotnik Disk ' + percent + ' % of ' + disk
+            line[4] = 'Disk ' + percent + ' % of ' + disk
 
             blanc_alternate = 0
 
