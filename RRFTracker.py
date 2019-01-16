@@ -434,9 +434,9 @@ def main(argv):
                 for i in xrange(0, 128, 2):
                     draw.point((i, 10), fill='white')
 
-                w, h = draw.textsize(text=room + ' Last TX', font=font)
+                w, h = draw.textsize(text='Spotnik Infos', font=font)
                 tab = (device.width - w) / 2
-                draw.text((tab, 0), room + ' Last TX', font=font, fill='white')
+                draw.text((tab, 0), 'Spotnik Infos', font=font, fill='white')
 
                 sys = {'Temp': '', 'Freq': '', 'Mem': '', 'Disk': ''}
 
