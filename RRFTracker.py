@@ -108,6 +108,45 @@ def interpolation(value, in_min, in_max, out_min, out_max):
     else:
         return 0
 
+# Get system info
+
+def system_info(value):
+
+    if value == 'temp':
+        tmp = int(os.popen('cat /sys/class/thermal/thermal_zone0/temp').readline())
+        if tmp > 1000:
+            tmp /= 1000
+
+        return str(tmp)
+
+    elif value == 'freq':
+        tmp = int(os.popen('cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq').readline())
+        if tmp > 1000:
+            tmp /= 1000
+
+        return str(tmp)
+
+    elif value == 'mem':
+        tmp = list(os.popen('free -h'))
+        tmp = tmp[1].strip()
+        tmp = tmp.split()
+
+        mem = tmp[1]
+        mem_total = int(tmp[1][:-1])
+        mem_use = int(tmp[2][:-1])
+
+        return str(mem), str(int((float(mem_use) / float(mem_total)) * 100))
+
+    elif value == 'disk':
+        tmp = list(os.popen('df -h'))
+        tmp = tmp[1].strip()
+        tmp = tmp.split()
+
+        disk = tmp[1]
+        disk_total = (tmp[1][:-1]).replace(',', '.')
+        disk_use = (tmp[2][:-1]).replace(',', '.')
+
+        return str(disk), str(int((float(disk_use) / float(disk_total)) * 100))
 
 def main(argv):
 
@@ -352,13 +391,27 @@ def main(argv):
             blanc_alternate = 4
 
         elif(blanc_alternate == 4):         # Thermal monitor
-            tmp = int(os.popen('cat /sys/class/thermal/thermal_zone0/temp').readline())
-            if tmp > 1000:
-                tmp /= 1000
+            line[4] = 'Spotnik Temp ' + system_info('temp') + ' C'
 
-            line[4] = 'Spotnik Temp ' + str(tmp).strip() + ' C'
+            blanc_alternate = 5
+
+        elif(blanc_alternate == 5):         # Freq monitor
+            line[4] = 'Spotnik Freq ' + system_info('freq') + ' MHz'
+
+            blanc_alternate = 6
+
+        elif(blanc_alternate == 6):         # Mem monitor
+            percent, mem = system_info('mem')
+            line[4] = 'Spotnik Mem ' + percent + ' % of ' + mem
+
+            blanc_alternate = 7
+
+        elif(blanc_alternate == 7):         # Disk monitor
+            percent, disk = system_info('disk')
+            line[4] = 'Spotnik Disk ' + percent + ' % of ' + disk
 
             blanc_alternate = 0
+
 
         # Print screen
 
