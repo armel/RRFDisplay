@@ -425,6 +425,8 @@ def main(argv):
                 if 'Waiting TX' not in call_time and len(history) >= 5 and device.height == 64:
                     extended = True
 
+            extended = True
+
             if wake_up is False and extended is True and minute % 1 == 0:       # System log extended
 
                 draw.rectangle((0, 0, 127, 63), fill='black')
