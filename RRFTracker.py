@@ -369,10 +369,7 @@ def main(argv):
 
             if extended is False:
 
-                if 'Waiting TX' not in call_time
-                    and len(history) >= 5
-                    and device.height == 64:
-
+                if 'Waiting TX' not in call_time and len(history) >= 5 and device.height == 64:
                     extended = True
 
             if wake_up is False and extended is True and minute % 4 == 0:       # History log extended
