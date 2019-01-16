@@ -188,6 +188,7 @@ def main(argv):
     qso_hour = [0] * 24
 
     wake_up = True
+    extended = False
 
     # Set serial
 
@@ -366,65 +367,72 @@ def main(argv):
 
         with canvas(device) as draw:
 
-            if wake_up is False and device.height == 64:                        # If sleep
-                if 'Waiting TX' not in call_time and minute % 2 == 0:           # History log extended
+            if extended is False:
 
-                    draw.rectangle((0, 0, 127, 63), fill='black')
+                if 'Waiting TX' not in call_time
+                and len(history) >= 5
+                and device.height == 64:
 
-                    for i in xrange(0, 128, 2):
-                        draw.point((i, 10), fill='white')
+                    extended = True
 
-                    w, h = draw.textsize(text=room + ' Last TX', font=font)
-                    tab = (device.width - w) / 2
-                    draw.text((tab, 0), room + ' Last TX', font=font, fill='white')
+            if wake_up is False and extended is True and minute % 4 == 0:       # History log extended
 
-                    i = 16
+                draw.rectangle((0, 0, 127, 63), fill='black')
 
-                    for j in xrange(0, 5):
-                        draw.rectangle((0, i - 1, 42, i + 7), fill='white')
-                        draw.line((43, i, 43, i + 6), fill='white')
-                        draw.line((44, i + 2, 44, i + 4), fill='white')
-                        draw.point((45, i + 3), fill='white')
+                for i in xrange(0, 128, 2):
+                    draw.point((i, 10), fill='white')
 
-                        draw.text((1, i), call_time[j], font=font, fill='black')
-                        draw.text((54, i), call[j], font=font, fill='white')
+                w, h = draw.textsize(text=room + ' Last TX', font=font)
+                tab = (device.width - w) / 2
+                draw.text((tab, 0), room + ' Last TX', font=font, fill='white')
 
-                        i += 10
+                i = 16
 
-                elif len(history) >= 5 and minute % 1 == 0:                     # Best log extended
+                for j in xrange(0, 5):
+                    draw.rectangle((0, i - 1, 42, i + 7), fill='white')
+                    draw.line((43, i, 43, i + 6), fill='white')
+                    draw.line((44, i + 2, 44, i + 4), fill='white')
+                    draw.point((45, i + 3), fill='white')
 
-                    draw.rectangle((0, 0, 127, 63), fill='black')
-                    for i in xrange(0, 128, 2):
-                        draw.point((i, 10), fill='white')
+                    draw.text((1, i), call_time[j], font=font, fill='black')
+                    draw.text((54, i), call[j], font=font, fill='white')
 
-                    w, h = draw.textsize(text=room + ' Best TX', font=font)
-                    tab = (device.width - w) / 2
-                    draw.text((tab, 0), room + ' Best TX', font=font, fill='white')
+                    i += 10
 
-                    tmp = sorted(history.items(), key=lambda x: x[1])
-                    tmp.reverse()
+            elif wake_up is False and extended is True and minute % 2 == 0:     # Best log extended
 
-                    best_min = min(history, key=history.get)
-                    best_max = max(history, key=history.get)
+                draw.rectangle((0, 0, 127, 63), fill='black')
+                for i in xrange(0, 128, 2):
+                    draw.point((i, 10), fill='white')
 
-                    i = 16
+                w, h = draw.textsize(text=room + ' Best TX', font=font)
+                tab = (device.width - w) / 2
+                draw.text((tab, 0), room + ' Best TX', font=font, fill='white')
 
-                    for j in xrange(0, 5):
-                        c, n = tmp[j]
-                        t = interpolation(n, history[best_min], history[best_max], 12, 42)
-                        n = str(n)
+                tmp = sorted(history.items(), key=lambda x: x[1])
+                tmp.reverse()
 
-                        draw.rectangle((0, i - 1, t, i + 7), fill='white')
-                        draw.line((t + 1, i, t + 1, i + 6), fill='white')
-                        draw.line((t + 2, i + 2, t + 2, i + 4), fill='white')
-                        draw.point((t + 3, i + 3), fill='white')
+                best_min = min(history, key=history.get)
+                best_max = max(history, key=history.get)
 
-                        draw.text((1, i), n, font=font, fill='black')
-                        draw.text((54, i), c, font=font, fill='white')
+                i = 16
 
-                        i += 10
+                for j in xrange(0, 5):
+                    c, n = tmp[j]
+                    t = interpolation(n, history[best_min], history[best_max], 12, 42)
+                    n = str(n)
 
-            else:                                                               # If not sleep
+                    draw.rectangle((0, i - 1, t, i + 7), fill='white')
+                    draw.line((t + 1, i, t + 1, i + 6), fill='white')
+                    draw.line((t + 2, i + 2, t + 2, i + 4), fill='white')
+                    draw.point((t + 3, i + 3), fill='white')
+
+                    draw.text((1, i), n, font=font, fill='black')
+                    draw.text((54, i), c, font=font, fill='white')
+
+                    i += 10
+
+            else:                                                               # If not extended
 
                 if device.height == 64:     # Only if 128 x 64 pixels
                     for i in xrange(0, 128, 2):
