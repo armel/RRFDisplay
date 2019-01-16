@@ -135,7 +135,7 @@ def system_info(value):
         mem_total = int(tmp[1][:-1])
         mem_use = int(tmp[2][:-1])
 
-        return str(mem), str(int((float(mem_use) / float(mem_total)) * 100))
+        return str(int((float(mem_use) / float(mem_total)) * 100)), str(mem)
 
     elif value == 'disk':
         tmp = list(os.popen('df -h'))
@@ -146,7 +146,7 @@ def system_info(value):
         disk_total = (tmp[1][:-1]).replace(',', '.')
         disk_use = (tmp[2][:-1]).replace(',', '.')
 
-        return str(disk), str(int((float(disk_use) / float(disk_total)) * 100))
+        return str(int((float(disk_use) / float(disk_total)) * 100)), str(disk)
 
 def main(argv):
 
