@@ -370,8 +370,8 @@ def main(argv):
             if extended is False:
 
                 if 'Waiting TX' not in call_time
-                and len(history) >= 5
-                and device.height == 64:
+                    and len(history) >= 5
+                    and device.height == 64:
 
                     extended = True
 
