@@ -222,9 +222,11 @@ def main(argv):
     letter = {'C': 16, 'E': 17, 'F': 12, 'N': 15, 'O': 13, 'R': 11, 'T': 14}
 
     call = ['F4HWN', 'RRFTracker', '', '', '', '', '', '', '', '']
+    call = ['22 F4GGU', '75 F5ZEQ', '79 F1ZOT', '75 F5ZEQ', '75 F5ZEQ', '79 F1ZOT', '', '', '', '']
     call_current = call[0]
     call_previous = call[1]
     call_time = ['Waiting TX', '', '', '', '', '', '', '', '', '']
+    call_time = ['22:37:56', '22:38:07', '22:39:15', '22:39:15', '22:39:15', '22:38:07', '', '', '', '']
 
     blanc = True
     blanc_alternate = 0
