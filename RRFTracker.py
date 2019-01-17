@@ -415,15 +415,14 @@ def main(argv):
 
             extended = True
 
-            if wake_up is False and extended is True:
+            if wake_up is False and extended is True and seconde < 20:          # System log extended
+
+                draw.rectangle((0, 0, 127, 63), fill='black')
+
                 if seconde % 2 == 0:
                     draw.text((0, 0), 'ZzZ', font=font, fill='white')
                 else:
                     draw.text((0, 0), 'zZz', font=font, fill='white')
-
-            if wake_up is False and extended is True and seconde < 20:          # System log extended
-
-                draw.rectangle((0, 0, 127, 63), fill='black')
 
                 for i in xrange(0, 128, 2):
                     draw.point((i, 10), fill='white')
