@@ -415,7 +415,7 @@ def main(argv):
 
             extended = True
 
-            if wake_up is False and extended:
+            if wake_up is False and extended is True:
                 if seconde % 2 == 0:
                     draw.text((0, 0), 'ZzZ', font=font, fill='white')
                 else:
