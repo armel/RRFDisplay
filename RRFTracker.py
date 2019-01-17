@@ -221,10 +221,10 @@ def main(argv):
 
     letter = {'C': 16, 'E': 17, 'F': 12, 'N': 15, 'O': 13, 'R': 11, 'T': 14}
 
-    call = ['F4HWN', 'RRFTracker', '', '', '', '', '', '', '', '']
+    call = ['F4HWN', 'RRFTracker', '', '', '']
     call_current = call[0]
     call_previous = call[1]
-    call_time = ['Waiting TX', '', '', '', '', '', '', '', '', '']
+    call_time = ['Waiting TX', '', '', '', '']
 
     blanc = True
     blanc_alternate = 0
