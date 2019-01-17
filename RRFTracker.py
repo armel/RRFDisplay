@@ -258,9 +258,9 @@ def main(argv):
 
     tmp = os.popen('uname -a').readline()
     if 'sun8i' in tmp:
-        board = 'orangepi'
+        board = 'Orange Pi'
     else:
-        board = 'raspi'
+        board = 'Raspberry Pi'
 
     # Boucle principale
 
@@ -425,7 +425,7 @@ def main(argv):
                 if 'Waiting TX' not in call_time and len(history) >= 5 and device.height == 64:
                     extended = True
 
-            if wake_up is False and extended is True and minute % 6 == 0:       # System log extended
+            if wake_up is False and extended is True and seconde < 20:          # System log extended
 
                 draw.rectangle((0, 0, 127, 63), fill='black')
 
@@ -436,8 +436,9 @@ def main(argv):
                 tab = (device.width - w) / 2
                 draw.text((tab, 0), 'Spotnik Infos', font=font, fill='white')
 
-                sys = {'Temp': '', 'Freq': '', 'Mem': '', 'Disk': ''}
+                sys = {'Arch': '', 'Temp': '', 'Freq': '', 'Mem': '', 'Disk': ''}
 
+                sys['Arch'] = board
                 sys['Temp'] = system_info('temp') + ' C'
                 sys['Freq'] = system_info('freq') + ' MHz'
 
@@ -449,18 +450,18 @@ def main(argv):
 
                 i = 16
 
-                for j in ['Temp', 'Freq', 'Mem', 'Disk']:
-                    draw.rectangle((0, i - 1, 42, i + 7), fill='white')
-                    draw.line((43, i, 43, i + 6), fill='white')
-                    draw.line((44, i + 2, 44, i + 4), fill='white')
-                    draw.point((45, i + 3), fill='white')
+                for j in ['Arch', 'Temp', 'Freq', 'Mem', 'Disk']:
+                    draw.rectangle((0, i - 1, 30, i + 7), fill='white')
+                    draw.line((31, i, 31, i + 6), fill='white')
+                    draw.line((32, i + 2, 32, i + 4), fill='white')
+                    draw.point((33, i + 3), fill='white')
 
                     draw.text((1, i), j, font=font, fill='black')
-                    draw.text((54, i), sys[j], font=font, fill='white')
+                    draw.text((42, i), sys[j], font=font, fill='white')
 
                     i += 10
 
-            elif wake_up is False and extended is True and minute % 4 == 0:       # History log extended
+            elif wake_up is False and extended is True and seconde < 40:        # History log extended
 
                 draw.rectangle((0, 0, 127, 63), fill='black')
 
@@ -484,7 +485,7 @@ def main(argv):
 
                     i += 10
 
-            elif wake_up is False and extended is True and minute % 2 == 0:     # Best log extended
+            elif wake_up is False and extended is True:                         # Best log extended
 
                 draw.rectangle((0, 0, 127, 63), fill='black')
                 for i in xrange(0, 128, 2):
