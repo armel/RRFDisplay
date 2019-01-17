@@ -260,7 +260,8 @@ def main(argv):
     timestamp_start = time.time()
 
     history = dict()
-
+    history = {'75 F4HWN': 7, '75 F1GWX': 2, '79 F1ZTO': 4, '22 F4GGU': 17, '78 F4GLU': 23}
+    
     line = [None] * 7
 
     # Check board
