@@ -30,7 +30,7 @@ Si un QSO est en cours, le RRFTracker affichera,
 * l'indicatif des 2 derniers noeuds étant passés en émission,
 * l'indicatif du noeud en cours d'émission.
 
-Enfin, en haut à droite de l'écran, le RRFTraker affiche l'heure courante.
+Enfin, en haut à droite de l'écran, le RRFTraker affiche alternativement l'heure courante et le salon.
 
 ### Ecran 128 x 64
 
@@ -41,12 +41,18 @@ Sur la ligne centrale, au milieu de l'écran, on dispose,
 * du nombre de passages en émission sur la journée (depuis 00h00),
 * du temps depuis lequel fonctionne le RRFTracker (uptime),
 * du nombre de passages en émission depuis l'allumage du RRFTracker,
-* de l'indicatif du noeud le plus actif avec le nombre de passage en émission,
+* de l'indicatif du noeud le plus actif avec le nombre de passages en émission,
 * de la température du Spotnik.
 
-Pour finir, en bas de l'écran, on retrouve l'histogramme du trafic dans la journée, heure par heure.
+En bas de l'écran, on retrouve l'histogramme du trafic dans la journée, heure par heure.
 
-À noter qu'à minuit, le nombre de passages en émission sur la journée ainsi que l'histogramme sont réinitialisés (à zéro). 
+À noter qu'à minuit, le nombre de passages en émission sur la journée ainsi que l'histogramme sont réinitialisés (à zéro).
+
+Enfin, alternativement, si aucune station n'est en émission, le RRFTracker affichera différents écrans complémentaires:
+
+* l'historique des 5 derniers noeuds étant passés en émission ainsi que l'horodatage,
+* l'historique des 5 noeuds les plus actifs ainsi que le nombre de passages en émission,
+* l'état du Spotnik: charge et fréquence du CPU, température, occupation mémoire et disque. 
 
 ## Post installation sur Spotnik 1.9
 
