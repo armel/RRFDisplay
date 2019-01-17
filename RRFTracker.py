@@ -422,7 +422,7 @@ def main(argv):
                 draw.text((0, 0), u'\ue801', font=icon, fill='white')  # Icon stat
 
                 for i in xrange(20, 128, 2):
-                    draw.point((i, 10), fill='white')
+                    draw.point((i, 12), fill='white')
 
                 w, h = draw.textsize(text='Spotnik Infos', font=font)
                 tab = (device.width - w) / 2
@@ -467,7 +467,7 @@ def main(argv):
                 draw.line((x, y, x, y - 3), fill='white')
 
                 for i in xrange(20, 128, 2):
-                    draw.point((i, 10), fill='white')
+                    draw.point((i, 12), fill='white')
 
                 w, h = draw.textsize(text=room + ' Last TX', font=font)
                 tab = (device.width - w) / 2
@@ -491,7 +491,7 @@ def main(argv):
                 draw.rectangle((0, 0, 127, 63), fill='black')
 
                 for i in xrange(20, 128, 2):
-                    draw.point((i, 10), fill='white')
+                    draw.point((i, 12), fill='white')
 
                 draw.text((0, 0), u'\ue801', font=icon, fill='white')  # Icon stat
 
