@@ -318,7 +318,7 @@ def main(argv):
             if (call_previous != call_current):
                 call_previous = call_current
 
-                for i in xrange(9, 0, -1):
+                for i in xrange(4, 0, -1):
                     call[i] = call[i - 1]
                     call_time[i] = call_time[i - 1]
 
