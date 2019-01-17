@@ -222,11 +222,9 @@ def main(argv):
     letter = {'C': 16, 'E': 17, 'F': 12, 'N': 15, 'O': 13, 'R': 11, 'T': 14}
 
     call = ['F4HWN', 'RRFTracker', '', '', '', '', '', '', '', '']
-    call = ['22 F4GGU', '75 F5ZEQ', '79 F1ZOT', '75 F5ZEQ', '75 F5ZEQ', '79 F1ZOT', '', '', '', '']
     call_current = call[0]
     call_previous = call[1]
     call_time = ['Waiting TX', '', '', '', '', '', '', '', '', '']
-    call_time = ['22:37:56', '22:38:07', '22:39:15', '22:39:15', '22:39:15', '22:38:07', '', '', '', '']
 
     blanc = True
     blanc_alternate = 0
@@ -237,6 +235,9 @@ def main(argv):
 
     wake_up = True
     extended = False
+
+    history = dict()
+    line = [None] * 7
 
     # Set serial
 
@@ -258,11 +259,6 @@ def main(argv):
     # Set date
 
     timestamp_start = time.time()
-
-    history = dict()
-    history = {'75 F4HWN': 7, '75 F1GWX': 2, '79 F1ZTO': 4, '22 F4GGU': 17, '78 F4GLU': 23}
-
-    line = [None] * 7
 
     # Check board
 
@@ -419,10 +415,7 @@ def main(argv):
 
                 draw.rectangle((0, 0, 127, 63), fill='black')
 
-                draw.text((0, 0), u'\ue801', font=icon, fill='white')  # Icon stat
-
-                for i in xrange(20, 128, 2):
-                    draw.point((i, 12), fill='white')
+                draw.text((0, 0), u'\ue801', font=icon, fill='white')
 
                 w, h = draw.textsize(text='Spotnik Infos', font=font)
                 tab = (device.width - w) / 2
@@ -466,9 +459,6 @@ def main(argv):
                 draw.line((x, y, x + 2, y + 2), fill='white')
                 draw.line((x, y, x, y - 3), fill='white')
 
-                for i in xrange(20, 128, 2):
-                    draw.point((i, 12), fill='white')
-
                 w, h = draw.textsize(text=room + ' Last TX', font=font)
                 tab = (device.width - w) / 2
                 draw.text((tab, 0), room + ' Last TX', font=font, fill='white')
@@ -490,10 +480,7 @@ def main(argv):
 
                 draw.rectangle((0, 0, 127, 63), fill='black')
 
-                for i in xrange(20, 128, 2):
-                    draw.point((i, 12), fill='white')
-
-                draw.text((0, 0), u'\ue801', font=icon, fill='white')  # Icon stat
+                draw.text((0, 0), u'\ue801', font=icon, fill='white')
 
                 w, h = draw.textsize(text=room + ' Best TX', font=font)
                 tab = (device.width - w) / 2
