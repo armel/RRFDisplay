@@ -419,11 +419,7 @@ def main(argv):
 
                 draw.rectangle((0, 0, 127, 63), fill='black')
 
-                x = 6
-                y = 6
-                draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline='white')
-                draw.line((x, y, x + 2, y + 2), fill='white')
-                draw.line((x, y, x, y - 3), fill='white')
+                draw.text((0, 0), u'\ue801', font=icon, fill='white')  # Icon stat
 
                 for i in xrange(20, 128, 2):
                     draw.point((i, 10), fill='white')
@@ -464,7 +460,11 @@ def main(argv):
 
                 draw.rectangle((0, 0, 127, 63), fill='black')
 
-                draw.text((0, 26), u'\ue801', font=icon, fill='white')  # Icon stat
+                x = 6
+                y = 6
+                draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline='white')
+                draw.line((x, y, x + 2, y + 2), fill='white')
+                draw.line((x, y, x, y - 3), fill='white')
 
                 for i in xrange(20, 128, 2):
                     draw.point((i, 10), fill='white')
