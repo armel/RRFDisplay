@@ -419,10 +419,7 @@ def main(argv):
 
                 draw.rectangle((0, 0, 127, 63), fill='black')
 
-                if seconde % 2 == 0:
-                    draw.text((0, 0), 'ZzZ', font=font, fill='white')
-                else:
-                    draw.text((0, 0), 'zZz', font=font, fill='white')
+                draw.text((0, 0), u'\ue801', font=icon, fill='white')  # Icon stat
 
                 for i in xrange(0, 128, 2):
                     draw.point((i, 10), fill='white')
