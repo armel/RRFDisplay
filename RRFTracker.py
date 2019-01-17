@@ -426,7 +426,7 @@ def main(argv):
                 sys = {'Load': '', 'Temp': '', 'Freq': '', 'Mem': '', 'Disk': ''}
 
                 a, b, c = system_info('load')
-                sys['Load'] = a + ', ' + b + ', ' + c
+                sys['Load'] = a + ' ' + b + ' ' + c
 
                 sys['Temp'] = system_info('temp') + ' C'
 
