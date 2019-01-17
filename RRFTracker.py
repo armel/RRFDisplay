@@ -261,7 +261,7 @@ def main(argv):
 
     history = dict()
     history = {'75 F4HWN': 7, '75 F1GWX': 2, '79 F1ZTO': 4, '22 F4GGU': 17, '78 F4GLU': 23}
-    
+
     line = [None] * 7
 
     # Check board
@@ -414,6 +414,12 @@ def main(argv):
                     extended = True
 
             extended = True
+
+            if wake_up is False and extended:
+                if seconde % 2 == 0:
+                    draw.text((0, 0), 'ZzZ', font=font, fill='white')
+                else:
+                    draw.text((0, 0), 'zZz', font=font, fill='white')
 
             if wake_up is False and extended is True and seconde < 20:          # System log extended
 
@@ -569,7 +575,7 @@ def main(argv):
                     legacy.text(draw,  (92, 59), chr(1) + chr(8), fill='white', font=SMALL_BITMAP_FONT)
                     legacy.text(draw, (115, 59), chr(2) + chr(3), fill='white', font=SMALL_BITMAP_FONT)
 
-            if blanc_alternate == 4:
+            if blanc_alternate == 3:
                 # Print Room
 
                 i = 115
