@@ -148,6 +148,13 @@ def system_info(value):
 
         return str(int((float(disk_use) / float(disk_total)) * 100)), str(disk)
 
+    elif value == 'load':
+        tmp = list(os.popen('w | head -n 1'))
+        tmp = tmp[0].strip()
+        tmp = tmp.split()
+
+        return str(tmp[-3]), str(tmp[-2]), str(tmp[-1])
+
 def main(argv):
 
     # Default i2c_port and i2c_address
@@ -382,34 +389,12 @@ def main(argv):
             blanc_alternate = 3
 
         elif(blanc_alternate == 3):         # Best link
-            if len(history) > 4:
+            if len(history) >= 5:
                 best = max(history, key=history.get)
                 line[4] = best + ' ' + str(history[best]) + ' TX'
             else:
                 line[4] = 'Need more datas'
-
-            blanc_alternate = 4
-
-        elif(blanc_alternate == 4):         # Thermal monitor
-            line[4] = 'Temp ' + system_info('temp') + ' C'
-
-            blanc_alternate = 5
-
-        elif(blanc_alternate == 5):         # Freq monitor
-            line[4] = 'Freq ' + system_info('freq') + ' MHz'
-
-            blanc_alternate = 6
-
-        elif(blanc_alternate == 6):         # Mem monitor
-            percent, mem = system_info('mem')
-            line[4] = 'Mem ' + percent + ' % of ' + mem
-
-            blanc_alternate = 7
-
-        elif(blanc_alternate == 7):         # Disk monitor
-            percent, disk = system_info('disk')
-            line[4] = 'Disk ' + percent + ' % of ' + disk
-
+        
             blanc_alternate = 0
 
 
@@ -425,6 +410,8 @@ def main(argv):
                 if 'Waiting TX' not in call_time and len(history) >= 5 and device.height == 64:
                     extended = True
 
+            extended = True
+
             if wake_up is False and extended is True and seconde < 20:          # System log extended
 
                 draw.rectangle((0, 0, 127, 63), fill='black')
@@ -436,10 +423,13 @@ def main(argv):
                 tab = (device.width - w) / 2
                 draw.text((tab, 0), 'Spotnik Infos', font=font, fill='white')
 
-                sys = {'Arch': '', 'Temp': '', 'Freq': '', 'Mem': '', 'Disk': ''}
+                sys = {'Load': '', 'Temp': '', 'Freq': '', 'Mem': '', 'Disk': ''}
 
-                sys['Arch'] = board
+                a, b, c = system_info('load')
+                sys['Load'] = a + ', ' + b + ', ' + c
+
                 sys['Temp'] = system_info('temp') + ' C'
+
                 sys['Freq'] = system_info('freq') + ' MHz'
 
                 percent, mem = system_info('mem')
@@ -450,7 +440,7 @@ def main(argv):
 
                 i = 16
 
-                for j in ['Arch', 'Temp', 'Freq', 'Mem', 'Disk']:
+                for j in ['Load', 'Temp', 'Freq', 'Mem', 'Disk']:
                     draw.rectangle((0, i - 1, 30, i + 7), fill='white')
                     draw.line((31, i, 31, i + 6), fill='white')
                     draw.line((32, i + 2, 32, i + 4), fill='white')
