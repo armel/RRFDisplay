@@ -136,7 +136,7 @@ def display_64():
 	        if config.wake_up is True:
 	            draw.text((2, 0), u'\uf130', font=icon, fill='white')       # Icon talk
 
-	        if line[2][:4] == 'Last':                                       # Icon clock (DIY...)
+	        if config.line[2][:4] == 'Last':                                       # Icon clock (DIY...)
 	            x = 6
 	            y = 17
 	            draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline='white')
@@ -147,7 +147,7 @@ def display_64():
 
 	        i = 0
 
-	        for l in line:
+	        for l in config.line:
 	            if l is not None:
 	                w, h = draw.textsize(text=l, font=font)
 	                tab = (config.device.width - w) / 2
@@ -189,7 +189,7 @@ def display_64():
 	        i = 115
 
 	        for c in config.room:
-	            legacy.text(draw,  (i, 1), chr(letter[c]), fill='white', font=SMALL_BITMAP_FONT)
+	            legacy.text(draw,  (i, 1), chr(config.letter[c]), fill='white', font=SMALL_BITMAP_FONT)
 	            i += 4
 	    else:
 	        # Print Clock
