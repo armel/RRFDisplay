@@ -16,6 +16,27 @@ from luma.core import legacy
 
 from PIL import ImageFont
 
+def histogram(draw, legacy, position):
+
+    qso_hour_max = max(config.qso_hour)
+
+    i = 4
+
+    for q in config.qso_hour:
+        if q != 0:
+            h = function.interpolation(q, 1, qso_hour_max, 1, 15)
+        else:
+            h = 0
+        draw.rectangle((0 + i, position, i + 2, (position - 15)), fill='black')
+        draw.rectangle((0 + i, position, i + 2, (position - h)), fill='white')
+        i += 5
+
+    legacy.text(draw,   (4, position + 2), chr(0) + chr(0), fill='white', font=config.SMALL_BITMAP_FONT)
+    legacy.text(draw,  (32, position + 2), chr(0) + chr(6), fill='white', font=config.SMALL_BITMAP_FONT)
+    legacy.text(draw,  (62, position + 2), chr(1) + chr(2), fill='white', font=config.SMALL_BITMAP_FONT)
+    legacy.text(draw,  (92, position + 2), chr(1) + chr(8), fill='white', font=config.SMALL_BITMAP_FONT)
+    legacy.text(draw, (115, position + 2), chr(2) + chr(3), fill='white', font=config.SMALL_BITMAP_FONT)
+
 def clock_room(draw):
 
     if config.blanc_alternate == 3:
@@ -44,6 +65,15 @@ def display_32():
     icon=ImageFont.truetype('fonts/fontello.ttf', 14)                       # Icon font
 
     with canvas(config.device) as draw:
+
+        if config.extended is False:
+
+            if 'Waiting TX' not in config.call_time and len(config.history) >= 5:
+                config.extended = True
+
+        if config.wake_up is False and config.minute % 2 == 0 and config.seconde < 30:  # System log extended
+            histogram(draw, legacy, 0)
+
 
         if config.wake_up is True:
             draw.text((2, 0), u'\uf130', font=icon, fill='white')           # Icon talk
@@ -122,7 +152,7 @@ def display_64():
 
                 i += 10
 
-        elif config.wake_up is False and config.extended is True and config.minute % 2 == 0 and config.seconde < 40:        # History log extended
+        elif config.wake_up is False and config.extended is True and config.minute % 2 == 0 and config.seconde < 40:    # History log extended
 
             draw.rectangle((0, 0, 127, 63), fill='black')
 
@@ -216,23 +246,7 @@ def display_64():
 
             # Draw stats histogram
 
-            qso_hour_max = max(config.qso_hour)
+            histogram(draw, legacy, 57)
 
-            i = 4
-
-            for q in config.qso_hour:
-                if q != 0:
-                    h = function.interpolation(q, 1, qso_hour_max, 1, 15)
-                else:
-                    h = 0
-                draw.rectangle((0 + i, 57, i + 2, (57 - 15)), fill='black')
-                draw.rectangle((0 + i, 57, i + 2, (57 - h)), fill='white')
-                i += 5
-
-            legacy.text(draw,   (4, 59), chr(0) + chr(0), fill='white', font=config.SMALL_BITMAP_FONT)
-            legacy.text(draw,  (32, 59), chr(0) + chr(6), fill='white', font=config.SMALL_BITMAP_FONT)
-            legacy.text(draw,  (62, 59), chr(1) + chr(2), fill='white', font=config.SMALL_BITMAP_FONT)
-            legacy.text(draw,  (92, 59), chr(1) + chr(8), fill='white', font=config.SMALL_BITMAP_FONT)
-            legacy.text(draw, (115, 59), chr(2) + chr(3), fill='white', font=config.SMALL_BITMAP_FONT)
 
         clock_room(draw)
