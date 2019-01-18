@@ -42,17 +42,17 @@ def display_64():
 
 	        sys = {'Load': '', 'Temp': '', 'Freq': '', 'Mem': '', 'Disk': ''}
 
-	        a, b, c = system_info('load')
+	        a, b, c = function.system_info('load')
 	        sys['Load'] = a + ' ' + b + ' ' + c
 
-	        sys['Temp'] = system_info('temp') + ' C'
+	        sys['Temp'] = function.system_info('temp') + ' C'
 
-	        sys['Freq'] = system_info('freq') + ' MHz'
+	        sys['Freq'] = function.system_info('freq') + ' MHz'
 
-	        percent, mem = system_info('mem')
+	        percent, mem = function.system_info('mem')
 	        sys['Mem'] = percent + '% of ' + mem
 
-	        percent, disk = system_info('disk')
+	        percent, disk = function.system_info('disk')
 	        sys['Disk'] = percent + '% of ' + disk
 
 	        i = 16
