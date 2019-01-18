@@ -34,7 +34,7 @@ def display_64():
 	        draw.text((0, 0), u'\ue801', font=icon, fill='white')
 
 	        w, h = draw.textsize(text='Spotnik Infos', font=font)
-	        tab = (device.width - w) / 2
+	        tab = (config.device.width - w) / 2
 	        draw.text((tab, 0), 'Spotnik Infos', font=font, fill='white')
 
 	        sys = {'Load': '', 'Temp': '', 'Freq': '', 'Mem': '', 'Disk': ''}
@@ -99,10 +99,10 @@ def display_64():
 	        draw.text((0, 0), u'\ue801', font=icon, fill='white')
 
 	        w, h = draw.textsize(text=config.room + ' Best TX', font=font)
-	        tab = (device.width - w) / 2
+	        tab = (config.device.width - w) / 2
 	        draw.text((tab, 0), room + ' Best TX', font=font, fill='white')
 
-	        tmp = sorted(history.items(), key=lambda x: x[1])
+	        tmp = sorted(config.history.items(), key=lambda x: x[1])
 	        tmp.reverse()
 
 	        best_min = min(config.history, key=config.history.get)
