@@ -8,8 +8,6 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 73 & 88 de F4HWN Armel
 '''    
 
-import time
-
 # Default i2c_port and i2c_address
 
 i2c_port = 0                            # Default value ! Check port with i2cdetect...
@@ -73,7 +71,7 @@ elif room == 'FON':
 
 # Set date
 
-timestamp_start = time.time()
+timestamp_start = ''
 hour = ''
 minute = ''
 seconde = ''

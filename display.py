@@ -40,20 +40,15 @@ def clock_room(draw):
             i += 4
 
 def display_32():
-    font=ImageFont.truetype('fonts/7x5.ttf', 8)                           # Text font
-    icon=ImageFont.truetype('fonts/fontello.ttf', 14)                     # Icon font
+    font=ImageFont.truetype('fonts/7x5.ttf', 8)                             # Text font
+    icon=ImageFont.truetype('fonts/fontello.ttf', 14)                       # Icon font
 
     with canvas(config.device) as draw:
 
-        for i in xrange(0, 128, 2):
-            draw.point((i, 25), fill='white')
-            draw.point((i, 40), fill='white')
-            draw.text((0, 26), u'\ue801', font=icon, fill='white')  # Icon stat
-
         if config.wake_up is True:
-            draw.text((2, 0), u'\uf130', font=icon, fill='white')       # Icon talk
+            draw.text((2, 0), u'\uf130', font=icon, fill='white')           # Icon talk
 
-        if config.line[2][:4] == 'Last':                                       # Icon clock (DIY...)
+        if config.line[2][:4] == 'Last':                                    # Icon clock (DIY...)
             x = 6
             y = 17
             draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline='white')
@@ -68,7 +63,7 @@ def display_32():
             if l is not None:
                 w, h = draw.textsize(text=l, font=font)
                 tab = (config.device.width - w) / 2
-                vide = ' ' * 22             # Hack to speed clear screen line...
+                vide = ' ' * 22                                             # Hack to speed clear screen line...
                 draw.text((0, i), vide, font=font, fill='white')
                 draw.text((tab, i), l, font=font, fill='white')
                 i += h
@@ -79,8 +74,8 @@ def display_32():
 
 
 def display_64():
-    font=ImageFont.truetype('fonts/7x5.ttf', 8)                           # Text font
-    icon=ImageFont.truetype('fonts/fontello.ttf', 14)                     # Icon font
+    font=ImageFont.truetype('fonts/7x5.ttf', 8)                             # Text font
+    icon=ImageFont.truetype('fonts/fontello.ttf', 14)                       # Icon font
 
     with canvas(config.device) as draw:
 
@@ -192,12 +187,12 @@ def display_64():
             for i in xrange(0, 128, 2):
                 draw.point((i, 25), fill='white')
                 draw.point((i, 40), fill='white')
-                draw.text((0, 26), u'\ue801', font=icon, fill='white')  # Icon stat
+                draw.text((0, 26), u'\ue801', font=icon, fill='white')      # Icon stat
 
             if config.wake_up is True:
                 draw.text((2, 0), u'\uf130', font=icon, fill='white')       # Icon talk
 
-            if config.line[2][:4] == 'Last':                                       # Icon clock (DIY...)
+            if config.line[2][:4] == 'Last':                                # Icon clock (DIY...)
                 x = 6
                 y = 17
                 draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline='white')
@@ -212,7 +207,7 @@ def display_64():
                 if l is not None:
                     w, h = draw.textsize(text=l, font=font)
                     tab = (config.device.width - w) / 2
-                    vide = ' ' * 22             # Hack to speed clear screen line...
+                    vide = ' ' * 22                                         # Hack to speed clear screen line...
                     draw.text((0, i), vide, font=font, fill='white')
                     draw.text((tab, i), l, font=font, fill='white')
                     i += h

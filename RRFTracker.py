@@ -13,15 +13,10 @@ import datetime
 import time
 import sys
 import getopt
-import os
 
 from luma.core.interface.serial import i2c
-from luma.core.render import canvas
 from luma.oled.device import sh1106
 from luma.oled.device import ssd1306
-from luma.core import legacy
-
-from PIL import ImageFont
 
 import config
 import function
@@ -68,6 +63,8 @@ def main(argv):
         config.device = ssd1306(serial, width=config.display_width, height=config.display_height, rotate=0)
 
     # Boucle principale
+
+    config.timestamp_start = time.time()
 
     while(True):
 
@@ -201,7 +198,6 @@ def main(argv):
         if config.device.height == 64:
             display.display_64()
         else:
-            print 'ici'
             display.display_32()
 
         time.sleep(2)
