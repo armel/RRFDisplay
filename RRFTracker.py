@@ -172,7 +172,7 @@ def main(argv):
 
         elif(config.blanc_alternate == 1):         # Boot time
             tmp = 'Up '
-            tmp += calc_uptime(time.time() - config.timestamp_start)
+            tmp += function.calc_uptime(time.time() - config.timestamp_start)
 
             config.line[4] = tmp
 
