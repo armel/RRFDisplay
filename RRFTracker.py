@@ -176,7 +176,7 @@ def main(argv):
 
             config.line[4] = tmp
 
-            blanc_alternate = 2
+            config.blanc_alternate = 2
 
         elif(config.blanc_alternate == 2):         # TX total
             tmp = 'TX Total '
