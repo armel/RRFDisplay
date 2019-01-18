@@ -9,7 +9,7 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 '''
 
 import settings as s
-import display as d
+import display
 import lib
 
 import requests
@@ -194,9 +194,9 @@ def main(argv):
 
         # Print screen
         if s.device.height == 64:
-            d.display_64()
+            display.display_64()
         else:
-            d.display_32()
+            display.display_32()
 
         time.sleep(2)
 

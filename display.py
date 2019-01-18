@@ -100,13 +100,13 @@ def display_32():
             # Print data
             i = 0
 
-            for l in s.line:
-                if l is not None:
+            for j in s.line:
+                if j is not None:
                     w, h = draw.textsize(text=l, font=font)
                     tab = (s.device.width - w) / 2
                     vide = ' ' * 22     # Hack to speed clear screen line...
                     draw.text((0, i), vide, font=font, fill='white')
-                    draw.text((tab, i), l, font=font, fill='white')
+                    draw.text((tab, i), j, font=font, fill='white')
                     i += h
                     if i == 24:
                         break
