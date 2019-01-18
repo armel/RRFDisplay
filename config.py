@@ -64,15 +64,6 @@ extended = False							# Detect extended state
 history = dict()							# History dict
 line = [None] * 7							# Line list
 
-# Set url
-
-if room == 'RRF':
-    url = 'http://rrf.f5nlg.ovh'
-elif room == 'TEC':
-    url = 'http://rrf.f5nlg.ovh:82'
-elif room == 'FON':
-    url = 'http://fon.f1tzo.com:81/'
-
 # Set date
 
 timestamp_start = ''

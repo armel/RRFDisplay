@@ -62,6 +62,15 @@ def main(argv):
     else:
         config.device = ssd1306(serial, width=config.display_width, height=config.display_height, rotate=0)
 
+    # Set url
+
+    if config.room == 'RRF':
+        url = 'http://rrf.f5nlg.ovh'
+    elif config.room == 'TEC':
+        url = 'http://rrf.f5nlg.ovh:82'
+    elif config.room == 'FON':
+        url = 'http://fon.f1tzo.com:81/'
+
     # Boucle principale
 
     config.timestamp_start = time.time()
@@ -85,7 +94,7 @@ def main(argv):
         # Request HTTP datas
 
         try:
-            r = requests.get(config.url, verify=False, timeout=10)
+            r = requests.get(url, verify=False, timeout=10)
             page = r.content
         except requests.exceptions.ConnectionError as errc:
             print ('Error Connecting:', errc)
