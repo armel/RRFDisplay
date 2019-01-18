@@ -75,7 +75,7 @@ def display_32():
                 if i == 24:
                     break
 
-        clock_room()
+        clock_room(draw)
 
 
 def display_64():
