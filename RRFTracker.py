@@ -24,6 +24,7 @@ from luma.core import legacy
 from PIL import ImageFont
 
 import config
+import function
 from display import display_64
 
 def main(argv):
