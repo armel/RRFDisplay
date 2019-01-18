@@ -8,6 +8,8 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 73 & 88 de F4HWN Armel
 '''
 
+import config
+
 # Usage
 
 def usage():
@@ -76,11 +78,11 @@ def save_stat(history, call):
 def wake_up_screen(device, wake_up):
     if wake_up is True:
         for i in xrange(225, 32, -1):
-            device.contrast(i)         # No Transmitter
+            config.device.contrast(i)         # No Transmitter
         return False
     else:
         for i in xrange(32, 225):
-            device.contrast(i)         # Transmitter
+            config.device.contrast(i)         # Transmitter
         return True
 
 
