@@ -294,7 +294,7 @@ def main(argv):
 
         if(config.blanc_alternate == 0):           # TX today
             tmp = 'TX Today '
-            tmp += str(qso)
+            tmp += str(config.qso)
 
             config.line[4] = tmp
 
