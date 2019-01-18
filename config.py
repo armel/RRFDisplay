@@ -40,25 +40,29 @@ SMALL_BITMAP_FONT = [
     [0x1f, 0x15, 0x11, 0x00]            # E
 ]
 
+# Set some letters for room
+
 letter = {'C': 16, 'E': 17, 'F': 12, 'N': 15, 'O': 13, 'R': 11, 'T': 14}
 
-call = ['F4HWN', 'RRFTracker', '', '', '']
-call_current = call[0]
-call_previous = call[1]
-call_time = ['Waiting TX', '', '', '', '']
+# Set call
 
-blanc = True
-blanc_alternate = 0
+call = ['F4HWN', 'RRFTracker', '', '', '']	# Call list
+call_current = call[0]						# Call current
+call_previous = call[1]						# Call previous
+call_time = ['Waiting TX', '', '', '', '']	# Call time list
 
-qso = 0
-qso_total = 0
-qso_hour = [0] * 24
+blanc = True								# Detect blank
+blanc_alternate = 0							# Detect alternate
 
-wake_up = True
-extended = False
+qso = 0										# Number of QSO
+qso_total = 0								# QSO total
+qso_hour = [0] * 24							# QSO list for histogramm
 
-history = dict()
-line = [None] * 7
+wake_up = True								# Detect wake up on emission
+extended = False							# Detect extended state
+
+history = dict()							# History dict
+line = [None] * 7							# Line list
 
 # Set url
 
