@@ -218,7 +218,7 @@ def main(argv):
         # Request HTTP datas
 
         try:
-            r = requests.get(url, verify=False, timeout=10)
+            r = requests.get(config.url, verify=False, timeout=10)
             page = r.content
         except requests.exceptions.ConnectionError as errc:
             print ('Error Connecting:', errc)
