@@ -9,189 +9,195 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 '''
 
 import config
+from PIL import ImageFont
 
 def display_32():
 	return
 
 def display_64():
-    if config.extended is False:
+    font=ImageFont.truetype('fonts/7x5.ttf', 8)                           # Text font
+    icon=ImageFont.truetype('fonts/fontello.ttf', 14)                     # Icon font
 
-        if 'Waiting TX' not in config.call_time and len(config.history) >= 5 and config.device.height == 64:
-            config.extended = True
+    with canvas(config.device) as draw:
 
-    if config.wake_up is False and config.minute % 2 == 0 and config.seconde < 20:                               # System log extended
+	    if config.extended is False:
 
-        draw.rectangle((0, 0, 127, 63), fill='black')
+	        if 'Waiting TX' not in config.call_time and len(config.history) >= 5 and config.device.height == 64:
+	            config.extended = True
 
-        draw.text((0, 0), u'\ue801', font=icon, fill='white')
+	    if config.wake_up is False and config.minute % 2 == 0 and config.seconde < 20:                               # System log extended
 
-        w, h = draw.textsize(text='Spotnik Infos', font=font)
-        tab = (device.width - w) / 2
-        draw.text((tab, 0), 'Spotnik Infos', font=font, fill='white')
+	        draw.rectangle((0, 0, 127, 63), fill='black')
 
-        sys = {'Load': '', 'Temp': '', 'Freq': '', 'Mem': '', 'Disk': ''}
+	        draw.text((0, 0), u'\ue801', font=icon, fill='white')
 
-        a, b, c = system_info('load')
-        sys['Load'] = a + ' ' + b + ' ' + c
+	        w, h = draw.textsize(text='Spotnik Infos', font=font)
+	        tab = (device.width - w) / 2
+	        draw.text((tab, 0), 'Spotnik Infos', font=font, fill='white')
 
-        sys['Temp'] = system_info('temp') + ' C'
+	        sys = {'Load': '', 'Temp': '', 'Freq': '', 'Mem': '', 'Disk': ''}
 
-        sys['Freq'] = system_info('freq') + ' MHz'
+	        a, b, c = system_info('load')
+	        sys['Load'] = a + ' ' + b + ' ' + c
 
-        percent, mem = system_info('mem')
-        sys['Mem'] = percent + '% of ' + mem
+	        sys['Temp'] = system_info('temp') + ' C'
 
-        percent, disk = system_info('disk')
-        sys['Disk'] = percent + '% of ' + disk
+	        sys['Freq'] = system_info('freq') + ' MHz'
 
-        i = 16
+	        percent, mem = system_info('mem')
+	        sys['Mem'] = percent + '% of ' + mem
 
-        for j in ['Load', 'Temp', 'Freq', 'Mem', 'Disk']:
-            draw.rectangle((0, i - 1, 30, i + 7), fill='white')
-            draw.line((31, i, 31, i + 6), fill='white')
-            draw.line((32, i + 2, 32, i + 4), fill='white')
-            draw.point((33, i + 3), fill='white')
+	        percent, disk = system_info('disk')
+	        sys['Disk'] = percent + '% of ' + disk
 
-            draw.text((1, i), j, font=font, fill='black')
-            draw.text((42, i), sys[j], font=font, fill='white')
+	        i = 16
 
-            i += 10
+	        for j in ['Load', 'Temp', 'Freq', 'Mem', 'Disk']:
+	            draw.rectangle((0, i - 1, 30, i + 7), fill='white')
+	            draw.line((31, i, 31, i + 6), fill='white')
+	            draw.line((32, i + 2, 32, i + 4), fill='white')
+	            draw.point((33, i + 3), fill='white')
 
-    elif config.wake_up is False and config.extended is True and config.minute % 2 == 0 and config.seconde < 40:        # History log extended
+	            draw.text((1, i), j, font=font, fill='black')
+	            draw.text((42, i), sys[j], font=font, fill='white')
 
-        draw.rectangle((0, 0, 127, 63), fill='black')
+	            i += 10
 
-        x = 6
-        y = 6
-        draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline='white')
-        draw.line((x, y, x + 2, y + 2), fill='white')
-        draw.line((x, y, x, y - 3), fill='white')
+	    elif config.wake_up is False and config.extended is True and config.minute % 2 == 0 and config.seconde < 40:        # History log extended
 
-        w, h = draw.textsize(text=config.room + ' Last TX', font=font)
-        tab = (config.device.width - w) / 2
-        draw.text((tab, 0), config.room + ' Last TX', font=font, fill='white')
+	        draw.rectangle((0, 0, 127, 63), fill='black')
 
-        i = 16
+	        x = 6
+	        y = 6
+	        draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline='white')
+	        draw.line((x, y, x + 2, y + 2), fill='white')
+	        draw.line((x, y, x, y - 3), fill='white')
 
-        for j in xrange(0, 5):
-            draw.rectangle((0, i - 1, 42, i + 7), fill='white')
-            draw.line((43, i, 43, i + 6), fill='white')
-            draw.line((44, i + 2, 44, i + 4), fill='white')
-            draw.point((45, i + 3), fill='white')
+	        w, h = draw.textsize(text=config.room + ' Last TX', font=font)
+	        tab = (config.device.width - w) / 2
+	        draw.text((tab, 0), config.room + ' Last TX', font=font, fill='white')
 
-            draw.text((1, i), config.call_time[j], font=font, fill='black')
-            draw.text((54, i), config.call[j], font=font, fill='white')
+	        i = 16
 
-            i += 10
+	        for j in xrange(0, 5):
+	            draw.rectangle((0, i - 1, 42, i + 7), fill='white')
+	            draw.line((43, i, 43, i + 6), fill='white')
+	            draw.line((44, i + 2, 44, i + 4), fill='white')
+	            draw.point((45, i + 3), fill='white')
 
-    elif config.wake_up is False and config.extended is True and config.minute % 2 == 0:                         # Best log extended
+	            draw.text((1, i), config.call_time[j], font=font, fill='black')
+	            draw.text((54, i), config.call[j], font=font, fill='white')
 
-        draw.rectangle((0, 0, 127, 63), fill='black')
+	            i += 10
 
-        draw.text((0, 0), u'\ue801', font=icon, fill='white')
+	    elif config.wake_up is False and config.extended is True and config.minute % 2 == 0:                         # Best log extended
 
-        w, h = draw.textsize(text=config.room + ' Best TX', font=font)
-        tab = (device.width - w) / 2
-        draw.text((tab, 0), room + ' Best TX', font=font, fill='white')
+	        draw.rectangle((0, 0, 127, 63), fill='black')
 
-        tmp = sorted(history.items(), key=lambda x: x[1])
-        tmp.reverse()
+	        draw.text((0, 0), u'\ue801', font=icon, fill='white')
 
-        best_min = min(config.history, key=config.history.get)
-        best_max = max(config.history, key=config.history.get)
+	        w, h = draw.textsize(text=config.room + ' Best TX', font=font)
+	        tab = (device.width - w) / 2
+	        draw.text((tab, 0), room + ' Best TX', font=font, fill='white')
 
-        i = 16
+	        tmp = sorted(history.items(), key=lambda x: x[1])
+	        tmp.reverse()
 
-        for j in xrange(0, 5):
-            c, n = tmp[j]
-            t = interpolation(n, history[best_min], history[best_max], 12, 42)
-            n = str(n)
+	        best_min = min(config.history, key=config.history.get)
+	        best_max = max(config.history, key=config.history.get)
 
-            draw.rectangle((0, i - 1, t, i + 7), fill='white')
-            draw.line((t + 1, i, t + 1, i + 6), fill='white')
-            draw.line((t + 2, i + 2, t + 2, i + 4), fill='white')
-            draw.point((t + 3, i + 3), fill='white')
+	        i = 16
 
-            draw.text((1, i), n, font=font, fill='black')
-            draw.text((54, i), c, font=font, fill='white')
+	        for j in xrange(0, 5):
+	            c, n = tmp[j]
+	            t = interpolation(n, history[best_min], history[best_max], 12, 42)
+	            n = str(n)
 
-            i += 10
+	            draw.rectangle((0, i - 1, t, i + 7), fill='white')
+	            draw.line((t + 1, i, t + 1, i + 6), fill='white')
+	            draw.line((t + 2, i + 2, t + 2, i + 4), fill='white')
+	            draw.point((t + 3, i + 3), fill='white')
 
-    else:                                                               # If not extended
+	            draw.text((1, i), n, font=font, fill='black')
+	            draw.text((54, i), c, font=font, fill='white')
 
-        if config.device.height == 64:     # Only if 128 x 64 pixels
-            for i in xrange(0, 128, 2):
-                draw.point((i, 25), fill='white')
-                draw.point((i, 40), fill='white')
-                draw.text((0, 26), u'\ue801', font=icon, fill='white')  # Icon stat
+	            i += 10
 
-        if config.wake_up is True:
-            draw.text((2, 0), u'\uf130', font=icon, fill='white')       # Icon talk
+	    else:                                                               # If not extended
 
-        if line[2][:4] == 'Last':                                       # Icon clock (DIY...)
-            x = 6
-            y = 17
-            draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline='white')
-            draw.line((x, y, x + 2, y + 2), fill='white')
-            draw.line((x, y, x, y - 3), fill='white')
+	        if config.device.height == 64:     # Only if 128 x 64 pixels
+	            for i in xrange(0, 128, 2):
+	                draw.point((i, 25), fill='white')
+	                draw.point((i, 40), fill='white')
+	                draw.text((0, 26), u'\ue801', font=icon, fill='white')  # Icon stat
 
-        # Print data
+	        if config.wake_up is True:
+	            draw.text((2, 0), u'\uf130', font=icon, fill='white')       # Icon talk
 
-        i = 0
+	        if line[2][:4] == 'Last':                                       # Icon clock (DIY...)
+	            x = 6
+	            y = 17
+	            draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline='white')
+	            draw.line((x, y, x + 2, y + 2), fill='white')
+	            draw.line((x, y, x, y - 3), fill='white')
 
-        for l in line:
-            if l is not None:
-                w, h = draw.textsize(text=l, font=font)
-                tab = (config.device.width - w) / 2
-                vide = ' ' * 22             # Hack to speed clear screen line...
-                draw.text((0, i), vide, font=font, fill='white')
-                draw.text((tab, i), l, font=font, fill='white')
-                i += h
-                if i == 24:
-                    if config.device.height != 64:  # Break if 128 x 32 pixels
-                        break
-                    i += 6
+	        # Print data
 
-        # Draw stats histogram
+	        i = 0
 
-        if config.device.height == 64:              # Only if 128 x 64 pixels
+	        for l in line:
+	            if l is not None:
+	                w, h = draw.textsize(text=l, font=font)
+	                tab = (config.device.width - w) / 2
+	                vide = ' ' * 22             # Hack to speed clear screen line...
+	                draw.text((0, i), vide, font=font, fill='white')
+	                draw.text((tab, i), l, font=font, fill='white')
+	                i += h
+	                if i == 24:
+	                    if config.device.height != 64:  # Break if 128 x 32 pixels
+	                        break
+	                    i += 6
 
-            qso_hour_max = max(qso_hour)
+	        # Draw stats histogram
 
-            i = 4
+	        if config.device.height == 64:              # Only if 128 x 64 pixels
 
-            for q in config.qso_hour:
-                if q != 0:
-                    h = interpolation(q, 1, qso_hour_max, 1, 15)
-                else:
-                    h = 0
-                draw.rectangle((0 + i, 57, i + 2, (57 - 15)), fill='black')
-                draw.rectangle((0 + i, 57, i + 2, (57 - h)), fill='white')
-                i += 5
+	            qso_hour_max = max(qso_hour)
 
-            legacy.text(draw,   (4, 59), chr(0) + chr(0), fill='white', font=SMALL_BITMAP_FONT)
-            legacy.text(draw,  (32, 59), chr(0) + chr(6), fill='white', font=SMALL_BITMAP_FONT)
-            legacy.text(draw,  (62, 59), chr(1) + chr(2), fill='white', font=SMALL_BITMAP_FONT)
-            legacy.text(draw,  (92, 59), chr(1) + chr(8), fill='white', font=SMALL_BITMAP_FONT)
-            legacy.text(draw, (115, 59), chr(2) + chr(3), fill='white', font=SMALL_BITMAP_FONT)
+	            i = 4
 
-    if config.blanc_alternate == 3:
-        # Print Room
+	            for q in config.qso_hour:
+	                if q != 0:
+	                    h = interpolation(q, 1, qso_hour_max, 1, 15)
+	                else:
+	                    h = 0
+	                draw.rectangle((0 + i, 57, i + 2, (57 - 15)), fill='black')
+	                draw.rectangle((0 + i, 57, i + 2, (57 - h)), fill='white')
+	                i += 5
 
-        i = 115
+	            legacy.text(draw,   (4, 59), chr(0) + chr(0), fill='white', font=SMALL_BITMAP_FONT)
+	            legacy.text(draw,  (32, 59), chr(0) + chr(6), fill='white', font=SMALL_BITMAP_FONT)
+	            legacy.text(draw,  (62, 59), chr(1) + chr(2), fill='white', font=SMALL_BITMAP_FONT)
+	            legacy.text(draw,  (92, 59), chr(1) + chr(8), fill='white', font=SMALL_BITMAP_FONT)
+	            legacy.text(draw, (115, 59), chr(2) + chr(3), fill='white', font=SMALL_BITMAP_FONT)
 
-        for c in config.room:
-            legacy.text(draw,  (i, 1), chr(letter[c]), fill='white', font=SMALL_BITMAP_FONT)
-            i += 4
-    else:
-        # Print Clock
+	    if config.blanc_alternate == 3:
+	        # Print Room
 
-        i = 108
+	        i = 115
 
-        for c in now:
-            if c == ':':
-                c = 10
-            else:
-                c = int(c)
-            legacy.text(draw,  (i, 1), chr(c), fill='white', font=SMALL_BITMAP_FONT)
-            i += 4
+	        for c in config.room:
+	            legacy.text(draw,  (i, 1), chr(letter[c]), fill='white', font=SMALL_BITMAP_FONT)
+	            i += 4
+	    else:
+	        # Print Clock
+
+	        i = 108
+
+	        for c in now:
+	            if c == ':':
+	                c = 10
+	            else:
+	                c = int(c)
+	            legacy.text(draw,  (i, 1), chr(c), fill='white', font=SMALL_BITMAP_FONT)
+	            i += 4

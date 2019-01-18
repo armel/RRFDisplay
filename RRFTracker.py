@@ -328,12 +328,7 @@ def main(argv):
 
         # Print screen
 
-        font=ImageFont.truetype('fonts/7x5.ttf', 8)                           # Text font
-        icon=ImageFont.truetype('fonts/fontello.ttf', 14)                     # Icon font
-
-        with canvas(config.device) as draw:
-
-            display_64()
+        display_64()
 
         time.sleep(2)
 
