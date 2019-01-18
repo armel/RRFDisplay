@@ -8,7 +8,7 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 73 & 88 de F4HWN Armel
 '''
 
-# Default i2c_port and i2c_address
+# Default i2c_port, i2c_address, display and room
 
 i2c_port = 0                            # Default value !
 i2c_address = 0x3C                      # Default value !
@@ -17,7 +17,7 @@ display_width = 128                     # Default value !
 display_height = 64                     # Default value !
 room = 'RRF'                            # Default value !
 
-# Set constants & variables
+# Set special small bitmap font for clock and room
 
 SMALL_BITMAP_FONT = [
     [0x1f, 0x11, 0x1f, 0x00],           # 0
@@ -64,7 +64,7 @@ extended = False							# Detect extended state
 history = dict()							# History dict
 line = [None] * 7							# Line list
 
-# Set date
+# Set time and date
 
 timestamp_start = ''
 hour = ''
