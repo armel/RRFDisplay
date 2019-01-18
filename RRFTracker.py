@@ -201,6 +201,7 @@ def main(argv):
         if config.device.height == 64:
             display.display_64()
         else:
+            print 'ici'
             display.display_32()
 
         time.sleep(2)
