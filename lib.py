@@ -8,7 +8,7 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 73 & 88 de F4HWN Armel
 '''
 
-import config
+import settings
 import os
 
 # Usage
@@ -94,6 +94,7 @@ def interpolation(value, in_min, in_max, out_min, out_max):
         return int((value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
     else:
         return 0
+
 
 # Get system info
 

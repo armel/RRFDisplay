@@ -8,13 +8,14 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 73 & 88 de F4HWN Armel
 '''
 
-import config
-import function
+import settings
+import lib
 
 from luma.core.render import canvas
 from luma.core import legacy
 
 from PIL import ImageFont
+
 
 def histogram(draw, legacy, position):
 
@@ -36,6 +37,7 @@ def histogram(draw, legacy, position):
     legacy.text(draw,  (62, position + 2), chr(1) + chr(2), fill='white', font=config.SMALL_BITMAP_FONT)
     legacy.text(draw,  (92, position + 2), chr(1) + chr(8), fill='white', font=config.SMALL_BITMAP_FONT)
     legacy.text(draw, (115, position + 2), chr(2) + chr(3), fill='white', font=config.SMALL_BITMAP_FONT)
+
 
 def clock_room(draw):
 
@@ -60,6 +62,7 @@ def clock_room(draw):
             legacy.text(draw,  (i, 1), chr(c), fill='white', font=config.SMALL_BITMAP_FONT)
             i += 4
 
+
 def display_32():
     font=ImageFont.truetype('fonts/7x5.ttf', 8)                             # Text font
     icon=ImageFont.truetype('fonts/fontello.ttf', 14)                       # Icon font
@@ -79,9 +82,9 @@ def display_32():
             draw.rectangle((0, 0, 127, 31), fill='black')
 
             if config.wake_up is True:
-                draw.text((2, 0), u'\uf130', font=icon, fill='white')           # Icon talk
+                draw.text((2, 0), u'\uf130', font=icon, fill='white')       # Icon talk
 
-            if config.line[2][:4] == 'Last':                                    # Icon clock (DIY...)
+            if config.line[2][:4] == 'Last':                                # Icon clock (DIY...)
                 x = 6
                 y = 17
                 draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline='white')
@@ -250,6 +253,5 @@ def display_64():
             # Draw stats histogram
 
             histogram(draw, legacy, 57)
-
 
         clock_room(draw)

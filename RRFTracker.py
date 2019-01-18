@@ -7,6 +7,9 @@ Learn more about RRF on https://f5nlg.wordpress.com
 Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 73 & 88 de F4HWN Armel
 '''
+import settings
+import lib
+import display
 
 import requests
 import datetime
@@ -17,10 +20,6 @@ import getopt
 from luma.core.interface.serial import i2c
 from luma.oled.device import sh1106
 from luma.oled.device import ssd1306
-
-import config
-import function
-import display
 
 def main(argv):
 
@@ -198,9 +197,8 @@ def main(argv):
                 config.line[4] = best + ' ' + str(config.history[best]) + ' TX'
             else:
                 config.line[4] = 'Need more datas'
-        
-            config.blanc_alternate = 0
 
+            config.blanc_alternate = 0
 
         # Print screen
 
