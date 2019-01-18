@@ -123,11 +123,11 @@ def main(argv):
 
                 config.call[0] = config.call_current
 
-                config.history = save_stat(config.history, config.call[1])
+                config.history = function.save_stat(config.history, config.call[1])
                 config.qso += 1
             else:
                 if (config.blanc is True):         # Stat (same call but new PTT...)
-                    config.history = save_stat(config.history, config.call[0])
+                    config.history = function.save_stat(config.history, config.call[0])
 
             config.blanc = False
 
