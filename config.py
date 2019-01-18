@@ -9,7 +9,6 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 '''    
 
 import time
-import os
 
 # Default i2c_port and i2c_address
 
@@ -78,11 +77,3 @@ timestamp_start = time.time()
 hour = ''
 minute = ''
 seconde = ''
-
-# Check board
-
-tmp = os.popen('uname -a').readline()
-if 'sun8i' in tmp:
-    board = 'Orange Pi'
-else:
-    board = 'Raspberry Pi'

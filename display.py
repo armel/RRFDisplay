@@ -16,8 +16,67 @@ from luma.core import legacy
 
 from PIL import ImageFont
 
+def clock_room():
+
+    if config.blanc_alternate == 3:
+        # Print Room
+
+        i = 115
+
+        for c in config.room:
+            legacy.text(draw,  (i, 1), chr(config.letter[c]), fill='white', font=config.SMALL_BITMAP_FONT)
+            i += 4
+    else:
+        # Print Clock
+
+        i = 108
+
+        for c in config.now:
+            if c == ':':
+                c = 10
+            else:
+                c = int(c)
+            legacy.text(draw,  (i, 1), chr(c), fill='white', font=config.SMALL_BITMAP_FONT)
+            i += 4
+
 def display_32():
-	return
+    font=ImageFont.truetype('fonts/7x5.ttf', 8)                           # Text font
+    icon=ImageFont.truetype('fonts/fontello.ttf', 14)                     # Icon font
+
+    with canvas(config.device) as draw:
+
+        for i in xrange(0, 128, 2):
+            draw.point((i, 25), fill='white')
+            draw.point((i, 40), fill='white')
+            draw.text((0, 26), u'\ue801', font=icon, fill='white')  # Icon stat
+
+        if config.wake_up is True:
+            draw.text((2, 0), u'\uf130', font=icon, fill='white')       # Icon talk
+
+        if config.line[2][:4] == 'Last':                                       # Icon clock (DIY...)
+            x = 6
+            y = 17
+            draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline='white')
+            draw.line((x, y, x + 2, y + 2), fill='white')
+            draw.line((x, y, x, y - 3), fill='white')
+
+        # Print data
+
+        i = 0
+
+        for l in config.line:
+            if l is not None:
+                w, h = draw.textsize(text=l, font=font)
+                tab = (config.device.width - w) / 2
+                vide = ' ' * 22             # Hack to speed clear screen line...
+                draw.text((0, i), vide, font=font, fill='white')
+                draw.text((tab, i), l, font=font, fill='white')
+                i += h
+                if i == 24:
+                	break
+
+        clock_room()
+        
 
 def display_64():
     font=ImageFont.truetype('fonts/7x5.ttf', 8)                           # Text font
@@ -27,7 +86,7 @@ def display_64():
 
 	    if config.extended is False:
 
-	        if 'Waiting TX' not in config.call_time and len(config.history) >= 5 and config.device.height == 64:
+	        if 'Waiting TX' not in config.call_time and len(config.history) >= 5:
 	            config.extended = True
 
 	    if config.wake_up is False and config.minute % 2 == 0 and config.seconde < 20:                               # System log extended
@@ -130,11 +189,10 @@ def display_64():
 
 	    else:                                                               # If not extended
 
-	        if config.device.height == 64:     # Only if 128 x 64 pixels
-	            for i in xrange(0, 128, 2):
-	                draw.point((i, 25), fill='white')
-	                draw.point((i, 40), fill='white')
-	                draw.text((0, 26), u'\ue801', font=icon, fill='white')  # Icon stat
+            for i in xrange(0, 128, 2):
+                draw.point((i, 25), fill='white')
+                draw.point((i, 40), fill='white')
+                draw.text((0, 26), u'\ue801', font=icon, fill='white')  # Icon stat
 
 	        if config.wake_up is True:
 	            draw.text((2, 0), u'\uf130', font=icon, fill='white')       # Icon talk
@@ -159,50 +217,27 @@ def display_64():
 	                draw.text((tab, i), l, font=font, fill='white')
 	                i += h
 	                if i == 24:
-	                    if config.device.height != 64:  # Break if 128 x 32 pixels
-	                        break
 	                    i += 6
 
 	        # Draw stats histogram
 
-	        if config.device.height == 64:              # Only if 128 x 64 pixels
+            qso_hour_max = max(config.qso_hour)
 
-	            qso_hour_max = max(config.qso_hour)
+            i = 4
 
-	            i = 4
+            for q in config.qso_hour:
+                if q != 0:
+                    h = interpolation(q, 1, qso_hour_max, 1, 15)
+                else:
+                    h = 0
+                draw.rectangle((0 + i, 57, i + 2, (57 - 15)), fill='black')
+                draw.rectangle((0 + i, 57, i + 2, (57 - h)), fill='white')
+                i += 5
 
-	            for q in config.qso_hour:
-	                if q != 0:
-	                    h = interpolation(q, 1, qso_hour_max, 1, 15)
-	                else:
-	                    h = 0
-	                draw.rectangle((0 + i, 57, i + 2, (57 - 15)), fill='black')
-	                draw.rectangle((0 + i, 57, i + 2, (57 - h)), fill='white')
-	                i += 5
+            legacy.text(draw,   (4, 59), chr(0) + chr(0), fill='white', font=config.SMALL_BITMAP_FONT)
+            legacy.text(draw,  (32, 59), chr(0) + chr(6), fill='white', font=config.SMALL_BITMAP_FONT)
+            legacy.text(draw,  (62, 59), chr(1) + chr(2), fill='white', font=config.SMALL_BITMAP_FONT)
+            legacy.text(draw,  (92, 59), chr(1) + chr(8), fill='white', font=config.SMALL_BITMAP_FONT)
+            legacy.text(draw, (115, 59), chr(2) + chr(3), fill='white', font=config.SMALL_BITMAP_FONT)
 
-	            legacy.text(draw,   (4, 59), chr(0) + chr(0), fill='white', font=config.SMALL_BITMAP_FONT)
-	            legacy.text(draw,  (32, 59), chr(0) + chr(6), fill='white', font=config.SMALL_BITMAP_FONT)
-	            legacy.text(draw,  (62, 59), chr(1) + chr(2), fill='white', font=config.SMALL_BITMAP_FONT)
-	            legacy.text(draw,  (92, 59), chr(1) + chr(8), fill='white', font=config.SMALL_BITMAP_FONT)
-	            legacy.text(draw, (115, 59), chr(2) + chr(3), fill='white', font=config.SMALL_BITMAP_FONT)
-
-	    if config.blanc_alternate == 3:
-	        # Print Room
-
-	        i = 115
-
-	        for c in config.room:
-	            legacy.text(draw,  (i, 1), chr(config.letter[c]), fill='white', font=config.SMALL_BITMAP_FONT)
-	            i += 4
-	    else:
-	        # Print Clock
-
-	        i = 108
-
-	        for c in config.now:
-	            if c == ':':
-	                c = 10
-	            else:
-	                c = int(c)
-	            legacy.text(draw,  (i, 1), chr(c), fill='white', font=config.SMALL_BITMAP_FONT)
-	            i += 4
+	    clock_room()

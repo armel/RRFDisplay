@@ -135,9 +135,9 @@ def main(argv):
 
             tmp = datetime.datetime.now()
             config.now = tmp.strftime('%H:%M:%S')
-            confighour = int(tmp.strftime('%H'))
+            config.hour = int(tmp.strftime('%H'))
 
-            config.qso_hour[hour] = connfig.qso - sum(config.qso_hour[:config.hour])
+            config.qso_hour[config.hour] = config.qso - sum(config.qso_hour[:config.hour])
 
             config.call_time[0] = config.now
 
@@ -198,7 +198,10 @@ def main(argv):
 
         # Print screen
 
-        display_64()
+        if config.device.height == 64:
+            display_64()
+        else:
+            display_32()
 
         time.sleep(2)
 
