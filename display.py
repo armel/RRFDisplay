@@ -227,7 +227,7 @@ def display_64():
 
             for q in config.qso_hour:
                 if q != 0:
-                    h = interpolation(q, 1, qso_hour_max, 1, 15)
+                    h = function.interpolation(q, 1, qso_hour_max, 1, 15)
                 else:
                     h = 0
                 draw.rectangle((0 + i, 57, i + 2, (57 - 15)), fill='black')
