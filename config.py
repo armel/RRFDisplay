@@ -9,6 +9,7 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 '''    
 
 import time
+import os
 
 # Default i2c_port and i2c_address
 
