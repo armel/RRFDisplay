@@ -9,7 +9,7 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 '''
 
 import settings as s
-import lib as l
+import lib
 
 from luma.core.render import canvas
 from luma.core import legacy
@@ -26,7 +26,7 @@ def histogram(draw, legacy, position):
 
     for q in s.qso_hour:
         if q != 0:
-            h = l.interpolation(q, 1, qso_hour_max, 1, 15)
+            h = interpolation(q, 1, qso_hour_max, 1, 15)
         else:
             h = 0
         draw.rectangle((0 + i, position, i + 2, (position - 15)), fill='black')
@@ -140,17 +140,17 @@ def display_64():
 
             sys = {'Load': '', 'Temp': '', 'Freq': '', 'Mem': '', 'Disk': ''}
 
-            a, b, c = l.system_info('load')
+            a, b, c = system_info('load')
             sys['Load'] = a + ' ' + b + ' ' + c
 
-            sys['Temp'] = l.system_info('temp') + ' C'
+            sys['Temp'] = system_info('temp') + ' C'
 
-            sys['Freq'] = l.system_info('freq') + ' MHz'
+            sys['Freq'] = system_info('freq') + ' MHz'
 
-            percent, mem = l.system_info('mem')
+            percent, mem = system_info('mem')
             sys['Mem'] = percent + '% of ' + mem
 
-            percent, disk = l.system_info('disk')
+            percent, disk = system_info('disk')
             sys['Disk'] = percent + '% of ' + disk
 
             i = 16
@@ -215,7 +215,7 @@ def display_64():
 
             for j in xrange(0, 5):
                 c, n = tmp[j]
-                t = l.interpolation(n, history[best_min], history[best_max], 12, 42)
+                t = interpolation(n, history[best_min], history[best_max], 12, 42)
                 n = str(n)
 
                 draw.rectangle((0, i - 1, t, i + 7), fill='white')
