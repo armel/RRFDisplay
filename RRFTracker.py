@@ -199,9 +199,9 @@ def main(argv):
         # Print screen
 
         if config.device.height == 64:
-            display_64()
+            display.display_64()
         else:
-            display_32()
+            display.display_32()
 
         time.sleep(2)
 
