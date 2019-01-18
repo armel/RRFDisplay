@@ -11,6 +11,8 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 import config
 
 from luma.core.render import canvas
+from luma.core import legacy
+
 from PIL import ImageFont
 
 def display_32():
