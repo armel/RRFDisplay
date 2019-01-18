@@ -75,6 +75,9 @@ elif room == 'FON':
 # Set date
 
 timestamp_start = time.time()
+hour = ''
+minute = ''
+seconde = ''
 
 # Check board
 

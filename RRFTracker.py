@@ -204,12 +204,12 @@ def main(argv):
         # If midnight...
 
         tmp = datetime.datetime.now()
-        now = tmp.strftime('%H:%M:%S')
-        hour = int(tmp.strftime('%H'))
-        minute = int(now[3:-3])
-        seconde = int(now[-2:])
+        config.now = tmp.strftime('%H:%M:%S')
+        config.hour = int(tmp.strftime('%H'))
+        config.minute = int(config.now[3:-3])
+        config.seconde = int(config.now[-2:])
 
-        if(now[:5] == '00:00'):
+        if(config.now[:5] == '00:00'):
             config.qso_total += qso
             config.qso = 0
             for q in xrange(0, 24):         # Clean histogram
@@ -264,12 +264,12 @@ def main(argv):
             # Format call time
 
             tmp = datetime.datetime.now()
-            now = tmp.strftime('%H:%M:%S')
-            hour = int(tmp.strftime('%H'))
+            config.now = tmp.strftime('%H:%M:%S')
+            confighour = int(tmp.strftime('%H'))
 
-            config.qso_hour[hour] = connfig.qso - sum(config.qso_hour[:hour])
+            config.qso_hour[hour] = connfig.qso - sum(config.qso_hour[:config.hour])
 
-            config.call_time[0] = now
+            config.call_time[0] = config.now
 
             config.line[0] = config.call[2]
             config.line[1] = config.call[1]

@@ -19,7 +19,7 @@ def display_64():
         if 'Waiting TX' not in config.call_time and len(config.history) >= 5 and config.device.height == 64:
             config.extended = True
 
-    if config.wake_up is False and minute % 2 == 0 and seconde < 20:                               # System log extended
+    if config.wake_up is False and config.minute % 2 == 0 and config.seconde < 20:                               # System log extended
 
         draw.rectangle((0, 0, 127, 63), fill='black')
 
@@ -57,7 +57,7 @@ def display_64():
 
             i += 10
 
-    elif config.wake_up is False and config.extended is True and minute % 2 == 0 and seconde < 40:        # History log extended
+    elif config.wake_up is False and config.extended is True and config.minute % 2 == 0 and config.seconde < 40:        # History log extended
 
         draw.rectangle((0, 0, 127, 63), fill='black')
 
@@ -84,7 +84,7 @@ def display_64():
 
             i += 10
 
-    elif config.wake_up is False and config.extended is True and minute % 2 == 0:                         # Best log extended
+    elif config.wake_up is False and config.extended is True and config.minute % 2 == 0:                         # Best log extended
 
         draw.rectangle((0, 0, 127, 63), fill='black')
 
@@ -142,25 +142,25 @@ def display_64():
         for l in line:
             if l is not None:
                 w, h = draw.textsize(text=l, font=font)
-                tab = (device.width - w) / 2
+                tab = (config.device.width - w) / 2
                 vide = ' ' * 22             # Hack to speed clear screen line...
                 draw.text((0, i), vide, font=font, fill='white')
                 draw.text((tab, i), l, font=font, fill='white')
                 i += h
                 if i == 24:
-                    if device.height != 64:  # Break if 128 x 32 pixels
+                    if config.device.height != 64:  # Break if 128 x 32 pixels
                         break
                     i += 6
 
         # Draw stats histogram
 
-        if device.height == 64:              # Only if 128 x 64 pixels
+        if config.device.height == 64:              # Only if 128 x 64 pixels
 
             qso_hour_max = max(qso_hour)
 
             i = 4
 
-            for q in qso_hour:
+            for q in config.qso_hour:
                 if q != 0:
                     h = interpolation(q, 1, qso_hour_max, 1, 15)
                 else:
@@ -175,12 +175,12 @@ def display_64():
             legacy.text(draw,  (92, 59), chr(1) + chr(8), fill='white', font=SMALL_BITMAP_FONT)
             legacy.text(draw, (115, 59), chr(2) + chr(3), fill='white', font=SMALL_BITMAP_FONT)
 
-    if blanc_alternate == 3:
+    if config.blanc_alternate == 3:
         # Print Room
 
         i = 115
 
-        for c in room:
+        for c in config.room:
             legacy.text(draw,  (i, 1), chr(letter[c]), fill='white', font=SMALL_BITMAP_FONT)
             i += 4
     else:
