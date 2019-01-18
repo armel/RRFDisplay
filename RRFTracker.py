@@ -34,11 +34,11 @@ def main(argv):
     try:
         options, remainder=getopt.getopt(argv, '', ['help', 'i2c-port=', 'i2c-address=', 'display=', 'display-width=', 'display-height=', 'room='])
     except getopt.GetoptError:
-        usage()
+        function.usage()
         sys.exit(2)
     for opt, arg in options:
         if opt == '--help':
-            usage()
+            function.usage()
             sys.exit()
         elif opt in ('--i2c-port'):
             config.i2c_port = arg
