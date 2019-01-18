@@ -104,7 +104,7 @@ def main(argv):
         if search_stop != search_start:
 
             if config.wake_up is False:            # Wake up screen...
-                config.wake_up = wake_up_screen(config.device, config.wake_up)
+                config.wake_up = function.wake_up_screen(config.device, config.wake_up)
 
             # Clean call
 
@@ -149,7 +149,7 @@ def main(argv):
 
         else:
             if config.wake_up is True:             # Sleep screen...
-                config.wake_up = wake_up_screen(config.device, config.wake_up)
+                config.wake_up = function.wake_up_screen(config.device, config.wake_up)
 
             if config.blanc is False:
                 config.blanc = True
