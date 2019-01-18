@@ -9,7 +9,7 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 '''
 
 def display_32():
-
+	return
 
 def display_64():
     if extended is False:
