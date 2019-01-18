@@ -174,7 +174,7 @@ def display_64():
 
             for j in xrange(0, 5):
                 c, n = tmp[j]
-                t = interpolation(n, history[best_min], history[best_max], 12, 42)
+                t = function.interpolation(n, history[best_min], history[best_max], 12, 42)
                 n = str(n)
 
                 draw.rectangle((0, i - 1, t, i + 7), fill='white')
