@@ -171,23 +171,31 @@ def main(argv):
             usage()
             sys.exit()
         elif opt in ('--i2c-port'):
-            i2c_port = arg
+            config.i2c_port = arg
         elif opt in ('--i2c-address'):
-            i2c_address = int(arg, 16)
+            config.i2c_address = int(arg, 16)
         elif opt in ('--display'):
             if arg not in ['sh1106', 'ssd1306']:
                 print 'Unknown display type (choose between \'sh1106\' and \'ssd1306\')'
                 sys.exit()
-            display = arg
+            config.display = arg
         elif opt in ('--display-width'):
-            display_width = int(arg)
+            config.display_width = int(arg)
         elif opt in ('--display-height'):
-            display_height = int(arg)
+            config.display_height = int(arg)
         elif opt in ('--room'):
             if arg not in ['RRF', 'TEC', 'FON']:
                 print 'Unknown room name (choose between \'RRF\', \'TEC\' and \'FON\')'
                 sys.exit()
-            room = arg
+            config.room = arg
+
+    # Set serial
+
+    serial = i2c(port=config.i2c_port, address=config.i2c_address)
+    if config.display == 'sh1106':
+        config.device = sh1106(serial, width=config.display_width, height=config.display_height, rotate=0)
+    else:
+        config.device = ssd1306(serial, width=config.display_width, height=config.display_height, rotate=0)
 
     # Boucle principale
 

@@ -8,8 +8,6 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 73 & 88 de F4HWN Armel
 '''    
 
-from luma.core.interface.serial import i2c
-
 # Default i2c_port and i2c_address
 
 i2c_port = 0                            # Default value ! Check port with i2cdetect...
@@ -61,14 +59,6 @@ extended = False
 
 history = dict()
 line = [None] * 7
-
-# Set serial
-
-serial = i2c(port=i2c_port, address=i2c_address)
-if display == 'sh1106':
-    device = sh1106(serial, width=display_width, height=display_height, rotate=0)
-else:
-    device = ssd1306(serial, width=display_width, height=display_height, rotate=0)
 
 # Set url
 
