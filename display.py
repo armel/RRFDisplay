@@ -16,7 +16,7 @@ from luma.core import legacy
 
 from PIL import ImageFont
 
-def clock_room():
+def clock_room(draw):
 
     if config.blanc_alternate == 3:
         # Print Room
@@ -240,4 +240,4 @@ def display_64():
             legacy.text(draw,  (92, 59), chr(1) + chr(8), fill='white', font=config.SMALL_BITMAP_FONT)
             legacy.text(draw, (115, 59), chr(2) + chr(3), fill='white', font=config.SMALL_BITMAP_FONT)
 
-        clock_room()
+        clock_room(draw)
