@@ -180,7 +180,7 @@ def main(argv):
 
         elif(config.blanc_alternate == 2):         # TX total
             tmp = 'TX Total '
-            tmp += str(qso_total + qso)
+            tmp += str(config.qso_total + config.qso)
 
             config.line[4] = tmp
 
