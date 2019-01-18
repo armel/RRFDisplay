@@ -164,7 +164,7 @@ def display_64():
 
 	        if config.device.height == 64:              # Only if 128 x 64 pixels
 
-	            qso_hour_max = max(qso_hour)
+	            qso_hour_max = max(config.qso_hour)
 
 	            i = 4
 
