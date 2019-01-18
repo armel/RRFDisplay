@@ -180,11 +180,11 @@ def display_64():
 	                draw.rectangle((0 + i, 57, i + 2, (57 - h)), fill='white')
 	                i += 5
 
-	            legacy.text(draw,   (4, 59), chr(0) + chr(0), fill='white', font=SMALL_BITMAP_FONT)
-	            legacy.text(draw,  (32, 59), chr(0) + chr(6), fill='white', font=SMALL_BITMAP_FONT)
-	            legacy.text(draw,  (62, 59), chr(1) + chr(2), fill='white', font=SMALL_BITMAP_FONT)
-	            legacy.text(draw,  (92, 59), chr(1) + chr(8), fill='white', font=SMALL_BITMAP_FONT)
-	            legacy.text(draw, (115, 59), chr(2) + chr(3), fill='white', font=SMALL_BITMAP_FONT)
+	            legacy.text(draw,   (4, 59), chr(0) + chr(0), fill='white', font=config.SMALL_BITMAP_FONT)
+	            legacy.text(draw,  (32, 59), chr(0) + chr(6), fill='white', font=config.SMALL_BITMAP_FONT)
+	            legacy.text(draw,  (62, 59), chr(1) + chr(2), fill='white', font=config.SMALL_BITMAP_FONT)
+	            legacy.text(draw,  (92, 59), chr(1) + chr(8), fill='white', font=config.SMALL_BITMAP_FONT)
+	            legacy.text(draw, (115, 59), chr(2) + chr(3), fill='white', font=config.SMALL_BITMAP_FONT)
 
 	    if config.blanc_alternate == 3:
 	        # Print Room
@@ -192,7 +192,7 @@ def display_64():
 	        i = 115
 
 	        for c in config.room:
-	            legacy.text(draw,  (i, 1), chr(config.letter[c]), fill='white', font=SMALL_BITMAP_FONT)
+	            legacy.text(draw,  (i, 1), chr(config.letter[c]), fill='white', font=config.SMALL_BITMAP_FONT)
 	            i += 4
 	    else:
 	        # Print Clock
@@ -204,5 +204,5 @@ def display_64():
 	                c = 10
 	            else:
 	                c = int(c)
-	            legacy.text(draw,  (i, 1), chr(c), fill='white', font=SMALL_BITMAP_FONT)
+	            legacy.text(draw,  (i, 1), chr(c), fill='white', font=config.SMALL_BITMAP_FONT)
 	            i += 4
