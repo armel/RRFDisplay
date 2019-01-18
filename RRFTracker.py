@@ -10,7 +10,7 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 
 import settings as s
 import display as d
-import lib as l
+import lib
 
 import requests
 import datetime
@@ -29,11 +29,11 @@ def main(argv):
     try:
         options, remainder=getopt.getopt(argv, '', ['help', 'i2c-port=', 'i2c-address=', 'display=', 'display-width=', 'display-height=', 'room='])
     except getopt.GetoptError:
-        l.usage()
+        lib.usage()
         sys.exit(2)
     for opt, arg in options:
         if opt == '--help':
-            l.usage()
+            lib.usage()
             sys.exit()
         elif opt in ('--i2c-port'):
             s.i2c_port = arg
@@ -104,7 +104,7 @@ def main(argv):
         if search_stop != search_start:
 
             if s.wake_up is False:      # Wake up screen...
-                s.wake_up = l.wake_up_screen(s.device, s.wake_up)
+                s.wake_up = lib.wake_up_screen(s.device, s.wake_up)
 
             # Clean call
             tmp = page[search_start:search_stop]
@@ -122,11 +122,11 @@ def main(argv):
 
                 s.call[0] = s.call_current
 
-                s.history = l.save_stat(s.history, s.call[1])
+                s.history = lib.save_stat(s.history, s.call[1])
                 s.qso += 1
             else:
                 if (s.blanc is True):         # Stat (same call but new PTT...)
-                    s.history = l.save_stat(s.history, s.call[0])
+                    s.history = lib.save_stat(s.history, s.call[0])
 
             s.blanc = False
 
@@ -146,7 +146,7 @@ def main(argv):
         # If no Transmitter...
         else:
             if s.wake_up is True:       # Sleep screen...
-                s.wake_up = l.wake_up_screen(s.device, s.wake_up)
+                s.wake_up = lib.wake_up_screen(s.device, s.wake_up)
 
             if s.blanc is False:
                 s.blanc = True
@@ -169,7 +169,7 @@ def main(argv):
 
         elif(s.blanc_alternate == 1):   # Boot time
             tmp = 'Up '
-            tmp += l.calc_uptime(time.time() - s.timestamp_start)
+            tmp += lib.calc_uptime(time.time() - s.timestamp_start)
 
             s.line[4] = tmp
 
