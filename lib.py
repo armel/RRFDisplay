@@ -8,11 +8,10 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 73 & 88 de F4HWN Armel
 '''
 
-import settings
 import os
 
-# Usage
 
+# Usage
 def usage():
     print 'Usage: RRFTracker.py [options ...]'
     print
@@ -34,7 +33,6 @@ def usage():
 
 
 # Calculate uptime with a microtime
-
 def calc_uptime(n):
     n = int(n)
     day = n / (24 * 3600)
@@ -64,7 +62,6 @@ def calc_uptime(n):
 
 
 # Save stats to get most active link
-
 def save_stat(history, call):
     if call in history:
         history[call] += 1
@@ -75,20 +72,18 @@ def save_stat(history, call):
 
 
 # Wake up screen
-
 def wake_up_screen(device, wake_up):
     if wake_up is True:
         for i in xrange(225, 32, -1):
-            config.device.contrast(i)         # No Transmitter
+            device.contrast(i)         # No Transmitter
         return False
     else:
         for i in xrange(32, 225):
-            config.device.contrast(i)         # Transmitter
+            device.contrast(i)         # Transmitter
         return True
 
 
 # Calc interpolation
-
 def interpolation(value, in_min, in_max, out_min, out_max):
     if (in_max - in_min) != 0:
         return int((value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
@@ -97,7 +92,6 @@ def interpolation(value, in_min, in_max, out_min, out_max):
 
 
 # Get system info
-
 def system_info(value):
 
     if value == 'temp':

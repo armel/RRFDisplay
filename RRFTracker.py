@@ -7,9 +7,9 @@ Learn more about RRF on https://f5nlg.wordpress.com
 Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 73 & 88 de F4HWN Armel
 '''
-import settings
-import lib
-import display
+import settings as s
+import display as d
+import lib as l
 
 import requests
 import datetime
@@ -21,77 +21,72 @@ from luma.core.interface.serial import i2c
 from luma.oled.device import sh1106
 from luma.oled.device import ssd1306
 
+
 def main(argv):
 
     # Check and get arguments
-
     try:
         options, remainder=getopt.getopt(argv, '', ['help', 'i2c-port=', 'i2c-address=', 'display=', 'display-width=', 'display-height=', 'room='])
     except getopt.GetoptError:
-        function.usage()
+        l.usage()
         sys.exit(2)
     for opt, arg in options:
         if opt == '--help':
-            function.usage()
+            l.usage()
             sys.exit()
         elif opt in ('--i2c-port'):
-            config.i2c_port = arg
+            s.i2c_port = arg
         elif opt in ('--i2c-address'):
-            config.i2c_address = int(arg, 16)
+            s.i2c_address = int(arg, 16)
         elif opt in ('--display'):
             if arg not in ['sh1106', 'ssd1306']:
                 print 'Unknown display type (choose between \'sh1106\' and \'ssd1306\')'
                 sys.exit()
-            config.display = arg
+            s.display = arg
         elif opt in ('--display-width'):
-            config.display_width = int(arg)
+            s.display_width = int(arg)
         elif opt in ('--display-height'):
-            config.display_height = int(arg)
+            s.display_height = int(arg)
         elif opt in ('--room'):
             if arg not in ['RRF', 'TEC', 'FON']:
                 print 'Unknown room name (choose between \'RRF\', \'TEC\' and \'FON\')'
                 sys.exit()
-            config.room = arg
+            s.room = arg
 
     # Set serial
-
-    serial = i2c(port=config.i2c_port, address=config.i2c_address)
-    if config.display == 'sh1106':
-        config.device = sh1106(serial, width=config.display_width, height=config.display_height, rotate=0)
+    serial = i2c(port=s.i2c_port, address=s.i2c_address)
+    if s.display == 'sh1106':
+        s.device = sh1106(serial, width=s.display_width, height=s.display_height, rotate=0)
     else:
-        config.device = ssd1306(serial, width=config.display_width, height=config.display_height, rotate=0)
+        s.device = ssd1306(serial, width=s.display_width, height=s.display_height, rotate=0)
 
     # Set url
-
-    if config.room == 'RRF':
+    if s.room == 'RRF':
         url = 'http://rrf.f5nlg.ovh'
-    elif config.room == 'TEC':
+    elif s.room == 'TEC':
         url = 'http://rrf.f5nlg.ovh:82'
-    elif config.room == 'FON':
+    elif s.room == 'FON':
         url = 'http://fon.f1tzo.com:81/'
 
     # Boucle principale
-
-    config.timestamp_start = time.time()
+    s.timestamp_start = time.time()
 
     while(True):
 
         # If midnight...
-
         tmp = datetime.datetime.now()
-        config.now = tmp.strftime('%H:%M:%S')
-        config.hour = int(tmp.strftime('%H'))
-        config.minute = int(config.now[3:-3])
-        config.seconde = int(config.now[-2:])
+        s.now = tmp.strftime('%H:%M:%S')
+        s.hour = int(tmp.strftime('%H'))
+        s.minute = int(s.now[3:-3])
+        s.seconde = int(s.now[-2:])
 
-        if(config.now[:5] == '00:00'):
-            config.qso_total += qso
-            config.qso = 0
+        if(s.now[:5] == '00:00'):
+            s.qso_total += qso
+            s.qso = 0
             for q in xrange(0, 24):         # Clean histogram
-                config.qso_hour[q] = 0
+                s.qso_hour[q] = 0
 
         # Request HTTP datas
-
         try:
             r = requests.get(url, verify=False, timeout=10)
             page = r.content
@@ -105,107 +100,102 @@ def main(argv):
         search_stop = page.find('"', search_start)      # And close it...
 
         # If transmitter...
-
         if search_stop != search_start:
 
-            if config.wake_up is False:            # Wake up screen...
-                config.wake_up = function.wake_up_screen(config.device, config.wake_up)
+            if s.wake_up is False:      # Wake up screen...
+                s.wake_up = l.wake_up_screen(s.device, s.wake_up)
 
             # Clean call
-
             tmp = page[search_start:search_stop]
             tmp = tmp.replace('(', '')
             tmp = tmp.replace(') ', ' ')
 
-            config.call_current = tmp
+            s.call_current = tmp
 
-            if (config.call_previous != config.call_current):
-                config.call_previous = config.call_current
+            if (s.call_previous != s.call_current):
+                s.call_previous = s.call_current
 
                 for i in xrange(4, 0, -1):
-                    config.call[i] = config.call[i - 1]
-                    config.call_time[i] = config.call_time[i - 1]
+                    s.call[i] = s.call[i - 1]
+                    s.call_time[i] = s.call_time[i - 1]
 
-                config.call[0] = config.call_current
+                s.call[0] = s.call_current
 
-                config.history = function.save_stat(config.history, config.call[1])
-                config.qso += 1
+                s.history = l.save_stat(s.history, s.call[1])
+                s.qso += 1
             else:
-                if (config.blanc is True):         # Stat (same call but new PTT...)
-                    config.history = function.save_stat(config.history, config.call[0])
+                if (s.blanc is True):         # Stat (same call but new PTT...)
+                    s.history = l.save_stat(s.history, s.call[0])
 
-            config.blanc = False
+            s.blanc = False
 
             # Format call time
-
             tmp = datetime.datetime.now()
-            config.now = tmp.strftime('%H:%M:%S')
-            config.hour = int(tmp.strftime('%H'))
+            s.now = tmp.strftime('%H:%M:%S')
+            s.hour = int(tmp.strftime('%H'))
 
-            config.qso_hour[config.hour] = config.qso - sum(config.qso_hour[:config.hour])
+            s.qso_hour[s.hour] = s.qso - sum(s.qso_hour[:s.hour])
 
-            config.call_time[0] = config.now
+            s.call_time[0] = s.now
 
-            config.line[0] = config.call[2]
-            config.line[1] = config.call[1]
-            config.line[2] = config.call[0]
+            s.line[0] = s.call[2]
+            s.line[1] = s.call[1]
+            s.line[2] = s.call[0]
 
         # If no Transmitter...
-
         else:
-            if config.wake_up is True:             # Sleep screen...
-                config.wake_up = function.wake_up_screen(config.device, config.wake_up)
+            if s.wake_up is True:       # Sleep screen...
+                s.wake_up = l.wake_up_screen(s.device, s.wake_up)
 
-            if config.blanc is False:
-                config.blanc = True
-                config.qso += 1
+            if s.blanc is False:
+                s.blanc = True
+                s.qso += 1
 
-            config.line[0] = config.call[1]
-            config.line[1] = config.call[0]
-            if config.qso == 0:
-                config.line[2] = config.call_time[0]
+            s.line[0] = s.call[1]
+            s.line[1] = s.call[0]
+            if s.qso == 0:
+                s.line[2] = s.call_time[0]
             else:
-                config.line[2] = 'Last TX ' + config.call_time[0]
+                s.line[2] = 'Last TX ' + s.call_time[0]
 
-        if(config.blanc_alternate == 0):           # TX today
+        if(s.blanc_alternate == 0):     # TX today
             tmp = 'TX Today '
-            tmp += str(config.qso)
+            tmp += str(s.qso)
 
-            config.line[4] = tmp
+            s.line[4] = tmp
 
-            config.blanc_alternate = 1
+            s.blanc_alternate = 1
 
-        elif(config.blanc_alternate == 1):         # Boot time
+        elif(s.blanc_alternate == 1):   # Boot time
             tmp = 'Up '
-            tmp += function.calc_uptime(time.time() - config.timestamp_start)
+            tmp += l.calc_uptime(time.time() - s.timestamp_start)
 
-            config.line[4] = tmp
+            s.line[4] = tmp
 
-            config.blanc_alternate = 2
+            s.blanc_alternate = 2
 
-        elif(config.blanc_alternate == 2):         # TX total
+        elif(s.blanc_alternate == 2):   # TX total
             tmp = 'TX Total '
-            tmp += str(config.qso_total + config.qso)
+            tmp += str(s.qso_total + s.qso)
 
-            config.line[4] = tmp
+            s.line[4] = tmp
 
-            config.blanc_alternate = 3
+            s.blanc_alternate = 3
 
-        elif(config.blanc_alternate == 3):         # Best link
-            if len(config.history) >= 5:
-                best = max(config.history, key=config.history.get)
-                config.line[4] = best + ' ' + str(config.history[best]) + ' TX'
+        elif(s.blanc_alternate == 3):   # Best link
+            if len(s.history) >= 5:
+                best = max(s.history, key=s.history.get)
+                s.line[4] = best + ' ' + str(s.history[best]) + ' TX'
             else:
-                config.line[4] = 'Need more datas'
+                s.line[4] = 'Need more datas'
 
-            config.blanc_alternate = 0
+            s.blanc_alternate = 0
 
         # Print screen
-
-        if config.device.height == 64:
-            display.display_64()
+        if s.device.height == 64:
+            d.display_64()
         else:
-            display.display_32()
+            d.display_32()
 
         time.sleep(2)
 

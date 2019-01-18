@@ -9,7 +9,6 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 '''
 
 # Default i2c_port and i2c_address
-
 i2c_port = 0                            # Default value ! Check port with i2cdetect...
 i2c_address = 0x3C                      # Default value ! Check address with i2cdetect...
 display = 'sh1106'                      # Default value !
@@ -18,7 +17,6 @@ display_height = 64                     # Default value !
 room = 'RRF'                            # Default value !
 
 # Set constants & variables
-
 SMALL_BITMAP_FONT = [
     [0x1f, 0x11, 0x1f, 0x00],           # 0
     [0x00, 0x1f, 0x00, 0x00],           # 1
@@ -41,11 +39,9 @@ SMALL_BITMAP_FONT = [
 ]
 
 # Set some letters for room
-
 letter = {'C': 16, 'E': 17, 'F': 12, 'N': 15, 'O': 13, 'R': 11, 'T': 14}
 
 # Set call
-
 call = ['F4HWN', 'RRFTracker', '', '', '']  # Call list
 call_current = call[0]						# Call current
 call_previous = call[1]						# Call previous
@@ -65,7 +61,6 @@ history = dict()							# History dict
 line = [None] * 7							# Line list
 
 # Set date
-
 timestamp_start = ''
 hour = ''
 minute = ''
