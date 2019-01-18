@@ -25,7 +25,7 @@ from PIL import ImageFont
 
 import config
 import function
-from display import display_64
+import display
 
 def main(argv):
 
