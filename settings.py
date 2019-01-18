@@ -10,8 +10,8 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 
 # Default i2c_port and i2c_address
 
-i2c_port = 0                            # Default value ! Check port with i2cdetect...
-i2c_address = 0x3C                      # Default value ! Check address with i2cdetect...
+i2c_port = 0                            # Default value !
+i2c_address = 0x3C                      # Default value !
 display = 'sh1106'                      # Default value !
 display_width = 128                     # Default value !
 display_height = 64                     # Default value !
@@ -54,8 +54,8 @@ call_time = ['Waiting TX', '', '', '', '']  # Call time list
 blanc = True								# Detect blank
 blanc_alternate = 0							# Detect alternate
 
-qso = 0										# Number of QSO
-qso_total = 0								# QSO total
+qso = 0										# QSO count
+qso_total = 0								# QSO total count
 qso_hour = [0] * 24							# QSO list for histogramm
 
 wake_up = True								# Detect wake up on emission
