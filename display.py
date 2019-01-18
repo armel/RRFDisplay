@@ -199,7 +199,7 @@ def display_64():
 
 	        i = 108
 
-	        for c in now:
+	        for c in config.now:
 	            if c == ':':
 	                c = 10
 	            else:
