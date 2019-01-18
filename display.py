@@ -8,16 +8,18 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 73 & 88 de F4HWN Armel
 '''
 
+import config
+
 def display_32():
 	return
 
 def display_64():
-    if extended is False:
+    if config.extended is False:
 
-        if 'Waiting TX' not in call_time and len(history) >= 5 and device.height == 64:
-            extended = True
+        if 'Waiting TX' not in config.call_time and len(config.history) >= 5 and config.device.height == 64:
+            config.extended = True
 
-    if wake_up is False and minute % 2 == 0 and seconde < 20:                               # System log extended
+    if config.wake_up is False and minute % 2 == 0 and seconde < 20:                               # System log extended
 
         draw.rectangle((0, 0, 127, 63), fill='black')
 
@@ -55,7 +57,7 @@ def display_64():
 
             i += 10
 
-    elif wake_up is False and extended is True and minute % 2 == 0 and seconde < 40:        # History log extended
+    elif config.wake_up is False and config.extended is True and minute % 2 == 0 and seconde < 40:        # History log extended
 
         draw.rectangle((0, 0, 127, 63), fill='black')
 
@@ -65,9 +67,9 @@ def display_64():
         draw.line((x, y, x + 2, y + 2), fill='white')
         draw.line((x, y, x, y - 3), fill='white')
 
-        w, h = draw.textsize(text=room + ' Last TX', font=font)
-        tab = (device.width - w) / 2
-        draw.text((tab, 0), room + ' Last TX', font=font, fill='white')
+        w, h = draw.textsize(text=config.room + ' Last TX', font=font)
+        tab = (config.device.width - w) / 2
+        draw.text((tab, 0), config.room + ' Last TX', font=font, fill='white')
 
         i = 16
 
@@ -77,26 +79,26 @@ def display_64():
             draw.line((44, i + 2, 44, i + 4), fill='white')
             draw.point((45, i + 3), fill='white')
 
-            draw.text((1, i), call_time[j], font=font, fill='black')
-            draw.text((54, i), call[j], font=font, fill='white')
+            draw.text((1, i), config.call_time[j], font=font, fill='black')
+            draw.text((54, i), config.call[j], font=font, fill='white')
 
             i += 10
 
-    elif wake_up is False and extended is True and minute % 2 == 0:                         # Best log extended
+    elif config.wake_up is False and config.extended is True and minute % 2 == 0:                         # Best log extended
 
         draw.rectangle((0, 0, 127, 63), fill='black')
 
         draw.text((0, 0), u'\ue801', font=icon, fill='white')
 
-        w, h = draw.textsize(text=room + ' Best TX', font=font)
+        w, h = draw.textsize(text=config.room + ' Best TX', font=font)
         tab = (device.width - w) / 2
         draw.text((tab, 0), room + ' Best TX', font=font, fill='white')
 
         tmp = sorted(history.items(), key=lambda x: x[1])
         tmp.reverse()
 
-        best_min = min(history, key=history.get)
-        best_max = max(history, key=history.get)
+        best_min = min(config.history, key=config.history.get)
+        best_max = max(config.history, key=config.history.get)
 
         i = 16
 

@@ -23,6 +23,7 @@ from luma.core import legacy
 
 from PIL import ImageFont
 
+import config
 from display import display_64
 
 # Usage
@@ -158,15 +159,6 @@ def system_info(value):
 
 def main(argv):
 
-    # Default i2c_port and i2c_address
-
-    i2c_port = 0                            # Default value ! Check port with i2cdetect...
-    i2c_address = 0x3C                      # Default value ! Check address with i2cdetect...
-    display = 'sh1106'                      # Default value !
-    display_width = 128                     # Default value !
-    display_height = 64                     # Default value !
-    room = 'RRF'                            # Default value !
-
     # Check and get arguments
 
     try:
@@ -197,78 +189,6 @@ def main(argv):
                 sys.exit()
             room = arg
 
-    # Set constants & variables
-
-    SMALL_BITMAP_FONT = [
-        [0x1f, 0x11, 0x1f, 0x00],           # 0
-        [0x00, 0x1f, 0x00, 0x00],           # 1
-        [0x1d, 0x15, 0x17, 0x00],           # 2
-        [0x11, 0x15, 0x1f, 0x00],           # 3
-        [0x07, 0x08, 0x1c, 0x00],           # 4
-        [0x17, 0x15, 0x1d, 0x00],           # 5
-        [0x1f, 0x15, 0x1d, 0x00],           # 6
-        [0x11, 0x09, 0x07, 0x00],           # 7
-        [0x1f, 0x15, 0x1f, 0x00],           # 8
-        [0x17, 0x15, 0x1f, 0x00],           # 9
-        [0x00, 0x1b, 0x00, 0x00],           # :
-        [0x1f, 0x05, 0x1a, 0x00],           # R
-        [0x1f, 0x05, 0x01, 0x00],           # F
-        [0x1f, 0x11, 0x1f, 0x00],           # O
-        [0x01, 0x1f, 0x01, 0x00],           # T
-        [0x1f, 0x02, 0x04, 0x1f],           # N
-        [0x1f, 0x11, 0x11, 0x00],           # C
-        [0x1f, 0x15, 0x11, 0x00]            # E
-    ]
-
-    letter = {'C': 16, 'E': 17, 'F': 12, 'N': 15, 'O': 13, 'R': 11, 'T': 14}
-
-    call = ['F4HWN', 'RRFTracker', '', '', '']
-    call_current = call[0]
-    call_previous = call[1]
-    call_time = ['Waiting TX', '', '', '', '']
-
-    blanc = True
-    blanc_alternate = 0
-
-    qso = 0
-    qso_total = 0
-    qso_hour = [0] * 24
-
-    wake_up = True
-    extended = False
-
-    history = dict()
-    line = [None] * 7
-
-    # Set serial
-
-    serial = i2c(port=i2c_port, address=i2c_address)
-    if display == 'sh1106':
-        device = sh1106(serial, width=display_width, height=display_height, rotate=0)
-    else:
-        device = ssd1306(serial, width=display_width, height=display_height, rotate=0)
-
-    # Set url
-
-    if room == 'RRF':
-        url = 'http://rrf.f5nlg.ovh'
-    elif room == 'TEC':
-        url = 'http://rrf.f5nlg.ovh:82'
-    elif room == 'FON':
-        url = 'http://fon.f1tzo.com:81/'
-
-    # Set date
-
-    timestamp_start = time.time()
-
-    # Check board
-
-    tmp = os.popen('uname -a').readline()
-    if 'sun8i' in tmp:
-        board = 'Orange Pi'
-    else:
-        board = 'Raspberry Pi'
-
     # Boucle principale
 
     while(True):
@@ -282,10 +202,10 @@ def main(argv):
         seconde = int(now[-2:])
 
         if(now[:5] == '00:00'):
-            qso_total += qso
-            qso = 0
+            config.qso_total += qso
+            config.qso = 0
             for q in xrange(0, 24):         # Clean histogram
-                qso_hour[q] = 0
+                config.qso_hour[q] = 0
 
         # Request HTTP datas
 
@@ -305,8 +225,8 @@ def main(argv):
 
         if search_stop != search_start:
 
-            if wake_up is False:            # Wake up screen...
-                wake_up = wake_up_screen(device, wake_up)
+            if config.wake_up is False:            # Wake up screen...
+                config.wake_up = wake_up_screen(config.device, config.wake_up)
 
             # Clean call
 
@@ -314,24 +234,24 @@ def main(argv):
             tmp = tmp.replace('(', '')
             tmp = tmp.replace(') ', ' ')
 
-            call_current = tmp
+            config.call_current = tmp
 
-            if (call_previous != call_current):
-                call_previous = call_current
+            if (config.call_previous != config.call_current):
+                config.call_previous = config.call_current
 
                 for i in xrange(4, 0, -1):
-                    call[i] = call[i - 1]
-                    call_time[i] = call_time[i - 1]
+                    config.call[i] = config.call[i - 1]
+                    config.call_time[i] = config.call_time[i - 1]
 
-                call[0] = call_current
+                config.call[0] = config.call_current
 
-                history = save_stat(history, call[1])
-                qso += 1
+                config.history = save_stat(config.history, config.call[1])
+                config.qso += 1
             else:
-                if (blanc is True):         # Stat (same call but new PTT...)
-                    history = save_stat(history, call[0])
+                if (config.blanc is True):         # Stat (same call but new PTT...)
+                    config.history = save_stat(config.history, config.call[0])
 
-            blanc = False
+            config.blanc = False
 
             # Format call time
 
@@ -339,63 +259,63 @@ def main(argv):
             now = tmp.strftime('%H:%M:%S')
             hour = int(tmp.strftime('%H'))
 
-            qso_hour[hour] = qso - sum(qso_hour[:hour])
+            config.qso_hour[hour] = connfig.qso - sum(config.qso_hour[:hour])
 
-            call_time[0] = now
+            config.call_time[0] = now
 
-            line[0] = call[2]
-            line[1] = call[1]
-            line[2] = call[0]
+            config.line[0] = config.call[2]
+            config.line[1] = config.call[1]
+            config.line[2] = config.call[0]
 
         # If no Transmitter...
 
         else:
-            if wake_up is True:             # Sleep screen...
-                wake_up = wake_up_screen(device, wake_up)
+            if config.wake_up is True:             # Sleep screen...
+                config.wake_up = wake_up_screen(config.device, config.wake_up)
 
-            if blanc is False:
-                blanc = True
-                qso += 1
+            if config.blanc is False:
+                config.blanc = True
+                config.qso += 1
 
-            line[0] = call[1]
-            line[1] = call[0]
-            if qso == 0:
-                line[2] = call_time[0]
+            config.line[0] = config.call[1]
+            config.line[1] = config.call[0]
+            if config.qso == 0:
+                config.line[2] = config.call_time[0]
             else:
-                line[2] = 'Last TX ' + call_time[0]
+                config.line[2] = 'Last TX ' + config.call_time[0]
 
-        if(blanc_alternate == 0):           # TX today
+        if(config.blanc_alternate == 0):           # TX today
             tmp = 'TX Today '
             tmp += str(qso)
 
-            line[4] = tmp
+            config.line[4] = tmp
 
-            blanc_alternate = 1
+            config.blanc_alternate = 1
 
-        elif(blanc_alternate == 1):         # Boot time
+        elif(config.blanc_alternate == 1):         # Boot time
             tmp = 'Up '
-            tmp += calc_uptime(time.time() - timestamp_start)
+            tmp += calc_uptime(time.time() - config.timestamp_start)
 
-            line[4] = tmp
+            config.line[4] = tmp
 
             blanc_alternate = 2
 
-        elif(blanc_alternate == 2):         # TX total
+        elif(config.blanc_alternate == 2):         # TX total
             tmp = 'TX Total '
             tmp += str(qso_total + qso)
 
-            line[4] = tmp
+            config.line[4] = tmp
 
-            blanc_alternate = 3
+            config.blanc_alternate = 3
 
-        elif(blanc_alternate == 3):         # Best link
-            if len(history) >= 5:
-                best = max(history, key=history.get)
-                line[4] = best + ' ' + str(history[best]) + ' TX'
+        elif(config.blanc_alternate == 3):         # Best link
+            if len(config.history) >= 5:
+                best = max(config.history, key=config.history.get)
+                config.line[4] = best + ' ' + str(config.history[best]) + ' TX'
             else:
-                line[4] = 'Need more datas'
+                config.line[4] = 'Need more datas'
         
-            blanc_alternate = 0
+            config.blanc_alternate = 0
 
 
         # Print screen
@@ -403,7 +323,7 @@ def main(argv):
         font=ImageFont.truetype('fonts/7x5.ttf', 8)                           # Text font
         icon=ImageFont.truetype('fonts/fontello.ttf', 14)                     # Icon font
 
-        with canvas(device) as draw:
+        with canvas(config.device) as draw:
 
             display_64()
 
