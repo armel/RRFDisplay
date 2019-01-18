@@ -72,7 +72,7 @@ def display_32():
                 config.extended = True
 
         if config.wake_up is False and config.minute % 2 == 0 and config.seconde < 30:  # System log extended
-            histogram(draw, legacy, 0)
+            histogram(draw, legacy, 25)
 
 
         if config.wake_up is True:
