@@ -203,7 +203,7 @@ def display_64():
 
             w, h = draw.textsize(text=s.room + ' Best TX', font=font)
             tab = (s.device.width - w) / 2
-            draw.text((tab, 0), room + ' Best TX', font=font, fill='white')
+            draw.text((tab, 0), s.room + ' Best TX', font=font, fill='white')
 
             tmp = sorted(s.history.items(), key=lambda x: x[1])
             tmp.reverse()
@@ -215,7 +215,7 @@ def display_64():
 
             for j in xrange(0, 5):
                 c, n = tmp[j]
-                t = lib.interpolation(n, history[best_min], history[best_max], 12, 42)
+                t = lib.interpolation(n, s.history[best_min], s.history[best_max], 12, 42)
                 n = str(n)
 
                 draw.rectangle((0, i - 1, t, i + 7), fill='white')
