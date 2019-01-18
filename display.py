@@ -75,31 +75,33 @@ def display_32():
             draw.rectangle((0, 0, 127, 31), fill='black')
             histogram(draw, legacy, 25)
 
+        else:
+            draw.rectangle((0, 0, 127, 31), fill='black')
 
-        if config.wake_up is True:
-            draw.text((2, 0), u'\uf130', font=icon, fill='white')           # Icon talk
+            if config.wake_up is True:
+                draw.text((2, 0), u'\uf130', font=icon, fill='white')           # Icon talk
 
-        if config.line[2][:4] == 'Last':                                    # Icon clock (DIY...)
-            x = 6
-            y = 17
-            draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline='white')
-            draw.line((x, y, x + 2, y + 2), fill='white')
-            draw.line((x, y, x, y - 3), fill='white')
+            if config.line[2][:4] == 'Last':                                    # Icon clock (DIY...)
+                x = 6
+                y = 17
+                draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline='white')
+                draw.line((x, y, x + 2, y + 2), fill='white')
+                draw.line((x, y, x, y - 3), fill='white')
 
-        # Print data
+            # Print data
 
-        i = 0
+            i = 0
 
-        for l in config.line:
-            if l is not None:
-                w, h = draw.textsize(text=l, font=font)
-                tab = (config.device.width - w) / 2
-                vide = ' ' * 22                                             # Hack to speed clear screen line...
-                draw.text((0, i), vide, font=font, fill='white')
-                draw.text((tab, i), l, font=font, fill='white')
-                i += h
-                if i == 24:
-                    break
+            for l in config.line:
+                if l is not None:
+                    w, h = draw.textsize(text=l, font=font)
+                    tab = (config.device.width - w) / 2
+                    vide = ' ' * 22                                             # Hack to speed clear screen line...
+                    draw.text((0, i), vide, font=font, fill='white')
+                    draw.text((tab, i), l, font=font, fill='white')
+                    i += h
+                    if i == 24:
+                        break
 
         clock_room(draw)
 
