@@ -82,7 +82,7 @@ def main(argv):
         s.seconde = int(s.now[-2:])
 
         if(s.now[:5] == '00:00'):
-            s.qso_total += qso
+            s.qso_total += s.qso
             s.qso = 0
             for q in xrange(0, 24):         # Clean histogram
                 s.qso_hour[q] = 0
