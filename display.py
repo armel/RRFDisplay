@@ -22,6 +22,7 @@ def tot(draw, legacy, start, current, font):
 
     print current, start
     duration = int(current) - int(start)
+    print duration
 
     for i in [180, 360, 540, 720]:
         if duration < i:
