@@ -38,22 +38,22 @@ def tot(draw, legacy, start, current, position):
     for i in xrange(0, h, 2):
         draw.rectangle((i, 54, i, 44), fill='white')
     
-    tmp = str(duration_min)
-    tmp = list(tmp)
+    # Duration min
+    tmp = list(str(duration_min))
     msg = ''
     for c in tmp:
         msg += chr(int(c))
     legacy.text(draw, (0, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
     
-    tmp = str(duration_max)
-    tmp = list(tmp)
+    # Duration max
+    tmp = list(str(duration_max))
     msg = ''
     for c in tmp:
         msg += chr(int(c))
     legacy.text(draw, (115, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
 
-    tmp = str(duration)
-    tmp = list(tmp)
+    # duration
+    tmp = list(str(duration))
     msg = ''
     for c in tmp:
         msg += chr(int(c))
@@ -105,6 +105,7 @@ def clock_room(draw):
             legacy.text(draw,  (i, 1), chr(c), fill='white', font=s.SMALL_BITMAP_FONT)
             i += 4
 
+
 # print System Log Extended
 
 def extended_system(draw):
@@ -145,6 +146,7 @@ def extended_system(draw):
 
         i += 10
 
+
 # print History Log Extended
 
 def extended_history(draw):
@@ -173,6 +175,7 @@ def extended_history(draw):
         draw.text((54, i), s.call[j], font=font, fill='white')
 
         i += 10
+
 
 # print Best Log Extended
 
@@ -208,6 +211,7 @@ def extended_best(draw):
         draw.text((54, i), c, font=font, fill='white')
 
         i += 10
+
 
 # Print display on 128 x 32
 def display_32():
