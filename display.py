@@ -24,6 +24,7 @@ def tot(draw, legacy, start, current, font, position):
     for i in [30, 60, 90, 120, 150, 180, 210, 240, 270, 300]:
         if duration < i:
             duration_max = i
+            break
 
     h = l.interpolation(duration, 1, duration_max, 0, 128)
 
