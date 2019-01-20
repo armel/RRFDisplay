@@ -104,7 +104,7 @@ def clock_room(draw):
 
 # print System Log Extended
 
-function extended_system(draw):
+def extended_system(draw):
 
     draw.rectangle((0, 0, 127, 63), fill='black')
 
@@ -144,7 +144,7 @@ function extended_system(draw):
 
 # print History Log Extended
 
-function extended_history(draw):
+def extended_history(draw):
 
     draw.rectangle((0, 0, 127, 63), fill='black')
 
@@ -173,7 +173,7 @@ function extended_history(draw):
 
 # print Best Log Extended
 
-function extended_best(draw):
+def extended_best(draw):
 
     draw.rectangle((0, 0, 127, 63), fill='black')
 
