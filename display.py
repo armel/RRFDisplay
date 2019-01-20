@@ -47,7 +47,7 @@ def tot(draw, legacy, start, current, font, position):
     msg = ''
     for c in tmp:
         msg += chr(int(c))
-    legacy.text(draw, (65, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw, (60, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
 
 # Draw histogram
 def histogram(draw, legacy, position):
