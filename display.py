@@ -32,15 +32,22 @@ def tot(draw, legacy, start, current, font, position):
 
     draw.rectangle((0, 54, 128, 44), fill='black')
     draw.rectangle((0, 54, h, 44), fill='white')
-    #draw.text((0, 26), str(duration) + ' s', font=font, fill='white')
-
+    
     legacy.text(draw,   (0, position + 2), chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
+    
     tmp = str(duration_max)
     tmp = list(tmp)
     msg = ''
     for c in tmp:
         msg += chr(int(c))
     legacy.text(draw, (115, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
+
+    tmp = str(duration)
+    tmp = list(tmp)
+    msg = ''
+    for c in tmp:
+        msg += chr(int(c))
+    legacy.text(draw, (65, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
 
 # Draw histogram
 def histogram(draw, legacy, position):
