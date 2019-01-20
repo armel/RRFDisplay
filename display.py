@@ -19,16 +19,16 @@ from PIL import ImageFont
 
 # Draw tot
 def tot(draw, legacy, start, current, font):
-
-    print current, start
     duration = int(current) - int(start)
-    print duration
 
     for i in [180, 360, 540, 720]:
         if duration < i:
             duration_max = i
 
     h = l.interpolation(duration, 1, duration_max, 1, 100)
+
+    print current, start, duration, h
+
     draw.rectangle((28, 30, h, 34), fill='white')
     #draw.text((0, 26), str(duration) + ' s', font=font, fill='white')
 
