@@ -150,6 +150,8 @@ def main(argv):
         else:
             if s.wake_up is True:       # Sleep screen...
                 s.wake_up = l.wake_up_screen(s.device, s.wake_up)
+                s.tot_current = ''
+                s.tot_start = ''
 
             if s.blanc is False:
                 s.blanc = True
