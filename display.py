@@ -16,6 +16,9 @@ from luma.core import legacy
 
 from PIL import ImageFont
 
+font = ImageFont.truetype('fonts/7x5.ttf', 8)           # Text font
+icon = ImageFont.truetype('fonts/fontello.ttf', 14)     # Icon font
+
 
 # Draw tot
 def tot(draw, legacy, start, current, font, position):
@@ -259,9 +262,6 @@ def display_32():
 
 # Print display on 128 x 64
 def display_64():
-    font = ImageFont.truetype('fonts/7x5.ttf', 8)           # Text font
-    icon = ImageFont.truetype('fonts/fontello.ttf', 14)     # Icon font
-
     with canvas(s.device) as draw:
 
         # Check if extended
