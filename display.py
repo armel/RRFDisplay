@@ -102,6 +102,109 @@ def clock_room(draw):
             legacy.text(draw,  (i, 1), chr(c), fill='white', font=s.SMALL_BITMAP_FONT)
             i += 4
 
+# print System Log Extended
+
+function extended_system(draw):
+
+    draw.rectangle((0, 0, 127, 63), fill='black')
+
+    draw.text((0, 0), u'\ue801', font=icon, fill='white')
+
+    w, h = draw.textsize(text='Spotnik Infos', font=font)
+    tab = (s.device.width - w) / 2
+    draw.text((tab, 0), 'Spotnik Infos', font=font, fill='white')
+
+    sys = {'Load': '', 'Temp': '', 'Freq': '', 'Mem': '', 'Disk': ''}
+
+    a, b, c = l.system_info('load')
+    sys['Load'] = a + ' ' + b + ' ' + c
+
+    sys['Temp'] = l.system_info('temp') + ' C'
+
+    sys['Freq'] = l.system_info('freq') + ' MHz'
+
+    percent, mem = l.system_info('mem')
+    sys['Mem'] = percent + '% of ' + mem
+
+    percent, disk = l.system_info('disk')
+    sys['Disk'] = percent + '% of ' + disk
+
+    i = 16
+
+    for j in ['Load', 'Temp', 'Freq', 'Mem', 'Disk']:
+        draw.rectangle((0, i - 1, 30, i + 7), fill='white')
+        draw.line((31, i, 31, i + 6), fill='white')
+        draw.line((32, i + 2, 32, i + 4), fill='white')
+        draw.point((33, i + 3), fill='white')
+
+        draw.text((1, i), j, font=font, fill='black')
+        draw.text((42, i), sys[j], font=font, fill='white')
+
+        i += 10
+
+# print History Log Extended
+
+function extended_history(draw):
+
+    draw.rectangle((0, 0, 127, 63), fill='black')
+
+    x = 6
+    y = 6
+    draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline='white')
+    draw.line((x, y, x + 2, y + 2), fill='white')
+    draw.line((x, y, x, y - 3), fill='white')
+
+    w, h = draw.textsize(text=s.room + ' Last TX', font=font)
+    tab = (s.device.width - w) / 2
+    draw.text((tab, 0), s.room + ' Last TX', font=font, fill='white')
+
+    i = 16
+
+    for j in xrange(0, 5):
+        draw.rectangle((0, i - 1, 42, i + 7), fill='white')
+        draw.line((43, i, 43, i + 6), fill='white')
+        draw.line((44, i + 2, 44, i + 4), fill='white')
+        draw.point((45, i + 3), fill='white')
+
+        draw.text((1, i), s.call_time[j], font=font, fill='black')
+        draw.text((54, i), s.call[j], font=font, fill='white')
+
+        i += 10
+
+# print Best Log Extended
+
+function extended_best(draw):
+
+    draw.rectangle((0, 0, 127, 63), fill='black')
+
+    draw.text((0, 0), u'\ue801', font=icon, fill='white')
+
+    w, h = draw.textsize(text=s.room + ' Best TX', font=font)
+    tab = (s.device.width - w) / 2
+    draw.text((tab, 0), s.room + ' Best TX', font=font, fill='white')
+
+    tmp = sorted(s.history.items(), key=lambda x: x[1])
+    tmp.reverse()
+
+    best_min = min(s.history, key=s.history.get)
+    best_max = max(s.history, key=s.history.get)
+
+    i = 16
+
+    for j in xrange(0, 5):
+        c, n = tmp[j]
+        t = l.interpolation(n, s.history[best_min], s.history[best_max], 12, 42)
+        n = str(n)
+
+        draw.rectangle((0, i - 1, t, i + 7), fill='white')
+        draw.line((t + 1, i, t + 1, i + 6), fill='white')
+        draw.line((t + 2, i + 2, t + 2, i + 4), fill='white')
+        draw.point((t + 3, i + 3), fill='white')
+
+        draw.text((1, i), n, font=font, fill='black')
+        draw.text((54, i), c, font=font, fill='white')
+
+        i += 10
 
 # Print display on 128 x 32
 def display_32():
@@ -168,104 +271,15 @@ def display_64():
 
         # System log extended
         if s.wake_up is False and s.minute % 2 == 0 and s.seconde < 20:
-
-            draw.rectangle((0, 0, 127, 63), fill='black')
-
-            draw.text((0, 0), u'\ue801', font=icon, fill='white')
-
-            w, h = draw.textsize(text='Spotnik Infos', font=font)
-            tab = (s.device.width - w) / 2
-            draw.text((tab, 0), 'Spotnik Infos', font=font, fill='white')
-
-            sys = {'Load': '', 'Temp': '', 'Freq': '', 'Mem': '', 'Disk': ''}
-
-            a, b, c = l.system_info('load')
-            sys['Load'] = a + ' ' + b + ' ' + c
-
-            sys['Temp'] = l.system_info('temp') + ' C'
-
-            sys['Freq'] = l.system_info('freq') + ' MHz'
-
-            percent, mem = l.system_info('mem')
-            sys['Mem'] = percent + '% of ' + mem
-
-            percent, disk = l.system_info('disk')
-            sys['Disk'] = percent + '% of ' + disk
-
-            i = 16
-
-            for j in ['Load', 'Temp', 'Freq', 'Mem', 'Disk']:
-                draw.rectangle((0, i - 1, 30, i + 7), fill='white')
-                draw.line((31, i, 31, i + 6), fill='white')
-                draw.line((32, i + 2, 32, i + 4), fill='white')
-                draw.point((33, i + 3), fill='white')
-
-                draw.text((1, i), j, font=font, fill='black')
-                draw.text((42, i), sys[j], font=font, fill='white')
-
-                i += 10
-
+            extended_system(draw)
+            
         # History log extended
         elif s.wake_up is False and s.extended is True and s.minute % 2 == 0 and s.seconde < 40:
-
-            draw.rectangle((0, 0, 127, 63), fill='black')
-
-            x = 6
-            y = 6
-            draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline='white')
-            draw.line((x, y, x + 2, y + 2), fill='white')
-            draw.line((x, y, x, y - 3), fill='white')
-
-            w, h = draw.textsize(text=s.room + ' Last TX', font=font)
-            tab = (s.device.width - w) / 2
-            draw.text((tab, 0), s.room + ' Last TX', font=font, fill='white')
-
-            i = 16
-
-            for j in xrange(0, 5):
-                draw.rectangle((0, i - 1, 42, i + 7), fill='white')
-                draw.line((43, i, 43, i + 6), fill='white')
-                draw.line((44, i + 2, 44, i + 4), fill='white')
-                draw.point((45, i + 3), fill='white')
-
-                draw.text((1, i), s.call_time[j], font=font, fill='black')
-                draw.text((54, i), s.call[j], font=font, fill='white')
-
-                i += 10
-
+            extended_history(draw)
+            
         # Best log extended
         elif s.wake_up is False and s.extended is True and s.minute % 2 == 0:
-
-            draw.rectangle((0, 0, 127, 63), fill='black')
-
-            draw.text((0, 0), u'\ue801', font=icon, fill='white')
-
-            w, h = draw.textsize(text=s.room + ' Best TX', font=font)
-            tab = (s.device.width - w) / 2
-            draw.text((tab, 0), s.room + ' Best TX', font=font, fill='white')
-
-            tmp = sorted(s.history.items(), key=lambda x: x[1])
-            tmp.reverse()
-
-            best_min = min(s.history, key=s.history.get)
-            best_max = max(s.history, key=s.history.get)
-
-            i = 16
-
-            for j in xrange(0, 5):
-                c, n = tmp[j]
-                t = l.interpolation(n, s.history[best_min], s.history[best_max], 12, 42)
-                n = str(n)
-
-                draw.rectangle((0, i - 1, t, i + 7), fill='white')
-                draw.line((t + 1, i, t + 1, i + 6), fill='white')
-                draw.line((t + 2, i + 2, t + 2, i + 4), fill='white')
-                draw.point((t + 3, i + 3), fill='white')
-
-                draw.text((1, i), n, font=font, fill='black')
-                draw.text((54, i), c, font=font, fill='white')
-
-                i += 10
+            extended_best(draw)
 
         # If not extended
         else:
