@@ -303,7 +303,7 @@ def display_64():
                     if i == 24:
                         i += 6
 
-            if s.tot_current > s.tot_start:
+            if s.wake_up is True and s.tot_current > s.tot_start:
             # Draw tot
                 tot(draw, legacy, s.tot_start, s.tot_current, font, 57)
             else:
