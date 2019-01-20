@@ -31,8 +31,6 @@ def tot(draw, legacy, start, current, font, position):
 
     h = l.interpolation(duration, 1, duration_max, 0, 128)
 
-    print duration_min, duration_max, duracurrent, start, duration, h
-
     draw.rectangle((0, 54, 128, 44), fill='black')
     for i in xrange(0, h, 2):
         print i
