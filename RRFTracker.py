@@ -115,6 +115,7 @@ def main(argv):
 
             if (s.call_previous != s.call_current):
                 s.tot_start = time.time()
+                s.tot_current = s.tot_start
                 s.call_previous = s.call_current
 
                 for i in xrange(4, 0, -1):
