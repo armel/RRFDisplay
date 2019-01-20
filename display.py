@@ -29,7 +29,7 @@ def tot(draw, legacy, start, current, font):
             duration_max = i
 
     h = l.interpolation(duration, 1, duration_max, 1, 100)
-    draw.rectangle((28, 26, h, 22), fill='white')
+    draw.rectangle((28, 30, h, 34), fill='white')
     #draw.text((0, 26), str(duration) + ' s', font=font, fill='white')
 
 
