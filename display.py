@@ -254,7 +254,7 @@ def display_64():
             i = 0
 
             for m in s.message:
-                if l is not None:
+                if m is not None:
                     w, h = draw.textsize(text=m, font=font)
                     tab = (s.device.width - w) / 2
                     vide = ' ' * 22     # Hack to speed clear screen line...
