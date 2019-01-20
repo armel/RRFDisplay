@@ -21,7 +21,7 @@ from PIL import ImageFont
 def tot(draw, legacy, start, current, font, position):
     duration = int(current) - int(start)
 
-    for i in [180, 360, 540, 720]:
+    for i in [30, 60, 90, 120, 150, 180, 210, 240, 270, 300]:
         if duration < i:
             duration_max = i
 
@@ -33,11 +33,13 @@ def tot(draw, legacy, start, current, font, position):
     draw.rectangle((0, 54, h, 44), fill='white')
     #draw.text((0, 26), str(duration) + ' s', font=font, fill='white')
 
-    legacy.text(draw,   (0, position + 2), chr(0) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
-    legacy.text(draw,  (32, position + 2), chr(3) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
-    legacy.text(draw,  (62, position + 2), chr(6) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
-    legacy.text(draw,  (92, position + 2), chr(9) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
-    legacy.text(draw, (115, position + 2), chr(1) + chr(2) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw,   (0, position + 2), chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
+    tmp = str(duration_max):
+    tmp = list(tmp)
+    msg = ''
+    for c in tmp:
+        msg += chr(c)
+    legacy.text(draw, (115, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
 
 # Draw histogram
 def histogram(draw, legacy, position):
