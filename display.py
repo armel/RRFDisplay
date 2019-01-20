@@ -30,7 +30,7 @@ def tot(draw, legacy, start, current, font):
     print current, start, duration, h
 
     draw.rectangle((48, 30, 128, 34), fill='black')
-    draw.rectangle((48, 30, h, 44), fill='white')
+    draw.rectangle((48, 30, 48 + h, 44), fill='white')
     #draw.text((0, 26), str(duration) + ' s', font=font, fill='white')
 
 
