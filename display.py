@@ -17,6 +17,20 @@ from luma.core import legacy
 from PIL import ImageFont
 
 
+# Draw tot
+def tot(draw, legacy, start, current, font):
+
+    duration = current - start
+
+    for i in [180, 360, 540, 720]:
+        if duration < i:
+            duration_max = i
+
+    h = l.interpolation(duration, 1, duration_max, 1, 100)
+    draw.rectangle((28, 26, h, 22), fill='white')
+    #draw.text((0, 26), str(duration) + ' s', font=font, fill='white')
+
+
 # Draw histogram
 def histogram(draw, legacy, position):
 
@@ -266,6 +280,9 @@ def display_64():
 
             # Draw stats histogram
             histogram(draw, legacy, 57)
+
+            # Draw tot
+            tot(draw, legacy, s.tot_start, s.tot_current, font)
 
         # Finaly, print clock and room
         clock_room(draw)

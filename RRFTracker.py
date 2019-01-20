@@ -114,6 +114,7 @@ def main(argv):
             s.call_current = tmp
 
             if (s.call_previous != s.call_current):
+                s.tot_start = time.time()
                 s.call_previous = s.call_current
 
                 for i in xrange(4, 0, -1):
@@ -125,6 +126,7 @@ def main(argv):
                 s.history = l.save_stat(s.history, s.call[1])
                 s.qso += 1
             else:
+                s.tot_current = time.time()
                 if (s.blanc is True):         # Stat (same call but new PTT...)
                     s.history = l.save_stat(s.history, s.call[0])
 

@@ -67,6 +67,8 @@ message = [None] * 7						# Message list
 # Set time and date
 
 timestamp_start = ''
+tot_start = ''
+tot_current = ''
 hour = ''
 minute = ''
 seconde = ''
