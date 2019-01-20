@@ -21,7 +21,7 @@ from PIL import ImageFont
 def tot(draw, legacy, start, current, font):
 
     print current, start
-    #duration = int(current) - int(start)
+    duration = int(current) - int(start)
 
     for i in [180, 360, 540, 720]:
         if duration < i:
