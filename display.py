@@ -284,8 +284,9 @@ def display_64():
             histogram(draw, legacy, 57)
 
             # Draw tot
-            if s.tot_current > s.tot_start:
-                tot(draw, legacy, s.tot_start, s.tot_current, font)
+            if s.tot_current is not '' and s.tot_start is not '':
+                if s.tot_current > s.tot_start:
+                    tot(draw, legacy, s.tot_start, s.tot_current, font)
 
         # Finaly, print clock and room
         clock_room(draw)
