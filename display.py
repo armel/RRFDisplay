@@ -21,7 +21,7 @@ icon = ImageFont.truetype('fonts/fontello.ttf', 14)     # Icon font
 
 
 # Draw tot
-def tot(draw, legacy, start, current, font, position):
+def tot(draw, legacy, start, current, position):
     duration = int(current) - int(start)
     duration_min = 0
 
@@ -211,9 +211,6 @@ def extended_best(draw):
 
 # Print display on 128 x 32
 def display_32():
-    font = ImageFont.truetype('fonts/7x5.ttf', 8)           # Text font
-    icon = ImageFont.truetype('fonts/fontello.ttf', 14)     # Icon font
-
     with canvas(s.device) as draw:
 
         # Check if extended
@@ -319,7 +316,7 @@ def display_64():
 
             if s.wake_up is True and s.tot_current > s.tot_start:
             # Draw tot
-                tot(draw, legacy, s.tot_start, s.tot_current, font, 57)
+                tot(draw, legacy, s.tot_start, s.tot_current, 57)
             else:
                 # Draw stats histogram
                 histogram(draw, legacy, 57)
