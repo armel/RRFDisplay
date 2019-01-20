@@ -9,8 +9,8 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 '''
 
 import settings as s
-import display
-import lib
+import display as d
+import lib as l
 
 import requests
 import datetime
@@ -29,11 +29,11 @@ def main(argv):
     try:
         options, remainder=getopt.getopt(argv, '', ['help', 'i2c-port=', 'i2c-address=', 'display=', 'display-width=', 'display-height=', 'room='])
     except getopt.GetoptError:
-        lib.usage()
+        l.usage()
         sys.exit(2)
     for opt, arg in options:
         if opt == '--help':
-            lib.usage()
+            l.usage()
             sys.exit()
         elif opt in ('--i2c-port'):
             s.i2c_port = arg
@@ -104,7 +104,7 @@ def main(argv):
         if search_stop != search_start:
 
             if s.wake_up is False:      # Wake up screen...
-                s.wake_up = lib.wake_up_screen(s.device, s.wake_up)
+                s.wake_up = l.wake_up_screen(s.device, s.wake_up)
 
             # Clean call
             tmp = page[search_start:search_stop]
@@ -122,7 +122,7 @@ def main(argv):
 
                 s.call[0] = s.call_current
 
-                s.history = lib.save_stat(s.history, s.call[1])
+                s.history = l.save_stat(s.history, s.call[1])
                 s.qso += 1
             else:
                 if (s.blanc is True):         # Stat (same call but new PTT...)
@@ -139,9 +139,9 @@ def main(argv):
 
             s.call_time[0] = s.now
 
-            s.line[0] = s.call[2]
-            s.line[1] = s.call[1]
-            s.line[2] = s.call[0]
+            s.message[0] = s.call[2]
+            s.message[1] = s.call[1]
+            s.message[2] = s.call[0]
 
         # If no Transmitter...
         else:
@@ -152,18 +152,18 @@ def main(argv):
                 s.blanc = True
                 s.qso += 1
 
-            s.line[0] = s.call[1]
-            s.line[1] = s.call[0]
+            s.message[0] = s.call[1]
+            s.message[1] = s.call[0]
             if s.qso == 0:
-                s.line[2] = s.call_time[0]
+                s.message[2] = s.call_time[0]
             else:
-                s.line[2] = 'Last TX ' + s.call_time[0]
+                s.message[2] = 'Last TX ' + s.call_time[0]
 
         if(s.blanc_alternate == 0):     # TX today
             tmp = 'TX Today '
             tmp += str(s.qso)
 
-            s.line[4] = tmp
+            s.message[4] = tmp
 
             s.blanc_alternate = 1
 
@@ -171,7 +171,7 @@ def main(argv):
             tmp = 'Up '
             tmp += lib.calc_uptime(time.time() - s.timestamp_start)
 
-            s.line[4] = tmp
+            s.message[4] = tmp
 
             s.blanc_alternate = 2
 
@@ -179,24 +179,24 @@ def main(argv):
             tmp = 'TX Total '
             tmp += str(s.qso_total + s.qso)
 
-            s.line[4] = tmp
+            s.message[4] = tmp
 
             s.blanc_alternate = 3
 
         elif(s.blanc_alternate == 3):   # Best link
             if len(s.history) >= 5:
                 best = max(s.history, key=s.history.get)
-                s.line[4] = best + ' ' + str(s.history[best]) + ' TX'
+                s.message[4] = best + ' ' + str(s.history[best]) + ' TX'
             else:
-                s.line[4] = 'Need more datas'
+                s.message[4] = 'Need more datas'
 
             s.blanc_alternate = 0
 
         # Print screen
         if s.device.height == 64:
-            display.display_64()
+            d.display_64()
         else:
-            display.display_32()
+            d.display_32()
 
         time.sleep(2)
 

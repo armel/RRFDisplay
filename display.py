@@ -9,7 +9,7 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 '''
 
 import settings as s
-import lib
+import lib as l
 
 from luma.core.render import canvas
 from luma.core import legacy
@@ -26,7 +26,7 @@ def histogram(draw, legacy, position):
 
     for q in s.qso_hour:
         if q != 0:
-            h = lib.interpolation(q, 1, qso_hour_max, 1, 15)
+            h = l.interpolation(q, 1, qso_hour_max, 1, 15)
         else:
             h = 0
         draw.rectangle((0 + i, position, i + 2, (position - 15)), fill='black')
@@ -90,7 +90,7 @@ def display_32():
                 draw.text((2, 0), u'\uf130', font=icon, fill='white')
 
             # Icon clock (DIY...)
-            if s.line[2][:4] == 'Last':
+            if s.message[2][:4] == 'Last':
                 x = 6
                 y = 17
                 draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline='white')
@@ -100,13 +100,13 @@ def display_32():
             # Print data
             i = 0
 
-            for j in s.line:
-                if j is not None:
-                    w, h = draw.textsize(text=l, font=font)
+            for m in s.message:
+                if m is not None:
+                    w, h = draw.textsize(text=m, font=font)
                     tab = (s.device.width - w) / 2
                     vide = ' ' * 22     # Hack to speed clear screen line...
                     draw.text((0, i), vide, font=font, fill='white')
-                    draw.text((tab, i), j, font=font, fill='white')
+                    draw.text((tab, i), m, font=font, fill='white')
                     i += h
                     if i == 24:
                         break
@@ -140,17 +140,17 @@ def display_64():
 
             sys = {'Load': '', 'Temp': '', 'Freq': '', 'Mem': '', 'Disk': ''}
 
-            a, b, c = lib.system_info('load')
+            a, b, c = l.system_info('load')
             sys['Load'] = a + ' ' + b + ' ' + c
 
-            sys['Temp'] = lib.system_info('temp') + ' C'
+            sys['Temp'] = l.system_info('temp') + ' C'
 
-            sys['Freq'] = lib.system_info('freq') + ' MHz'
+            sys['Freq'] = l.system_info('freq') + ' MHz'
 
-            percent, mem = lib.system_info('mem')
+            percent, mem = l.system_info('mem')
             sys['Mem'] = percent + '% of ' + mem
 
-            percent, disk = lib.system_info('disk')
+            percent, disk = l.system_info('disk')
             sys['Disk'] = percent + '% of ' + disk
 
             i = 16
@@ -215,7 +215,7 @@ def display_64():
 
             for j in xrange(0, 5):
                 c, n = tmp[j]
-                t = lib.interpolation(n, s.history[best_min], s.history[best_max], 12, 42)
+                t = l.interpolation(n, s.history[best_min], s.history[best_max], 12, 42)
                 n = str(n)
 
                 draw.rectangle((0, i - 1, t, i + 7), fill='white')
@@ -243,7 +243,7 @@ def display_64():
                 draw.text((2, 0), u'\uf130', font=icon, fill='white')
 
             # Icon clock (DIY...)
-            if s.line[2][:4] == 'Last':
+            if s.message[2][:4] == 'Last':
                 x = 6
                 y = 17
                 draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline='white')
@@ -253,13 +253,13 @@ def display_64():
             # Print data
             i = 0
 
-            for l in s.line:
+            for m in s.message:
                 if l is not None:
-                    w, h = draw.textsize(text=l, font=font)
+                    w, h = draw.textsize(text=m, font=font)
                     tab = (s.device.width - w) / 2
                     vide = ' ' * 22     # Hack to speed clear screen line...
                     draw.text((0, i), vide, font=font, fill='white')
-                    draw.text((tab, i), l, font=font, fill='white')
+                    draw.text((tab, i), m, font=font, fill='white')
                     i += h
                     if i == 24:
                         i += 6
