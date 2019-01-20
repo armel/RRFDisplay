@@ -20,22 +20,30 @@ from PIL import ImageFont
 # Draw tot
 def tot(draw, legacy, start, current, font, position):
     duration = int(current) - int(start)
+    duration_min = 0
 
     for i in [30, 60, 90, 120, 150, 180, 210, 240, 270, 300]:
         if duration < i:
             duration_max = i
             break
+        else:
+            duration_min = i
 
     h = l.interpolation(duration, 1, duration_max, 0, 128)
 
-    print current, start, duration, h
+    print duration_min, duration_max, duracurrent, start, duration, h
 
     draw.rectangle((0, 54, 128, 44), fill='black')
     for i in xrange(0, h, 2):
         print i
         draw.rectangle((i, 54, i, 44), fill='white')
     
-    legacy.text(draw,   (0, position + 2), chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
+    tmp = str(duration_min)
+    tmp = list(tmp)
+    msg = ''
+    for c in tmp:
+        msg += chr(int(c))
+    legacy.text(draw, (0, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
     
     tmp = str(duration_max)
     tmp = list(tmp)
