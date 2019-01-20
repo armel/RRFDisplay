@@ -25,12 +25,12 @@ def tot(draw, legacy, start, current, font):
         if duration < i:
             duration_max = i
 
-    h = l.interpolation(duration, 1, duration_max, 1, 80)
+    h = l.interpolation(duration, 1, duration_max, 1, 99)
 
     print current, start, duration, h
 
-    draw.rectangle((48, 30, 128, 34), fill='black')
-    draw.rectangle((48, 30, 48 + h, 44), fill='white')
+    draw.rectangle((28, 30, 128, 34), fill='black')
+    draw.rectangle((28, 30, 28 + h, 34), fill='white')
     #draw.text((0, 26), str(duration) + ' s', font=font, fill='white')
 
 
