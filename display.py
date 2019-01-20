@@ -34,7 +34,7 @@ def tot(draw, legacy, start, current, font, position):
     #draw.text((0, 26), str(duration) + ' s', font=font, fill='white')
 
     legacy.text(draw,   (0, position + 2), chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
-    tmp = str(duration_max):
+    tmp = str(duration_max)
     tmp = list(tmp)
     msg = ''
     for c in tmp:
