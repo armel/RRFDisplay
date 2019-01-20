@@ -18,7 +18,7 @@ from PIL import ImageFont
 
 
 # Draw tot
-def tot(draw, legacy, start, current, font):
+def tot(draw, legacy, start, current, font, position):
     duration = int(current) - int(start)
 
     for i in [180, 360, 540, 720]:
@@ -29,10 +29,15 @@ def tot(draw, legacy, start, current, font):
 
     print current, start, duration, h
 
-    draw.rectangle((20, 30, 128, 36), fill='black')
-    draw.rectangle((20, 30, 20 + h, 36), fill='white')
+    draw.rectangle((20, 50, 128, 46), fill='black')
+    draw.rectangle((20, 50, 20 + h, 46), fill='white')
     #draw.text((0, 26), str(duration) + ' s', font=font, fill='white')
 
+    legacy.text(draw,   (4, position + 2), chr(0) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw,  (32, position + 2), chr(3) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw,  (62, position + 2), chr(6) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw,  (92, position + 2), chr(9) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw, (115, position + 2), chr(1) + chr(2) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
 
 # Draw histogram
 def histogram(draw, legacy, position):
@@ -281,13 +286,12 @@ def display_64():
                     if i == 24:
                         i += 6
 
-            # Draw stats histogram
-            histogram(draw, legacy, 57)
-
+            if s.tot_current > s.tot_start:
             # Draw tot
-            if s.tot_current is not '' and s.tot_start is not '':
-                if s.tot_current > s.tot_start:
-                    tot(draw, legacy, s.tot_start, s.tot_current, font)
+                tot(draw, legacy, s.tot_start, s.tot_current, font, 57)
+            else:
+                # Draw stats histogram
+                histogram(draw, legacy, 57)
 
         # Finaly, print clock and room
         clock_room(draw)
