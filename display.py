@@ -31,8 +31,8 @@ def tot(draw, legacy, start, current, font, position):
     print current, start, duration, h
 
     draw.rectangle((0, 54, 128, 44), fill='black')
-    for i in xrange(0, h, 3):
-        draw.rectangle((0 + i, 54, 0 + i + 1, 44), fill='white')
+    for i in xrange(0, h, 2):
+        draw.rectangle((i + 0, 54, i + 1, 44), fill='white')
     
     legacy.text(draw,   (0, position + 2), chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
     
