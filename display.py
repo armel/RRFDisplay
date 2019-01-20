@@ -25,15 +25,15 @@ def tot(draw, legacy, start, current, font, position):
         if duration < i:
             duration_max = i
 
-    h = l.interpolation(duration, 1, duration_max, 1, 127)
+    h = l.interpolation(duration, 1, duration_max, 0, 128)
 
     print current, start, duration, h
 
-    draw.rectangle((0, 52, 128, 44), fill='black')
-    draw.rectangle((0, 52, 0 + h, 44), fill='white')
+    draw.rectangle((0, 54, 128, 44), fill='black')
+    draw.rectangle((0, 54, h, 44), fill='white')
     #draw.text((0, 26), str(duration) + ' s', font=font, fill='white')
 
-    legacy.text(draw,   (4, position + 2), chr(0) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw,   (0, position + 2), chr(0) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
     legacy.text(draw,  (32, position + 2), chr(3) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
     legacy.text(draw,  (62, position + 2), chr(6) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
     legacy.text(draw,  (92, position + 2), chr(9) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
