@@ -64,7 +64,7 @@ def histogram(draw, legacy, position):
 
     qso_hour_max = max(s.qso_hour)
 
-    i = 6
+    i = 5
 
     for q in s.qso_hour:
         if q != 0:
@@ -80,11 +80,11 @@ def histogram(draw, legacy, position):
     draw.line((0, 57, 0, 43), fill='white')
     draw.line((127, 57, 127, 43), fill='white')
 
-    legacy.text(draw,   (2, position + 2), chr(0) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
-    legacy.text(draw,  (34, position + 2), chr(0) + chr(6), fill='white', font=s.SMALL_BITMAP_FONT)
-    legacy.text(draw,  (64, position + 2), chr(1) + chr(2), fill='white', font=s.SMALL_BITMAP_FONT)
-    legacy.text(draw,  (94, position + 2), chr(1) + chr(8), fill='white', font=s.SMALL_BITMAP_FONT)
-    legacy.text(draw, (121, position + 2), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw,   (1, position + 2), chr(0) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw,  (33, position + 2), chr(0) + chr(6), fill='white', font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw,  (63, position + 2), chr(1) + chr(2), fill='white', font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw,  (93, position + 2), chr(1) + chr(8), fill='white', font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw, (120, position + 2), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_FONT)
 
 
 # Print clock and room
