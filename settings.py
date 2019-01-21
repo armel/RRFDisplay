@@ -57,12 +57,11 @@ blanc_alternate = 0							# Detect alternate
 qso = 0										# QSO count
 qso_total = 0								# QSO total count
 qso_hour = [0] * 24							# QSO list for histogramm
-
+qso_hour = [10, 1, 2, 3, 4, 5, 10, 5, 4, 3, 2, 1, 10, 1, 2, 3, 4, 5, 10, 5, 4, 3, 2, 1, 10]
 wake_up = True								# Detect wake up on emission
 extended = False							# Detect extended state
 
 history = dict()							# History dict
-history = {'0': 50, '1': 10, '2': 10, '3': 10, '4': 10, '5': 10, '6': 50, '7': 10, '8': 10, '9': 10, '10': 10, '11': 10, '12': 50}
 message = [None] * 7						# Message list
 
 # Set time and date
