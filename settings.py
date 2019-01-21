@@ -62,6 +62,7 @@ wake_up = True								# Detect wake up on emission
 extended = False							# Detect extended state
 
 history = dict()							# History dict
+history = {'0': 50, '1': 10, '2': 10, '3': 10, '4': 10, '5': 10, '6': 50, '7': 10, '8': 10, '9': 10, '10': 10, '11': 10, '12': 50}
 message = [None] * 7						# Message list
 
 # Set time and date
