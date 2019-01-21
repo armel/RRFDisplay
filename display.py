@@ -72,7 +72,7 @@ def histogram(draw, legacy, position):
         else:
             h = 0
 
-        print i
+        #print i
         draw.rectangle((0 + i, position, i + 2, (position - 15)), fill='black')
         draw.rectangle((0 + i, position, i + 2, (position - h)), fill='white')
         i += 5
@@ -80,13 +80,12 @@ def histogram(draw, legacy, position):
     draw.line((0, 57, 0, 43), fill='white')
     draw.line((127, 57, 127, 43), fill='white')
 
-    legacy.text(draw,   (0, position + 2), chr(0) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
-    legacy.text(draw,  (32, position + 2), chr(0) + chr(6), fill='white', font=s.SMALL_BITMAP_FONT)
-    legacy.text(draw,  (62, position + 2), chr(1) + chr(2), fill='white', font=s.SMALL_BITMAP_FONT)
-    legacy.text(draw,  (92, position + 2), chr(1) + chr(8), fill='white', font=s.SMALL_BITMAP_FONT)
-    legacy.text(draw, (119, position + 2), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw,   (2, position + 2), chr(0) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw,  (34, position + 2), chr(0) + chr(6), fill='white', font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw,  (64, position + 2), chr(1) + chr(2), fill='white', font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw,  (94, position + 2), chr(1) + chr(8), fill='white', font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw, (121, position + 2), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_FONT)
 
-    exit(0)
 
 # Print clock and room
 def clock_room(draw):
