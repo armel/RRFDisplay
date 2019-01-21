@@ -48,11 +48,13 @@ En bas de l'écran, on retrouve l'histogramme du trafic dans la journée, heure 
 
 À noter qu'à minuit, le nombre de passages en émission sur la journée ainsi que l'histogramme sont réinitialisés (à zéro).
 
-Enfin, alternativement, si aucune station n'est en émission, le RRFTracker affichera différents écrans complémentaires:
+Alternativement, si aucune station n'est en émission, le RRFTracker affichera différents écrans complémentaires:
 
 * l'historique des 5 derniers noeuds étant passés en émission ainsi que l'horodatage,
 * l'historique des 5 noeuds les plus actifs ainsi que le nombre de passages en émission,
 * l'état du Spotnik: charge et fréquence du CPU, température, occupation mémoire et disque. 
+
+Enfin, si une station passe en émission, en lieu et place de l'histogramme du trafic, une jauge affichant le temps de parole s'affichera, par tranche de 30 secondes. 
 
 ## Post installation sur Spotnik 1.9
 
