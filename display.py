@@ -25,7 +25,9 @@ def tot(draw, legacy, start, current, position):
     duration = int(current) - int(start)
     duration_min = 0
 
-    for i in [30, 60, 90, 120, 150, 180, 210, 240, 270, 300]:
+    timer = [i for i in xrange(30, 901, 30)]
+
+    for i in timer:
         if duration < i:
             duration_max = i
             break
@@ -37,7 +39,10 @@ def tot(draw, legacy, start, current, position):
     draw.rectangle((0, 54, 128, 43), fill='black')
     for i in xrange(0, h, 2):
         draw.rectangle((i, 54, i, 43), fill='white')
-    
+
+    for i in xrange(0, 128, 2):
+        draw.point((i, 57), fill='white')
+
     # Duration min
     tmp = list(str(duration_min))
     msg = ''
