@@ -77,10 +77,6 @@ def histogram(draw, legacy, position):
         draw.rectangle((0 + i, position, i + 2, (position - h)), fill='white')
         i += 5
 
-    for i in xrange(57, 41, -2):
-        draw.line((0, i, 0, i), fill='white')
-        draw.line((127, i, 127, i), fill='white')
-
     legacy.text(draw,   (1, position + 2), chr(0) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
     legacy.text(draw,  (33, position + 2), chr(0) + chr(6), fill='white', font=s.SMALL_BITMAP_FONT)
     legacy.text(draw,  (63, position + 2), chr(1) + chr(2), fill='white', font=s.SMALL_BITMAP_FONT)
