@@ -64,7 +64,7 @@ def histogram(draw, legacy, position):
 
     qso_hour_max = max(s.qso_hour)
 
-    i = 4
+    i = 6
 
     for q in s.qso_hour:
         if q != 0:
