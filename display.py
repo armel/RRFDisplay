@@ -70,7 +70,7 @@ def tot(draw, legacy, start, current, position):
     for c in tmp:
         msg += chr(int(c))
     if duration < 10:
-        tab = 4
+        tab = 2
     else:
         tab = 0
     legacy.text(draw, (60 + tab, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
