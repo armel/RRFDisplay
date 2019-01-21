@@ -57,7 +57,7 @@ blanc_alternate = 0							# Detect alternate
 qso = 0										# QSO count
 qso_total = 0								# QSO total count
 qso_hour = [0] * 24							# QSO list for histogramm
-qso_hour = [10, 1, 2, 3, 4, 5, 10, 5, 4, 3, 2, 1, 10, 1, 2, 3, 4, 5, 10, 5, 4, 3, 2, 10]
+#qso_hour = [10, 1, 2, 3, 4, 5, 10, 5, 4, 3, 2, 1, 10, 1, 2, 3, 4, 5, 10, 5, 4, 3, 2, 10]
 wake_up = True								# Detect wake up on emission
 extended = False							# Detect extended state
 
