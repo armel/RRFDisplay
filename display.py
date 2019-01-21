@@ -44,6 +44,8 @@ def tot(draw, legacy, start, current, position):
         print i
         draw.line((i, 57, i + 1, 57), fill='white')
 
+    draw.line((63, 0, 63, 63), fill='white')
+
     # Duration min
     tmp = list(str(duration_min))
     msg = ''
