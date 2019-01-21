@@ -127,6 +127,8 @@ def main(argv):
                 s.history = l.save_stat(s.history, s.call[1])
                 s.qso += 1
             else:
+                if s.tot_start is '':
+                    s.tot_start = time.time()
                 s.tot_current = time.time()
                 if (s.blanc is True):         # Stat (same call but new PTT...)
                     s.history = l.save_stat(s.history, s.call[0])
