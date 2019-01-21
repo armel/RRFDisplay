@@ -34,9 +34,9 @@ def tot(draw, legacy, start, current, position):
 
     h = l.interpolation(duration, duration_min, duration_max, 0, 128)
 
-    draw.rectangle((0, 54, 128, 44), fill='black')
+    draw.rectangle((0, 54, 128, 43), fill='black')
     for i in xrange(0, h, 2):
-        draw.rectangle((i, 54, i, 44), fill='white')
+        draw.rectangle((i, 54, i, 43), fill='white')
     
     # Duration min
     tmp = list(str(duration_min))
