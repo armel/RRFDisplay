@@ -71,6 +71,8 @@ def histogram(draw, legacy, position):
             h = l.interpolation(q, 1, qso_hour_max, 1, 15)
         else:
             h = 0
+
+        print i
         draw.rectangle((0 + i, position, i + 2, (position - 15)), fill='black')
         draw.rectangle((0 + i, position, i + 2, (position - h)), fill='white')
         i += 5
@@ -84,6 +86,7 @@ def histogram(draw, legacy, position):
     legacy.text(draw,  (92, position + 2), chr(1) + chr(8), fill='white', font=s.SMALL_BITMAP_FONT)
     legacy.text(draw, (119, position + 2), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_FONT)
 
+    exit(0)
 
 # Print clock and room
 def clock_room(draw):
