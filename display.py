@@ -40,7 +40,8 @@ def tot(draw, legacy, start, current, position):
     for i in xrange(0, h, 2):
         draw.rectangle((i, 54, i, 43), fill='white')
 
-    for i in xrange(0, 128, 2):
+    for i in xrange(3, 124, 2):
+        print i
         draw.point((i, 57), fill='white')
 
     # Duration min
