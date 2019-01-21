@@ -69,7 +69,7 @@ def tot(draw, legacy, start, current, position):
     msg = ''
     for c in tmp:
         msg += chr(int(c))
-    if duration_max < 10:
+    if duration < 10:
         tab = 4
     else:
         tab = 0
