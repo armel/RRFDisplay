@@ -41,7 +41,6 @@ def tot(draw, legacy, start, current, position):
         draw.rectangle((i, 54, i, 43), fill='white')
 
     for i in xrange(0, 128, 4):
-        print i
         draw.line((i, 57, i + 1, 57), fill='white')
 
     # Duration min
