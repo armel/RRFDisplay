@@ -176,7 +176,7 @@ def main(argv):
             s.blanc_alternate = 1
 
         elif(s.blanc_alternate == 1):   # Boot time
-            tmp = 'Uptime '
+            tmp = 'Up '
             tmp += l.calc_uptime(time.time() - s.timestamp_start)
 
             s.message[4] = tmp
