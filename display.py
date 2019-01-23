@@ -154,17 +154,16 @@ def extended_system(draw, seconde):
         percent, disk = l.system_info('disk')
         sys['Disk'] = percent + '% of ' + disk
 
-
     i = 16
 
-    for j in sys.keys():
+    for k, v in sys.items():
         draw.rectangle((0, i - 1, 30, i + 7), fill='white')
         draw.line((31, i, 31, i + 6), fill='white')
         draw.line((32, i + 2, 32, i + 4), fill='white')
         draw.point((33, i + 3), fill='white')
 
-        draw.text((1, i), j, font=font, fill='black')
-        draw.text((42, i), sys[j], font=font, fill='white')
+        draw.text((1, i), k, font=font, fill='black')
+        draw.text((42, i), v, font=font, fill='white')
 
         i += 10
 
