@@ -174,6 +174,8 @@ def system_info(value):
             tmp += '0'
         tmp += str(minute)
 
+        print tmp
+
         return str(tmp)
 
     elif value == 'ip':
