@@ -52,7 +52,7 @@ Alternativement, si aucune station n'est en émission, le RRFTracker affichera d
 
 * l'historique des 5 derniers noeuds étant passés en émission ainsi que l'horodatage,
 * l'historique des 5 noeuds les plus actifs ainsi que le nombre de passages en émission,
-* l'état du Spotnik: charge et fréquence du CPU, température, occupation mémoire et disque. 
+* l'état du Spotnik: architecture, uptime, charge et fréquence du CPU, température, adresse IP, occupation mémoire et disque. 
 
 Enfin, si une station passe en émission, en lieu et place de l'histogramme du trafic, une jauge affichant le temps de parole s'affichera, par tranche de 30 secondes. 
 
