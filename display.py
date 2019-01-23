@@ -146,7 +146,7 @@ def extended_system(draw, seconde):
         sys = {'Arch': '', 'IP': '', 'Mem': '', 'Disk': ''}
 
         sys['Arch'] = l.system_info('arch')
-        sys['IP'] = l.system_info('arch')
+        sys['IP'] = l.system_info('ip')
 
         percent, mem = l.system_info('mem')
         sys['Mem'] = percent + '% of ' + mem
