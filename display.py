@@ -299,7 +299,7 @@ def display_64():
             extended_system(draw, 1)
 
         # System log extended Page 2
-        if s.wake_up is False and s.minute % 2 == 0 and s.seconde < 30:
+        elif s.wake_up is False and s.minute % 2 == 0 and s.seconde < 30:
             extended_system(draw, 2)
             
         # History log extended
