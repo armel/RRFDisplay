@@ -135,15 +135,18 @@ def extended_system(draw, seconde):
 
     if seconde % 2 == 0:
         sys = {'Arch': '', 'Uptime': '', 'Load': '', 'Temp': '', 'Freq': ''}
+        sys_order = ['Arch', 'Uptime', 'Load', 'Temp', 'Freq']
 
         sys['Arch'] = l.system_info('arch')
-        sys['Uptime'] = l.system_info('up')
+        up = l.system_info('up')
+        sys['Uptime'] = up[:-1]
         sys['Load'] = l.system_info('load')
         sys['Temp'] = l.system_info('temp') + ' C'
         sys['Freq'] = l.system_info('freq') + ' MHz'
 
     else:
         sys = {'Arch': '', 'IP': '', 'Mem': '', 'Disk': ''}
+        sys_order = ['Arch', 'IP', 'Mem', 'Disk']
 
         sys['Arch'] = l.system_info('arch')
         sys['IP'] = l.system_info('ip')
@@ -156,14 +159,14 @@ def extended_system(draw, seconde):
 
     i = 16
 
-    for k, v in sys.items():
+    for j in sys_order:
         draw.rectangle((0, i - 1, 30, i + 7), fill='white')
         draw.line((31, i, 31, i + 6), fill='white')
         draw.line((32, i + 2, 32, i + 4), fill='white')
         draw.point((33, i + 3), fill='white')
 
-        draw.text((1, i), k, font=font, fill='black')
-        draw.text((42, i), v, font=font, fill='white')
+        draw.text((1, i), j, font=font, fill='black')
+        draw.text((42, i), sys[j], font=font, fill='white')
 
         i += 10
 
