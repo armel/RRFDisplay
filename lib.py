@@ -155,6 +155,8 @@ def system_info(value):
             hour = 0
             minute = tmp[0]
 
+        print tmp, day, hour, minute
+
         tmp = ''
 
         if day < 10:
