@@ -166,7 +166,7 @@ def extended_system(draw, page):
         draw.point((37, i + 3), fill='white')
 
         draw.text((1, i), j, font=font, fill='black')
-        draw.text((42, i), sys[j], font=font, fill='white')
+        draw.text((44, i), sys[j], font=font, fill='white')
 
         i += 10
 
