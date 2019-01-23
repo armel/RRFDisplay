@@ -133,27 +133,27 @@ def extended_system(draw, seconde):
     tab = (s.device.width - w) / 2
     draw.text((tab, 0), 'Spotnik Infos', font=font, fill='white')
 
-    sys = {'Load': '', 'IP': '', 'Temp': '', 'Freq': '', 'Mem': '', 'Disk': ''}
-
-    a, b, c = l.system_info('load')
-    sys['Load'] = a + ' ' + b + ' ' + c
-
-    sys['IP'] = l.system_info('ip')
-
-    sys['Temp'] = l.system_info('temp') + ' C'
-
-    sys['Freq'] = l.system_info('freq') + ' MHz'
-
-    percent, mem = l.system_info('mem')
-    sys['Mem'] = percent + '% of ' + mem
-
-    percent, disk = l.system_info('disk')
-    sys['Disk'] = percent + '% of ' + disk
-
     if seconde % 2 == 0:
-        sys.pop('IP', None)
+        sys = {'Arch': '', 'Up': '', 'Load': '', 'Temp': '', 'Freq': ''}
+
+        sys['Arch'] = l.system_info('arch')
+        sys['Uptime'] = l.system_info('up')
+        sys['Load'] = l.system_info('load')
+        sys['Temp'] = l.system_info('temp') + ' C'
+        sys['Freq'] = l.system_info('freq') + ' MHz'
+
     else:
-        sys.pop('Load', None)
+        sys = {'Arch': '', 'IP': '', 'Mem': '', 'Disk': ''}
+
+        sys['Arch'] = l.system_info('arch')
+        sys['IP'] = l.system_info('arch')
+
+        percent, mem = l.system_info('mem')
+        sys['Mem'] = percent + '% of ' + mem
+
+        percent, disk = l.system_info('disk')
+        sys['Disk'] = percent + '% of ' + disk
+
 
     i = 16
 

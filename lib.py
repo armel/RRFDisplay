@@ -135,10 +135,26 @@ def system_info(value):
         tmp = tmp[0].strip()
         tmp = tmp.split()
 
-        return str(tmp[-3]), str(tmp[-2]), str(tmp[-1])
+        return str(tmp[-3]) + ' ' + str(tmp[-2]) + ' ' + str(tmp[-1])
+
+    elif value == 'up':
+        tmp = list(os.popen('w | head -n 1'))
+        tmp = tmp[0].strip()
+        tmp = tmp.split()
+
+        return str(tmp[2]) + ' ' + str(tmp[3]) + ' ' + str(tmp[4])
 
     elif value == 'ip':
         tmp = list(os.popen('hostname -I'))
         tmp = tmp[0].strip()
+
+        return str(tmp)
+
+    elif value == 'arch':
+        tmp = os.popen('uname -a').readline()
+        if 'sun8i' in tmp:
+            tmp = 'Orange Pi'
+        else:
+            tmp = 'Raspberry Pi'
 
         return str(tmp)
