@@ -142,12 +142,39 @@ def system_info(value):
         tmp = tmp[0].strip()
         tmp = tmp.split()
 
-        if len(tmp) == 7:
-            return tmp[1] + ' d' + ', ' + tmp[3] + ':' + tmp[5]
-        elif len(tmp) == 5:
-            return tmp[1] + ' h' + ', ' + tmp[3]
+        tmp = [int(s) for s in tmp.split() if s.isdigit()]
+        
+        if len(tmp) == 3:
+            day = tmp[0]
+            hour = tmp[1]
+            minute = tmp[2]
+        elif len(tmp) == 2:
+            day = 0
+            hour = tmp[0]
+            minute = tmp[1]
         else:
-            return tmp[1] + ' m' 
+            day = 0
+            hour = 0
+            minute = tmp[0]
+
+        tmp = ''
+
+        if day < 10:
+            tmp += '0'
+        tmp += str(day)
+        tmp += ' d, '
+
+        if hour < 10:
+            tmp += '0'
+        tmp += str(hour)
+
+        tmp += ':'
+
+        if minute < 10:
+            tmp += '0'
+        tmp += str(minute)
+
+        return str(tmp)
 
     elif value == 'ip':
         tmp = list(os.popen('hostname -I'))
