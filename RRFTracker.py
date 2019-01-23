@@ -159,7 +159,7 @@ def main(argv):
                 duration = int(s.tot_current) - int(s.tot_start)
                 s.tot_current = ''
                 s.tot_start = ''
-                if duration > 0:
+                if duration > 3:
                     s.qso += 1
 
             s.message[0] = s.call[1]
