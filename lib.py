@@ -138,7 +138,7 @@ def system_info(value):
         return str(tmp[-3]) + ' ' + str(tmp[-2]) + ' ' + str(tmp[-1])
 
     elif value == 'up':
-        tmp = list(os.popen('w | head -n 1'))
+        tmp = list(os.popen('uptime -p'))
         tmp = tmp[0].strip()
         tmp = tmp.split()
 
