@@ -110,8 +110,8 @@ def main(argv):
             tmp = page[search_start:search_stop]
             tmp = tmp.replace('(', '')
             tmp = tmp.replace(') ', ' ')
-            tmp = tmp.replace('\u0026U', '&')
-            
+            tmp = tmp.replace('\u0026U', '&')   # Replace ampersand...
+
             s.call_current = tmp
 
             if (s.call_previous != s.call_current):
