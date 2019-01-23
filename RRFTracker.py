@@ -153,12 +153,14 @@ def main(argv):
         else:
             if s.wake_up is True:       # Sleep screen...
                 s.wake_up = l.wake_up_screen(s.device, s.wake_up)
-                s.tot_current = ''
-                s.tot_start = ''
 
             if s.blanc is False:
                 s.blanc = True
-                s.qso += 1
+                duration = int(s.tot_current) - int(s.tot_start)
+                s.tot_current = ''
+                s.tot_start = ''
+                if duration > 0:
+                    s.qso += 1
 
             s.message[0] = s.call[1]
             s.message[1] = s.call[0]
