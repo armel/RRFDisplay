@@ -134,7 +134,7 @@ def extended_system(draw, seconde):
     draw.text((tab, 0), 'Spotnik Infos', font=font, fill='white')
 
     if seconde % 2 == 0:
-        sys = {'Arch': '', 'Up': '', 'Load': '', 'Temp': '', 'Freq': ''}
+        sys = {'Arch': '', 'Uptime': '', 'Load': '', 'Temp': '', 'Freq': ''}
 
         sys['Arch'] = l.system_info('arch')
         sys['Uptime'] = l.system_info('up')
