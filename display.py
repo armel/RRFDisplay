@@ -123,7 +123,7 @@ def clock_room(draw):
 
 # print System Log Extended
 
-def extended_system(draw):
+def extended_system(draw, seconde):
 
     draw.rectangle((0, 0, 127, 63), fill='black')
 
@@ -133,10 +133,12 @@ def extended_system(draw):
     tab = (s.device.width - w) / 2
     draw.text((tab, 0), 'Spotnik Infos', font=font, fill='white')
 
-    sys = {'Load': '', 'Temp': '', 'Freq': '', 'Mem': '', 'Disk': ''}
+    sys = {'Load': '', 'IP': '', 'Temp': '', 'Freq': '', 'Mem': '', 'Disk': ''}
 
     a, b, c = l.system_info('load')
     sys['Load'] = a + ' ' + b + ' ' + c
+
+    sys['IP'] = l.system_info('ip')
 
     sys['Temp'] = l.system_info('temp') + ' C'
 
@@ -148,9 +150,14 @@ def extended_system(draw):
     percent, disk = l.system_info('disk')
     sys['Disk'] = percent + '% of ' + disk
 
+    if seconde % 2 == 0:
+        sys.pop('IP', None)
+    else:
+        sys.pop('Load', None)
+
     i = 16
 
-    for j in ['Load', 'Temp', 'Freq', 'Mem', 'Disk']:
+    for j in sys.keys():
         draw.rectangle((0, i - 1, 30, i + 7), fill='white')
         draw.line((31, i, 31, i + 6), fill='white')
         draw.line((32, i + 2, 32, i + 4), fill='white')
@@ -287,7 +294,7 @@ def display_64():
 
         # System log extended
         if s.wake_up is False and s.minute % 2 == 0 and s.seconde < 20:
-            extended_system(draw)
+            extended_system(draw, s.seconde)
             
         # History log extended
         elif s.wake_up is False and s.extended is True and s.minute % 2 == 0 and s.seconde < 40:
