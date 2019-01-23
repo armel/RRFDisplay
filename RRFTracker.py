@@ -110,7 +110,8 @@ def main(argv):
             tmp = page[search_start:search_stop]
             tmp = tmp.replace('(', '')
             tmp = tmp.replace(') ', ' ')
-
+            tmp = tmp.replace('\u0026U', '&')
+            
             s.call_current = tmp
 
             if (s.call_previous != s.call_current):
