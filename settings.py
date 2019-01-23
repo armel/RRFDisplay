@@ -46,7 +46,7 @@ letter = {'C': 16, 'E': 17, 'F': 12, 'N': 15, 'O': 13, 'R': 11, 'T': 14}
 
 # Set call
 
-call = ['F4HWN', 'RRFTracker', '', '', '']  # Call list
+call = ['(15) F6IOJ V\u0026U', 'RRFTracker', '', '', '']  # Call list
 call_current = call[0]                      # Call current
 call_previous = call[1]                     # Call previous
 call_time = ['Waiting TX', '', '', '', '']  # Call time list
