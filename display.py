@@ -138,8 +138,7 @@ def extended_system(draw, page):
         sys_order = ['Arch', 'Uptime', 'Load', 'Temp', 'Freq']
 
         sys['Arch'] = l.system_info('arch')
-        up = l.system_info('up')
-        sys['Uptime'] = up[:-1]
+        sys['Uptime'] = l.system_info('up')
         sys['Load'] = l.system_info('load')
         sys['Temp'] = l.system_info('temp') + ' C'
         sys['Freq'] = l.system_info('freq') + ' MHz'
