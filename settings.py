@@ -8,6 +8,10 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 73 & 88 de F4HWN Armel
 '''
 
+# Version
+
+version = '2.1'
+
 # Default i2c_port, i2c_address, display and room
 
 i2c_port = 0                            # Default value !

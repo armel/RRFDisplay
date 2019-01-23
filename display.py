@@ -144,8 +144,8 @@ def extended_system(draw, page):
         sys['Freq'] = l.system_info('freq') + ' MHz'
 
     else:
-        sys = {'Arch': '', 'IP': '', 'Mem': '', 'Disk': ''}
-        sys_order = ['Arch', 'IP', 'Mem', 'Disk']
+        sys = {'Arch': '', 'IP': '', 'Mem': '', 'Disk': '', 'Version': ''}
+        sys_order = ['Arch', 'IP', 'Mem', 'Disk', 'Version']
 
         sys['Arch'] = l.system_info('arch')
         sys['IP'] = l.system_info('ip')
@@ -155,6 +155,7 @@ def extended_system(draw, page):
 
         percent, disk = l.system_info('disk')
         sys['Disk'] = percent + '% of ' + disk
+        sys['Version'] = s.version
 
     i = 16
 
