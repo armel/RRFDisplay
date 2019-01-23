@@ -123,7 +123,7 @@ def clock_room(draw):
 
 # print System Log Extended
 
-def extended_system(draw, seconde):
+def extended_system(draw, page):
 
     draw.rectangle((0, 0, 127, 63), fill='black')
 
@@ -133,7 +133,7 @@ def extended_system(draw, seconde):
     tab = (s.device.width - w) / 2
     draw.text((tab, 0), 'Spotnik Infos', font=font, fill='white')
 
-    if seconde % 2 == 0:
+    if page == 1:
         sys = {'Arch': '', 'Uptime': '', 'Load': '', 'Temp': '', 'Freq': ''}
         sys_order = ['Arch', 'Uptime', 'Load', 'Temp', 'Freq']
 
@@ -160,10 +160,10 @@ def extended_system(draw, seconde):
     i = 16
 
     for j in sys_order:
-        draw.rectangle((0, i - 1, 30, i + 7), fill='white')
-        draw.line((31, i, 31, i + 6), fill='white')
-        draw.line((32, i + 2, 32, i + 4), fill='white')
-        draw.point((33, i + 3), fill='white')
+        draw.rectangle((0, i - 1, 34, i + 7), fill='white')
+        draw.line((35, i, 31, i + 6), fill='white')
+        draw.line((36, i + 2, 32, i + 4), fill='white')
+        draw.point((37, i + 3), fill='white')
 
         draw.text((1, i), j, font=font, fill='black')
         draw.text((42, i), sys[j], font=font, fill='white')
@@ -294,12 +294,16 @@ def display_64():
             if 'Waiting TX' not in s.call_time and len(s.history) >= 5:
                 s.extended = True
 
-        # System log extended
-        if s.wake_up is False and s.minute % 2 == 0 and s.seconde < 20:
-            extended_system(draw, s.seconde)
+        # System log extended Page 1
+        if s.wake_up is False and s.minute % 2 == 0 and s.seconde < 15:
+            extended_system(draw, 1)
+
+        # System log extended Page 2
+        if s.wake_up is False and s.minute % 2 == 0 and s.seconde < 30:
+            extended_system(draw, 2)
             
         # History log extended
-        elif s.wake_up is False and s.extended is True and s.minute % 2 == 0 and s.seconde < 40:
+        elif s.wake_up is False and s.extended is True and s.minute % 2 == 0 and s.seconde < 45:
             extended_history(draw)
             
         # Best log extended
