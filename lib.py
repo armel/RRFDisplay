@@ -142,7 +142,12 @@ def system_info(value):
         tmp = tmp[0].strip()
         tmp = tmp.split()
 
-        return str(tmp[2]) + ' ' + str(tmp[3]) + ' ' + str(tmp[4])
+        if len(tmp) == 7:
+            return tmp[1] + ' d' + ', ' + tmp[3] + ':' + tmp[5]
+        elif len(tmp) == 5:
+            return tmp[1] + ' h' + ', ' + tmp[3]
+        else:
+            return tmp[1] + ' m' 
 
     elif value == 'ip':
         tmp = list(os.popen('hostname -I'))
