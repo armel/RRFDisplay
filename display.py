@@ -49,7 +49,7 @@ def tot(draw, legacy, start, current, position):
     for c in tmp:
         msg += chr(int(c))
     legacy.text(draw, (0, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
-    
+
     # Duration max
     tmp = list(str(duration_max))
     msg = ''
@@ -72,6 +72,7 @@ def tot(draw, legacy, start, current, position):
         tab = 0
     legacy.text(draw, (60 + tab, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
 
+
 # Draw histogram
 def histogram(draw, legacy, position):
 
@@ -85,15 +86,14 @@ def histogram(draw, legacy, position):
         else:
             h = 0
 
-        #print i
         draw.rectangle((0 + i, position, i + 2, (position - 15)), fill='black')
         draw.rectangle((0 + i, position, i + 2, (position - h)), fill='white')
         i += 5
 
-    legacy.text(draw,   (1, position + 2), chr(0) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
-    legacy.text(draw,  (33, position + 2), chr(0) + chr(6), fill='white', font=s.SMALL_BITMAP_FONT)
-    legacy.text(draw,  (63, position + 2), chr(1) + chr(2), fill='white', font=s.SMALL_BITMAP_FONT)
-    legacy.text(draw,  (93, position + 2), chr(1) + chr(8), fill='white', font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw, (1, position + 2), chr(0) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw, (33, position + 2), chr(0) + chr(6), fill='white', font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw, (63, position + 2), chr(1) + chr(2), fill='white', font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw, (93, position + 2), chr(1) + chr(8), fill='white', font=s.SMALL_BITMAP_FONT)
     legacy.text(draw, (120, position + 2), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_FONT)
 
 
@@ -105,7 +105,7 @@ def clock_room(draw):
         i = 115
 
         for c in s.room:
-            legacy.text(draw,  (i, 1), chr(s.letter[c]), fill='white', font=s.SMALL_BITMAP_FONT)
+            legacy.text(draw, (i, 1), chr(s.letter[c]), fill='white', font=s.SMALL_BITMAP_FONT)
             i += 4
 
     # Print Clock
@@ -117,11 +117,11 @@ def clock_room(draw):
                 c = 10
             else:
                 c = int(c)
-            legacy.text(draw,  (i, 1), chr(c), fill='white', font=s.SMALL_BITMAP_FONT)
+            legacy.text(draw, (i, 1), chr(c), fill='white', font=s.SMALL_BITMAP_FONT)
             i += 4
 
 
-# print System Log Extended
+# Print System Log Extended
 
 def extended_system(draw, page):
 
@@ -171,7 +171,7 @@ def extended_system(draw, page):
         i += 10
 
 
-# print History Log Extended
+# Print History Log Extended
 
 def extended_history(draw):
 
@@ -201,7 +201,7 @@ def extended_history(draw):
         i += 10
 
 
-# print Best Log Extended
+# Print Best Log Extended
 
 def extended_best(draw):
 
@@ -301,11 +301,11 @@ def display_64():
         # System log extended Page 2
         elif s.wake_up is False and s.minute % 2 == 0 and s.seconde < 30:
             extended_system(draw, 2)
-            
+
         # History log extended
         elif s.wake_up is False and s.extended is True and s.minute % 2 == 0 and s.seconde < 45:
             extended_history(draw)
-            
+
         # Best log extended
         elif s.wake_up is False and s.extended is True and s.minute % 2 == 0:
             extended_best(draw)
@@ -347,7 +347,7 @@ def display_64():
                         i += 6
 
             if s.wake_up is True and s.tot_current > s.tot_start:
-            # Draw tot
+                # Draw tot
                 tot(draw, legacy, s.tot_start, s.tot_current, 57)
             else:
                 # Draw stats histogram
