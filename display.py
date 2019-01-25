@@ -323,7 +323,8 @@ def display_64():
 
                 if d != 0:
                     i = 0
-                    d = str(d) + ' KM'
+                    # d = str(d) + ' KM'
+                    d = str(d)
                     for c in d:
                         legacy.text(draw, (i, 18), chr(s.letter[c]), fill='white', font=s.SMALL_BITMAP_FONT)
                         i += 4
