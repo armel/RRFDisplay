@@ -87,7 +87,7 @@ def wake_up_screen(device, wake_up):
 # Calc interpolation
 def interpolation(value, in_min, in_max, out_min, out_max):
     if (in_max - in_min) != 0:
-        return round(((value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min), 1)
+        return int((value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
     else:
         return 0
 
@@ -195,8 +195,8 @@ def system_info(value):
 def distance(lat1, long1, lat2, long2):
     p = 0.017453292519943295        # Approximation Pi/180
     a = 0.5 - cos((lat2 - lat1) * p) / 2 + cos(lat1 * p) * cos(lat2 * p) * (1 - cos((long2 - long1) * p)) / 2
-    r = ceil(12742 * asin(sqrt(a)))
-    return int(r)
+    r = round((12742 * asin(sqrt(a))), 1)
+    return r
 
 
 # Get distance
