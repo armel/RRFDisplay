@@ -327,7 +327,7 @@ def display_64():
 
                 if d != 0:
                     i = 0
-
+                    d += 'KM'
                     for c in str(d):
                         c = int(c)
                         legacy.text(draw, (i, 18), chr(c), fill='white', font=s.SMALL_BITMAP_FONT)
