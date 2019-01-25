@@ -87,7 +87,7 @@ def wake_up_screen(device, wake_up):
 # Calc interpolation
 def interpolation(value, in_min, in_max, out_min, out_max):
     if (in_max - in_min) != 0:
-        return int((value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
+        return round(((value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min), 1)
     else:
         return 0
 
