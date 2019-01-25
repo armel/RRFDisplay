@@ -47,7 +47,7 @@ def tot(draw, legacy, start, current, position):
     tmp = list(str(duration_min))
     msg = ''
     for c in tmp:
-        msg += chr(int(c))
+        msg += chr(s.letter[c])
     legacy.text(draw, (0, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
 
     # Duration max
@@ -113,11 +113,7 @@ def clock_room(draw):
         i = 108
 
         for c in s.now:
-            if c == ':':
-                c = 10
-            else:
-                c = int(c)
-            legacy.text(draw, (i, 1), chr(c), fill='white', font=s.SMALL_BITMAP_FONT)
+            legacy.text(draw, (i, 1), chr(s.letter[c]), fill='white', font=s.SMALL_BITMAP_FONT)
             i += 4
 
 
