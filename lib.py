@@ -9,7 +9,7 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 '''
 
 import os
-from math import cos, asin, sqrt
+from math import cos, asin, sqrt, ceil
 
 
 # Usage
@@ -195,7 +195,8 @@ def system_info(value):
 def distance(lat1, long1, lat2, long2):
     p = 0.017453292519943295        # Approximation Pi/180
     a = 0.5 - cos((lat2 - lat1) * p) / 2 + cos(lat1 * p) * cos(lat2 * p) * (1 - cos((long2 - long1) * p)) / 2
-    return int(12742 * asin(sqrt(a)))
+    r = ceil(12742 * asin(sqrt(a)))
+    return int(r)
 
 
 # Get distance
