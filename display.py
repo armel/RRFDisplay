@@ -329,7 +329,15 @@ def display_64():
                     i = 0
                     d = str(d) + ' KM'
                     for c in d:
-                        c = int(c)
+                        if c == ' ':
+                            c = 21
+                        elif c == 'K':
+                            c = 19
+                        elif c == 'M':
+                            c = 20
+                        else:
+                            c = int(c)
+
                         legacy.text(draw, (i, 18), chr(c), fill='white', font=s.SMALL_BITMAP_FONT)
                         i += 4
 
