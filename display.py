@@ -325,12 +325,13 @@ def display_64():
                 draw.text((2, 0), u'\uf130', font=icon, fill='white')
                 d = l.get_wgs84(s.message[2], s.my_latitude, s.my_longitude)
 
-                i = 0
+                if d != 0:
+                    i = 0
 
-                for c in str(d):
-                    c = int(c)
-                    legacy.text(draw, (i, 18), chr(c), fill='white', font=s.SMALL_BITMAP_FONT)
-                    i += 4
+                    for c in str(d):
+                        c = int(c)
+                        legacy.text(draw, (i, 18), chr(c), fill='white', font=s.SMALL_BITMAP_FONT)
+                        i += 4
 
             # Icon clock (DIY...)
             if s.message[2][:4] == 'Last':
