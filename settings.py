@@ -21,6 +21,12 @@ display_width = 128                     # Default value !
 display_height = 64                     # Default value !
 room = 'RRF'                            # Default value !
 
+# My informations
+
+my_call = 'F4HWN'
+my_latitude = 48.8483808                # WGS84 https://www.coordonnees-gps.fr/
+my_longitude = 2.2704347                # WGS84 https://www.coordonnees-gps.fr/
+
 # Set special small bitmap font for clock and room
 
 SMALL_BITMAP_FONT = [
