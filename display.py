@@ -326,7 +326,7 @@ def display_64():
                 d = l.get_wgs84(s.message[2], s.my_latitude, s.my_longitude)
 
                 print str(d)
-                
+
                 i = 0
 
                 for c in str(d):

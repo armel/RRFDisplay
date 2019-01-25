@@ -205,6 +205,6 @@ def get_wgs84(call, lat1, long1):
     for line in data:
         tmp = line.split(' ')
         if tmp[0] in call:
-            return distance(lat1, long1, float(tmp[2]), float(tmp[1]))
+            return distance(lat1, long1, float(tmp[1]), float(tmp[2]))
 
     return 0
