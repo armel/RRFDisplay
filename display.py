@@ -54,7 +54,7 @@ def tot(draw, legacy, start, current, position):
     tmp = list(str(duration_max))
     msg = ''
     for c in tmp:
-        msg += chr(int(c))
+        msg += chr(s.letter[c])
     if duration_max < 100:
         tab = 4
     else:
@@ -65,7 +65,7 @@ def tot(draw, legacy, start, current, position):
     tmp = list(str(duration))
     msg = ''
     for c in tmp:
-        msg += chr(int(c))
+        msg += chr(s.letter[c])
     if duration < 10:
         tab = 2
     else:
@@ -325,16 +325,7 @@ def display_64():
                     i = 0
                     d = str(d) + ' KM'
                     for c in d:
-                        if c == ' ':
-                            c = 21
-                        elif c == 'K':
-                            c = 19
-                        elif c == 'M':
-                            c = 20
-                        else:
-                            c = int(c)
-
-                        legacy.text(draw, (i, 18), chr(c), fill='white', font=s.SMALL_BITMAP_FONT)
+                        legacy.text(draw, (i, 18), chr(s.letter[c]), fill='white', font=s.SMALL_BITMAP_FONT)
                         i += 4
 
             # Icon clock (DIY...)
