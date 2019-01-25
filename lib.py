@@ -198,7 +198,7 @@ def distance(lat1, long1, lat2, long2):
 
 
 # Get distance
-def get_wgs84(call, lat1, lon1):
+def get_wgs84(call, lat1, long1):
     data = [line.strip() for line in open('data/wgs84.dat')]
 
     for line in data:
