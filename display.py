@@ -323,6 +323,13 @@ def display_64():
             # Icon talk
             if s.wake_up is True:
                 draw.text((2, 0), u'\uf130', font=icon, fill='white')
+                d = l.get_wgs84(s.message[2], s.my_latitude, s.my_longitude)
+
+                i = 0
+
+                for c in str(d):
+                    legacy.text(draw, (i, 20), chr(s.letter[c]), fill='white', font=s.SMALL_BITMAP_FONT)
+                    i += 4
 
             # Icon clock (DIY...)
             if s.message[2][:4] == 'Last':
