@@ -105,6 +105,7 @@ def clock_room(draw):
         i = 115
 
         for c in s.room:
+            print c
             legacy.text(draw, (i, 1), chr(s.letter[c]), fill='white', font=s.SMALL_BITMAP_FONT)
             i += 4
 
