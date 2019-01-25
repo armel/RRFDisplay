@@ -329,7 +329,7 @@ def display_64():
 
                 for c in str(d):
                     c = int(c)
-                    legacy.text(draw, (i, 20), chr(c), fill='white', font=s.SMALL_BITMAP_FONT)
+                    legacy.text(draw, (i, 18), chr(c), fill='white', font=s.SMALL_BITMAP_FONT)
                     i += 4
 
             # Icon clock (DIY...)
