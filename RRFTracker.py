@@ -104,7 +104,7 @@ def main(argv):
         if search_stop != search_start:
 
             if s.wake_up is False:      # Wake up screen...
-                s.wake_up = l.wake_up_screen(s.device, s.wake_up)
+                s.wake_up = l.wake_up_screen(s.device, s.display, s.wake_up)
 
             # Clean call
             tmp = page[search_start:search_stop]
@@ -152,7 +152,7 @@ def main(argv):
         # If no Transmitter...
         else:
             if s.wake_up is True:       # Sleep screen...
-                s.wake_up = l.wake_up_screen(s.device, s.wake_up)
+                s.wake_up = l.wake_up_screen(s.device, s.display, s.wake_up)
 
             if s.blanc is False:
                 s.blanc = True
