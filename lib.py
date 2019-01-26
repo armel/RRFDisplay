@@ -192,21 +192,17 @@ def system_info(value):
 
 
 # Compute distance
-def distance(lat1, long1, lat2, long2):
-    p = 0.017453292519943295        # Approximation Pi/180
-    a = 0.5 - cos((lat2 - lat1) * p) / 2 + cos(lat1 * p) * cos(lat2 * p) * (1 - cos((long2 - long1) * p)) / 2
-    r = round((12742 * asin(sqrt(a))), 1)
-    # r = int(ceil(12742 * asin(sqrt(a))))
-    return r
-
-
-# Get distance
-def get_wgs84(call, lat1, long1):
+def calc_distance(call, latitude_1, longitude_1):
     data = [line.strip() for line in open('data/wgs84.dat')]
 
     for line in data:
         tmp = line.split(' ')
         if tmp[0] in call:
-            return distance(lat1, long1, float(tmp[1]), float(tmp[2]))
-
+            latitude_2 = float(tmp[1])
+            longitude_2 = float(tmp[2])
+            p = 0.017453292519943295        # Approximation Pi/180
+            a = 0.5 - cos((latitude_2 - latitude_1) * p) / 2 + cos(latitude_1 * p) * cos(latitude_2 * p) * (1 - cos((longitude_2 - longitude_1) * p)) / 2
+            r = round((12742 * asin(sqrt(a))), 1)
+            # r = int(ceil(12742 * asin(sqrt(a))))
+            return r
     return 0

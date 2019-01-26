@@ -117,6 +117,19 @@ def clock_room(draw):
             i += 4
 
 
+# Print distance
+def distance(draw):
+    d = l.calc_distance(s.message[2], s.my_latitude, s.my_longitude)
+
+    if d != 0:
+        i = 0
+        # d = str(d) + ' KM'
+        d = str(d)
+        for c in d:
+            legacy.text(draw, (i, 18), chr(s.letter[c]), fill='white', font=s.SMALL_BITMAP_FONT)
+            i += 4
+
+
 # Print System Log Extended
 
 def extended_system(draw, page):
@@ -319,15 +332,7 @@ def display_64():
             # Icon talk
             if s.wake_up is True:
                 draw.text((2, 0), u'\uf130', font=icon, fill='white')
-                d = l.get_wgs84(s.message[2], s.my_latitude, s.my_longitude)
-
-                if d != 0:
-                    i = 0
-                    # d = str(d) + ' KM'
-                    d = str(d)
-                    for c in d:
-                        legacy.text(draw, (i, 18), chr(s.letter[c]), fill='white', font=s.SMALL_BITMAP_FONT)
-                        i += 4
+                distance(draw)
 
             # Icon clock (DIY...)
             if s.message[2][:4] == 'Last':
