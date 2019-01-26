@@ -202,7 +202,10 @@ def calc_distance(call, latitude_1, longitude_1):
             longitude_2 = float(tmp[2])
             p = 0.017453292519943295        # Approximation Pi/180
             a = 0.5 - cos((latitude_2 - latitude_1) * p) / 2 + cos(latitude_1 * p) * cos(latitude_2 * p) * (1 - cos((longitude_2 - longitude_1) * p)) / 2
-            r = round((12742 * asin(sqrt(a))), 1)
-            # r = int(ceil(12742 * asin(sqrt(a))))
+            r = (12742 * asin(sqrt(a)))
+            if r < 100:
+                r = round((12742 * asin(sqrt(a))), 1)
+            else:
+                r = int(ceil(12742 * asin(sqrt(a))))
             return r
     return 0
