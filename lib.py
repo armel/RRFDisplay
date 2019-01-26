@@ -77,7 +77,7 @@ def wake_up_screen(device, display, wake_up):
     if 'sh1106' in display:
         sleep_level = 32
     elif 'ssd1306' in display:
-        sleep_level = 16
+        sleep_level = 2
     else:
         sleep_level = 32
 
