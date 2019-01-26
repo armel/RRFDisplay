@@ -16,8 +16,9 @@ from luma.core import legacy
 
 from PIL import ImageFont
 
-font = ImageFont.truetype('fonts/7x5.ttf', 8)           # Text font
 icon = ImageFont.truetype('fonts/fontello.ttf', 14)     # Icon font
+font = ImageFont.truetype('fonts/7x5.ttf', 8)           # Text font
+font_tiny = ImageFont.truetype('fonts/tiny.ttf', 5)     # Text font
 
 
 # Draw tot
@@ -140,7 +141,7 @@ def extended_system(draw, page):
 
     w, h = draw.textsize(text='Spotnik Infos', font=font)
     tab = (s.device.width - w) / 2
-    draw.text((tab, 0), 'Spotnik Infos', font=font, fill='white')
+    draw.text((tab, 0), 'Spotnik Infos', font=font_tiny, fill='white')
 
     if page == 1:
         sys = {'Arch': '', 'Uptime': '', 'Load': '', 'Temp': '', 'Freq': ''}
@@ -329,10 +330,6 @@ def display_64():
             # Icon stat
             draw.text((0, 26), u'\ue801', font=icon, fill='white')
 
-            legacy.text(draw, (0, 8), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CLOCK)
-            legacy.text(draw, (0, 16), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_CLOCK)
-
-
             # Icon talk
             if s.wake_up is True:
                 draw.text((2, 0), u'\uf130', font=icon, fill='white')
@@ -340,11 +337,8 @@ def display_64():
 
             # Icon clock (DIY...)
             if s.message[2][:4] == 'Last':
-                x = 6
-                y = 17
-                draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline='white')
-                draw.line((x, y, x + 2, y + 2), fill='white')
-                draw.line((x, y, x, y - 3), fill='white')
+                legacy.text(draw, (0, 8), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CLOCK)
+                legacy.text(draw, (0, 16), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_CLOCK)
 
             # Print data
             i = 0
