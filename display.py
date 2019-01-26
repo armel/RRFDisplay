@@ -140,7 +140,7 @@ def extended_system(draw, page):
 
     w, h = draw.textsize(text='Spotnik Infos', font=font)
     tab = (s.device.width - w) / 2
-    draw.text((tab, 0), 'Spotnik Infos', font=font_tiny, fill='white')
+    draw.text((tab, 0), 'Spotnik Infos', font=font, fill='white')
 
     if page == 1:
         sys = {'Arch': '', 'Uptime': '', 'Load': '', 'Temp': '', 'Freq': ''}
