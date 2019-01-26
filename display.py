@@ -123,8 +123,8 @@ def distance(draw):
 
     if d != 0:
         i = 0
-        #d = str(d) + 'KM'
-        d = str(d)
+        d = str(d) + 'KM'
+        #d = str(d)
         #if '.0' in d:
         #    d = d[:-2]
 
