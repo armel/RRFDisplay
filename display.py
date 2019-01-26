@@ -138,8 +138,8 @@ def extended_system(draw, page):
 
     #draw.text((0, 0), u'\ue801', font=icon, fill='white')
 
-    legacy.text(draw, (0, -2), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CLOCK)
-    legacy.text(draw, (0, 6), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_CLOCK)
+    legacy.text(draw, (0, -2), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CPU)
+    legacy.text(draw, (0, 6), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_CPU)
 
     w, h = draw.textsize(text='Spotnik Infos', font=font)
     tab = (s.device.width - w) / 2
@@ -189,8 +189,8 @@ def extended_history(draw):
 
     draw.rectangle((0, 0, 127, 63), fill='black')
 
-    legacy.text(draw, (0, 0), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CLOCK)
-    legacy.text(draw, (0, 8), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_CLOCK)
+    legacy.text(draw, (0, -2), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CLOCK)
+    legacy.text(draw, (0, 6), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_CLOCK)
 
     w, h = draw.textsize(text=s.room + ' Last TX', font=font)
     tab = (s.device.width - w) / 2
