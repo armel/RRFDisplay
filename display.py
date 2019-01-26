@@ -269,7 +269,8 @@ def display_32():
 
             # Icon talk
             if s.wake_up is True:
-                draw.text((2, 0), u'\uf130', font=icon, fill='white')
+                draw.text((2, 10), u'\uf130', font=icon, fill='white')
+                distance(draw)
 
             # Icon clock (DIY...)
             if s.message[2][:4] == 'Last':
