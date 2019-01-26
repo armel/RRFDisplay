@@ -331,7 +331,7 @@ def display_64():
 
             # Icon talk
             if s.wake_up is True:
-                draw.text((2, 8), u'\uf130', font=icon, fill='white')
+                draw.text((2, 9), u'\uf130', font=icon, fill='white')
                 distance(draw)
 
             # Icon clock (DIY...)
