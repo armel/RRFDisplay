@@ -129,7 +129,7 @@ def distance(draw):
         #    d = d[:-2]
 
         for c in d:
-            legacy.text(draw, (i, 18), chr(s.letter[c]), fill='white', font=s.SMALL_BITMAP_FONT)
+            legacy.text(draw, (i, 0), chr(s.letter[c]), fill='white', font=s.SMALL_BITMAP_FONT)
             i += 4
 
 
@@ -331,7 +331,7 @@ def display_64():
 
             # Icon talk
             if s.wake_up is True:
-                draw.text((2, 0), u'\uf130', font=icon, fill='white')
+                draw.text((2, 8), u'\uf130', font=icon, fill='white')
                 distance(draw)
 
             # Icon clock (DIY...)
