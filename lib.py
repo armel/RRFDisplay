@@ -73,13 +73,20 @@ def save_stat(history, call):
 
 
 # Wake up screen
-def wake_up_screen(device, wake_up):
+def wake_up_screen(device, display, wake_up):
+    if 'sh1106' in display:
+        sleep_level = 32
+    elif 'ssd1306' in display:
+        sleep_level = 16
+    else:
+        sleep_level = 32
+
     if wake_up is True:
-        for i in xrange(225, 32, -1):
+        for i in xrange(225, sleep_level, -1):
             device.contrast(i)         # No Transmitter
         return False
     else:
-        for i in xrange(32, 225):
+        for i in xrange(sleep_level, 225):
             device.contrast(i)         # Transmitter
         return True
 
