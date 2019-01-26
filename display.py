@@ -186,11 +186,8 @@ def extended_history(draw):
 
     draw.rectangle((0, 0, 127, 63), fill='black')
 
-    x = 6
-    y = 6
-    draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline='white')
-    draw.line((x, y, x + 2, y + 2), fill='white')
-    draw.line((x, y, x, y - 3), fill='white')
+    legacy.text(draw, (0, 0), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CLOCK)
+    legacy.text(draw, (0, 8), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_CLOCK)
 
     w, h = draw.textsize(text=s.room + ' Last TX', font=font)
     tab = (s.device.width - w) / 2
@@ -270,11 +267,8 @@ def display_32():
 
             # Icon clock (DIY...)
             if s.message[2][:4] == 'Last':
-                x = 6
-                y = 17
-                draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline='white')
-                draw.line((x, y, x + 2, y + 2), fill='white')
-                draw.line((x, y, x, y - 3), fill='white')
+                legacy.text(draw, (0, 8), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CLOCK)
+                legacy.text(draw, (0, 16), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_CLOCK)
 
             # Print data
             i = 0
