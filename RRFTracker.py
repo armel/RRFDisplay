@@ -90,6 +90,7 @@ def main(argv):
             s.qso = 0
             for q in xrange(0, 24):         # Clean histogram
                 s.qso_hour[q] = 0
+            s.history.clear()               # Clear history
 
         # Request HTTP datas
         try:
