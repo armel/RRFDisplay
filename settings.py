@@ -14,18 +14,14 @@ version = '2.3.0'
 
 # Default i2c_port, i2c_address, display and room
 
-i2c_port = 0                            # Default value !
-i2c_address = 0x3C                      # Default value !
+i2c_port = 0                            # Default value ! Check with i2detect
+i2c_address = 0x3C                      # Default value ! Check with i2detect
 display = 'sh1106'                      # Default value !
 display_width = 128                     # Default value !
 display_height = 64                     # Default value !
 room = 'RRF'                            # Default value !
-
-# My informations
-
-my_call = 'F4HWN'
-my_latitude = 48.8483808                # WGS84 https://www.coordonnees-gps.fr/
-my_longitude = 2.2704347                # WGS84 https://www.coordonnees-gps.fr/
+latitude = 48.8483808                   # Default value ! Check WGS84 on https://www.coordonnees-gps.fr/
+longitude = 2.2704347                   # Default value ! Check WGS84 on https://www.coordonnees-gps.fr/
 
 # Set special small bitmap font for clock and room
 

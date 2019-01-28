@@ -27,7 +27,7 @@ def main(argv):
 
     # Check and get arguments
     try:
-        options, remainder = getopt.getopt(argv, '', ['help', 'i2c-port=', 'i2c-address=', 'display=', 'display-width=', 'display-height=', 'room='])
+        options, remainder = getopt.getopt(argv, '', ['help', 'i2c-port=', 'i2c-address=', 'display=', 'display-width=', 'display-height=', 'room=', 'latitude=', 'longitude='])
     except getopt.GetoptError:
         l.usage()
         sys.exit(2)
@@ -53,6 +53,10 @@ def main(argv):
                 print 'Unknown room name (choose between \'RRF\', \'TEC\' and \'FON\')'
                 sys.exit()
             s.room = arg
+        elif opt in ('--latitude'):
+            s.latitude = float(arg)
+        elif opt in ('--longitude'):
+            s.longitude = float(arg)
 
     # Set serial
     serial = i2c(port=s.i2c_port, address=s.i2c_address)
