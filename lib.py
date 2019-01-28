@@ -30,6 +30,10 @@ def usage():
     print 'Room settings:'
     print '  --room ROOM        set room (default=RRF, choose between [RRF, TEC, FON])'
     print
+    print 'WGS84 settings:'
+    print '  --latitude         set latitude (default=48.8483808, format WGS84)'
+    print '  --longitude        set longitude (default=2.2704347, format WGS84)'
+    print
     print '73 from F4HWN Armel'
 
 
