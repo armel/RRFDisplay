@@ -46,7 +46,7 @@ Sur la ligne centrale, au milieu de l'écran, on dispose,
 
 En bas de l'écran, on retrouve l'histogramme du trafic dans la journée, heure par heure.
 
-À noter qu'à minuit, le nombre de passages en émission sur la journée ainsi que l'histogramme sont réinitialisés (à zéro).
+À noter qu'à minuit, le nombre de passages en émission sur la journée, l'historique des 5 noeuds les plus actifs, ainsi que l'histogramme sont réinitialisés (à zéro).
 
 Alternativement, si aucune station n'est en émission, le RRFTracker affichera différents écrans complémentaires:
 
