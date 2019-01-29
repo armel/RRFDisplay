@@ -305,7 +305,7 @@ def display_64():
             extended_system(draw, 2)
 
         # Call log extended
-        elif s.wake_up is False and '' not in s.call_time and s.minute % 2 == 0 and s.seconde < 45:
+        elif s.wake_up is False and 'Waiting TX' not in s.call_time and s.minute % 2 == 0 and s.seconde < 45:
             extended_call(draw)
 
         # Best log extended
