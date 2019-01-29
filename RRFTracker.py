@@ -205,6 +205,20 @@ def main(argv):
             else:
                 s.message[4] = 'Need more datas'
 
+            s.blanc_alternate = 4
+
+        elif(s.blanc_alternate == 4):   # count node
+
+            search_start = page.find('nodes":[')                        # Search this pattern
+            search_start += 9                                           # Shift...
+            search_stop = page.find('],"transmit"', search_start)       # And close it...
+
+            tmp = page[search_start:search_stop]
+
+            tmp = tmp.split(',')
+
+            s.message[4] = len(tmp) + ' nodes actifs'
+
             s.blanc_alternate = 0
 
         # Print screen
