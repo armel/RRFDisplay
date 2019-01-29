@@ -85,7 +85,7 @@ def main(argv):
         s.minute = int(s.now[3:-3])
         s.seconde = int(s.now[-2:])
 
-        if(s.now[:5] == '05:04'):
+        if(s.now[:5] == '05:06'):
             s.qso_total += s.qso
             s.qso = 0
             for q in xrange(0, 24):         # Clean histogram
