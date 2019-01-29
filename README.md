@@ -42,11 +42,9 @@ Sur la ligne centrale, au milieu de l'écran, on dispose,
 * du temps depuis lequel fonctionne le RRFTracker (uptime),
 * du nombre de passages en émission depuis l'allumage du RRFTracker,
 * de l'indicatif du noeud le plus actif avec le nombre de passages en émission,
-* de la température du Spotnik.
+* du nombre de noeuds actifs.
 
 En bas de l'écran, on retrouve l'histogramme du trafic dans la journée, heure par heure.
-
-À noter qu'à minuit, le nombre de passages en émission sur la journée, l'historique des 5 noeuds les plus actifs, ainsi que l'histogramme sont réinitialisés (à zéro).
 
 Alternativement, si aucune station n'est en émission, le RRFTracker affichera différents écrans complémentaires:
 
@@ -55,6 +53,8 @@ Alternativement, si aucune station n'est en émission, le RRFTracker affichera d
 * l'état du Spotnik: architecture, uptime, charge et fréquence du CPU, température, adresse IP, occupation mémoire et disque. 
 
 Enfin, si une station passe en émission, en lieu et place de l'histogramme du trafic, une jauge affichant le temps de parole s'affichera, par tranche de 30 secondes. 
+
+À noter qu'à minuit, le nombre de passages en émission sur la journée, l'historique des 5 noeuds les plus actifs, ainsi que l'histogramme sont réinitialisés (à zéro).
 
 ## Post installation sur Spotnik 1.9
 
