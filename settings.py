@@ -95,7 +95,6 @@ qso = 0                                     # QSO count
 qso_total = 0                               # QSO total count
 qso_hour = [0] * 24                         # QSO list for histogramm
 wake_up = True                              # Detect wake up on emission
-extended = False                            # Detect extended state
 
 history = dict()                            # History dict
 message = [None] * 7                        # Message list

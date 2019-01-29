@@ -186,9 +186,9 @@ def extended_system(draw, page):
         i += 10
 
 
-# Print History Log Extended
+# Print Call Log Extended
 
-def extended_history(draw):
+def extended_call(draw):
 
     draw.rectangle((0, 0, 127, 63), fill='black')
 
@@ -255,11 +255,6 @@ def extended_best(draw):
 def display_32():
     with canvas(s.device) as draw:
 
-        # Check if extended
-        if s.extended is False:
-            if 'Waiting TX' not in s.call_time and len(s.history) >= 5:
-                s.extended = True
-
         # Histogram extended
         if s.wake_up is False and s.minute % 2 == 0 and s.seconde < 30:
             draw.rectangle((0, 0, 127, 31), fill='black')
@@ -301,11 +296,6 @@ def display_32():
 def display_64():
     with canvas(s.device) as draw:
 
-        # Check if extended
-        if s.extended is False:
-            if 'Waiting TX' not in s.call_time and len(s.history) >= 5:
-                s.extended = True
-
         # System log extended Page 1
         if s.wake_up is False and s.minute % 2 == 0 and s.seconde < 15:
             extended_system(draw, 1)
@@ -314,12 +304,12 @@ def display_64():
         elif s.wake_up is False and s.minute % 2 == 0 and s.seconde < 30:
             extended_system(draw, 2)
 
-        # History log extended
-        elif s.wake_up is False and s.extended is True and s.minute % 2 == 0 and s.seconde < 45:
-            extended_history(draw)
+        # Call log extended
+        elif s.wake_up is False and '' not in s.call_time and s.minute % 2 == 0 and s.seconde < 45:
+            extended_call(draw)
 
         # Best log extended
-        elif s.wake_up is False and s.extended is True and s.minute % 2 == 0:
+        elif s.wake_up is False and len(s.history) >= 5 and s.minute % 2 == 0:
             extended_best(draw)
 
         # If not extended
