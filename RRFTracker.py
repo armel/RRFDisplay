@@ -85,7 +85,7 @@ def main(argv):
         s.minute = int(s.now[3:-3])
         s.seconde = int(s.now[-2:])
 
-        if(s.now[:5] == '05:06'):
+        if(s.now[:5] == '05:12'):
             s.qso_total += s.qso
             s.qso = 0
             for q in xrange(0, 24):         # Clean histogram
@@ -170,6 +170,7 @@ def main(argv):
             s.message[0] = s.call[1]
             s.message[1] = s.call[0]
             if s.qso == 0:
+                s.call_time[0] = 'Waiting TX'
                 s.message[2] = s.call_time[0]
             else:
                 s.message[2] = 'Last TX ' + s.call_time[0]
