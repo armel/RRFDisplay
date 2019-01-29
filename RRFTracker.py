@@ -217,7 +217,7 @@ def main(argv):
 
             tmp = tmp.split(',')
 
-            s.message[4] = len(tmp) + ' nodes actifs'
+            s.message[4] = str(len(tmp)) + ' nodes actifs'
 
             s.blanc_alternate = 0
 
