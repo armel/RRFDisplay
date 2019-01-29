@@ -71,7 +71,7 @@ def main(argv):
     elif s.room == 'TEC':
         url = 'http://rrf.f5nlg.ovh:82'
     elif s.room == 'FON':
-        url = 'http://fon.f1tzo.com:81/'
+        url = 'http://fon.f1tzo.com:81'
 
     # Boucle principale
     s.timestamp_start = time.time()
