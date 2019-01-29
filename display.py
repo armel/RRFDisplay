@@ -328,7 +328,9 @@ def display_64():
                 draw.point((i, 40), fill='white')
 
             # Icon stat
-            draw.text((0, 26), u'\ue801', font=icon, fill='white')
+            #draw.text((0, 26), u'\ue801', font=icon, fill='white')
+            legacy.text(draw, (0, 8), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CLOCK)
+            legacy.text(draw, (0, 16), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_CLOCK)
 
             # Icon talk
             if s.wake_up is True:
