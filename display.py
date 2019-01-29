@@ -329,7 +329,7 @@ def display_64():
 
             # Icon stat
             #draw.text((0, 26), u'\ue801', font=icon, fill='white')
-            legacy.text(draw, (0, 26), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CLOCK)
+            legacy.text(draw, (0, 24), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CLOCK)
             legacy.text(draw, (0, 32), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_CLOCK)
 
             # Icon talk
