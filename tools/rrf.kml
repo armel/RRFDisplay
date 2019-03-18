@@ -339,6 +339,40 @@
         <styleUrl>#icon-503-F8971B-highlight</styleUrl>
       </Pair>
     </StyleMap>
+    <Style id="icon-960-3F5BA9-normal">
+      <IconStyle>
+        <color>ffa95b3f</color>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/960-wht-star-blank.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-960-3F5BA9-highlight">
+      <IconStyle>
+        <color>ffa95b3f</color>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/960-wht-star-blank.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1.1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-960-3F5BA9">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-960-3F5BA9-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-960-3F5BA9-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
     <Style id="icon-960-7C3592-normal">
       <IconStyle>
         <color>ff92357c</color>
@@ -371,6 +405,34 @@
       <Pair>
         <key>highlight</key>
         <styleUrl>#icon-960-7C3592-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-1267FF-5000-nodesc-normal">
+      <LineStyle>
+        <color>ffff6712</color>
+        <width>5</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="line-1267FF-5000-nodesc-highlight">
+      <LineStyle>
+        <color>ffff6712</color>
+        <width>7.5</width>
+      </LineStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="line-1267FF-5000-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-1267FF-5000-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-1267FF-5000-nodesc-highlight</styleUrl>
       </Pair>
     </StyleMap>
     <Folder>
@@ -588,10 +650,10 @@
       <Placemark>
         <name>(29) F4WCE VHF</name>
         <description>144.975MHz CTCSS 141.3HZ </description>
-        <styleUrl>#icon-503-62AF44</styleUrl>
+        <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
-            -3.8410951,47.9029877,0
+            -3.8364603,47.9064974,0
           </coordinates>
         </Point>
       </Placemark>
@@ -688,7 +750,7 @@
       <Placemark>
         <name>(22) F4GGU VHF</name>
         <description>145.350MHz CTCSS 71.9Hz</description>
-        <styleUrl>#icon-503-62AF44</styleUrl>
+        <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
             -2.8815079,48.6059008,0
@@ -706,9 +768,9 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(QC) VE2RQF UHF</name>
+        <name>(QC) VE2RQF UHF via Allstar</name>
         <description>927,300 MHZ -25 MHz CTCSS 103.5 Hz</description>
-        <styleUrl>#icon-503-62AF44</styleUrl>
+        <styleUrl>#icon-503-4186F0</styleUrl>
         <Point>
           <coordinates>
             -71.8945312,45.4061637,0
@@ -746,16 +808,6 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(24) F5OVZ VHF</name>
-        <description>145.375MHz Ctcss 71.9Hz</description>
-        <styleUrl>#icon-503-62AF44</styleUrl>
-        <Point>
-          <coordinates>
-            1.2172249,44.9078343,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
         <name>(66) F0GVD VHF coupé le soir</name>
         <description>145.3375MHz Ctcss 74.4Hz</description>
         <styleUrl>#icon-503-DB4436</styleUrl>
@@ -767,7 +819,7 @@
       </Placemark>
       <Placemark>
         <name>(78) F5ZPX UHF - VHF</name>
-        <description>430.225MHz + 1,6MHz CTCSS ? / 145.225MHz</description>
+        <description>430.225MHz + 1,6MHz  / 145.225MHz CTCSS 192.8 Hz</description>
         <styleUrl>#icon-503-F4EB37</styleUrl>
         <Point>
           <coordinates>
@@ -806,7 +858,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(54) F1ZNL VHF</name>
+        <name>(54) F1ZPA VHF</name>
         <description>145.250 MHz CTCSS 250.3 Hz</description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
@@ -872,16 +924,6 @@
         <Point>
           <coordinates>
             4.6202235,44.163929,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>(29) F4HQE VHF coupé le soir</name>
-        <description>145.350 MHz CTCSS 71.9Hz </description>
-        <styleUrl>#icon-503-DB4436</styleUrl>
-        <Point>
-          <coordinates>
-            -4.0687954,47.8978469,0
           </coordinates>
         </Point>
       </Placemark>
@@ -1136,16 +1178,6 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(60) F1JMR VHF</name>
-        <description>144.8625 MHZ  CTCSS 123Hz</description>
-        <styleUrl>#icon-503-DB4436</styleUrl>
-        <Point>
-          <coordinates>
-            2.9400764,49.4165246,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
         <name>(BZ) PU2ZSP UHF</name>
         <description>430... MHz CTCSS 77Hz</description>
         <styleUrl>#icon-503-DB4436</styleUrl>
@@ -1197,7 +1229,8 @@
       </Placemark>
       <Placemark>
         <name>(38) F1GFB projet</name>
-        <styleUrl>#icon-503-F4EB37-nodesc</styleUrl>
+        <description>144.9125 MHz Ctcss 123Hz</description>
+        <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
             5.6590583,44.9461889,0
@@ -1206,7 +1239,7 @@
       </Placemark>
       <Placemark>
         <name>(94) F4GOR VHF</name>
-        <description>145.350 MHz CTCSS 71.9 Hz</description>
+        <description>145.350 MHz CTCSS 192.8 Hz</description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -1221,15 +1254,6 @@
         <Point>
           <coordinates>
             -0.511054,46.8147111,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>(16) F1ZMA VHF projet </name>
-        <styleUrl>#icon-503-F4EB37-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            0.703908,46.1019505,0
           </coordinates>
         </Point>
       </Placemark>
@@ -1393,9 +1417,9 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(71) F5ZJW T projet</name>
-        <description>144.500 MHz / 432.600 MHz  </description>
-        <styleUrl>#icon-503-F4EB37</styleUrl>
+        <name>(71) F5ZJW T</name>
+        <description>144.500 MHz / 432.600 MHz  CTCSS 203.5 Hz</description>
+        <styleUrl>#icon-503-4186F0</styleUrl>
         <Point>
           <coordinates>
             5.4169548,46.499381,0
@@ -1429,16 +1453,6 @@
         <Point>
           <coordinates>
             2.0351047,44.3530017,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>(29) F5ZDF R1 VHF</name>
-        <description>145.625 Mhz - 0.6Mhz R1 CTCSS 71.9Hz</description>
-        <styleUrl>#icon-503-F4EB37</styleUrl>
-        <Point>
-          <coordinates>
-            -3.8275112,48.0615034,0
           </coordinates>
         </Point>
       </Placemark>
@@ -1521,12 +1535,12 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(11) F1QM VHF UHF </name>
-        <description>432.675 / 145.325 MHz CTCSS 250.3 Hz</description>
-        <styleUrl>#icon-503-4186F0</styleUrl>
+        <name>(11) F1ZCZ  UHF </name>
+        <description>432.675 MHz CTCSS 250.3 Hz en lien UHF avec F5ZXP</description>
+        <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
-            3.0010275,43.1829444,0
+            3.1562005,43.1588654,0
           </coordinates>
         </Point>
       </Placemark>
@@ -1542,18 +1556,18 @@
       </Placemark>
       <Placemark>
         <name>(30) F4IAH VHF</name>
-        <description>projet</description>
-        <styleUrl>#icon-503-F4EB37</styleUrl>
+        <description>144.6375 MHz CTCSS 179.9 Hz</description>
+        <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
-            4.7771431,44.0056977,0
+            4.7661497,44.0135852,0
           </coordinates>
         </Point>
       </Placemark>
       <Placemark>
-        <name>(07) F6FLQ UHF</name>
-        <description>projet</description>
-        <styleUrl>#icon-503-F4EB37</styleUrl>
+        <name>(26) F1ZEU UHF</name>
+        <description>430.800 MHz CTCSS 123Hz</description>
+        <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
             4.7983522,44.9782373,0
@@ -1571,21 +1585,112 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>Projet de déplacement F1BWT</name>
-        <styleUrl>#icon-503-F4EB37-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            -3.1608452,47.8369502,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
         <name>(58) F4HLJ VHF</name>
         <description>projet </description>
         <styleUrl>#icon-503-F4EB37</styleUrl>
         <Point>
           <coordinates>
             3.1498859,47.0118996,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(QC) VE2DBE U Allstar 40020</name>
+        <description>434.600 MHz DCS 26 + passerelle ALLSTAR #40020</description>
+        <styleUrl>#icon-960-3F5BA9</styleUrl>
+        <Point>
+          <coordinates>
+            -73.2672024,45.2778525,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(11) F5ZXP VHF-UHF</name>
+        <description>145.325 MHz - 432.675 MHz CTCSS 250.3 Hz en lien UHF avec F1ZCZ</description>
+        <styleUrl>#icon-503-4186F0</styleUrl>
+        <Point>
+          <coordinates>
+            3.0946788,43.1859665,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(51) F5TPK V</name>
+        <description>144.875 MHz Ctcss 71.9Hz</description>
+        <styleUrl>#icon-503-DB4436</styleUrl>
+        <Point>
+          <coordinates>
+            4.0537389,49.2242659,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(68) F6HFT UHF</name>
+        <description>431.875 MHz Ctcss 67Hz </description>
+        <styleUrl>#icon-503-F4EB37</styleUrl>
+        <Point>
+          <coordinates>
+            7.336072,47.7391543,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(28) F5LPE ?</name>
+        <description>projet</description>
+        <styleUrl>#icon-503-F4EB37</styleUrl>
+        <Point>
+          <coordinates>
+            1.3699677,48.0744892,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(87) F5ZJC VHF</name>
+        <description>145.2875 MHz CTCSS 88.5Hz </description>
+        <styleUrl>#icon-503-DB4436</styleUrl>
+        <Point>
+          <coordinates>
+            0.9212075,45.8977723,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(66) F5EZH ?</name>
+        <description>projet </description>
+        <styleUrl>#icon-503-F4EB37</styleUrl>
+        <Point>
+          <coordinates>
+            3.0099013,42.5492867,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(33) F5NNN ?</name>
+        <description>projet </description>
+        <styleUrl>#icon-503-F4EB37</styleUrl>
+        <Point>
+          <coordinates>
+            -0.781584,44.8124136,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(58) F4AUV ?</name>
+        <description>projet</description>
+        <styleUrl>#icon-503-F4EB37</styleUrl>
+        <Point>
+          <coordinates>
+            2.926777,47.3829949,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(24) F4IAA V 6h-23h</name>
+        <description>145.237,5 MHz Ctcss 67 Hz</description>
+        <styleUrl>#icon-503-DB4436</styleUrl>
+        <Point>
+          <coordinates>
+            0.8632817,45.0608888,0
           </coordinates>
         </Point>
       </Placemark>
@@ -1598,6 +1703,37 @@
     </Folder>
     <Folder>
       <name>Calque sans titre</name>
+    </Folder>
+    <Folder>
+      <name>Itinéraire de (11) F1ZCZ VHF UHF  à (11) F1ZCZ VHF UHF </name>
+      <Placemark>
+        <name>Itinéraire de (11) F1ZCZ VHF UHF  à (11) F1ZCZ VHF UHF </name>
+        <styleUrl>#line-1267FF-5000-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            3.00105,43.18299,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>(11) F1ZCZ VHF UHF </name>
+        <styleUrl>#icon-503-DB4436-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            3.0010517,43.1829885,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(11) F1ZCZ VHF UHF </name>
+        <styleUrl>#icon-503-DB4436-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            3.0010517,43.1829885,0
+          </coordinates>
+        </Point>
+      </Placemark>
     </Folder>
   </Document>
 </kml>
