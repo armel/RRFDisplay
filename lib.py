@@ -235,7 +235,6 @@ def log_write(log_path, day, room, qso, qso_hour, history):
     file = open(filename, 'w')
 
     file.write(str(qso) + '\n')
-
     file.write('--------------------\n')
 
     for q in xrange(0, 24):         # Write histogram
@@ -243,7 +242,6 @@ def log_write(log_path, day, room, qso, qso_hour, history):
             t = '0' + str(q)
         else:
             t = str(q)
-
         file.write(t + ' ' + str(qso_hour[q]) + '\n')
 
     file.write('--------------------\n')
@@ -251,8 +249,17 @@ def log_write(log_path, day, room, qso, qso_hour, history):
     tmp = sorted(history.items(), key=lambda x: x[1])
     tmp.reverse()
 
+    i = 1
     for c, t in tmp:
-        file.write(c + ' ' + str(t) + '\n')
+        if c != 'F4HWN':
+            if i < 10:
+                p = '00' + str(i)
+            elif i < 100:
+                p = '0' + str(i)
+            else:
+                p = str(i)
+
+            file.write(p + ' ' + c + ' ' + str(t) + '\n')
 
     file.close()
 
