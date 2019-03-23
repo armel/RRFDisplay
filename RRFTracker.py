@@ -80,12 +80,15 @@ def main(argv):
 
         # If midnight...
         tmp = datetime.datetime.now()
+        s.day = tmp.strftime('%Y-%m-%d')
         s.now = tmp.strftime('%H:%M:%S')
         s.hour = int(tmp.strftime('%H'))
         s.minute = int(s.now[3:-3])
         s.seconde = int(s.now[-2:])
 
         if(s.now[:5] == '00:00'):
+            if s.log is True:
+                l.log_write(s.log_path, s.day, s.qso_hour, s.history)
             s.qso_total += s.qso
             s.qso = 0
             for q in xrange(0, 24):         # Clean histogram

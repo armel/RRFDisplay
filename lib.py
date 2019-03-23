@@ -220,3 +220,26 @@ def calc_distance(call, latitude_1, longitude_1):
                 r = int(ceil(12742 * asin(sqrt(a))))
             return r
     return 0
+
+
+# Log write for history
+def log_witre(log_path, day, qso_hour, history):
+    if not os.path.exists(log_path):
+        os.makedirs(log_path)
+
+    filename = log_path + '/' + day
+
+    file = open(filename, 'w')
+
+    for q in xrange(0, 24):         # Write histogram
+        file.write(qso_hour[q])
+
+    tmp = sorted(history.items(), key=lambda x: x[1])
+    tmp.reverse()
+
+    for c, t in tmp:
+        file.write(c + ' ' + t)
+
+    file.close()
+
+    return 0
