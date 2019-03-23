@@ -260,6 +260,7 @@ def log_write(log_path, day, room, qso, qso_hour, history):
                 p = str(i)
 
             file.write(p + ' ' + c + ' ' + str(t) + '\n')
+        i += 1
 
     file.close()
 
