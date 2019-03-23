@@ -86,6 +86,8 @@ def main(argv):
         s.minute = int(s.now[3:-3])
         s.seconde = int(s.now[-2:])
 
+        l.log_write(s.log_path, s.day, s.qso_hour, s.history)
+
         if(s.now[:5] == '00:00'):
             if s.log is True:
                 l.log_write(s.log_path, s.day, s.qso_hour, s.history)
