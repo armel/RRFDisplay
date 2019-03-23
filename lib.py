@@ -34,6 +34,8 @@ def usage():
     print '  --latitude         set latitude (default=48.8483808, format WGS84)'
     print '  --longitude        set longitude (default=2.2704347, format WGS84)'
     print
+    print '  --log              enable log'
+    print
     print '88 & 73 from F4HWN Armel'
 
 
@@ -223,11 +225,11 @@ def calc_distance(call, latitude_1, longitude_1):
 
 
 # Log write for history
-def log_write(log_path, day, qso_hour, history):
+def log_write(log_path, day, room, qso_hour, history):
     if not os.path.exists(log_path):
         os.makedirs(log_path)
 
-    filename = log_path + '/' + day
+    filename = log_path + '/' + room + '_' + day
 
     file = open(filename, 'w')
 

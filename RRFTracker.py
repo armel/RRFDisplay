@@ -35,6 +35,8 @@ def main(argv):
         if opt == '--help':
             l.usage()
             sys.exit()
+        elif opt in ('--log'):
+            log = True
         elif opt in ('--i2c-port'):
             s.i2c_port = arg
         elif opt in ('--i2c-address'):
@@ -86,11 +88,11 @@ def main(argv):
         s.minute = int(s.now[3:-3])
         s.seconde = int(s.now[-2:])
 
-        l.log_write(s.log_path, s.day, s.qso_hour, s.history)
+        l.log_write(s.log_path, s.day, s.room, s.qso_hour, s.history)
 
         if(s.now[:5] == '00:00'):
             if s.log is True:
-                l.log_write(s.log_path, s.day, s.qso_hour, s.history)
+                l.log_write(s.log_path, s.day, s.room, s.qso_hour, s.history)
             s.qso_total += s.qso
             s.qso = 0
             for q in xrange(0, 24):         # Clean histogram
