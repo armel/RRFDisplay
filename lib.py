@@ -232,13 +232,13 @@ def log_write(log_path, day, qso_hour, history):
     file = open(filename, 'w')
 
     for q in xrange(0, 24):         # Write histogram
-        file.write(str(q) + ' ' + str(qso_hour[q]))
+        file.write(str(q) + ' ' + str(qso_hour[q]) + '\n')
 
     tmp = sorted(history.items(), key=lambda x: x[1])
     tmp.reverse()
 
     for c, t in tmp:
-        file.write(c + ' ' + str(t))
+        file.write(c + ' ' + str(t) + '\n')
 
     file.close()
 
