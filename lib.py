@@ -34,6 +34,7 @@ def usage():
     print '  --latitude         set latitude (default=48.8483808, format WGS84)'
     print '  --longitude        set longitude (default=2.2704347, format WGS84)'
     print
+    print 'Log settings:'
     print '  --log              enable log'
     print
     print '88 & 73 from F4HWN Armel'
