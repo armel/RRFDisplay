@@ -229,7 +229,7 @@ def log_write(log_path, day, room, qso_hour, history):
     if not os.path.exists(log_path):
         os.makedirs(log_path)
 
-    filename = log_path + '/' + room + '_' + day
+    filename = log_path + '/' + room + '-' + day
 
     file = open(filename, 'w')
 
