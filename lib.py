@@ -223,7 +223,7 @@ def calc_distance(call, latitude_1, longitude_1):
 
 
 # Log write for history
-def log_witre(log_path, day, qso_hour, history):
+def log_write(log_path, day, qso_hour, history):
     if not os.path.exists(log_path):
         os.makedirs(log_path)
 
