@@ -92,8 +92,6 @@ def main(argv):
             l.log_write(s.log_path, s.day, s.room, s.qso, s.qso_hour, s.history)
 
         if(s.now[:5] == '00:00'):
-            if s.log is True:
-                l.log_write(s.log_path, s.day, s.room, s.qso_hour, s.history)
             s.qso_total += s.qso
             s.qso = 0
             for q in xrange(0, 24):         # Clean histogram
