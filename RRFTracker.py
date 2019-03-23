@@ -89,7 +89,7 @@ def main(argv):
         s.seconde = int(s.now[-2:])
 
         if s.log is True:
-            l.log_write(s.log_path, s.day, s.room, s.qso_hour, s.history)
+            l.log_write(s.log_path, s.day, s.room, s.qso, s.qso_hour, s.history)
 
         if(s.now[:5] == '00:00'):
             if s.log is True:
