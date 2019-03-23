@@ -146,7 +146,7 @@ WGS84 settings:
   --longitude        set longitude (default=2.2704347, format WGS84)
 
 Log settings:
-  --log				 enable log
+  --log              enable log
 
 88 & 73 from F4HWN Armel
 ```
