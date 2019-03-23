@@ -107,3 +107,7 @@ tot_current = ''
 hour = ''
 minute = ''
 seconde = ''
+
+# Set log
+
+log = True                                  # If True, write log
