@@ -234,6 +234,9 @@ def log_write(log_path, day, qso_hour, history):
     for q in xrange(0, 24):         # Write histogram
         if q < 10:
             t = '0' + str(q)
+        else:
+            t = str(q)
+
         file.write(t + ' ' + str(qso_hour[q]) + '\n')
 
     tmp = sorted(history.items(), key=lambda x: x[1])
