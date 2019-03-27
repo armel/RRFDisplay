@@ -74,4 +74,4 @@ fig.append_trace(trace_history, 1, 1)
 fig.append_trace(trace_best, 1, 2)
 
 fig['layout'].update(layout)
-plotly.offline.plot(fig, filename='/var/www/log/' + filename + '.html')
+plotly.offline.plot(fig, filename='/var/www/log/' + filename + '.html', auto_open=False)
