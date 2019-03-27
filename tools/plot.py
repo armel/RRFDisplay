@@ -57,6 +57,10 @@ layout = dict(
     title='Salon ' + filename[4:7] + ' ' + filename[8:]
 )
 
+print os.path.basename(filename)
+
+exit(0)
+
 # Creating two subplots
 fig = tools.make_subplots(rows=1,
                           cols=2,
