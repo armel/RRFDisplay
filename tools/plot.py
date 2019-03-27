@@ -9,6 +9,7 @@ filename = sys.argv[1]
 
 # Read log file
 log = [line.strip() for line in open(filename)]
+filename = os.path.basename(filename)
 
 # Activity histogram
 t = []
@@ -55,12 +56,8 @@ trace_best = go.Bar(
 )
 
 layout = dict(
-    title='Salon ' + filename[4:7] + ' ' + filename[8:]
+    title='Salon ' + filename[0:3] + ' ' + filename[4:]
 )
-
-print os.path.basename(filename)
-
-exit(0)
 
 # Creating two subplots
 fig = tools.make_subplots(rows=1,
