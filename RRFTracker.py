@@ -71,7 +71,7 @@ def main(argv):
     if s.room == 'RRF':
         url = 'http://rrf.f5nlg.ovh/api/svxlink/RRF'
     elif s.room == 'TEC':
-        url = 'http://rrf.f5nlg.ovh:82'
+        url = 'http://rrf.f5nlg.ovh/api/svxlink/technique'
     elif s.room == 'FON':
         url = 'http://fon.f1tzo.com:81'
 
