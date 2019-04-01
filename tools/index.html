@@ -81,6 +81,16 @@
 <script src="http://d3js.org/d3.v3.min.js"></script>
 
 <script>
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+
+var when = getUrlVars()["day"];
+
 // Set the dimensions of the canvas
 var margin = {top: 20, right: 20, bottom: 70, left: 40},
     width = 800 - margin.left - margin.right,
@@ -122,7 +132,7 @@ var svg_activity = d3.select("#activity").append("svg")
 
 
 // load the data
-d3.json("activity.json", function(error, data) {
+d3.json(when + "-activity.json", function(error, data) {
 
     data.forEach(function(d) {
         d.Hour = d.Hour;
@@ -200,7 +210,7 @@ var svg_best = d3.select("#best").append("svg")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // load the data
-d3.json("best.json", function(error, data) {
+d3.json(when + "-best.json", function(error, data) {
 
     data.forEach(function(d) {
         d.Call = d.Call;
@@ -272,7 +282,7 @@ d3.json("best.json", function(error, data) {
 //
 
 // load the data
-d3.json("all.json", function(error, data) {
+d3.json(when + "-all.json", function(error, data) {
 
     function tabulate(data, columns) {
     var table = d3.select('body').append('table')
