@@ -89,7 +89,7 @@ function getUrlVars() {
     return vars;
 }
 
-var when = getUrlVars()["day"];
+var log = getUrlVars()["log"];
 
 // Set the dimensions of the canvas
 var margin = {top: 20, right: 20, bottom: 70, left: 40},
@@ -132,7 +132,7 @@ var svg_activity = d3.select("#activity").append("svg")
 
 
 // load the data
-d3.json(when + "-activity.json", function(error, data) {
+d3.json(log + "-activity.json", function(error, data) {
 
     data.forEach(function(d) {
         d.Hour = d.Hour;
@@ -210,7 +210,7 @@ var svg_best = d3.select("#best").append("svg")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // load the data
-d3.json(when + "-best.json", function(error, data) {
+d3.json(log + "-best.json", function(error, data) {
 
     data.forEach(function(d) {
         d.Call = d.Call;
@@ -282,7 +282,7 @@ d3.json(when + "-best.json", function(error, data) {
 //
 
 // load the data
-d3.json(when + "-all.json", function(error, data) {
+d3.json(log + "-all.json", function(error, data) {
 
     function tabulate(data, columns) {
     var table = d3.select('body').append('table')
