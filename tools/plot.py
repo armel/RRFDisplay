@@ -67,8 +67,6 @@ file.write(data)
 file.close()
 
 # Best link
-filename = '/var/www/log/all.json'
-
 data = '[\n'
 
 l = 1
