@@ -1,6 +1,5 @@
 import sys
 import os
-import plotly
 
 # Read arg
 filename = sys.argv[1]
