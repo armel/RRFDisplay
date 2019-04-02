@@ -6,7 +6,7 @@ filename = sys.argv[1]
 
 # Read log file
 log = [line.strip() for line in open(filename)]
-filename = '/var/www/log/' + os.path.basename(filename)
+filename = '/var/www/log/json/' + os.path.basename(filename)
 
 # Activity histogram
 data = '[\n'
