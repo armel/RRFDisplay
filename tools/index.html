@@ -152,7 +152,7 @@ d3.json("activity.json", function(error, data) {
       .attr("y", -10)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("QSO");
+      .text("TX");
 
   svg_activity.append("text")
         .attr("x", (width / 2))             
@@ -160,7 +160,7 @@ d3.json("activity.json", function(error, data) {
         .attr("text-anchor", "middle")  
         .style("font-size", "16px")
         .style("font-family", "Tahoma") 
-        .text("Histogramme heure par heure ");
+        .text("Activité heure par heure");
 
   // Add bar chart
   svg_activity.selectAll("bar")
@@ -230,7 +230,7 @@ d3.json("best.json", function(error, data) {
       .attr("y", -10)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("QSO");
+      .text("TX");
 
   svg_best.append("text")
         .attr("x", (width / 2))             

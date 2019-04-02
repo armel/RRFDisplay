@@ -15,6 +15,12 @@ if not os.path.exists(filename):
 # Activity histogram
 data = '[\n'
 
+hour_max_when = ''
+hour_max_tx = 0
+
+hour_min_when = ''
+hour_min_tx = 1000
+
 l = 1
 for i in xrange(2, 2 + 24):
     x, y = log[i].split(' ')
@@ -34,6 +40,13 @@ for i in xrange(2, 2 + 24):
     data += '\t"TX": ' + y + '\n'
     data += '},\n'
 
+    if y > hour_max_tx:
+        hour_max_tx = y
+        hour_max_when = x
+    elif y < hour_min_tx:
+        hour_min_tx = y
+        hour_min_when = x
+
 data += ']\n'
 
 last = data.rfind(',')
@@ -43,8 +56,7 @@ file = open(filename + 'activity.json', 'w')
 file.write(data)
 file.close()
 
-
-# Best link
+# Best link: top 20
 data = '[\n'
 
 l = 1
@@ -69,7 +81,7 @@ file = open(filename + 'best.json', 'w')
 file.write(data)
 file.close()
 
-# Best link
+# Best link: all
 data = '[\n'
 
 l = 1
@@ -90,5 +102,29 @@ last = data.rfind(',')
 data = data[:last] + '' + data[last + 1:]
 
 file = open(filename + 'all.json', 'w')
+file.write(data)
+file.close()
+
+# Activity abstract
+data = '[\n'
+
+a = log[1]
+
+print hour_min_tx, hour_min_when
+print hour_max_tx, hour_max_when
+
+exit(0)
+
+data += '{\n'
+data += '\t"Nombre total de TX": "' + log[1] + '",\n'
+data += '\t"TX": ' + y + '\n'
+data += '},\n'
+
+data += ']\n'
+
+last = data.rfind(',')
+data = data[:last] + '' + data[last + 1:]
+
+file = open(filename + 'activity.json', 'w')
 file.write(data)
 file.close()
