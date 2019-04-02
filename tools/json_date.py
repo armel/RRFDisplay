@@ -21,8 +21,6 @@ hour_max_tx = 0
 hour_min_when = ''
 hour_min_tx = 1000
 
-tx_total = 0
-
 l = 1
 for i in xrange(2, 2 + 24):
     x, y = log[i].split(' ')
@@ -48,8 +46,6 @@ for i in xrange(2, 2 + 24):
     if hour_min_tx > int(y):
         hour_min_tx = int(y)
         hour_min_when = x
-
-    tx_total += int(y)
 
 data += ']\n'
 
@@ -102,6 +98,8 @@ for i in xrange(27, len(log)):
 
 data += ']\n'
 
+call_total = l - 1
+
 last = data.rfind(',')
 data = data[:last] + '' + data[last + 1:]
 
@@ -112,17 +110,11 @@ file.close()
 # Activity abstract
 data = '[\n'
 
-a = log[0]
-
-print hour_min_tx, hour_min_when
-print hour_max_tx, hour_max_when
-print tx_total
-print a
-exit(0)
-
 data += '{\n'
-data += '\t"Nombre total de TX": "' + log[1] + '",\n'
-data += '\t"TX": ' + y + '\n'
+data += '\t"Nombre total de TX": "' + log[0] + '",\n'
+data += '\t"Heure la plus active": ' + hour_max_when + '\n'
+data += '\t"Heure la moins active": ' + hour_min_when + '\n'
+data += '\t"Nombre total de noeuds actifs": "' + call_total + '",\n'
 data += '},\n'
 
 data += ']\n'
@@ -130,6 +122,6 @@ data += ']\n'
 last = data.rfind(',')
 data = data[:last] + '' + data[last + 1:]
 
-file = open(filename + 'activity.json', 'w')
+file = open(filename + 'abstract.json', 'w')
 file.write(data)
 file.close()
