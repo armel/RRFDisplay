@@ -1,0 +1,123 @@
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    padding: 0 10px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.body {
+    font-family: 'Tahoma', Times, serif;
+}
+
+.graph-container {
+    margin-bottom: 30px;
+}
+.graph-container h2 {
+    font: normal 16px Tahoma, sans-serif;
+    text-align: center;
+}
+
+svg {
+    box-sizing: content-box;
+    display: block;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+.axis {
+    font: 8px sans-serif;
+}
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+.bar {
+    fill: #ffae03;
+}
+.bar:hover {
+    fill: #ffc447;
+}
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+    font: 12px sans-serif;
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 8px;
+    pointer-events: none;
+    opacity: 25%;
+}
+
+
+table {
+    margin: 10px auto;
+    padding: 20px;
+    border: solid 1px #DDEEEE;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font: normal 13px Arial, sans-serif;
+    width: 100%;
+}
+table thead th {
+    background-color: #DDEFEF;
+    border: solid 1px #DDEEEE;
+    color: #336B6B;
+    padding: 10px;
+    text-align: center;
+    text-shadow: 1px 1px 1px #fff;
+}
+table tbody td {
+    border: solid 1px #DDEEEE;
+    color: #333;
+    padding: 10px;
+    text-align: center;
+    text-shadow: 1px 1px 1px #fff;
+}
+
+
+
+@media (min-width: 1024px) {
+    .axis {
+        font: 12px sans-serif;
+    }
+
+    .columns {
+        font-size: 0;
+    }
+    .columns > * {
+        display: inline-block;
+        vertical-align: top;
+    }
+    .columns > *:first-child {
+        width: 62%;
+        margin-right: 8%;
+    }
+    .columns > *:last-child {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 30%;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .graph-container {
+        margin-bottom: 60px;
+        padding: 0 60px;
+    }
+    .scrollbar-hidden {
+        width: calc(100 + 20px);
+        margin-right: -20px;
+        height: 100vh;
+        overflow: auto;
+    }
+}
