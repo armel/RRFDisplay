@@ -114,7 +114,7 @@ data += '{\n'
 data += '\t"Nombre total de TX": ' + str(log[0]) + ',\n'
 data += '\t"Heure la plus active": "' + hour_max_when + '"\n'
 data += '\t"Heure la moins active": "' + hour_min_when + '"\n'
-data += '\t"Nombre total de noeuds actifs": ' + call_total + '\n'
+data += '\t"Nombre total de noeuds actifs": ' + str(call_total) + '\n'
 data += '},\n'
 
 data += ']\n'
