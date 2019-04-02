@@ -10,7 +10,7 @@ filename = '/var/www/log/' + os.path.basename(filename) + '/'
 
 if not os.path.exists(filename):
     os.makedirs(filename)
-    os.popen('cp index.html ' + filename + 'index.html')
+    os.popen('cp /opt/RRFTracker_Spotnik/tools/index.html ' + filename + 'index.html')
 
 # Activity histogram
 data = '[\n'
