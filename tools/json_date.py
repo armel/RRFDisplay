@@ -8,6 +8,9 @@ filename = sys.argv[1]
 log = [line.strip() for line in open(filename)]
 filename = '/var/www/log/' + os.path.basename(filename) + '/'
 
+if not os.path.exists(filename):
+    os.makedirs(filename)
+
 # Activity histogram
 data = '[\n'
 
@@ -35,7 +38,7 @@ data += ']\n'
 last = data.rfind(',')
 data = data[:last] + '' + data[last + 1:]
 
-file = open(filename + '-activity.json', 'w')
+file = open(filename + 'activity.json', 'w')
 file.write(data)
 file.close()
 
@@ -61,7 +64,7 @@ data += ']\n'
 last = data.rfind(',')
 data = data[:last] + '' + data[last + 1:]
 
-file = open(filename + '-best.json', 'w')
+file = open(filename + 'best.json', 'w')
 file.write(data)
 file.close()
 
@@ -85,6 +88,6 @@ data += ']\n'
 last = data.rfind(',')
 data = data[:last] + '' + data[last + 1:]
 
-file = open(filename + '-all.json', 'w')
+file = open(filename + 'all.json', 'w')
 file.write(data)
 file.close()
