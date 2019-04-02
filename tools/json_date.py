@@ -21,6 +21,8 @@ hour_max_tx = 0
 hour_min_when = ''
 hour_min_tx = 1000
 
+tx_total = 0
+
 l = 1
 for i in xrange(2, 2 + 24):
     x, y = log[i].split(' ')
@@ -46,6 +48,8 @@ for i in xrange(2, 2 + 24):
     if hour_min_tx > int(y):
         hour_min_tx = int(y)
         hour_min_when = x
+
+    tx_total += int(y)
 
 data += ']\n'
 
@@ -112,7 +116,8 @@ a = log[1]
 
 print hour_min_tx, hour_min_when
 print hour_max_tx, hour_max_when
-
+print tx_total
+print a
 exit(0)
 
 data += '{\n'
