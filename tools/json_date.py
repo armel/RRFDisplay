@@ -112,7 +112,7 @@ file.close()
 # Activity abstract
 data = '[\n'
 
-a = log[1]
+a = log[0]
 
 print hour_min_tx, hour_min_when
 print hour_max_tx, hour_max_when
