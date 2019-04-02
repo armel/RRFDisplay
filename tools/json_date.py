@@ -16,10 +16,10 @@ if not os.path.exists(filename):
 data = '[\n'
 
 hour_max_when = ''
-hour_max_tx = '0'
+hour_max_tx = 0
 
 hour_min_when = ''
-hour_min_tx = '1000'
+hour_min_tx = 1000
 
 l = 1
 for i in xrange(2, 2 + 24):
@@ -40,11 +40,11 @@ for i in xrange(2, 2 + 24):
     data += '\t"TX": ' + y + '\n'
     data += '},\n'
 
-    if hour_max_tx < y:
-        hour_max_tx = y
+    if hour_max_tx < int(y):
+        hour_max_tx = int(y)
         hour_max_when = x
-    if hour_min_tx > y:
-        hour_min_tx = y
+    if hour_min_tx > int(y):
+        hour_min_tx = int(y)
         hour_min_when = x
 
 data += ']\n'
