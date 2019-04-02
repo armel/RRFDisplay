@@ -40,10 +40,10 @@ for i in xrange(2, 2 + 24):
     data += '\t"TX": ' + y + '\n'
     data += '},\n'
 
-    if y > hour_max_tx:
+    if hour_max_tx < y:
         hour_max_tx = y
         hour_max_when = x
-    elif y < hour_min_tx:
+    if hour_min_tx > y:
         hour_min_tx = y
         hour_min_when = x
 
