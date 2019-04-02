@@ -47,6 +47,7 @@
 
   table {
     margin: 0px auto;
+    padding: 20px;
     border: solid 1px #DDEEEE;
     border-collapse: collapse;
     border-spacing: 0;
@@ -149,12 +150,6 @@ d3.json("abstract.json", function(error, data) {
   tabulate(data, ['TX total', 'Heure la + active', 'Heure la - active', 'Noeuds actifs']); // 3 column table
 
 });
-</script>
-
-<div id="activity"></div>
-<div id="best"></div>
-
-<script>
 
 //
 // Activity
@@ -360,5 +355,8 @@ d3.json("all.json", function(error, data) {
 });
 
 </script>
+
+<div id="activity"></div>
+<div id="best"></div>
 
 </body>
