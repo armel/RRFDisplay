@@ -112,8 +112,8 @@ data = '[\n'
 
 data += '{\n'
 data += '\t"TX total": ' + str(log[0]) + ',\n'
-data += '\t"Heure la + active": "' + hour_max_when + ' avec ' + str(hour_max_tx) + ' TX",\n'
-data += '\t"Heure la - active": "' + hour_min_when + ' avec ' + str(hour_min_tx) + ' TX",\n'
+data += '\t"Heure la + active": "' + hour_max_when + ' / ' + str(hour_max_tx) + ' TX",\n'
+data += '\t"Heure la - active": "' + hour_min_when + ' / ' + str(hour_min_tx) + ' TX",\n'
 data += '\t"Noeuds actifs": ' + str(call_total) + '\n'
 data += '},\n'
 
