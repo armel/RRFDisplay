@@ -59,12 +59,12 @@ file.close()
 # Last link
 data = '[\n'
 
-for i in xrange(26, len(log)):
+for i in xrange(26, 26 + 5):
     x = log[i]
 
     data += '{\n'
     data += '\t"Date": "' + x[0:8] + '",\n'
-    data += '\t"Call": ' + x[8:-1] + '\n'
+    data += '\t"Call": ' + x[8:] + '\n'
     data += '},\n'
 
 data += ']\n'
