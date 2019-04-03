@@ -226,7 +226,7 @@ def calc_distance(call, latitude_1, longitude_1):
 
 
 # Log write for history
-def log_write(log_path, day, room, qso, qso_hour, history):
+def log_write(log_path, day, room, qso, qso_hour, history, call, call_time):
     if not os.path.exists(log_path):
         os.makedirs(log_path)
 
@@ -260,6 +260,13 @@ def log_write(log_path, day, room, qso, qso_hour, history):
                 p = str(i)
 
             file.write(p + ' ' + c + ' ' + str(t) + '\n')
+        i += 1
+
+    file.write('--------------------\n')
+
+    i = 0
+    while i < 10:
+        file.write(call_time[i] + ' ' + call[i] + '\n')
         i += 1
 
     file.close()
