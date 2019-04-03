@@ -244,7 +244,10 @@ def log_write(log_path, day, room, qso_hour, history, call, call_time):
     file.write('--------------------\n')
 
     for i in xrange(0, 5):
-        file.write(call_time[i] + ' ' + call[i] + '\n')
+        if 'Waiting TX' not in call_time:
+            file.write(call_time[i] + ' ' + call[i] + '\n')
+        else:
+            file.write("00:00:00" + ' ' + "Need more datas" + '\n')
 
     file.write('--------------------\n')
 
