@@ -27,7 +27,7 @@ l = 1
 for i in xrange(0, 24):
     x, y = log[i].split(' ')
 
-    qso_total += y
+    qso_total += int(y)
 
     x = str('{:0>2d}'.format(int(x)))
     l = str('{:0>2d}'.format(int(l)))
