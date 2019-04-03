@@ -226,7 +226,7 @@ def calc_distance(call, latitude_1, longitude_1):
 
 
 # Log write for history
-def log_write(log_path, day, room, qso, qso_hour, history, call, call_time):
+def log_write(log_path, day, room, qso_hour, history, call, call_time):
     if not os.path.exists(log_path):
         os.makedirs(log_path)
 
@@ -234,15 +234,17 @@ def log_write(log_path, day, room, qso, qso_hour, history, call, call_time):
 
     file = open(filename, 'w')
 
-    file.write(str(qso) + '\n')
-    file.write('--------------------\n')
-
     for q in xrange(0, 24):         # Write histogram
         if q < 10:
             t = '0' + str(q)
         else:
             t = str(q)
         file.write(t + ' ' + str(qso_hour[q]) + '\n')
+
+    file.write('--------------------\n')
+
+    for i in xrange(0, 5):
+        file.write(call_time[i] + ' ' + call[i] + '\n')
 
     file.write('--------------------\n')
 
@@ -260,17 +262,6 @@ def log_write(log_path, day, room, qso, qso_hour, history, call, call_time):
                 p = str(i)
 
             file.write(p + ' ' + c + ' ' + str(t) + '\n')
-        i += 1
-
-    file.write('--------------------\n')
-
-    i = 0
-    limit = len(call)
-    if limit > 10:
-        limit = 10
-
-    while i < limit:
-        file.write(call_time[i] + ' ' + call[i] + '\n')
         i += 1
 
     file.close()
