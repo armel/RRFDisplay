@@ -59,7 +59,7 @@ file.close()
 # Last link
 data = '[\n'
 
-for i in xrange(26, 26 + 5):
+for i in xrange(25, 25 + 5):
     x = log[i]
 
     data += '{\n'
@@ -80,7 +80,7 @@ file.close()
 data = '[\n'
 
 l = 1
-for i in xrange(32, len(log)):
+for i in xrange(31, len(log)):
     x = log[i].split(' ')
 
     data += '{\n'
@@ -105,7 +105,7 @@ file.close()
 data = '[\n'
 
 l = 1
-for i in xrange(32, len(log)):
+for i in xrange(31, len(log)):
     x = log[i].split(' ')
 
     data += '{\n'
