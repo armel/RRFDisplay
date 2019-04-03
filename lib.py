@@ -265,7 +265,11 @@ def log_write(log_path, day, room, qso, qso_hour, history, call, call_time):
     file.write('--------------------\n')
 
     i = 0
-    while i < 10:
+    limit = len(call)
+    if limit > 10:
+        limit = 10
+
+    while i < limit:
         file.write(call_time[i] + ' ' + call[i] + '\n')
         i += 1
 
