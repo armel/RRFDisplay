@@ -21,7 +21,7 @@ hour_max_tx = 0
 hour_min_when = ''
 hour_min_tx = 1000
 
-qso_total
+qso_total = 0
 
 l = 1
 for i in xrange(0, 24):
