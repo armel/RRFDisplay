@@ -21,9 +21,13 @@ hour_max_tx = 0
 hour_min_when = ''
 hour_min_tx = 1000
 
+qso_total
+
 l = 1
 for i in xrange(0, 24):
     x, y = log[i].split(' ')
+
+    qso_total += y
 
     x = str('{:0>2d}'.format(int(x)))
     l = str('{:0>2d}'.format(int(l)))
@@ -131,7 +135,7 @@ file.close()
 data = '[\n'
 
 data += '{\n'
-data += '\t"TX total": ' + str(log[0]) + ',\n'
+data += '\t"TX total": ' + str(qso_total) + ',\n'
 data += '\t"Noeuds actifs": ' + str(call_total) + '\n'
 data += '},\n'
 
