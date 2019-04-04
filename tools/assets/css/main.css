@@ -12,14 +12,15 @@ body {
 }
 
 .body {
-    font-family: 'Tahoma', Times, serif;
+    font: 12px Arial, Helvetica, sans-serif;
 }
 
 .graph-container {
     margin-bottom: 30px;
 }
+
 .graph-container h2 {
-    font: normal 16px Tahoma, sans-serif;
+    font: 16px Arial, Helvetica, sans-serif;
     text-align: center;
 }
 
@@ -29,27 +30,33 @@ svg {
     margin: 0 auto;
     padding: 20px 0;
 }
+
 .axis {
     font: 8px sans-serif;
 }
+
 .axis path,
+
 .axis line {
     fill: none;
     stroke: #000;
     shape-rendering: crispEdges;
 }
+
 .bar {
     fill: #ffae03;
 }
+
 .bar:hover {
     fill: #ffc447;
 }
+
 div.tooltip {
+    font: 12px Arial, Helvetica, sans-serif;
     position: absolute;
     text-align: center;
     padding: 5px;
     margin: 5px;
-    font: 12px sans-serif;
     background: #fff;
     border: 1px solid #000;
     border-radius: 8px;
@@ -57,50 +64,52 @@ div.tooltip {
     opacity: 25%;
 }
 
-
 table {
     margin: 10px auto;
     padding: 20px;
-    border: solid 1px #DDEEEE;
     border-collapse: collapse;
     border-spacing: 0;
-    font: normal 13px Arial, sans-serif;
+    font: 12px Arial, Helvetica, sans-serif;
     width: 100%;
 }
+
 table thead th {
-    background-color: #DDEFEF;
-    border: solid 1px #DDEEEE;
-    color: #336B6B;
+    background-color: #999;
+    border: solid 1px #000;
     padding: 10px;
     text-align: center;
-    text-shadow: 1px 1px 1px #fff;
 }
+
 table tbody td {
-    border: solid 1px #DDEEEE;
+    border: solid 1px #000;
     color: #333;
-    padding: 10px;
+    padding: 4px;
     text-align: center;
-    text-shadow: 1px 1px 1px #fff;
 }
 
-
+table tr:hover {
+    background-color: #ccc;
+}
 
 @media (min-width: 1024px) {
     .axis {
-        font: 12px sans-serif;
+        font: 12px Arial, Helvetica, sans-serif;
     }
 
     .columns {
         font-size: 0;
     }
+
     .columns > * {
         display: inline-block;
         vertical-align: top;
     }
+
     .columns > *:first-child {
         width: 62%;
         margin-right: 8%;
     }
+
     .columns > *:last-child {
         position: fixed;
         top: 0;
@@ -110,10 +119,16 @@ table tbody td {
         overflow: hidden;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
+
     .graph-container {
         margin-bottom: 60px;
         padding: 0 60px;
     }
+
+    .abstract-graph {
+        margin-left: 120px;
+    }
+
     .scrollbar-hidden {
         width: calc(100 + 20px);
         margin-right: -20px;

@@ -17,7 +17,7 @@
             width = columnWidth - margin.left - margin.right,
             height = Math.max(width / 3, 250) - margin.top - margin.bottom;
 
-        // set the ranges
+        // Set the ranges
         const x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
         const y = d3.scale.linear().range([height, 0]);
 
@@ -36,9 +36,8 @@
                       .attr('class', 'tooltip')
                       .style('opacity', 0);
 
-        //
         // Activity
-        // load the data
+        // Load the data
         d3.json('activity.json', function (error, data) {
             const containerSelector = '.activity-graph';
             const containerTitle = 'Activité heure par heure';
@@ -49,7 +48,7 @@
                 d.TX = d.TX;
             });
 
-            // scale the range of the data
+            // Scale the range of the data
             x.domain(data.map(function(d) { return d.Hour; }));
             y.domain([0, d3.max(data, function(d) { return d.TX; })]);
 
@@ -61,7 +60,7 @@
                                  .attr('transform',
                                        'translate(' + margin.left + ',' + margin.top + ')');
 
-            // add axis
+            // Add axis
             svg_activity.append('g')
                         .attr('class', 'x axis')
                         .attr('transform', 'translate(0,' + (height + 0.5) + ')')
@@ -87,7 +86,7 @@
                         .attr('y', 0 - (margin.top / 3))
                         .attr('text-anchor', 'middle')
                         .style('font-size', '16px')
-                        .style('font-family', 'Tahoma')
+                        .style('font-family', 'Arial')
                         .text(containerTitle);
 
             // Add bar chart
@@ -115,13 +114,8 @@
                         })
         });
 
-
-        //
         // Best
-        // add the SVG element
-        //
-
-        // load the data
+        // Load the data
         d3.json('best.json', function (error, data) {
             const containerSelector = '.best-graph';
             const containerTitle = 'Top 20 des noeuds les plus actifs';
@@ -141,12 +135,11 @@
                                .attr('transform',
                                      'translate(' + margin.left + ',' + margin.top + ')');
 
-
-            // scale the range of the data
+            // Scale the range of the data
             x.domain(data.map(function(d) { return d.Call; }));
             y.domain([0, d3.max(data, function(d) { return d.TX; })]);
 
-            // add axis
+            // Add axis
             svg_best.append('g')
                     .attr('class', 'x axis')
                     .attr('transform', 'translate(0,' + (height + 0.5) + ')')
@@ -172,9 +165,8 @@
                     .attr('y', 0 - (margin.top / 3))
                     .attr('text-anchor', 'middle')
                     .style('font-size', '16px')
-                    .style('font-family', 'Tahoma')
+                    .style('font-family', 'Arial')
                     .text(containerTitle);
-
 
             // Add bar chart
             svg_best.selectAll('bar')
@@ -200,16 +192,11 @@
                     });
         });
 
-
-
-        //
         // Abstract
-        // add the SVG element
-        //
-        // load the data
+        // Load the data
         d3.json('abstract.json', function(error, data) {
             const containerSelector = '.abstract-graph';
-            const containerTitle = 'Abstract';
+            const containerTitle = 'Résumé de la journée';
 
             function tabulate (data, columns) {
                 d3.select(containerSelector).html('');
@@ -219,20 +206,20 @@
                 const thead = table.append('thead');
                 const tbody = table.append('tbody');
 
-                // append the header row
+                // Append the header row
                 thead.append('tr')
                     .selectAll('th')
                     .data(columns).enter()
                     .append('th')
                     .text(function (column) { return column; });
 
-                // create a row for each object in the data
+                // Create a row for each object in the data
                 const rows = tbody.selectAll('tr')
                                 .data(data)
                                 .enter()
                                 .append('tr');
 
-                // create a cell in each row for each column
+                // Create a cell in each row for each column
                 const cells = rows.selectAll('td')
                                 .data(function (row) {
                                     return columns.map(function (column) {
@@ -246,19 +233,15 @@
                 return table;
             }
 
-            // render the table(s)
-            tabulate(data, ['TX total', 'Heure la + active', 'Heure la - active', 'Noeuds actifs']); // 3 column table
+            // Render the table(s)
+            tabulate(data, ['Salon', 'Date', 'TX total', 'Noeuds actifs']); // 3 columns table
         });
 
-
-        //
-        // All
-        // add the SVG element
-        //
-        // load the data
-        d3.json('all.json', function (error, data) {
-            const containerSelector = '.all-graph';
-            const containerTitle = 'All';
+        // Last
+        // Load the data
+        d3.json('last.json', function (error, data) {
+            const containerSelector = '.last-graph';
+            const containerTitle = 'Derniers passages en émission';
 
             function tabulate (data, columns) {
                 d3.select(containerSelector).html('');
@@ -269,20 +252,20 @@
                 var thead = table.append('thead');
                 var tbody = table.append('tbody');
 
-                // append the header row
+                // Append the header row
                 thead.append('tr')
                     .selectAll('th')
                     .data(columns).enter()
                     .append('th')
                     .text(function (column) { return column; });
 
-                // create a row for each object in the data
+                // Create a row for each object in the data
                 var rows = tbody.selectAll('tr')
                                 .data(data)
                                 .enter()
                                 .append('tr');
 
-                // create a cell in each row for each column
+                // Create a cell in each row for each column
                 var cells = rows.selectAll('td')
                                 .data(function (row) {
                                     return columns.map(function (column) {
@@ -296,8 +279,54 @@
                 return table;
             }
 
-            // render the table(s)
-            tabulate(data, ['Pos', 'Call', 'TX']); // 3 column table
+            // Render the table(s)
+            tabulate(data, ['Date', 'Call']); // 2 columns table
+        });
+
+        // All
+        // Load the data
+        d3.json('all.json', function (error, data) {
+            const containerSelector = '.all-graph';
+            const containerTitle = 'Classement des noeuds actifs';
+
+            function tabulate (data, columns) {
+                d3.select(containerSelector).html('');
+                d3.select(containerSelector).append('h2').text(containerTitle);
+
+
+                var table = d3.select(containerSelector).append('table');
+                var thead = table.append('thead');
+                var tbody = table.append('tbody');
+
+                // Append the header row
+                thead.append('tr')
+                    .selectAll('th')
+                    .data(columns).enter()
+                    .append('th')
+                    .text(function (column) { return column; });
+
+                // Create a row for each object in the data
+                var rows = tbody.selectAll('tr')
+                                .data(data)
+                                .enter()
+                                .append('tr');
+
+                // Create a cell in each row for each column
+                var cells = rows.selectAll('td')
+                                .data(function (row) {
+                                    return columns.map(function (column) {
+                                        return { column: column, value: row[column] };
+                                    });
+                                })
+                                .enter()
+                                .append('td')
+                                .text(function (d) { return d.value; });
+
+                return table;
+            }
+
+            // Render the table(s)
+            tabulate(data, ['Pos', 'Call', 'TX']); // 3 columns table
         });
     }
 })();
