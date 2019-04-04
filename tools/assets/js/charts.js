@@ -8,6 +8,9 @@
     });
     generateD3Charts();
 
+    var inter = setInterval(function() {
+        generateD3Charts();
+    }, 5000); 
 
     function generateD3Charts () {
         const columnWidth = document.querySelector('.columns :first-child').clientWidth;
