@@ -141,8 +141,8 @@ now = tmp.strftime('%d-%m-%Y %H:%M:%S')
 
 
 data += '{\n'
-data += '\t"Salon": ' + log_name[0:3] + ',\n'
-data += '\t"Date": ' + now + ',\n'
+data += '\t"Salon": "' + log_name[0:3] + '",\n'
+data += '\t"Date": "' + now + '",\n'
 data += '\t"TX total": ' + str(qso_total) + ',\n'
 data += '\t"Noeuds actifs": ' + str(call_total) + '\n'
 data += '},\n'
