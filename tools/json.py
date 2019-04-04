@@ -68,7 +68,7 @@ for i in xrange(25, 25 + 5):
 
     data += '{\n'
     data += '\t"Date": "' + x[0:8] + '",\n'
-    data += '\t"Call": ' + x[8:] + '\n'
+    data += '\t"Call": "' + x[8:] + '"\n'
     data += '},\n'
 
 data += ']\n'
