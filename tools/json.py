@@ -1,11 +1,13 @@
 import sys
 import os
+import datetime
 
 # Read arg
 filename = sys.argv[1]
 
 # Read log file
 log = [line.strip() for line in open(filename)]
+log_name = os.path.basename(filename)
 filename = '/var/www/log/' + os.path.basename(filename) + '/'
 
 if not os.path.exists(filename):
@@ -134,7 +136,13 @@ file.close()
 # Activity abstract
 data = '[\n'
 
+tmp = datetime.datetime.now()
+now = tmp.strftime('%d-%m-%Y %H:%M:%S')
+
+
 data += '{\n'
+data += '\t"Salon": ' + log_name[0:3] + ',\n'
+data += '\t"Date": ' + now + ',\n'
 data += '\t"TX total": ' + str(qso_total) + ',\n'
 data += '\t"Noeuds actifs": ' + str(call_total) + '\n'
 data += '},\n'
