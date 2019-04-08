@@ -10,7 +10,7 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 
 # Version
 
-version = '2.5.0'
+version = '2.6.0'
 
 # Default i2c_port, i2c_address, display and room
 
@@ -31,15 +31,6 @@ SMALL_BITMAP_CLOCK = [
     [0x07, 0x18, 0x20, 0x40, 0x40, 0x80, 0x83, 0x82],
     [0x42, 0x40, 0x20, 0x18, 0x07, 0x00, 0x00, 0x00]
 ]
-
-'''
-SMALL_BITMAP_CPU = [
-    [0xf0, 0x1c, 0x90, 0x9c, 0x90, 0x1c, 0x90, 0x9c],
-    [0x90, 0x1c, 0x90, 0x1c, 0x90, 0x1c, 0xf0, 0x00],
-    [0x3f, 0xe0, 0x27, 0xe4, 0x24, 0xe0, 0x27, 0xe2],
-    [0x23, 0xe0, 0x27, 0xe4, 0x27, 0xe0, 0x3f, 0x00]
-]
-'''
 
 SMALL_BITMAP_CPU = [
     [0xf0, 0x1c, 0x90, 0x90, 0x9c, 0x10, 0x90, 0x9c],
@@ -88,13 +79,13 @@ call_current = call[0]                      # Call current
 call_previous = call[1]                     # Call previous
 call_time = ['Waiting TX', '', '', '', '']  # Call time list
 
-blanc = True                                # Detect blank
 blanc_alternate = 0                         # Detect alternate
 
 qso = 0                                     # QSO count
 qso_total = 0                               # QSO total count
 qso_hour = [0] * 24                         # QSO list for histogramm
-wake_up = True                              # Detect wake up on emission
+transmit = True                             # Detect transmit
+stat_save = False                           # If False, stat need to be save
 
 history = dict()                            # History dict
 message = [None] * 7                        # Message list

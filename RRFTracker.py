@@ -109,8 +109,8 @@ def main(argv):
         # If transmitter...
         if search_stop != search_start:
 
-            if s.wake_up is False:      # Wake up screen...
-                s.wake_up = l.wake_up_screen(s.device, s.display, s.wake_up)
+            if s.transmit is False:      # Wake up screen...
+                s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
 
             # Clean call
             tmp = page[search_start:search_stop]
@@ -130,17 +130,27 @@ def main(argv):
                     s.call_time[i] = s.call_time[i - 1]
 
                 s.call[0] = s.call_current
-
-                s.history = l.save_stat(s.history, s.call[1])
-                s.qso += 1
             else:
                 if s.tot_start is '':
                     s.tot_start = time.time()
-                s.tot_current = time.time()
-                if (s.blanc is True):         # Stat (same call but new PTT...)
-                    s.history = l.save_stat(s.history, s.call[0])
+                    s.tot_current = s.tot_start
 
-            s.blanc = False
+                    for i in xrange(9, 0, -1):
+                        s.call[i] = s.call[i - 1]
+                        s.call_date[i] = s.call_date[i - 1]
+                        s.call_time[i] = s.call_time[i - 1]
+
+                    s.call[0] = s.call_current
+                else:
+                    s.tot_current = time.time()
+
+            s.duration = int(s.tot_current) - int(s.tot_start)
+
+            # Save stat only if real transmit
+            if (s.stat_save is False and s.duration > 2):
+                s.history = l.save_stat(s.history, s.call[0])
+                s.qso += 1
+                s.stat_save = True
 
             # Format call time
             tmp = datetime.datetime.now()
@@ -157,16 +167,11 @@ def main(argv):
 
         # If no Transmitter...
         else:
-            if s.wake_up is True:       # Sleep screen...
-                s.wake_up = l.wake_up_screen(s.device, s.display, s.wake_up)
-
-            if s.blanc is False:
-                s.blanc = True
-                duration = int(s.tot_current) - int(s.tot_start)
+            if s.transmit is True:       # Sleep screen...
+                s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
+                s.stat_save = False
                 s.tot_current = ''
                 s.tot_start = ''
-                if duration > 3:
-                    s.qso += 1
 
             s.message[0] = s.call[1]
             s.message[1] = s.call[0]
