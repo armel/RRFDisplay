@@ -137,7 +137,6 @@ def main(argv):
 
                     for i in xrange(4, 0, -1):
                         s.call[i] = s.call[i - 1]
-                        s.call_date[i] = s.call_date[i - 1]
                         s.call_time[i] = s.call_time[i - 1]
 
                     s.call[0] = s.call_current
