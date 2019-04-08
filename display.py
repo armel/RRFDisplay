@@ -257,7 +257,7 @@ def display_32():
     with canvas(s.device) as draw:
 
         # Histogram extended
-        if s.wake_up is False and s.minute % 2 == 0 and s.seconde < 30:
+        if s.transmit is False and s.minute % 2 == 0 and s.seconde < 30:
             draw.rectangle((0, 0, 127, 31), fill='black')
             histogram(draw, legacy, 25)
 
@@ -266,7 +266,7 @@ def display_32():
             draw.rectangle((0, 0, 127, 31), fill='black')
 
             # Icon talk
-            if s.wake_up is True:
+            if s.transmit is True:
                 draw.text((2, 10), u'\uf130', font=icon, fill='white')
                 distance(draw)
 
@@ -298,19 +298,19 @@ def display_64():
     with canvas(s.device) as draw:
 
         # System log extended Page 1
-        if s.wake_up is False and s.minute % 2 == 0 and s.seconde < 15:
+        if s.transmit is False and s.minute % 2 == 0 and s.seconde < 15:
             extended_system(draw, 1)
 
         # System log extended Page 2
-        elif s.wake_up is False and s.minute % 2 == 0 and s.seconde < 30:
+        elif s.transmit is False and s.minute % 2 == 0 and s.seconde < 30:
             extended_system(draw, 2)
 
         # Call log extended
-        elif s.wake_up is False and 'Waiting TX' not in s.call_time and s.minute % 2 == 0 and s.seconde < 45:
+        elif s.transmit is False and 'Waiting TX' not in s.call_time and s.minute % 2 == 0 and s.seconde < 45:
             extended_call(draw)
 
         # Best log extended
-        elif s.wake_up is False and len(s.history) >= 5 and s.minute % 2 == 0:
+        elif s.transmit is False and len(s.history) >= 5 and s.minute % 2 == 0:
             extended_best(draw)
 
         # If not extended
@@ -324,7 +324,7 @@ def display_64():
             draw.text((0, 26), u'\ue801', font=icon, fill='white')
 
             # Icon talk
-            if s.wake_up is True:
+            if s.transmit is True:
                 draw.text((2, 10), u'\uf130', font=icon, fill='white')
                 distance(draw)
 
@@ -347,7 +347,7 @@ def display_64():
                     if i == 24:
                         i += 6
 
-            if s.wake_up is True and s.tot_current > s.tot_start:
+            if s.transmit is True and s.tot_current > s.tot_start:
                 # Draw tot
                 tot(draw, legacy, s.tot_start, s.tot_current, 57)
             else:
