@@ -107,8 +107,3 @@ tot_current = ''
 hour = ''
 minute = ''
 seconde = ''
-
-# Set log
-
-log = False                                 # If True, write log
-log_path = '/opt/RRFTracker_Spotnik/log'    # Log path

@@ -34,9 +34,6 @@ def usage():
     print '  --latitude         set latitude (default=48.8483808, format WGS84)'
     print '  --longitude        set longitude (default=2.2704347, format WGS84)'
     print
-    print 'Log settings:'
-    print '  --log              enable log'
-    print
     print '88 & 73 from F4HWN Armel'
 
 
@@ -222,51 +219,4 @@ def calc_distance(call, latitude_1, longitude_1):
             else:
                 r = int(ceil(12742 * asin(sqrt(a))))
             return r
-    return 0
-
-
-# Log write for history
-def log_write(log_path, day, room, qso_hour, history, call, call_time):
-    if not os.path.exists(log_path):
-        os.makedirs(log_path)
-
-    filename = log_path + '/' + room + '-' + day
-
-    file = open(filename, 'w')
-
-    for q in xrange(0, 24):         # Write histogram
-        if q < 10:
-            t = '0' + str(q)
-        else:
-            t = str(q)
-        file.write(t + ' ' + str(qso_hour[q]) + '\n')
-
-    file.write('--------------------\n')
-
-    for i in xrange(0, 5):
-        if 'Waiting TX' not in call_time:
-            file.write(call_time[i] + ' ' + call[i] + '\n')
-        else:
-            file.write("00:00:00" + ' ' + "Need more datas" + '\n')
-
-    file.write('--------------------\n')
-
-    tmp = sorted(history.items(), key=lambda x: x[1])
-    tmp.reverse()
-
-    i = 1
-    for c, t in tmp:
-        if c != 'F4HWN':
-            if i < 10:
-                p = '00' + str(i)
-            elif i < 100:
-                p = '0' + str(i)
-            else:
-                p = str(i)
-
-            file.write(p + ' ' + c + ' ' + str(t) + '\n')
-        i += 1
-
-    file.close()
-
     return 0

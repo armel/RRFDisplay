@@ -27,7 +27,7 @@ def main(argv):
 
     # Check and get arguments
     try:
-        options, remainder = getopt.getopt(argv, '', ['help', 'log', 'i2c-port=', 'i2c-address=', 'display=', 'display-width=', 'display-height=', 'room=', 'latitude=', 'longitude='])
+        options, remainder = getopt.getopt(argv, '', ['help', 'i2c-port=', 'i2c-address=', 'display=', 'display-width=', 'display-height=', 'room=', 'latitude=', 'longitude='])
     except getopt.GetoptError:
         l.usage()
         sys.exit(2)
@@ -35,8 +35,6 @@ def main(argv):
         if opt == '--help':
             l.usage()
             sys.exit()
-        elif opt in ('--log'):
-            s.log = True
         elif opt in ('--i2c-port'):
             s.i2c_port = arg
         elif opt in ('--i2c-address'):
@@ -87,9 +85,6 @@ def main(argv):
         s.hour = int(tmp.strftime('%H'))
         s.minute = int(s.now[3:-3])
         s.seconde = int(s.now[-2:])
-
-        if s.log is True:
-            l.log_write(s.log_path, s.day, s.room, s.qso_hour, s.history, s.call, s.call_time)
 
         if(s.now[:5] == '00:00'):
             s.qso_total += s.qso
