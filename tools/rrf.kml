@@ -3,6 +3,42 @@
   <Document>
     <name>réseau RRF</name>
     <description>Carte du Réseau des Répéteurs Francophones</description>
+    <Style id="icon-503-3F5BA9-normal">
+      <IconStyle>
+        <color>ffa95b3f</color>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="16" xunits="pixels" y="32" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-503-3F5BA9-highlight">
+      <IconStyle>
+        <color>ffa95b3f</color>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="16" xunits="pixels" y="32" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1.1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-503-3F5BA9">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-503-3F5BA9-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-503-3F5BA9-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
     <Style id="icon-503-4186F0-normal">
       <IconStyle>
         <color>fff08641</color>
@@ -37,6 +73,42 @@
       <Pair>
         <key>highlight</key>
         <styleUrl>#icon-503-4186F0-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-503-795046-normal">
+      <IconStyle>
+        <color>ff465079</color>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="16" xunits="pixels" y="32" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-503-795046-highlight">
+      <IconStyle>
+        <color>ff465079</color>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="16" xunits="pixels" y="32" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1.1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-503-795046">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-503-795046-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-503-795046-highlight</styleUrl>
       </Pair>
     </StyleMap>
     <Style id="icon-503-DB4436-normal">
@@ -289,7 +361,7 @@
       <name>Relais ou transpondeurs en bleu, Link en rouge, projets en jaune numerique en vert</name>
       <Placemark>
         <name>(22) F5ZIN T</name>
-        <description>29.130MHz , 70.4625MHz RX, 145.400MHz , 430.400MHz +9.4MHz CTCSS 71.9Hz </description>
+        <description><![CDATA[29.130MHz , 70.4625MHz RX, 145.400MHz , 430.400MHz +9.4MHz CTCSS 71.9Hz<br>F5NLG]]></description>
         <styleUrl>#icon-503-4186F0</styleUrl>
         <Point>
           <coordinates>
@@ -298,8 +370,8 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>RRF tête de réseau</name>
-        <description>http://rrf.f5nlg.ovh:8000/stream   </description>
+        <name>RRF</name>
+        <description>Tête de Réseau   http://rrf.f5nlg.ovh</description>
         <styleUrl>#icon-960-7C3592</styleUrl>
         <Point>
           <coordinates>
@@ -309,7 +381,7 @@
       </Placemark>
       <Placemark>
         <name>(17) F4KLA V</name>
-        <description>145.350MHz CTCSS 162.2Hz</description>
+        <description><![CDATA[145.350MHz CTCSS 162.2Hz<br>F4HES]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -319,7 +391,7 @@
       </Placemark>
       <Placemark>
         <name>(29) F5ZJX T</name>
-        <description>145.650MHz -600KHz, R2 tone 71.9Hz                   29.630MHZ -100KHZ, RH2 tone 71.9Hz</description>
+        <description><![CDATA[145.650MHz -600KHz, R2 tone 71.9Hz                   29.630MHZ -100KHZ, RH2 tone 71.9Hz<br>F5NLG]]></description>
         <styleUrl>#icon-503-4186F0</styleUrl>
         <Point>
           <coordinates>
@@ -330,7 +402,7 @@
       <Placemark>
         <name>(22) F1ZEE R</name>
         <description>145,600Mhz -600Khz,  CTCSS 71.9Hz</description>
-        <styleUrl>#icon-503-4186F0</styleUrl>
+        <styleUrl>#icon-503-F8971B</styleUrl>
         <Point>
           <coordinates>
             -3.3672667,48.4880553,0
@@ -339,7 +411,7 @@
       </Placemark>
       <Placemark>
         <name>(44) F5ZEM R</name>
-        <description>relais UHF 430.050 + 9.4Mhz déclenchement 1750Hz + 99# pour le RRF. et re déclenchement 1750Hz.</description>
+        <description><![CDATA[relais UHF 430.050 + 9.4Mhz déclenchement 1750Hz + 99# pour le RRF. et re déclenchement 1750Hz.<br>F3KT]]></description>
         <styleUrl>#icon-503-F8971B</styleUrl>
         <Point>
           <coordinates>
@@ -348,7 +420,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(49) F6JSP  V</name>
+        <name>(49) F6JSP V</name>
         <description>145.2875MHz TCS 250.3Hz</description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
@@ -378,7 +450,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(59) F1TYP  V</name>
+        <name>(59) F1TYP V</name>
         <description>145.2875MHz CTCSS 123Hz</description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
@@ -388,18 +460,18 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(LX) LX2OOO  V</name>
+        <name>(LX) LX2OOO V</name>
         <description>145.425Mhz TCS 103.5Hz</description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
-            6.0998008,49.517946,0
+            6.100004,49.6312768,0
           </coordinates>
         </Point>
       </Placemark>
       <Placemark>
         <name>(62) F5ZGJ V</name>
-        <description>145.350 MHz CTCSS 123Hz</description>
+        <description><![CDATA[145.350 MHz CTCSS 123Hz<br>F4HTN]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -429,7 +501,7 @@
       </Placemark>
       <Placemark>
         <name>(42) F5ZBR R</name>
-        <description>145.6125MHz -0.6KHz Tone 123Hz</description>
+        <description><![CDATA[145.6125MHz -0.6KHz Tone 123Hz<br>F4ASS]]></description>
         <styleUrl>#icon-503-4186F0</styleUrl>
         <Point>
           <coordinates>
@@ -448,7 +520,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(29) F6CIU  V</name>
+        <name>(29) F6CIU V</name>
         <description>145.325MHz TCS71.9Hz</description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
@@ -478,18 +550,8 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(12) F5ZBW R</name>
-        <description>430.150 MHz + 1.6MHZ</description>
-        <styleUrl>#icon-503-F8971B</styleUrl>
-        <Point>
-          <coordinates>
-            3.0823946,44.0942121,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
         <name>(67) F1ZDD T</name>
-        <description><![CDATA[430.2375 MHz +9.4 MHz / 29.160MHZ  & 50.520MHZ  CTCSS 67Hz]]></description>
+        <description><![CDATA[430.2375 MHz +9.4 MHz / 29.160MHZ  & 50.520MHZ  CTCSS 67Hz<br>F5SWB]]></description>
         <styleUrl>#icon-503-4186F0</styleUrl>
         <Point>
           <coordinates>
@@ -519,7 +581,7 @@
       </Placemark>
       <Placemark>
         <name>(22) F5ZMU U</name>
-        <description>432.975 MHz CTCSS 71.9Hz</description>
+        <description><![CDATA[432.975 MHz CTCSS 71.9Hz<br>F6HRP]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -529,7 +591,7 @@
       </Placemark>
       <Placemark>
         <name>(60) F1ZCY T</name>
-        <description>145.400MHz / 430.300MHz + 1.6MHz CTCSS 123Hz</description>
+        <description><![CDATA[145.400MHz / 430.300MHz + 1.6MHz CTCSS 123Hz<br>F1PRY]]></description>
         <styleUrl>#icon-503-4186F0</styleUrl>
         <Point>
           <coordinates>
@@ -539,7 +601,7 @@
       </Placemark>
       <Placemark>
         <name>(80) F5KOU V</name>
-        <description>145.225MHz CTCSS 123Hz </description>
+        <description><![CDATA[145.225MHz CTCSS 123Hz<br>F4EHY]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -549,7 +611,7 @@
       </Placemark>
       <Placemark>
         <name>(12) F5ZGE V</name>
-        <description>144.6375MHz CTCSS 71.9 </description>
+        <description><![CDATA[144.6375MHz CTCSS 71.9 <br>F5FPI]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -559,7 +621,7 @@
       </Placemark>
       <Placemark>
         <name>(53) F4KKV V</name>
-        <description>145.3875MHZ CTCSS 103.5Hz</description>
+        <description><![CDATA[145.3875MHZ CTCSS 103.5Hz<br>F1EVM]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -579,7 +641,7 @@
       </Placemark>
       <Placemark>
         <name>(60) F1ZKG 10M</name>
-        <description>projet RH6 29.670 MHZ CTCSS 123Hz</description>
+        <description><![CDATA[projet RH6 29.670 MHZ CTCSS 123Hz<br>F1PRY]]></description>
         <styleUrl>#icon-503-F4EB37</styleUrl>
         <Point>
           <coordinates>
@@ -599,7 +661,7 @@
       </Placemark>
       <Placemark>
         <name>(22) F1ZNW U</name>
-        <description>439.8375 - 9.4MHz CTCSS 71.9Hz</description>
+        <description><![CDATA[439.8375 - 9.4MHz CTCSS 71.9Hz<br>F1BSR]]></description>
         <styleUrl>#icon-503-4186F0</styleUrl>
         <Point>
           <coordinates>
@@ -629,7 +691,7 @@
       </Placemark>
       <Placemark>
         <name>(45) F5KIA V</name>
-        <description>144.9625 MHz CTCSS 123 Hz</description>
+        <description><![CDATA[144.9625 MHz CTCSS 123 Hz<br>F4HKP]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -649,7 +711,7 @@
       </Placemark>
       <Placemark>
         <name>(54) F1ZPA V</name>
-        <description>145.250 MHz CTCSS 250.3 Hz</description>
+        <description><![CDATA[145.250 MHz CTCSS 250.3 Hz<br>F4BIT]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -689,7 +751,7 @@
       </Placemark>
       <Placemark>
         <name>(66) F6KBR V</name>
-        <description>145.3625MHz CTCSS 250.3Hz</description>
+        <description><![CDATA[145.3625MHz CTCSS 250.3Hz<br>F8BSY]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -739,7 +801,7 @@
       </Placemark>
       <Placemark>
         <name>(60) F1ZKE V</name>
-        <description>145.3375 MHz CTCSS 123Hz</description>
+        <description><![CDATA[145.3375 MHz CTCSS 123Hz<br>F4FSD]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -759,7 +821,7 @@
       </Placemark>
       <Placemark>
         <name>(39) F1ZKS R</name>
-        <description>145.700 MHz -0.6MHz CTCSS 71.9Hz  relais R4</description>
+        <description><![CDATA[145.700 MHz -0.6MHz CTCSS 71.9Hz<br>F0DEI]]></description>
         <styleUrl>#icon-503-4186F0</styleUrl>
         <Point>
           <coordinates>
@@ -799,7 +861,7 @@
       </Placemark>
       <Placemark>
         <name>(79) F1ZOT V</name>
-        <description>144.975 MHZ CTCSS 103.5Hz</description>
+        <description><![CDATA[144.975 MHZ CTCSS 103.5Hz<br>F4GGU]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -829,7 +891,7 @@
       </Placemark>
       <Placemark>
         <name>(60) F1ZKH V</name>
-        <description>145.3125 MHz CTCSS 123Hz</description>
+        <description><![CDATA[145.3125 MHz CTCSS 123Hz<br>F1PRY]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -849,7 +911,7 @@
       </Placemark>
       <Placemark>
         <name>(11) F1ZPH V</name>
-        <description>145.550 MHZ CTCSS 250.3HZ</description>
+        <description><![CDATA[145.550 MHZ CTCSS 250.3HZ<br>F4HSQ]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -859,7 +921,7 @@
       </Placemark>
       <Placemark>
         <name>(62) F6KCE V</name>
-        <description>144.525 MHz CTCSS 123 Hz</description>
+        <description><![CDATA[144.525 MHz CTCSS 123 Hz<br>F6IPV]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -899,7 +961,7 @@
       </Placemark>
       <Placemark>
         <name>(42) F1ZID V</name>
-        <description>145.4375 MHZ CTCSS 123 Hz</description>
+        <description><![CDATA[145.4375 MHZ CTCSS 123 Hz<br>F4ASS]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -909,7 +971,7 @@
       </Placemark>
       <Placemark>
         <name>(31) F1ZLS V</name>
-        <description>144.925 MHZ CTCSS 71.9HZ</description>
+        <description><![CDATA[144.925 MHZ CTCSS 71.9HZ<br>F4GRL]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -918,8 +980,8 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(15)  F5KHC T</name>
-        <description><![CDATA[145.225 MHz & 430.175 MHz CTCSS 123Hz]]></description>
+        <name>(15) F5KHC T</name>
+        <description><![CDATA[145.225 MHz & 430.175 MHz CTCSS 123Hz<br>F6IOJ]]></description>
         <styleUrl>#icon-503-4186F0</styleUrl>
         <Point>
           <coordinates>
@@ -929,7 +991,7 @@
       </Placemark>
       <Placemark>
         <name>(59) F1ZDN T</name>
-        <description>145.2625 MHz -0.6 MHz , 433.050 MHz -1.6 MHz 1750 Hz</description>
+        <description><![CDATA[145.2625 MHz -0.6 MHz , 433.050 MHz -1.6 MHz CTCSS 123 Hz<br>F1IWQ]]></description>
         <styleUrl>#icon-503-4186F0</styleUrl>
         <Point>
           <coordinates>
@@ -969,7 +1031,7 @@
       </Placemark>
       <Placemark>
         <name>(38) F1GFB V</name>
-        <description>144.9125 MHz Ctcss 123Hz</description>
+        <description>145.3375 MHz Ctcss 123Hz</description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -988,9 +1050,9 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(974) FR4KM  T</name>
-        <description>145.225 MHZ / 435.100 MHz CTCSS 97.4Hz</description>
-        <styleUrl>#icon-503-4186F0</styleUrl>
+        <name>(974) FR4NP U</name>
+        <description>435.100 MHz CTCSS 97.4Hz</description>
+        <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
             55.3026939,-20.9383678,0
@@ -999,7 +1061,7 @@
       </Placemark>
       <Placemark>
         <name>(35) F5ZZC U</name>
-        <description>432.975 MHz CTCSS 71.9Hz</description>
+        <description><![CDATA[432.975 MHz CTCSS 71.9Hz<br>F5NLG]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -1009,7 +1071,7 @@
       </Placemark>
       <Placemark>
         <name>(71) F5ZJW T</name>
-        <description>144.500 MHz / 432.600 MHz  CTCSS 203.5 Hz</description>
+        <description><![CDATA[144.500 MHz / 432.600 MHz  CTCSS 203.5 Hz<br>F6IKY]]></description>
         <styleUrl>#icon-503-4186F0</styleUrl>
         <Point>
           <coordinates>
@@ -1019,7 +1081,7 @@
       </Placemark>
       <Placemark>
         <name>(37) F6GUZ U</name>
-        <description>431.0375 MHz CTCSS 123Hz</description>
+        <description>434.975 MHz CTCSS 123Hz</description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -1049,7 +1111,7 @@
       </Placemark>
       <Placemark>
         <name>(87) F1ZHA U</name>
-        <description>431.875MHz CTCSS 250.3 Hz</description>
+        <description><![CDATA[431.875MHz CTCSS 250.3 Hz<br>F1IGY]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -1058,17 +1120,7 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(56) F1BWT U</name>
-        <description>433.025 MHZ CTCSS 71.9Hz</description>
-        <styleUrl>#icon-503-DB4436</styleUrl>
-        <Point>
-          <coordinates>
-            -3.0860091,47.5832458,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>(92) F1GWX V</name>
+        <name>(92) F1ZQC V</name>
         <description>gotechnique.com 145.250 MHz CTCSS 192.8 Hz</description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
@@ -1078,8 +1130,8 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(11) F1ZCZ  U</name>
-        <description>432.675 MHz CTCSS 250.3 Hz en lien UHF avec F5ZXP</description>
+        <name>(11) F1ZCZ U</name>
+        <description><![CDATA[432.675 MHz CTCSS 250.3 Hz en lien UHF avec F5ZXP<br>F1QM]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -1099,7 +1151,7 @@
       </Placemark>
       <Placemark>
         <name>(07) F1ZEU U</name>
-        <description>430.800 MHz CTCSS 123Hz</description>
+        <description><![CDATA[430.800 MHz CTCSS 123Hz<br>F6FLQ]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -1109,7 +1161,7 @@
       </Placemark>
       <Placemark>
         <name>(59) F1ZKY R</name>
-        <description>145.6125 MHz -0.6Khz ctcss 123Hz</description>
+        <description><![CDATA[145.6125 MHz -0.6Khz ctcss 123Hz<br>F4BMK]]></description>
         <styleUrl>#icon-503-4186F0</styleUrl>
         <Point>
           <coordinates>
@@ -1139,7 +1191,7 @@
       </Placemark>
       <Placemark>
         <name>(51) F5TPK V</name>
-        <description>144.875 MHz Ctcss 71.9Hz</description>
+        <description>145.300 MHz Ctcss 71.9Hz</description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -1159,7 +1211,7 @@
       </Placemark>
       <Placemark>
         <name>(87) F5ZJC V</name>
-        <description>145.2875 MHz CTCSS 88.5Hz </description>
+        <description><![CDATA[145.2875 MHz CTCSS 88.5Hz<br>F1IGY]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -1178,9 +1230,9 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(68) F1HIU V</name>
-        <description>145.3375 MHz 67Hz</description>
-        <styleUrl>#icon-503-F4EB37</styleUrl>
+        <name>(68) F1HIU U</name>
+        <description>434.975 MHz CTCSS 67Hz</description>
+        <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
             6.9091397,47.8080794,0
@@ -1189,7 +1241,7 @@
       </Placemark>
       <Placemark>
         <name>(75) F1ZPX V</name>
-        <description>145.3875 MHz CTCSS 192.8Hz</description>
+        <description><![CDATA[145.3875 MHz CTCSS 192.8Hz<br>F4HWN]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -1199,21 +1251,11 @@
       </Placemark>
       <Placemark>
         <name>(42) F1ZEV 6M</name>
-        <description>51.950 MHz -0.6 CTCSS 123 Hz</description>
+        <description><![CDATA[51.950 MHz -0.6 CTCSS 123 Hz<br>F4ASS]]></description>
         <styleUrl>#icon-503-4186F0</styleUrl>
         <Point>
           <coordinates>
             4.4394938,45.3820449,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>(56) F1ZKU V</name>
-        <description>projet</description>
-        <styleUrl>#icon-503-F4EB37</styleUrl>
-        <Point>
-          <coordinates>
-            -3.1594287,47.8350287,0
           </coordinates>
         </Point>
       </Placemark>
@@ -1229,8 +1271,8 @@
       </Placemark>
       <Placemark>
         <name>(54) F5ZUD R</name>
-        <description>145.712.5 Mhz  -600 CTCSS 100Hz</description>
-        <styleUrl>#icon-503-F4EB37</styleUrl>
+        <description><![CDATA[145.712.5 Mhz  -600 CTCSS 250.3Hz<br>F4BIT]]></description>
+        <styleUrl>#icon-503-4186F0</styleUrl>
         <Point>
           <coordinates>
             6.146048,48.6496809,0
@@ -1248,16 +1290,6 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(972) FM1LF V</name>
-        <description>144.850 MHz Ctcss 97.4Hz</description>
-        <styleUrl>#icon-503-DB4436</styleUrl>
-        <Point>
-          <coordinates>
-            -61.0372237,14.6737791,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
         <name>(58) F4HLJ V</name>
         <description>145.3125 MHz CTCSS 77Hz</description>
         <styleUrl>#icon-503-DB4436</styleUrl>
@@ -1269,7 +1301,7 @@
       </Placemark>
       <Placemark>
         <name>(46) F1ZNH U</name>
-        <description>439.7125 MHz Ctcss 225.7Hz</description>
+        <description><![CDATA[439.7125 MHz Ctcss 225.7Hz<br>F4EYL]]></description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -1278,8 +1310,8 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(10) F1ZCU R</name>
-        <description>433.075 -1.6MHz Ctcss 123Hz</description>
+        <name>(10) F1ZCU U</name>
+        <description><![CDATA[433.075 -1.6MHz Ctcss 123Hz<br>F1GZH]]></description>
         <styleUrl>#icon-503-4186F0</styleUrl>
         <Point>
           <coordinates>
@@ -1308,18 +1340,8 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(37) F6KCI V</name>
-        <description>144.5375 / 431.0375 CTCSS 123Hz</description>
-        <styleUrl>#icon-503-DB4436</styleUrl>
-        <Point>
-          <coordinates>
-            0.6791343,47.4285645,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
         <name>(78) F5ZPX T</name>
-        <description>145.225 MHz 430.225 +1.6 MHz CTCSS 192.8 Hz</description>
+        <description><![CDATA[145.225 MHz 430.225 +1.6 MHz CTCSS 192.8 Hz<br>F4AID]]></description>
         <styleUrl>#icon-503-F4EB37</styleUrl>
         <Point>
           <coordinates>
@@ -1328,19 +1350,9 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(2B) TK1CX ? </name>
-        <description>projet</description>
-        <styleUrl>#icon-503-F4EB37</styleUrl>
-        <Point>
-          <coordinates>
-            9.1956634,42.3781031,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>(QC) VA2RQM V</name>
-        <description>147.285 MHZ +600KHz CTCSS 156.7 Hz</description>
-        <styleUrl>#icon-503-4186F0</styleUrl>
+        <name>(QC) VE2RQF S</name>
+        <description>927.300 MHz -25MHz CTCSS 103.5 Hz Allstar</description>
+        <styleUrl>#icon-503-795046</styleUrl>
         <Point>
           <coordinates>
             -71.8945312,45.4061637,0
@@ -1357,6 +1369,146 @@
           </coordinates>
         </Point>
       </Placemark>
+      <Placemark>
+        <name>(972) FM1LF V</name>
+        <description>144.8625 MHz Ctcss 97.4Hz</description>
+        <styleUrl>#icon-503-DB4436</styleUrl>
+        <Point>
+          <coordinates>
+            -61.0372237,14.6737791,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(13) F5RIJ V</name>
+        <description>144.925 MHz CTCSS 71.9Hz </description>
+        <styleUrl>#icon-503-DB4436</styleUrl>
+        <Point>
+          <coordinates>
+            5.2554436,43.523536,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(971) FG5ZBX U</name>
+        <description>430.200 MHz +9.4 CTCSS 123 Hz FG8OJ</description>
+        <styleUrl>#icon-503-DB4436</styleUrl>
+        <Point>
+          <coordinates>
+            -61.3123285,16.2522017,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(2B) TK1CX V</name>
+        <description>145.900 MHz CTCSS 141.3 Hz</description>
+        <styleUrl>#icon-503-F4EB37</styleUrl>
+        <Point>
+          <coordinates>
+            9.1956634,42.3781031,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(2A) TK0NL V</name>
+        <description>145.300 MHz CTCSS 141.3Hz</description>
+        <styleUrl>#icon-503-F4EB37</styleUrl>
+        <Point>
+          <coordinates>
+            8.738312,41.9221631,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(12) F5ZGF R</name>
+        <description><![CDATA[430.300 MHZ + 1.6MHz CTCSS 71.9Hz<br>F4BRT]]></description>
+        <styleUrl>#icon-503-DB4436</styleUrl>
+        <Point>
+          <coordinates>
+            2.7546825,44.3161,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(971) FG5GP V</name>
+        <description>145.425 MHz CTCSS 123Hz</description>
+        <styleUrl>#icon-503-DB4436</styleUrl>
+        <Point>
+          <coordinates>
+            -61.6016877,16.2358078,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(60) F5KMB V</name>
+        <description><![CDATA[145.325 MHz CTCSS 123Hz<br>F4FSD]]></description>
+        <styleUrl>#icon-503-DB4436</styleUrl>
+        <Point>
+          <coordinates>
+            2.4364787,49.5069688,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(68) F1ZDG R</name>
+        <description><![CDATA[145.625 MHz -0,600MHz CTCSS ? <br>F5UII]]></description>
+        <styleUrl>#icon-503-3F5BA9</styleUrl>
+        <Point>
+          <coordinates>
+            7.1259825,47.9809938,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(51) F5PEG ?</name>
+        <description>projet</description>
+        <styleUrl>#icon-503-F4EB37</styleUrl>
+        <Point>
+          <coordinates>
+            4.3729776,48.9629183,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(29) F4HQE V</name>
+        <description>145.350 MHz CTCSS 71.9 Hz</description>
+        <styleUrl>#icon-503-DB4436</styleUrl>
+        <Point>
+          <coordinates>
+            -4.0628053,47.9086723,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(974) FR5ZAE T</name>
+        <description>145.350 MHz 431.025 MHz CTCSS 97.4Hz </description>
+        <styleUrl>#icon-503-DB4436</styleUrl>
+        <Point>
+          <coordinates>
+            55.2288012,-21.0538225,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(34) F4KJG T</name>
+        <description>projet 2m - 10m </description>
+        <styleUrl>#icon-503-F4EB37</styleUrl>
+        <Point>
+          <coordinates>
+            3.863729,43.6194121,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(VK2) VK2ICW V</name>
+        <description>?</description>
+        <styleUrl>#icon-503-DB4436</styleUrl>
+        <Point>
+          <coordinates>
+            150.7762406,-33.7806656,0
+          </coordinates>
+        </Point>
+      </Placemark>
     </Folder>
     <Folder>
       <name>RRF</name>
@@ -1364,7 +1516,7 @@
     <Folder>
       <name>Calque sans titre</name>
       <Placemark>
-        <name>(971) FG4KL UHF</name>
+        <name>(971) FG4KL U</name>
         <description>430.200 MHz +9.4 CTCSS 123 Hz</description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
