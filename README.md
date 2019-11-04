@@ -56,11 +56,11 @@ Enfin, si une station passe en émission, en lieu et place de l'histogramme du t
 
 À noter qu'à minuit, le nombre de passages en émission sur la journée, l'historique des 5 noeuds les plus actifs, ainsi que l'histogramme sont réinitialisés (à zéro).
 
-## Post installation sur Spotnik 1.9
+## Post installation sur Spotnik 3.8
 
 ### Installation de paquets complémentaires
 
-En partant de la version 1.9 de Spotnik, commencez par cloner ce projet dans le répertoire /opt. Donc, depuis une connexion SSH, lancez les commandes suivantes:
+En partant de la version 3.0 de Spotnik, commencez par cloner ce projet dans le répertoire /opt. Donc, depuis une connexion SSH, lancez les commandes suivantes:
 
 `cd /opt`
 
@@ -70,11 +70,15 @@ Puis,
 
 Il faut également procéder à l'installation de quelques paquets complémentaires. Toujours depuis une connexion SSH, lancez les commandes suivantes:
 
-`sudo apt-get install i2c-tools libi2c-dev python-smbus python-pip python-dev python-imaging`
+`sudo apt-get update`
+
+`sudo apt-get install i2c-tools libi2c-dev python-smbus python-pip python-dev python-pil`
 
 `sudo apt-get install libfreetype6-dev libjpeg-dev build-essential`
 
 `sudo pip install --upgrade setuptools`
+
+`sudo pip install requests`
 
 `sudo -H pip install --upgrade luma.oled`
 

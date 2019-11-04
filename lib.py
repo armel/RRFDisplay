@@ -126,8 +126,11 @@ def system_info(value):
         tmp = tmp.split()
 
         mem = tmp[1]
-        mem_total = int(tmp[1][:-1])
-        mem_use = int(tmp[2][:-1])
+        #mem_total = int(tmp[1][:-1])
+        #mem_use = int(tmp[2][:-1])
+
+        mem_total = int(tmp[1][:-2])
+        mem_use = int(tmp[2][:-2])
 
         return str(int((float(mem_use) / float(mem_total)) * 100)), str(mem)
 
