@@ -56,7 +56,7 @@ Enfin, si une station passe en émission, en lieu et place de l'histogramme du t
 
 À noter qu'à minuit, le nombre de passages en émission sur la journée, l'historique des 5 noeuds les plus actifs, ainsi que l'histogramme sont réinitialisés (à zéro).
 
-## Post installation sur Spotnik 3.8
+## Post installation sur Spotnik 3.0
 
 ### Installation de paquets complémentaires
 
