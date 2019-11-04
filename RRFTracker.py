@@ -36,7 +36,7 @@ def main(argv):
             l.usage()
             sys.exit()
         elif opt in ('--i2c-port'):
-            s.i2c_port = arg
+            s.i2c_port = int(arg)
         elif opt in ('--i2c-address'):
             s.i2c_address = int(arg, 16)
         elif opt in ('--display'):

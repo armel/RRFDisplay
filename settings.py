@@ -10,7 +10,7 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 
 # Version
 
-version = '2.6.0'
+version = '2.6.1'
 
 # Default i2c_port, i2c_address, display and room
 
