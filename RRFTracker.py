@@ -114,8 +114,6 @@ def main(argv):
                     s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
 
                 s.call_current = data_transmit[u'Indicatif']
-                s.call_current = s.call_current.replace('(', '')
-                s.call_current = s.call_current.replace(') ', ' ')
 
                 s.duration = data_transmit['TOT']
 
