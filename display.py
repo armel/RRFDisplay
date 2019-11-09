@@ -455,7 +455,7 @@ def display_128():
                 histogram(draw, legacy, 72, 30)
 
         # Elsewhere
-        elsewhere(draw, s.rapot)
+        elsewhere(draw, s.raptor)
 
         # Finaly, print clock and room
         clock_room(draw)
