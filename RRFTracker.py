@@ -122,18 +122,18 @@ def main(argv):
                 limit = len(rrf_data['allExtended'])
 
             for q in xrange(0, limit):
-                s.best[q] = l.sanitize_call(rrf_data['allExtended'][q][u'Indicatif'])
+                s.best[q] = l.sanitize_call(rrf_data['allExtended'][q][u'Indicatif'].encode('utf-8'))
                 s.best_time[q] = l.convert_time_to_second(rrf_data['allExtended'][q][u'Durée'])
 
-            s.message[0] = l.sanitize_call(data_last[2][u'Indicatif'])
-            s.message[1] = l.sanitize_call(data_last[1][u'Indicatif'])
-            s.message[2] = l.sanitize_call(data_last[0][u'Indicatif'])
+            s.message[0] = l.sanitize_call(data_last[2][u'Indicatif'].encode('utf-8'))
+            s.message[1] = l.sanitize_call(data_last[1][u'Indicatif'].encode('utf-8'))
+            s.message[2] = l.sanitize_call(data_last[0][u'Indicatif'].encode('utf-8'))
 
             if data_transmit['Indicatif'] != '':
                 if s.transmit is False:      # Wake up screen...
                     s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
 
-                s.call_current = l.sanitize_call(data_transmit[u'Indicatif'])
+                s.call_current = l.sanitize_call(data_transmit[u'Indicatif'].encode('utf-8'))
 
                 s.duration = data_transmit[u'TOT']
 
