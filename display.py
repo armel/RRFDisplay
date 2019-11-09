@@ -149,21 +149,21 @@ def extended_system(draw, page):
     draw.text((tab, 0), 'Spotnik Infos', font=font, fill='white')
 
     if page == 1:
-        sys = {'Arch': '', 'Uptime': '', 'Load': '', 'Temp': '', 'Freq': ''}
-        sys_order = ['Arch', 'Uptime', 'Load', 'Temp', 'Freq']
+        sys = {'Arch': '', 'Kernel': '', 'Uptime': '', 'Load': '', 'Freq': ''}
+        sys_order = ['Arch', 'Kernel', 'Uptime', 'Load', 'Freq']
 
         sys['Arch'] = l.system_info('arch')
+        sys['Kernel'] = l.system_info('kernel')
         sys['Uptime'] = l.system_info('up')
         sys['Load'] = l.system_info('load')
-        sys['Temp'] = l.system_info('temp') + ' C'
         sys['Freq'] = l.system_info('freq') + ' MHz'
 
     elif page == 2:
-        sys = {'Arch': '', 'IP': '', 'Mem': '', 'Disk': '', 'Version': ''}
-        sys_order = ['Arch', 'IP', 'Mem', 'Disk', 'Version']
+        sys = {'IP': '', 'Temp': '', 'Mem': '', 'Disk': '', 'Version': ''}
+        sys_order = ['IP', 'Temp', 'Mem', 'Disk', 'Version']
 
-        sys['Arch'] = l.system_info('arch')
         sys['IP'] = l.system_info('ip')
+        sys['Temp'] = l.system_info('temp') + ' C'
 
         percent, mem = l.system_info('mem')
         sys['Mem'] = percent + '% of ' + mem
@@ -173,17 +173,17 @@ def extended_system(draw, page):
         sys['Version'] = s.version
 
     else:
-        sys = {'Arch': '', 'Uptime': '', 'Load': '', 'Temp': '', 'Freq': '', 'Arch': '', 'IP': '', 'Mem': '', 'Disk': '', 'Version': ''}
-        sys_order = ['Arch', 'Uptime', 'Load', 'Temp', 'Freq', 'Arch', 'IP', 'Mem', 'Disk', 'Version']
+        sys = {'Arch': '', 'Kernel': '', 'Uptime': '', 'Load': '', 'Freq': '', 'IP': '', 'Temp': '', 'Mem': '', 'Disk': '', 'Version': ''}
+        sys_order = ['Arch', 'Kernel', 'Uptime', 'Load', 'Freq', 'IP', 'Temp', 'Mem', 'Disk', 'Version']
         
         sys['Arch'] = l.system_info('arch')
+        sys['Kernel'] = l.system_info('kernel')
         sys['Uptime'] = l.system_info('up')
         sys['Load'] = l.system_info('load')
-        sys['Temp'] = l.system_info('temp') + ' C'
         sys['Freq'] = l.system_info('freq') + ' MHz'
 
-        sys['Arch'] = l.system_info('arch')
         sys['IP'] = l.system_info('ip')
+        sys['Temp'] = l.system_info('temp') + ' C'
 
         percent, mem = l.system_info('mem')
         sys['Mem'] = percent + '% of ' + mem
@@ -247,8 +247,6 @@ def extended_best(draw, limit = 5):
 
     best_min = min(s.best_time)
     best_max = max(s.best_time)
-
-    print best_min, best_max
 
     i = 16
 

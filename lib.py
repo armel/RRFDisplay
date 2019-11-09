@@ -200,7 +200,10 @@ def system_info(value):
             tmp = 'Orange Pi'
         else:
             tmp = 'Raspberry Pi'
+        return str(tmp)
 
+    elif value == 'kernel':
+        tmp = os.popen('uname -r').readline()
         return str(tmp)
 
 
