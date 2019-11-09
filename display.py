@@ -429,6 +429,10 @@ def display_128():
                 draw.point((i, 108), fill='indigo')
                 draw.point((i, 118), fill='indigo')
 
+            for i in xrange(78, 128, 2):
+                draw.point((24, i), fill='indigo')
+
+
             # Icon stat
             draw.text((0, 26), u'\ue801', font=icon, fill='indigo')
 
