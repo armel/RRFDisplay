@@ -126,7 +126,7 @@ def main(argv):
                 s.message[2] = 'Last TX ' + data_last[0][u'Heure']
 
             if(s.blanc_alternate == 0):     # TX today
-                s.message[4] = 'TX Count ' + str(data_abstract[u'TX total'])
+                s.message[4] = 'TX today ' + str(data_abstract[u'TX total'])
                 s.blanc_alternate = 1
 
             elif(s.blanc_alternate == 1):   # Boot time
