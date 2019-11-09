@@ -195,10 +195,10 @@ def extended_system(draw, page):
     i = 16
 
     for j in sys_order:
-        draw.rectangle((0, i - 1, 38, i + 7), fill='blue')
-        draw.line((39, i, 39, i + 6), fill='blue')
-        draw.line((40, i + 2, 40, i + 4), fill='blue')
-        draw.point((41, i + 3), fill='blue')
+        draw.rectangle((0, i - 1, 38, i + 7), fill='indigo')
+        draw.line((39, i, 39, i + 6), fill='indigo')
+        draw.line((40, i + 2, 40, i + 4), fill='indigo')
+        draw.point((41, i + 3), fill='indigo')
 
         draw.text((1, i), j, font=font, fill='black')
         draw.text((48, i), sys[j], font=font, fill='white')
@@ -222,10 +222,10 @@ def extended_call(draw, limit = 5):
     i = 16
 
     for j in xrange(0, limit):
-        draw.rectangle((0, i - 1, 42, i + 7), fill='white')
-        draw.line((43, i, 43, i + 6), fill='white')
-        draw.line((44, i + 2, 44, i + 4), fill='white')
-        draw.point((45, i + 3), fill='white')
+        draw.rectangle((0, i - 1, 42, i + 7), fill='indigo')
+        draw.line((43, i, 43, i + 6), fill='indigo')
+        draw.line((44, i + 2, 44, i + 4), fill='indigo')
+        draw.point((45, i + 3), fill='indigo')
 
         draw.text((1, i), s.call_time[j], font=font, fill='black')
         draw.text((54, i), s.call[j], font=font, fill='white')
@@ -261,10 +261,10 @@ def extended_best(draw, limit = 5):
         if t == 0:
             t = 42
 
-        draw.rectangle((0, i - 1, t, i + 7), fill='white')
-        draw.line((t + 1, i, t + 1, i + 6), fill='white')
-        draw.line((t + 2, i + 2, t + 2, i + 4), fill='white')
-        draw.point((t + 3, i + 3), fill='white')
+        draw.rectangle((0, i - 1, t, i + 7), fill='indigo')
+        draw.line((t + 1, i, t + 1, i + 6), fill='indigo')
+        draw.line((t + 2, i + 2, t + 2, i + 4), fill='indigo')
+        draw.point((t + 3, i + 3), fill='indigo')
 
         draw.text((1, i), l.convert_second_to_time(n), font=font, fill='black')
         draw.text((54, i), c, font=font, fill='white')
