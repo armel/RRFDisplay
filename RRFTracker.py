@@ -77,7 +77,7 @@ def main(argv):
 
         # Requete HTTP vers le flux json du salon produit par le RRFTracker 
         try:
-            r = requests.get(s.room[s.current_room]['url'], verify=False, timeout=10)
+            r = requests.get(url, verify=False, timeout=10)
         except requests.exceptions.ConnectionError as errc:
             print ('Error Connecting:', errc)
         except requests.exceptions.Timeout as errt:
