@@ -271,6 +271,24 @@ def extended_best(draw, limit = 5):
 
         i += 10
 
+# Print Elsewhere
+
+def elsewhere(draw, data):
+
+    i = 40
+
+    for d in data:
+        d = split('/')
+        if d[0] == 0:
+            color = 'indigo'
+        else:
+            color = 'white'
+
+        draw.text((1, i), d[1], font=font, fill=color)
+        draw.text((54, i), d[2], font=font, fill=color)
+
+        i += 10
+
 
 # Print display on 128 x 32
 def display_32():
@@ -435,6 +453,9 @@ def display_128():
             else:
                 # Draw stats histogram
                 histogram(draw, legacy, 72, 30)
+
+        # Elsewhere
+        elsewhere(draw, s.rapot)
 
         # Finaly, print clock and room
         clock_room(draw)

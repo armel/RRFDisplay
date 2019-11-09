@@ -129,20 +129,18 @@ def main(argv):
             s.message[1] = l.sanitize_call(data_last[1][u'Indicatif'].encode('utf-8'))
             s.message[2] = l.sanitize_call(data_last[0][u'Indicatif'].encode('utf-8'))
 
-            i = 0
-            for data in rrf_data['elsewhere'][6]:
-                if data in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
-                    tmp = rrf_data['elsewhere'][6][data]
-                    if tmp != 0:
-                        color = 'white'
-                    else:
-                        color = 'blue'
+            if s.device.height == 128:      # Only if place...
+                i = 0
+                for data in rrf_data['elsewhere'][6]:
+                    if data in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
+                        tmp = rrf_data['elsewhere'][6][data]
+                        if tmp != 0:
+                            status = 1
+                        else:
+                            status = 0
 
-                    s.raptor[i] = data[:3] + '  ' + rrf_data['elsewhere'][3][data] + ' ' + rrf_data['elsewhere'][5][data]
-                    i += 1
-
-            for m in s.raptor:
-                print m
+                        s.raptor[i] = status + '/' + data[:3] + '/' + rrf_data['elsewhere'][3][data] + '/' + rrf_data['elsewhere'][5][data]
+                        i += 1
 
             if data_transmit['Indicatif'] != '':
                 if s.transmit is False:      # Wake up screen...
