@@ -284,9 +284,6 @@ def elsewhere(draw, data):
         else:
             color = 'white'
 
-        if len(d[2]) == 5:
-            d[2] = '   ' + d[2]
-
         draw.text((1, i), d[1], font=font, fill=color)
         draw.text((26, i), d[2], font=font, fill=color)
         draw.text((80, i), d[3], font=font, fill=color)
