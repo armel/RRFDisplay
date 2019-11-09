@@ -125,25 +125,25 @@ def main(argv):
                 s.message[1] = data_last[0]['Indicatif']
                 s.message[2] = 'Last TX ' + data_last[0][u'Heure']
 
-                if(s.blanc_alternate == 0):     # TX today
-                    s.message[4] = 'TX Counter ' + str(data_abstract[u'TX total'])
-                    s.blanc_alternate = 1
+            if(s.blanc_alternate == 0):     # TX today
+                s.message[4] = 'TX Count ' + str(data_abstract[u'TX total'])
+                s.blanc_alternate = 1
 
-                elif(s.blanc_alternate == 1):   # Boot time
-                    s.message[4] = 'Up ' + l.calc_uptime(time.time() - s.timestamp_start)
-                    s.blanc_alternate = 2
+            elif(s.blanc_alternate == 1):   # Boot time
+                s.message[4] = 'Up ' + l.calc_uptime(time.time() - s.timestamp_start)
+                s.blanc_alternate = 2
 
-                elif(s.blanc_alternate == 2):   # Active node
-                    s.message[4] = 'Active links ' + str(data_abstract[u'Links actifs'])
-                    s.blanc_alternate = 3
+            elif(s.blanc_alternate == 2):   # Active node
+                s.message[4] = 'Active links ' + str(data_abstract[u'Links actifs'])
+                s.blanc_alternate = 3
 
-                elif(s.blanc_alternate == 3):   # Connected node
-                    s.message[4] = 'Connected links ' + str(data_abstract[u'Links connectés'])
-                    s.blanc_alternate = 4
-                    
-                elif(s.blanc_alternate == 4):   # Total emission
-                    s.message[4] = 'TX Duration ' + data_abstract[u'Emission cumulée']
-                    s.blanc_alternate = 0
+            elif(s.blanc_alternate == 3):   # Online node
+                s.message[4] = 'Online links ' + str(data_abstract[u'Links connectés'])
+                s.blanc_alternate = 4
+                
+            elif(s.blanc_alternate == 4):   # Total emission
+                s.message[4] = 'Total time ' + data_abstract[u'Emission cumulée']
+                s.blanc_alternate = 0
 
         # Print screen
         if s.device.height == 128:
