@@ -113,16 +113,16 @@ def main(argv):
                 s.call_current = data_transmit['Indicatif']
                 s.duration = data_transmit['TOT']
 
-                s.message[0] = data_last[0]['Indicatif']
+                s.message[0] = data_last[2]['Indicatif']
                 s.message[1] = data_last[1]['Indicatif']
-                s.message[2] = data_last[2]['Indicatif']
+                s.message[2] = data_last[0]['Indicatif']
 
             else:
                 if s.transmit is True:       # Sleep screen...
                     s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
 
-                s.message[0] = data_last[0]['Indicatif']
-                s.message[1] = data_last[1]['Indicatif']
+                s.message[0] = data_last[1]['Indicatif']
+                s.message[1] = data_last[0]['Indicatif']
                 s.message[2] = 'Last TX ' + data_last[0][u'Heure']
 
                 if(s.blanc_alternate == 0):     # TX today
