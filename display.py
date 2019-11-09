@@ -428,7 +428,7 @@ def display_128():
                     if i == 24:
                         i += 6
 
-            if s.transmit is True and s.tot_current > s.tot_start:
+            if s.transmit is True and s.duration > 0:
                 # Draw tot
                 tot(draw, legacy, s.duration, 57)
             else:
