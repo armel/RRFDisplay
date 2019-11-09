@@ -75,7 +75,7 @@ def tot(draw, legacy, start, current, position):
 
 
 # Draw histogram
-def histogram(draw, legacy, position):
+def histogram(draw, legacy, position, height = 15):
 
     qso_hour_max = max(s.qso_hour)
 
@@ -83,11 +83,11 @@ def histogram(draw, legacy, position):
 
     for q in s.qso_hour:
         if q != 0:
-            h = l.interpolation(q, 1, qso_hour_max, 1, 15)
+            h = l.interpolation(q, 1, qso_hour_max, 1, height)
         else:
             h = 0
 
-        draw.rectangle((0 + i, position, i + 2, (position - 15)), fill='black')
+        draw.rectangle((0 + i, position, i + 2, (position - height)), fill='black')
         draw.rectangle((0 + i, position, i + 2, (position - h)), fill='white')
         i += 5
 
@@ -172,7 +172,7 @@ def extended_system(draw, page):
         percent, disk = l.system_info('disk')
         sys['Disk'] = percent + ' of ' + disk
         sys['Version'] = s.version
-        
+
     else:
         sys = {'Arch': '', 'Uptime': '', 'Load': '', 'Temp': '', 'Freq': '', 'Arch': '', 'IP': '', 'Mem': '', 'Disk': '', 'Version': ''}
         sys_order = ['Arch', 'Uptime', 'Load', 'Temp', 'Freq', 'Arch', 'IP', 'Mem', 'Disk', 'Version']
@@ -432,7 +432,7 @@ def display_128():
                 tot(draw, legacy, s.tot_start, s.tot_current, 57)
             else:
                 # Draw stats histogram
-                histogram(draw, legacy, 57)
+                histogram(draw, legacy, 72, 30)
 
         # Finaly, print clock and room
         clock_room(draw)
