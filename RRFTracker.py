@@ -126,9 +126,6 @@ def main(argv):
                 s.best_time[q] = l.convert_time_to_second(rrf_data['allExtended'][q][u'Durée'])
 
 
-            print s.best, s.best_time
-
-
             if data_transmit['Indicatif'] != '':
                 if s.transmit is False:      # Wake up screen...
                     s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
