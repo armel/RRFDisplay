@@ -385,12 +385,12 @@ def display_128():
             extended_system(draw, 3)
 
         # Call log extended
-        elif s.transmit is False and len(s.call_time) >=5 and s.minute % 2 == 0 and s.seconde < 45:
-            extended_call(draw, 10)
+        elif s.transmit is False and len(s.call) >=5 and s.minute % 2 == 0 and s.seconde < 45:
+            extended_call(draw, len(s.call))
 
         # Best log extended
-        elif s.transmit is False and len(s.history) >= 5 and s.minute % 2 == 0:
-            extended_best(draw, 10)
+        elif s.transmit is False and len(s.best) >= 5 and s.minute % 2 == 0:
+            extended_best(draw, len(s.best))
 
         # If not extended
         else:
