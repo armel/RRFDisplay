@@ -208,7 +208,7 @@ def extended_system(draw, page):
 
 # Print Call Log Extended
 
-def extended_call(draw):
+def extended_call(draw, limit = 5):
 
     draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
 
@@ -221,7 +221,7 @@ def extended_call(draw):
 
     i = 16
 
-    for j in xrange(0, 5):
+    for j in xrange(0, limit):
         draw.rectangle((0, i - 1, 42, i + 7), fill='white')
         draw.line((43, i, 43, i + 6), fill='white')
         draw.line((44, i + 2, 44, i + 4), fill='white')
@@ -235,15 +235,15 @@ def extended_call(draw):
 
 # Print Best Log Extended
 
-def extended_best(draw):
+def extended_best(draw, limit = 5):
 
     draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
 
     draw.text((0, 0), u'\ue801', font=icon, fill='white')
 
-    w, h = draw.textsize(text=s.room + ' Best TX', font=font)
+    w, h = draw.textsize(text=s.room_current + ' Best TX', font=font)
     tab = (s.device.width - w) / 2
-    draw.text((tab, 0), s.room + ' Best TX', font=font, fill='white')
+    draw.text((tab, 0), s.room_current + ' Best TX', font=font, fill='white')
 
     tmp = sorted(s.history.items(), key=lambda x: x[1])
     tmp.reverse()
@@ -253,7 +253,7 @@ def extended_best(draw):
 
     i = 16
 
-    for j in xrange(0, 5):
+    for j in xrange(0, limit):
         c, n = tmp[j]
         t = l.interpolation(n, s.history[best_min], s.history[best_max], 12, 42)
         if t == 0:
@@ -387,11 +387,11 @@ def display_128():
 
         # Call log extended
         elif s.transmit is False and len(s.call_time) >=5 and s.minute % 2 == 0 and s.seconde < 45:
-            extended_call(draw)
+            extended_call(draw, 10)
 
         # Best log extended
         elif s.transmit is False and len(s.history) >= 5 and s.minute % 2 == 0:
-            extended_best(draw)
+            extended_best(draw, 10)
 
         # If not extended
         else:
