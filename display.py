@@ -170,7 +170,7 @@ def extended_system(draw, page):
         sys['Mem'] = percent + '% of ' + mem
 
         percent, disk = l.system_info('disk')
-        sys['Disk'] = percent + '% of ' + disk
+        sys['Disk'] = percent + ' of ' + disk
         sys['Version'] = s.version
 
     i = 16

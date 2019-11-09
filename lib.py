@@ -135,24 +135,14 @@ def system_info(value):
         return str(int((float(mem_use) / float(mem_total)) * 100)), str(mem)
 
     elif value == 'disk':
-        tmp = list(os.popen('df -h'))
+        tmp = list(os.popen('df -h /dev/mmcblk0p1'))
         tmp = tmp[1].strip()
         tmp = tmp.split()
 
-        print tmp
-
-        disk = tmp[1]
-        disk_total = (tmp[1][:-1]).replace(',', '.')
-        disk_use = (tmp[2][:-1]).replace(',', '.')
+        disk_total = tmp[1]
+        disk_use = tmp[4]
         
-        print disk_total, disk_use
-
-        disk_total = (tmp[1][:-2]).replace(',', '.')
-        disk_use = (tmp[2][:-2]).replace(',', '.')
-
-        print disk_total, disk_use
-
-        return str(int((float(disk_use) / float(disk_total)) * 100)), str(disk)
+        return str(disk_use), str(disk_total)
 
     elif value == 'load':
         tmp = list(os.popen('w | head -n 1'))
