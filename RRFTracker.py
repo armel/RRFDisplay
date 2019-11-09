@@ -129,6 +129,20 @@ def main(argv):
             s.message[1] = l.sanitize_call(data_last[1][u'Indicatif'].encode('utf-8'))
             s.message[2] = l.sanitize_call(data_last[0][u'Indicatif'].encode('utf-8'))
 
+            i = 0
+            for data in rrf_data['elsewhere'][6]:
+                if data in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
+                    tmp = rrf_data['elsewhere'][6][data]
+                        if tmp != 0:
+                            color = 'white'
+                        else:
+                            color = 'blue'
+
+                    s.message[5 + i] = data[:3] + rrf_data['elsewhere'][3][data]
+                    i += 1
+
+            print s.message
+            
             if data_transmit['Indicatif'] != '':
                 if s.transmit is False:      # Wake up screen...
                     s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)

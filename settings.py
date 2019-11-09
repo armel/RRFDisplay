@@ -117,7 +117,7 @@ letter = {
 call = ['', '', '', '', '', '', '', '', '', '']         # Call list
 call_time = ['', '', '', '', '', '', '', '', '', '']    # Call time list
 best = ['', '', '', '', '', '', '', '', '', '']         # Best list
-best_time = [0] * 10                                 # Best time list
+best_time = [0] * 10                                    # Best time list
 
 call_current = call[0]                                  # Call current
 
@@ -130,7 +130,7 @@ transmit = True                             # Detect transmit
 stat_save = False                           # If False, stat need to be save
 
 history = dict()                            # History dict
-message = [None] * 7                        # Message list
+message = [None] * 10                       # Message list
 
 # Set time and date
 
