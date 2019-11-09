@@ -67,11 +67,6 @@ SMALL_BITMAP_FONT = [
 # Room list
 
 room = {
-    'PARROT': {
-        'url': '',
-        'tot': 0,
-        'last': ''
-    },
     'RRF': {
         'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/RRF-today/rrf.json',
         'tot': 120,
