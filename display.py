@@ -267,7 +267,7 @@ def extended_best(draw, limit = 5):
         draw.line((t + 2, i + 2, t + 2, i + 4), fill='white')
         draw.point((t + 3, i + 3), fill='white')
 
-        draw.text((1, i), l.convert_second_to_time(n), font=font, fill='black')
+        draw.text((1, i), l.convert_second_to_time(int(n)), font=font, fill='black')
         draw.text((54, i), c, font=font, fill='white')
 
         i += 10
