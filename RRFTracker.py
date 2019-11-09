@@ -74,6 +74,12 @@ def main(argv):
     s.timestamp_start = time.time()
 
     while(True):
+        tmp = datetime.datetime.now()
+        s.day = tmp.strftime('%Y-%m-%d')
+        s.now = tmp.strftime('%H:%M:%S')
+        s.hour = int(tmp.strftime('%H'))
+        s.minute = int(s.now[3:-3])
+        s.seconde = int(s.now[-2:])
 
         # Requete HTTP vers le flux json du salon produit par le RRFTracker 
         try:
