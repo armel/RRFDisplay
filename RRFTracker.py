@@ -139,7 +139,7 @@ def main(argv):
                         else:
                             status = 0
 
-                        s.raptor[i] = str(status) + '/' + data[:3] + '/' + l.convert_second_to_time(l.convert_time_to_second(rrf_data['elsewhere'][3][data])) + '/' + rrf_data['elsewhere'][5][data]
+                        s.raptor[i] = str(status) + '/' + data[:3] + '/' + rrf_data['elsewhere'][3][data] + '/' + rrf_data['elsewhere'][5][data]
                         i += 1
 
             if data_transmit['Indicatif'] != '':
