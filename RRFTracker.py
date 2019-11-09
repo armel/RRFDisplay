@@ -97,7 +97,44 @@ def main(argv):
             data_last = rrf_data['last']
             data_elsewhere = rrf_data['elsewhere']
 
-            print data_abstract
+            if data_transmit['Indicatif'] != '':
+                if s.transmit is False:      # Wake up screen...
+                    s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
+
+                s.call_current = data_transmit['Indicatif']
+                s.duration = data_transmit['TOT']
+
+                s.message[0] = data_last[0]['Indicatif']
+                s.message[1] = data_last[1]['Indicatif']
+                s.message[2] = data_last[2]['Indicatif']
+
+            else:
+                if s.transmit is True:       # Sleep screen...
+                    s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
+
+                s.message[0] = data_last[0]['Indicatif']
+                s.message[1] = data_last[1]['Indicatif']
+                s.message[2] = 'Last TX ' + data_last[0]['Heure']
+
+                if(s.blanc_alternate == 0):     # TX today
+                    s.message[4] = 'TX Counter ' + data_abstract['TX total']
+                    s.blanc_alternate = 1
+
+                elif(s.blanc_alternate == 1):   # Boot time
+                    s.message[4] = 'Up ' + l.calc_uptime(time.time() - s.timestamp_start)
+                    s.blanc_alternate = 2
+
+                elif(s.blanc_alternate == 2):   # Active node
+                    s.message[4] = 'Active links ' + data_abstract['Links actifs']
+                    s.blanc_alternate = 3
+
+                elif(s.blanc_alternate == 3):   # Connected node
+                    s.message[4] = 'Cnnected links ' + data_abstract['Links connectés']
+                    s.blanc_alternate = 4
+                    
+                elif(s.blanc_alternate == 4):   # Total emission
+                    s.message[4] = 'TX Duration ' + data_abstract['Emission cumulée']
+                    s.blanc_alternate = 0
 
         # Print screen
         if s.device.height == 128:

@@ -21,8 +21,7 @@ font = ImageFont.truetype('fonts/7x5.ttf', 8)           # Text font
 
 
 # Draw tot
-def tot(draw, legacy, start, current, position):
-    duration = int(current) - int(start)
+def tot(draw, legacy, duration, position):
     duration += (duration / 30)     # Reajust time latence
     duration_min = 0
 
@@ -368,9 +367,9 @@ def display_64():
                     if i == 24:
                         i += 6
 
-            if s.transmit is True and s.tot_current > s.tot_start:
+            if s.transmit is True and s.duration > 0:
                 # Draw tot
-                tot(draw, legacy, s.tot_start, s.tot_current, 57)
+                tot(draw, legacy, s.duration, 57)
             else:
                 # Draw stats histogram
                 histogram(draw, legacy, 57)
@@ -431,7 +430,7 @@ def display_128():
 
             if s.transmit is True and s.tot_current > s.tot_start:
                 # Draw tot
-                tot(draw, legacy, s.tot_start, s.tot_current, 57)
+                tot(draw, legacy, s.duration, 57)
             else:
                 # Draw stats histogram
                 histogram(draw, legacy, 72, 30)
