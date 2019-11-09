@@ -278,7 +278,7 @@ def elsewhere(draw, data):
     i = 40
 
     for d in data:
-        d = split('/')
+        d = d.split('/')
         if d[0] == 0:
             color = 'indigo'
         else:
