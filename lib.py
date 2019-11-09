@@ -145,7 +145,8 @@ def system_info(value):
         disk_total = (tmp[1][:-2]).replace(',', '.')
         disk_use = (tmp[2][:-2]).replace(',', '.')
 
-        return str(int((float(disk_use) / float(disk_total)) * 100)), str(disk)
+        #return str(int((float(disk_use) / float(disk_total)) * 100)), str(disk)
+        return "FixMe"
 
     elif value == 'load':
         tmp = list(os.popen('w | head -n 1'))
