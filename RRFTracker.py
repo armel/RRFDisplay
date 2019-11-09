@@ -113,7 +113,7 @@ def main(argv):
                 limit = len(rrf_data['last'])
 
             for q in xrange(0, limit):
-                s.call[q] = l.sanitize_call(rrf_data['last'][q][u'Indicatif'])
+                s.call[q] = l.sanitize_call(rrf_data['last'][q][u'Indicatif'].encode('utf-8'))
                 s.call_time[q] = rrf_data['last'][q][u'Heure']
 
             if len(rrf_data['allExtended']) >= 10:
