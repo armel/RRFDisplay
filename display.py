@@ -246,8 +246,10 @@ def extended_best(draw, limit = 5):
     draw.text((tab, 0), s.room_current[:3] + ' Best Links', font=font, fill='white')
 
     
-    best_min = int(min(s.best_time))
-    best_max = int(max(s.best_time))
+    best_min = min(s.best_time)
+    best_max = max(s.best_time)
+
+    print best_min, best_max
 
     i = 16
 
