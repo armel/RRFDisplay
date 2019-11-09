@@ -254,7 +254,9 @@ def extended_best(draw, limit = 5):
 
     for j in xrange(0, limit):
         c = s.best[j]
-        n = int(s.best_time[j])
+        n = s.best_time[j]
+
+        print c, n
         t = l.interpolation(n, best_min, best_max, 12, 42)
         if t == 0:
             t = 42
@@ -382,11 +384,11 @@ def display_128():
     with canvas(s.device) as draw:
 
         # System log extended Page 1
-        if s.transmit is False and s.minute % 2 == 0 and s.seconde < 30:
+        if s.transmit is False and s.minute % 2 == 0 and s.seconde < 20:
             extended_system(draw, 3)
 
         # Call log extended
-        elif s.transmit is False and len(s.call) >=5 and s.minute % 2 == 0 and s.seconde < 45:
+        elif s.transmit is False and len(s.call) >=5 and s.minute % 2 == 0 and s.seconde < 40:
             extended_call(draw, len(s.call))
 
         # Best log extended
