@@ -91,11 +91,11 @@ def main(argv):
             pass
 
         if rrf_data != '': # Si le flux est valide
-            data_abstract = rrf_data['abstract']
-            data_activity = rrf_data['activity']
-            data_transmit = rrf_data['transmit']
+            data_abstract = rrf_data['abstract'][0]
+            data_activity = rrf_data['activity'][0]
+            data_transmit = rrf_data['transmit'][0]
             data_last = rrf_data['last']
-            data_elsewhere = rrf_data['elsewhere']
+            data_elsewhere = rrf_data['elsewhere'][0]
 
             if data_transmit['Indicatif'] != '':
                 if s.transmit is False:      # Wake up screen...
