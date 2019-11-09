@@ -107,7 +107,8 @@ def main(argv):
                 s.qso_hour[q] = data_activity[q]['TX']
 
             for q in xrange(0, 10):
-                s.history[q] = rrf_data['last'][0][u'Indicatif']
+                s.call[q] = rrf_data['last'][0][u'Indicatif']
+                s.call_time[q] = rrf_data['last'][0][u'Heure']
 
             if data_transmit['Indicatif'] != '':
                 if s.transmit is False:      # Wake up screen...
