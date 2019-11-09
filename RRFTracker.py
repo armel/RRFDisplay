@@ -101,6 +101,7 @@ def main(argv):
             data_activity = rrf_data['activity']
             data_transmit = rrf_data['transmit'][0]
             data_last = rrf_data['last']
+            data_all = rrf_data['allExtended']
             data_elsewhere = rrf_data['elsewhere'][0]
 
             for q in xrange(0, 24):         # Load histogram
@@ -110,8 +111,10 @@ def main(argv):
                 s.call[q] = rrf_data['last'][q][u'Indicatif']
                 s.call_time[q] = rrf_data['last'][q][u'Heure']
 
-            print s.call
-            print s.call_time
+            for q in xrange(0, 10):
+                s.best[q] = rrf_data['allExtended'][q][u'Indicatif']
+                s.best_time[q] = convert_time_to_second(rrf_data['allExtended'][q][u'Durée'])
+
 
             if data_transmit['Indicatif'] != '':
                 if s.transmit is False:      # Wake up screen...

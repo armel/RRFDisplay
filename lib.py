@@ -224,3 +224,26 @@ def calc_distance(call, latitude_1, longitude_1):
                 r = int(ceil(12742 * asin(sqrt(a))))
             return r
     return 0
+
+# Convert second to time
+def convert_second_to_time(time):
+    hours = time // 3600
+    time = time - (hours * 3600)
+
+    minutes = time // 60
+    seconds = time - (minutes * 60)
+
+    if hours == 0:
+        return str('{:0>2d}'.format(int(minutes))) + ':' + str('{:0>2d}'.format(int(seconds)))
+    else:
+        return str('{:0>2d}'.format(int(hours))) + ':' + str('{:0>2d}'.format(int(minutes))) + ':' + str('{:0>2d}'.format(int(seconds)))
+
+# Convert time to second
+def convert_time_to_second(time):
+    if len(time) > 5:
+        format = [3600, 60, 1]
+    else:
+        format = [60, 1]        
+    
+    return sum([a * b for a, b in zip(format, map(int, time.split(':')))])
+

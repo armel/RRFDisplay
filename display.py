@@ -241,21 +241,20 @@ def extended_best(draw, limit = 5):
 
     draw.text((0, 0), u'\ue801', font=icon, fill='white')
 
-    w, h = draw.textsize(text=s.room_current + ' Best TX', font=font)
+    w, h = draw.textsize(text=s.room_current + ' Best Links', font=font)
     tab = (s.device.width - w) / 2
-    draw.text((tab, 0), s.room_current + ' Best TX', font=font, fill='white')
+    draw.text((tab, 0), s.room_current + ' Best Links', font=font, fill='white')
 
-    tmp = sorted(s.history.items(), key=lambda x: x[1])
-    tmp.reverse()
-
-    best_min = min(s.history, key=s.history.get)
-    best_max = max(s.history, key=s.history.get)
+    
+    best_min = min(s.best_time)
+    best_max = max(s.best_time)
 
     i = 16
 
     for j in xrange(0, limit):
-        c, n = tmp[j]
-        t = l.interpolation(n, s.history[best_min], s.history[best_max], 12, 42)
+        c = s.best[j]
+        n = s.best_time[j]
+        t = l.interpolation(n, best_min, best_max, 12, 42)
         if t == 0:
             t = 42
         n = str(n)
@@ -265,7 +264,7 @@ def extended_best(draw, limit = 5):
         draw.line((t + 2, i + 2, t + 2, i + 4), fill='white')
         draw.point((t + 3, i + 3), fill='white')
 
-        draw.text((1, i), n, font=font, fill='black')
+        draw.text((1, i), l.convert_second_to_time(n), font=font, fill='black')
         draw.text((54, i), c, font=font, fill='white')
 
         i += 10

@@ -110,7 +110,10 @@ letter = {
 # Set call
 
 call = ['', '', '', '', '', '', '', '', '', '']         # Call list
-call_time = ['', '', '', '', '', '', '', '', '', '']    # Call list
+call_time = ['', '', '', '', '', '', '', '', '', '']    # Call time list
+best = ['', '', '', '', '', '', '', '', '', '']         # Best list
+best_time = ['', '', '', '', '', '', '', '', '', '']    # Best time list
+
 call_current = call[0]                                  # Call current
 
 blanc_alternate = 0                         # Detect alternate
