@@ -103,6 +103,9 @@ def main(argv):
             data_last = rrf_data['last']
             data_elsewhere = rrf_data['elsewhere'][0]
 
+            for q in xrange(0, 24):         # Load histogram
+                s.qso_hour[q] = data_activity[q]['TX']
+
             if data_transmit['Indicatif'] != '':
                 if s.transmit is False:      # Wake up screen...
                     s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
