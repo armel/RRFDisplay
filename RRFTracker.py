@@ -231,7 +231,7 @@ def main(argv):
 
         # Print screen
         if s.device.height == 128:
-            d.display_64()
+            d.display_128()
         elif s.device.height == 64:
             d.display_64()
         else:

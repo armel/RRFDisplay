@@ -356,3 +356,64 @@ def display_64():
 
         # Finaly, print clock and room
         clock_room(draw)
+
+# Print display on 128 x 128
+def display_128():
+    with canvas(s.device) as draw:
+
+        # System log extended Page 1
+        if s.transmit is False and s.minute % 2 == 0 and s.seconde < 30:
+            extended_system(draw, 1)
+            extended_system(draw, 2)
+
+        # Call log extended
+        elif s.transmit is False and 'Waiting TX' not in s.call_time and s.minute % 2 == 0 and s.seconde < 45:
+            extended_call(draw)
+
+        # Best log extended
+        elif s.transmit is False and len(s.history) >= 5 and s.minute % 2 == 0:
+            extended_best(draw)
+
+        # If not extended
+        else:
+
+            for i in xrange(0, 128, 2):
+                draw.point((i, 25), fill='white')
+                draw.point((i, 40), fill='white')
+
+            # Icon stat
+            draw.text((0, 26), u'\ue801', font=icon, fill='white')
+
+            # Icon talk
+            if s.transmit is True:
+                draw.text((2, 10), u'\uf130', font=icon, fill='white')
+                distance(draw)
+
+            # Icon clock (DIY...)
+            if s.message[2][:4] == 'Last':
+                legacy.text(draw, (0, 8), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CLOCK)
+                legacy.text(draw, (0, 16), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_CLOCK)
+
+            # Print data
+            i = 0
+
+            for m in s.message:
+                if m is not None:
+                    w, h = draw.textsize(text=m, font=font)
+                    tab = (s.device.width - w) / 2
+                    vide = ' ' * 22     # Hack to speed clear screen line...
+                    draw.text((0, i), vide, font=font, fill='white')
+                    draw.text((tab, i), m, font=font, fill='white')
+                    i += h
+                    if i == 24:
+                        i += 6
+
+            if s.transmit is True and s.tot_current > s.tot_start:
+                # Draw tot
+                tot(draw, legacy, s.tot_start, s.tot_current, 57)
+            else:
+                # Draw stats histogram
+                histogram(draw, legacy, 57)
+
+        # Finaly, print clock and room
+        clock_room(draw)
