@@ -245,8 +245,6 @@ def extended_best(draw, limit = 5):
     tab = (s.device.width - w) / 2
     draw.text((tab, 0), s.room_current[:3] + ' Best Links', font=font, fill='white')
 
-    
-    print best, best_time
     best_min = min(s.best_time)
     best_max = max(s.best_time)
 
