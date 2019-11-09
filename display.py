@@ -461,7 +461,7 @@ def display_128():
                 tot(draw, legacy, s.duration, 57)
             else:
                 # Draw stats histogram
-                histogram(draw, legacy, 70, 30)
+                histogram(draw, legacy, 70, 29)
                 # Elsewhere
                 elsewhere(draw, s.raptor)
 
