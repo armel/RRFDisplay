@@ -136,6 +136,9 @@ def main(argv):
                     s.message[4] = 'TX Duration ' + data_abstract['Emission cumulée']
                     s.blanc_alternate = 0
 
+        print s.message
+
+        exit()
         # Print screen
         if s.device.height == 128:
             d.display_128()
