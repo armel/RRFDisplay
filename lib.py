@@ -196,7 +196,7 @@ def system_info(value):
 
     elif value == 'arch':
         tmp = os.popen('uname -a').readline()
-        if 'sun8i' in tmp:
+        if 'sunxi' in tmp:
             tmp = 'Orange Pi'
         else:
             tmp = 'Raspberry Pi'
