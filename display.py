@@ -275,7 +275,7 @@ def extended_best(draw, limit = 5):
 
 def elsewhere(draw, data):
 
-    i = 60
+    i = 70
 
     for d in data:
         d = d.split('/')
@@ -453,9 +453,8 @@ def display_128():
             else:
                 # Draw stats histogram
                 histogram(draw, legacy, 72, 30)
-
-        # Elsewhere
-        elsewhere(draw, s.raptor)
+                # Elsewhere
+                elsewhere(draw, s.raptor)
 
         # Finaly, print clock and room
         clock_room(draw)
