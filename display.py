@@ -159,9 +159,28 @@ def extended_system(draw, page):
         sys['Temp'] = l.system_info('temp') + ' C'
         sys['Freq'] = l.system_info('freq') + ' MHz'
 
-    else:
+    elif page == 2:
         sys = {'Arch': '', 'IP': '', 'Mem': '', 'Disk': '', 'Version': ''}
         sys_order = ['Arch', 'IP', 'Mem', 'Disk', 'Version']
+
+        sys['Arch'] = l.system_info('arch')
+        sys['IP'] = l.system_info('ip')
+
+        percent, mem = l.system_info('mem')
+        sys['Mem'] = percent + '% of ' + mem
+
+        percent, disk = l.system_info('disk')
+        sys['Disk'] = percent + ' of ' + disk
+        sys['Version'] = s.version
+    else:
+        sys = {'Arch': '', 'Uptime': '', 'Load': '', 'Temp': '', 'Freq': '', 'Arch': '', 'IP': '', 'Mem': '', 'Disk': '', 'Version': ''}
+        sys_order = ['Arch', 'Uptime', 'Load', 'Temp', 'Freq', 'Arch', 'IP', 'Mem', 'Disk', 'Version']
+        
+        sys['Arch'] = l.system_info('arch')
+        sys['Uptime'] = l.system_info('up')
+        sys['Load'] = l.system_info('load')
+        sys['Temp'] = l.system_info('temp') + ' C'
+        sys['Freq'] = l.system_info('freq') + ' MHz'
 
         sys['Arch'] = l.system_info('arch')
         sys['IP'] = l.system_info('ip')
@@ -363,8 +382,7 @@ def display_128():
 
         # System log extended Page 1
         if s.transmit is False and s.minute % 2 == 0 and s.seconde < 30:
-            extended_system(draw, 1)
-            extended_system(draw, 2)
+            extended_system(draw, 3)
 
         # Call log extended
         elif s.transmit is False and 'Waiting TX' not in s.call_time and s.minute % 2 == 0 and s.seconde < 45:
