@@ -49,8 +49,8 @@ def main(argv):
         elif opt in ('--display-height'):
             s.display_height = int(arg)
         elif opt in ('--room'):
-            if arg not in ['RRF', 'TEC', 'FON']:
-                print 'Unknown room name (choose between \'RRF\', \'TEC\' and \'FON\')'
+            if arg not in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
+                print 'Unknown room name (choose between \'RRF\', \'TECHNIQUE\', \'INTERNATIONAL\', \'LOCAL\', \'BAVARDAGE\' and \'FON\')'
                 sys.exit()
             s.room_current = arg
         elif opt in ('--latitude'):

@@ -28,7 +28,7 @@ def usage():
     print '  --display-height   set display height (default=64)'
     print
     print 'Room settings:'
-    print '  --room ROOM        set room (default=RRF, choose between [RRF, TEC, FON])'
+    print '  --room ROOM        set room (default=RRF, choose between [RRF, TECHNIQUE, INTERNATIONAL, LOCAL, BAVARDAGE, FON])'
     print
     print 'WGS84 settings:'
     print '  --latitude         set latitude (default=48.8483808, format WGS84)'
