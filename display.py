@@ -82,7 +82,7 @@ def histogram(draw, legacy, position, height = 15):
 
     for q in s.qso_hour:
         if q != 0:
-            h = l.interpolation(q, 1, qso_hour_max, 1, height)
+            h = l.interpolation(q, 0, qso_hour_max, 0, height)
         else:
             h = 0
 
