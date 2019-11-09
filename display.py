@@ -215,9 +215,9 @@ def extended_call(draw):
     legacy.text(draw, (0, -2), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CLOCK)
     legacy.text(draw, (0, 6), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_CLOCK)
 
-    w, h = draw.textsize(text=s.room + ' Last TX', font=font)
+    w, h = draw.textsize(text=s.room_current + ' Last TX', font=font)
     tab = (s.device.width - w) / 2
-    draw.text((tab, 0), s.room + ' Last TX', font=font, fill='white')
+    draw.text((tab, 0), s.room_current + ' Last TX', font=font, fill='white')
 
     i = 16
 
