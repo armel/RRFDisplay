@@ -107,11 +107,21 @@ def main(argv):
             for q in xrange(0, 24):         # Load histogram
                 s.qso_hour[q] = data_activity[q][u'TX']
 
-            for q in xrange(0, 10):
+            if len(rrf_data['last']) >= 10:
+                limit = 10
+            else:
+                limit = len(rrf_data['last'])
+
+            for q in xrange(0, limit):
                 s.call[q] = rrf_data['last'][q][u'Indicatif']
                 s.call_time[q] = rrf_data['last'][q][u'Heure']
 
-            for q in xrange(0, 10):
+            if len(rrf_data['allExtended']) >= 10:
+                limit = 10
+            else:
+                limit = len(rrf_data['allExtended'])
+
+            for q in xrange(0, limit):
                 s.best[q] = rrf_data['allExtended'][q][u'Indicatif']
                 s.best_time[q] = l.convert_time_to_second(rrf_data['allExtended'][q][u'Durée'])
 
