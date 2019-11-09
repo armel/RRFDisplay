@@ -252,3 +252,6 @@ def convert_time_to_second(time):
     
     return sum([a * b for a, b in zip(format, map(int, time.split(':')))])
 
+# Sanitize call
+def sanitize_call(call):
+    return call.translate(None, '\\\'!@#$"()[]')
