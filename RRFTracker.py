@@ -172,7 +172,7 @@ def main(argv):
                 
             elif(s.blanc_alternate == 4):   # Total emission
                 tmp = data_abstract[u'Emission cumulée']
-                tmp = split(':')
+                tmp = tmp.split(':')
 
                 if len(tmp) == 2:
                     tmp = '00h ' + tmp[0] + 'm ' + tmp[1] + 's'
