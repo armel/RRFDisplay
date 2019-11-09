@@ -113,7 +113,7 @@ def main(argv):
                 limit = len(rrf_data['last'])
 
             for q in xrange(0, limit):
-                s.call[q] = sanitize_call(rrf_data['last'][q][u'Indicatif'])
+                s.call[q] = l.sanitize_call(rrf_data['last'][q][u'Indicatif'])
                 s.call_time[q] = rrf_data['last'][q][u'Heure']
 
             if len(rrf_data['allExtended']) >= 10:
@@ -122,18 +122,18 @@ def main(argv):
                 limit = len(rrf_data['allExtended'])
 
             for q in xrange(0, limit):
-                s.best[q] = sanitize_call(rrf_data['allExtended'][q][u'Indicatif'])
+                s.best[q] = l.sanitize_call(rrf_data['allExtended'][q][u'Indicatif'])
                 s.best_time[q] = l.convert_time_to_second(rrf_data['allExtended'][q][u'Durée'])
 
-            s.message[0] = sanitize_call(data_last[2][u'Indicatif'])
-            s.message[1] = sanitize_call(data_last[1][u'Indicatif'])
-            s.message[2] = sanitize_call(data_last[0][u'Indicatif'])
+            s.message[0] = l.sanitize_call(data_last[2][u'Indicatif'])
+            s.message[1] = l.sanitize_call(data_last[1][u'Indicatif'])
+            s.message[2] = l.sanitize_call(data_last[0][u'Indicatif'])
 
             if data_transmit['Indicatif'] != '':
                 if s.transmit is False:      # Wake up screen...
                     s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
 
-                s.call_current = sanitize_call(data_transmit[u'Indicatif'])
+                s.call_current = l.sanitize_call(data_transmit[u'Indicatif'])
 
                 s.duration = data_transmit[u'TOT']
 
