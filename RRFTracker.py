@@ -230,7 +230,9 @@ def main(argv):
             s.blanc_alternate = 0
 
         # Print screen
-        if s.device.height == 64:
+        if s.device.height == 128:
+            d.display_64()
+        elif s.device.height == 64:
             d.display_64()
         else:
             d.display_32()
