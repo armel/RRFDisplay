@@ -279,7 +279,7 @@ def elsewhere(draw, data):
 
     for d in data:
         d = d.split('/')
-        if d[0] == 0:
+        if d[0] == '0':
             color = 'indigo'
         else:
             color = 'white'
