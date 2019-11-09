@@ -110,6 +110,9 @@ def main(argv):
                 s.call[q] = rrf_data['last'][0][u'Indicatif']
                 s.call_time[q] = rrf_data['last'][0][u'Heure']
 
+            print s.call
+            print s.call_time
+
             if data_transmit['Indicatif'] != '':
                 if s.transmit is False:      # Wake up screen...
                     s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
