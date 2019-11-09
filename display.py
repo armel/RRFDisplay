@@ -141,8 +141,8 @@ def extended_system(draw, page):
 
     #draw.text((0, 0), u'\ue801', font=icon, fill='white')
 
-    legacy.text(draw, (0, -2), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CPU)
-    legacy.text(draw, (0, 6), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_CPU)
+    legacy.text(draw, (0, -2), chr(0) + chr(1), fill='indigo', font=s.SMALL_BITMAP_CPU)
+    legacy.text(draw, (0, 6), chr(2) + chr(3), fill='indigo', font=s.SMALL_BITMAP_CPU)
 
     w, h = draw.textsize(text='Spotnik Infos', font=font)
     tab = (s.device.width - w) / 2
@@ -212,8 +212,8 @@ def extended_call(draw, limit = 5):
 
     draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
 
-    legacy.text(draw, (0, -2), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CLOCK)
-    legacy.text(draw, (0, 6), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_CLOCK)
+    legacy.text(draw, (0, -2), chr(0) + chr(1), fill='indigo', font=s.SMALL_BITMAP_CLOCK)
+    legacy.text(draw, (0, 6), chr(2) + chr(3), fill='indigo', font=s.SMALL_BITMAP_CLOCK)
 
     w, h = draw.textsize(text=s.room_current[:3] + ' Last TX', font=font)
     tab = (s.device.width - w) / 2
@@ -239,7 +239,7 @@ def extended_best(draw, limit = 5):
 
     draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
 
-    draw.text((0, 0), u'\ue801', font=icon, fill='white')
+    draw.text((0, 0), u'\ue801', font=icon, fill='indigo')
 
     w, h = draw.textsize(text=s.room_current[:3] + ' Best Links', font=font)
     tab = (s.device.width - w) / 2
@@ -399,15 +399,15 @@ def display_128():
             draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
 
             for i in xrange(0, 128, 2):
-                draw.point((i, 25), fill='white')
-                draw.point((i, 40), fill='white')
+                draw.point((i, 25), fill='indigo')
+                draw.point((i, 40), fill='indigo')
 
             # Icon stat
-            draw.text((0, 26), u'\ue801', font=icon, fill='white')
+            draw.text((0, 26), u'\ue801', font=icon, fill='indigo')
 
             # Icon talk
             if s.transmit is True:
-                draw.text((2, 10), u'\uf130', font=icon, fill='white')
+                draw.text((2, 10), u'\uf130', font=icon, fill='indigo')
                 distance(draw)
 
             # Icon clock (DIY...)
