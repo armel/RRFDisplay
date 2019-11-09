@@ -467,6 +467,8 @@ def display_128():
             if s.transmit is True and s.duration > 0:
                 # Draw tot
                 tot(draw, legacy, s.duration, 57)
+                # Elsewhere
+                elsewhere(draw, s.raptor)
             else:
                 # Draw stats histogram
                 histogram(draw, legacy, 70, 29)
