@@ -171,7 +171,15 @@ def main(argv):
                 s.blanc_alternate = 4
                 
             elif(s.blanc_alternate == 4):   # Total emission
-                s.message[4] = 'Total Time ' + data_abstract[u'Emission cumulée']
+                tmp = data_abstract[u'Emission cumulée']
+                tmp = split(':')
+
+                if len(tmp) == 2:
+                    tmp = '00h ' + tmp[0] + 'm ' + tmp[1] + 's'
+                else:
+                    tmp = tmp[0] + 'h ' + tmp[1] + 'm ' + tmp[2] + 's'    
+
+                s.message[4] = 'Total Time ' + tmp
                 s.blanc_alternate = 5
 
             elif(s.blanc_alternate == 5):   # Last TX

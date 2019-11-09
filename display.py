@@ -284,16 +284,16 @@ def elsewhere(draw, data):
         else:
             color = 'white'
 
-        if len(d[2]) == 5:
-            tmp = d[2].split(':')
-            d[2] = '00h ' + tmp[0] + 'm ' + tmp[1] + 's'
+        tmp = d[2].split(':')
+        if len(tmp) == 2:
+            tmp = '00h ' + tmp[0] + 'm ' + tmp[1] + 's'
         else:
-            tmp = d[2].split(':')
-            d[2] = tmp[0] + 'h ' + tmp[1] + 'm ' + tmp[2] + 's'            
+            tmp = tmp[0] + 'h ' + tmp[1] + 'm ' + tmp[2] + 's'    
+        d[2] = tmp
 
         draw.text((1, i), d[1], font=font, fill=color)
         draw.text((26, i), d[2], font=font, fill=color)
-        draw.text((90, i), d[3], font=font, fill=color)
+        draw.text((92, i), d[3], font=font, fill=color)
 
         i += 10
 
