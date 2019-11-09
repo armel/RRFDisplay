@@ -138,7 +138,7 @@ def distance(draw):
 
 def extended_system(draw, page):
 
-    draw.rectangle((0, 0, 127, 63), fill='black')
+    draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
 
     #draw.text((0, 0), u'\ue801', font=icon, fill='white')
 
@@ -211,7 +211,7 @@ def extended_system(draw, page):
 
 def extended_call(draw):
 
-    draw.rectangle((0, 0, 127, 63), fill='black')
+    draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
 
     legacy.text(draw, (0, -2), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CLOCK)
     legacy.text(draw, (0, 6), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_CLOCK)
@@ -238,7 +238,7 @@ def extended_call(draw):
 
 def extended_best(draw):
 
-    draw.rectangle((0, 0, 127, 63), fill='black')
+    draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
 
     draw.text((0, 0), u'\ue801', font=icon, fill='white')
 
@@ -283,7 +283,7 @@ def display_32():
 
         # If not extended
         else:
-            draw.rectangle((0, 0, 127, 31), fill='black')
+            draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
 
             # Icon talk
             if s.transmit is True:
@@ -335,6 +335,7 @@ def display_64():
 
         # If not extended
         else:
+            draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
 
             for i in xrange(0, 128, 2):
                 draw.point((i, 25), fill='white')
@@ -395,6 +396,7 @@ def display_128():
 
         # If not extended
         else:
+            draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
 
             for i in xrange(0, 128, 2):
                 draw.point((i, 25), fill='white')
