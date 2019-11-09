@@ -405,15 +405,15 @@ def display_128():
     with canvas(s.device) as draw:
 
         # System log extended Page 1
-        if s.transmit is False and s.minute % 2 == 0 and s.seconde < 20:
+        if s.transmit is False and s.minute % 2 == 0 and s.seconde < 15:
             extended_system(draw, 3)
 
         # Call log extended
-        elif s.transmit is False and len(s.call) >=5 and s.minute % 2 == 0 and s.seconde < 40:
+        elif s.transmit is False and len(s.call) >=5 and s.minute % 2 == 0 and s.seconde < 30:
             extended_call(draw, len(s.call))
 
         # Best log extended
-        elif s.transmit is False and len(s.best) >= 5 and s.minute % 2 == 0:
+        elif s.transmit is False and len(s.best) >= 5 and s.minute % 2 == 0 and s.seconde < 45:
             extended_best(draw, len(s.best))
 
         # If not extended
