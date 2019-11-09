@@ -275,7 +275,7 @@ def extended_best(draw, limit = 5):
 
 def elsewhere(draw, data):
 
-    i = 80
+    i = 82
 
     for d in data:
         d = d.split('/')
