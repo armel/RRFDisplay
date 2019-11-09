@@ -172,6 +172,7 @@ def extended_system(draw, page):
         percent, disk = l.system_info('disk')
         sys['Disk'] = percent + ' of ' + disk
         sys['Version'] = s.version
+        
     else:
         sys = {'Arch': '', 'Uptime': '', 'Load': '', 'Temp': '', 'Freq': '', 'Arch': '', 'IP': '', 'Mem': '', 'Disk': '', 'Version': ''}
         sys_order = ['Arch', 'Uptime', 'Load', 'Temp', 'Freq', 'Arch', 'IP', 'Mem', 'Disk', 'Version']
