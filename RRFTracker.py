@@ -113,7 +113,7 @@ def main(argv):
                 limit = len(rrf_data['last'])
 
             for q in xrange(0, limit):
-                s.call[q] = rrf_data['last'][q][u'Indicatif']
+                s.call[q] = sanitize_call(rrf_data['last'][q][u'Indicatif'])
                 s.call_time[q] = rrf_data['last'][q][u'Heure']
 
             if len(rrf_data['allExtended']) >= 10:
@@ -122,29 +122,24 @@ def main(argv):
                 limit = len(rrf_data['allExtended'])
 
             for q in xrange(0, limit):
-                s.best[q] = rrf_data['allExtended'][q][u'Indicatif']
+                s.best[q] = sanitize_call(rrf_data['allExtended'][q][u'Indicatif'])
                 s.best_time[q] = l.convert_time_to_second(rrf_data['allExtended'][q][u'Durée'])
 
+            s.message[0] = sanitize_call(data_last[2][u'Indicatif'])
+            s.message[1] = sanitize_call(data_last[1][u'Indicatif'])
+            s.message[2] = sanitize_call(data_last[0][u'Indicatif'])
 
             if data_transmit['Indicatif'] != '':
                 if s.transmit is False:      # Wake up screen...
                     s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
 
-                s.call_current = data_transmit[u'Indicatif']
+                s.call_current = sanitize_call(data_transmit[u'Indicatif'])
 
                 s.duration = data_transmit[u'TOT']
-
-                s.message[0] = data_last[2][u'Indicatif']
-                s.message[1] = data_last[1][u'Indicatif']
-                s.message[2] = data_last[0][u'Indicatif']
 
             else:
                 if s.transmit is True:       # Sleep screen...
                     s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
-
-                s.message[0] = data_last[2][u'Indicatif']
-                s.message[1] = data_last[1][u'Indicatif']
-                s.message[2] = data_last[0][u'Indicatif']
 
             if(s.blanc_alternate == 0):     # TX today
                 s.message[4] = 'Total TX ' + str(data_abstract[u'TX total'])
