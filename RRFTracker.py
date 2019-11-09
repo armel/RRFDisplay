@@ -68,163 +68,36 @@ def main(argv):
         s.device = ssd1327(serial, width=s.display_width, height=s.display_height, rotate=0, mode='RGB')
 
 
-    print s.room[s.room_current]['url']
-
-    exit(0)
+    url = s.room[s.room_current]['url']
 
     # Boucle principale
     s.timestamp_start = time.time()
 
     while(True):
 
-        # If midnight...
-        tmp = datetime.datetime.now()
-        s.day = tmp.strftime('%Y-%m-%d')
-        s.now = tmp.strftime('%H:%M:%S')
-        s.hour = int(tmp.strftime('%H'))
-        s.minute = int(s.now[3:-3])
-        s.seconde = int(s.now[-2:])
-
-        if(s.now[:5] == '00:00'):
-            s.qso_total += s.qso
-            s.qso = 0
-            for q in xrange(0, 24):         # Clean histogram
-                s.qso_hour[q] = 0
-            s.history.clear()               # Clear history
-
-        # Request HTTP datas
+        # Requete HTTP vers le flux json du salon produit par le RRFTracker 
         try:
-            r = requests.get(url, verify=False, timeout=10)
-            page = r.content
+            r = requests.get(s.room[s.current_room]['url'], verify=False, timeout=10)
         except requests.exceptions.ConnectionError as errc:
             print ('Error Connecting:', errc)
         except requests.exceptions.Timeout as errt:
             print ('Timeout Error:', errt)
 
-        search_start = page.find('TXmit":"')            # Search this pattern
-        search_start += 8                               # Shift...
-        search_stop = page.find('"', search_start)      # And close it...
+        # Controle de la validité du flux json
+        rrf_data = ''
+        try:
+            rrf_data = r.json()
+        except:
+            pass
 
-        # If transmitter...
-        if search_stop != search_start:
+        if rrf_data != '': # Si le flux est valide
+            data_abstract = rrf_data['abstract']
+            data_activity = rrf_data['activity']
+            data_transmit = rrf_data['transmit']
+            data_last = rrf_data['last']
+            data_elsewhere = rrf_data['elsewhere']
 
-            if s.transmit is False:      # Wake up screen...
-                s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
-
-            # Clean call
-            tmp = page[search_start:search_stop]
-            tmp = tmp.replace('(', '')
-            tmp = tmp.replace(') ', ' ')
-            tmp = tmp.replace('\u0026U', '&')   # Replace ampersand...
-
-            s.call_current = tmp
-
-            if (s.call_previous != s.call_current):
-                s.tot_start = time.time()
-                s.tot_current = s.tot_start
-                s.call_previous = s.call_current
-
-                for i in xrange(4, 0, -1):
-                    s.call[i] = s.call[i - 1]
-                    s.call_time[i] = s.call_time[i - 1]
-
-                s.call[0] = s.call_current
-            else:
-                if s.tot_start is '':
-                    s.tot_start = time.time()
-                    s.tot_current = s.tot_start
-
-                    for i in xrange(4, 0, -1):
-                        s.call[i] = s.call[i - 1]
-                        s.call_time[i] = s.call_time[i - 1]
-
-                    s.call[0] = s.call_current
-                else:
-                    s.tot_current = time.time()
-
-            s.duration = int(s.tot_current) - int(s.tot_start)
-
-            # Save stat only if real transmit
-            if (s.stat_save is False and s.duration > 2):
-                s.history = l.save_stat(s.history, s.call[0])
-                s.qso += 1
-                s.stat_save = True
-
-            # Format call time
-            tmp = datetime.datetime.now()
-            s.now = tmp.strftime('%H:%M:%S')
-            s.hour = int(tmp.strftime('%H'))
-
-            s.qso_hour[s.hour] = s.qso - sum(s.qso_hour[:s.hour])
-
-            s.call_time[0] = s.now
-
-            s.message[0] = s.call[2]
-            s.message[1] = s.call[1]
-            s.message[2] = s.call[0]
-
-        # If no Transmitter...
-        else:
-            if s.transmit is True:       # Sleep screen...
-                s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
-                s.stat_save = False
-                s.tot_current = ''
-                s.tot_start = ''
-
-            s.message[0] = s.call[1]
-            s.message[1] = s.call[0]
-            if s.qso == 0:
-                s.call_time[0] = 'Waiting TX'
-                s.message[2] = s.call_time[0]
-            else:
-                s.message[2] = 'Last TX ' + s.call_time[0]
-
-        if(s.blanc_alternate == 0):     # TX today
-            tmp = 'TX Today '
-            tmp += str(s.qso)
-
-            s.message[4] = tmp
-
-            s.blanc_alternate = 1
-
-        elif(s.blanc_alternate == 1):   # Boot time
-            tmp = 'Up '
-            tmp += l.calc_uptime(time.time() - s.timestamp_start)
-
-            s.message[4] = tmp
-
-            s.blanc_alternate = 2
-
-        elif(s.blanc_alternate == 2):   # TX total
-            tmp = 'TX Total '
-            tmp += str(s.qso_total + s.qso)
-
-            s.message[4] = tmp
-
-            s.blanc_alternate = 3
-
-        elif(s.blanc_alternate == 3):   # Best link
-            if len(s.history) >= 5:
-                best = max(s.history, key=s.history.get)
-                s.message[4] = best + ' ' + str(s.history[best]) + ' TX'
-            else:
-                s.message[4] = 'Need more datas'
-
-            s.blanc_alternate = 4
-
-        elif(s.blanc_alternate == 4):   # count node
-
-            search_start = page.find('nodes":[')                        # Search this pattern
-            search_start += 9                                           # Shift...
-            search_stop = page.find('],"TXmit"', search_start)       # And close it...
-
-            tmp = page[search_start:search_stop]
-
-            tmp = tmp.split(',')
-
-            s.message[4] = 'Online nodes ' + str(len(tmp))
-
-            s.blanc_alternate = 0
+            print data_abstract
 
         # Print screen
         if s.device.height == 128:
