@@ -104,11 +104,11 @@ def main(argv):
             data_elsewhere = rrf_data['elsewhere'][0]
 
             for q in xrange(0, 24):         # Load histogram
-                s.qso_hour[q] = data_activity[q]['TX']
+                s.qso_hour[q] = data_activity[q][u'TX']
 
             for q in xrange(0, 10):
-                s.call[q] = rrf_data['last'][0][u'Indicatif']
-                s.call_time[q] = rrf_data['last'][0][u'Heure']
+                s.call[q] = rrf_data['last'][q][u'Indicatif']
+                s.call_time[q] = rrf_data['last'][q][u'Heure']
 
             print s.call
             print s.call_time
@@ -119,7 +119,7 @@ def main(argv):
 
                 s.call_current = data_transmit[u'Indicatif']
 
-                s.duration = data_transmit['TOT']
+                s.duration = data_transmit[u'TOT']
 
                 s.message[0] = data_last[2][u'Indicatif']
                 s.message[1] = data_last[1][u'Indicatif']
@@ -129,8 +129,8 @@ def main(argv):
                 if s.transmit is True:       # Sleep screen...
                     s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
 
-                s.message[0] = data_last[1]['Indicatif']
-                s.message[1] = data_last[0]['Indicatif']
+                s.message[0] = data_last[1][u'Indicatif']
+                s.message[1] = data_last[0][u'Indicatif']
                 s.message[2] = 'Last TX ' + data_last[0][u'Heure']
 
             if(s.blanc_alternate == 0):     # TX today
