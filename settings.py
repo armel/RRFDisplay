@@ -112,7 +112,7 @@ letter = {
 call = ['', '', '', '', '', '', '', '', '', '']         # Call list
 call_time = ['', '', '', '', '', '', '', '', '', '']    # Call time list
 best = ['', '', '', '', '', '', '', '', '', '']         # Best list
-best_time = [None] * 10                                 # Best time list
+best_time = [0] * 10                                 # Best time list
 
 call_current = call[0]                                  # Call current
 
