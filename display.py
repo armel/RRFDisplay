@@ -262,7 +262,6 @@ def extended_best(draw, limit = 5):
         t = l.interpolation(n, best_min, best_max, 12, 42)
         if t == 0:
             t = 42
-        n = str(n)
 
         draw.rectangle((0, i - 1, t, i + 7), fill='white')
         draw.line((t + 1, i, t + 1, i + 6), fill='white')
