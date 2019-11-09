@@ -191,6 +191,8 @@ def system_info(value):
     elif value == 'ip':
         tmp = list(os.popen('hostname -I'))
         tmp = tmp[0].strip()
+        tmp = tmp.split()
+        tmp = tmp[0]
 
         return str(tmp)
 
