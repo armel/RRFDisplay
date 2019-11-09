@@ -138,11 +138,12 @@ def main(argv):
                     else:
                         color = 'blue'
 
-                    s.message[5 + i] = data[:3] + rrf_data['elsewhere'][3][data]
+                    s.message[5 + i] = data[:3] + '  ' + rrf_data['elsewhere'][3][data] + ' ' + rrf_data['elsewhere'][5][data]
                     i += 1
 
-            print s.message
-            
+            for m in s.message:
+                print m
+
             if data_transmit['Indicatif'] != '':
                 if s.transmit is False:      # Wake up screen...
                     s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
