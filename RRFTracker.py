@@ -21,7 +21,7 @@ import getopt
 from luma.core.interface.serial import i2c
 from luma.oled.device import sh1106
 from luma.oled.device import ssd1306
-
+from luma.oled.device import ssd1327
 
 def main(argv):
 
@@ -41,7 +41,7 @@ def main(argv):
             s.i2c_address = int(arg, 16)
         elif opt in ('--display'):
             if arg not in ['sh1106', 'ssd1306']:
-                print 'Unknown display type (choose between \'sh1106\' and \'ssd1306\')'
+                print 'Unknown display type (choose between \'sh1106\', \'ssd1306\' and \'ssd1327\')'
                 sys.exit()
             s.display = arg
         elif opt in ('--display-width'):
@@ -62,8 +62,10 @@ def main(argv):
     serial = i2c(port=s.i2c_port, address=s.i2c_address)
     if s.display == 'sh1106':
         s.device = sh1106(serial, width=s.display_width, height=s.display_height, rotate=0)
-    else:
+    elif s.display == 'ssd1306':
         s.device = ssd1306(serial, width=s.display_width, height=s.display_height, rotate=0)
+    elif s.display == 'ssd1327':
+        s.device = ssd1327(serial, width=s.display_width, height=s.display_height, rotate=0, mode='RGB')
 
     # Set url
     if s.room == 'RRF':

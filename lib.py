@@ -23,7 +23,7 @@ def usage():
     print '  --i2c-address      set i2c address (default=0x3C)'
     print
     print 'Display settings:'
-    print '  --display          set display (default=sh1106, choose between [sh1106, ssd1306])'
+    print '  --display          set display (default=sh1106, choose between [sh1106, ssd1306, ssd1327])'
     print '  --display-width    set display width (default=128)'
     print '  --display-height   set display height (default=64)'
     print
