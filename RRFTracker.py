@@ -126,7 +126,7 @@ def main(argv):
                 s.message[2] = 'Last TX ' + data_last[0][u'Heure']
 
             if(s.blanc_alternate == 0):     # TX today
-                s.message[4] = 'TX today ' + str(data_abstract[u'TX total'])
+                s.message[4] = 'Total TX ' + str(data_abstract[u'TX total'])
                 s.blanc_alternate = 1
 
             elif(s.blanc_alternate == 1):   # Boot time
@@ -142,7 +142,7 @@ def main(argv):
                 s.blanc_alternate = 4
                 
             elif(s.blanc_alternate == 4):   # Total emission
-                s.message[4] = 'Total time ' + data_abstract[u'Emission cumulée']
+                s.message[4] = 'Total Time ' + data_abstract[u'Emission cumulée']
                 s.blanc_alternate = 0
 
         # Print screen
