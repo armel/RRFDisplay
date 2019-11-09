@@ -138,8 +138,7 @@ def distance(draw):
 
 def extended_system(draw, page):
 
-    s.device.clear()
-    #draw.rectangle((0, 0, 127, 63), fill='black')
+    draw.rectangle((0, 0, 127, 63), fill='black')
 
     #draw.text((0, 0), u'\ue801', font=icon, fill='white')
 
