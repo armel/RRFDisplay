@@ -109,10 +109,9 @@ letter = {
 
 # Set call
 
-call = ['F4HWN', 'RRFTracker', '', '', '']  # Call list
-call_current = call[0]                      # Call current
-call_previous = call[1]                     # Call previous
-call_time = ['Waiting TX', '', '', '', '']  # Call time list
+call = ['', '', '', '', '', '', '', '', '', '']         # Call list
+call_time = ['', '', '', '', '', '', '', '', '', '']    # Call list
+call_current = call[0]                                  # Call current
 
 blanc_alternate = 0                         # Detect alternate
 
