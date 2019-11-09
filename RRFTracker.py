@@ -113,7 +113,7 @@ def main(argv):
 
             for q in xrange(0, 10):
                 s.best[q] = rrf_data['allExtended'][q][u'Indicatif']
-                s.best_time[q] = convert_time_to_second(rrf_data['allExtended'][q][u'Durée'])
+                s.best_time[q] = l.convert_time_to_second(rrf_data['allExtended'][q][u'Durée'])
 
 
             if data_transmit['Indicatif'] != '':
