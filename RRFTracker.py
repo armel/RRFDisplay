@@ -142,9 +142,9 @@ def main(argv):
                 if s.transmit is True:       # Sleep screen...
                     s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
 
-                s.message[0] = data_last[1][u'Indicatif']
-                s.message[1] = data_last[0][u'Indicatif']
-                s.message[2] = 'Last TX ' + data_last[0][u'Heure']
+                s.message[0] = data_last[2][u'Indicatif']
+                s.message[1] = data_last[1][u'Indicatif']
+                s.message[2] = data_last[0][u'Indicatif']
 
             if(s.blanc_alternate == 0):     # TX today
                 s.message[4] = 'Total TX ' + str(data_abstract[u'TX total'])
@@ -155,15 +155,19 @@ def main(argv):
                 s.blanc_alternate = 2
 
             elif(s.blanc_alternate == 2):   # Active node
-                s.message[4] = 'Active links ' + str(data_abstract[u'Links actifs'])
+                s.message[4] = 'Active Links ' + str(data_abstract[u'Links actifs'])
                 s.blanc_alternate = 3
 
             elif(s.blanc_alternate == 3):   # Online node
-                s.message[4] = 'Online links ' + str(data_abstract[u'Links connectés'])
+                s.message[4] = 'Online Links ' + str(data_abstract[u'Links connectés'])
                 s.blanc_alternate = 4
                 
             elif(s.blanc_alternate == 4):   # Total emission
                 s.message[4] = 'Total Time ' + data_abstract[u'Emission cumulée']
+                s.blanc_alternate = 5
+
+            elif(s.blanc_alternate == 5):   # Last TX
+                s.message[4] = 'Last TX ' + data_last[0][u'Heure']
                 s.blanc_alternate = 0
 
         # Print screen
