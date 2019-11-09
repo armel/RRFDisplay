@@ -257,7 +257,7 @@ def extended_best(draw, limit = 5):
         if n == 0:
             break
 
-        t = l.interpolation(n, best_min, best_max, 22, 42)
+        t = l.interpolation(n, best_min, best_max, 26, 42)
         if t == 0:
             t = 42
 
