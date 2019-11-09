@@ -104,7 +104,7 @@ def clock_room(draw):
     if s.blanc_alternate == 3:
         i = 115
 
-        for c in s.room_current:
+        for c in s.room_current[0, 3]:
             legacy.text(draw, (i, 1), chr(s.letter[c]), fill='white', font=s.SMALL_BITMAP_FONT)
             i += 4
 
