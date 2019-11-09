@@ -120,10 +120,10 @@ def main(argv):
 
                 s.message[0] = data_last[0]['Indicatif']
                 s.message[1] = data_last[1]['Indicatif']
-                s.message[2] = 'Last TX ' + data_last[0]['Heure']
+                s.message[2] = 'Last TX ' + data_last[0][u'Heure']
 
                 if(s.blanc_alternate == 0):     # TX today
-                    s.message[4] = 'TX Counter ' + str(data_abstract['TX total'])
+                    s.message[4] = 'TX Counter ' + str(data_abstract[u'TX total'])
                     s.blanc_alternate = 1
 
                 elif(s.blanc_alternate == 1):   # Boot time
@@ -131,15 +131,15 @@ def main(argv):
                     s.blanc_alternate = 2
 
                 elif(s.blanc_alternate == 2):   # Active node
-                    s.message[4] = 'Active links ' + str(data_abstract['Links actifs'])
+                    s.message[4] = 'Active links ' + str(data_abstract[u'Links actifs'])
                     s.blanc_alternate = 3
 
                 elif(s.blanc_alternate == 3):   # Connected node
-                    s.message[4] = 'Cnnected links ' + str(data_abstract['Links connectés'])
+                    s.message[4] = 'Connected links ' + str(data_abstract[u'Links connectés'])
                     s.blanc_alternate = 4
                     
                 elif(s.blanc_alternate == 4):   # Total emission
-                    s.message[4] = 'TX Duration ' + data_abstract['Emission cumulée']
+                    s.message[4] = 'TX Duration ' + data_abstract[u'Emission cumulée']
                     s.blanc_alternate = 0
 
         # Print screen
