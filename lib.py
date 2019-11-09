@@ -208,6 +208,8 @@ def system_info(value):
 def calc_distance(call, latitude_1, longitude_1):
     data = [line.strip() for line in open('data/wgs84.dat')]
 
+    print '>>>>>', call
+
     for line in data:
         tmp = line.split(' ')
         if tmp[0] in call:
