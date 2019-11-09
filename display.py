@@ -195,10 +195,10 @@ def extended_system(draw, page):
     i = 16
 
     for j in sys_order:
-        draw.rectangle((0, i - 1, 38, i + 7), fill='white')
-        draw.line((39, i, 39, i + 6), fill='white')
-        draw.line((40, i + 2, 40, i + 4), fill='white')
-        draw.point((41, i + 3), fill='white')
+        draw.rectangle((0, i - 1, 38, i + 7), fill='blue')
+        draw.line((39, i, 39, i + 6), fill='blue')
+        draw.line((40, i + 2, 40, i + 4), fill='blue')
+        draw.point((41, i + 3), fill='blue')
 
         draw.text((1, i), j, font=font, fill='black')
         draw.text((48, i), sys[j], font=font, fill='white')
