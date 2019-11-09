@@ -106,19 +106,22 @@ def main(argv):
             for q in xrange(0, 24):         # Load histogram
                 s.qso_hour[q] = data_activity[q]['TX']
 
+            for q in xrange(0, 10):
+                s.history[q] = rrf_data['last'][0][u'Indicatif']
+
             if data_transmit['Indicatif'] != '':
                 if s.transmit is False:      # Wake up screen...
                     s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
 
-                s.call_current = data_transmit['Indicatif']
+                s.call_current = data_transmit[u'Indicatif']
                 s.call_current = s.call_current.replace('(', '')
                 s.call_current = s.call_current.replace(') ', ' ')
 
                 s.duration = data_transmit['TOT']
 
-                s.message[0] = data_last[2]['Indicatif']
-                s.message[1] = data_last[1]['Indicatif']
-                s.message[2] = data_last[0]['Indicatif']
+                s.message[0] = data_last[2][u'Indicatif']
+                s.message[1] = data_last[1][u'Indicatif']
+                s.message[2] = data_last[0][u'Indicatif']
 
             else:
                 if s.transmit is True:       # Sleep screen...
