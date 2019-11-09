@@ -52,7 +52,7 @@ def main(argv):
             if arg not in ['RRF', 'TEC', 'FON']:
                 print 'Unknown room name (choose between \'RRF\', \'TEC\' and \'FON\')'
                 sys.exit()
-            s.room = arg
+            s.room_current = arg
         elif opt in ('--latitude'):
             s.latitude = float(arg)
         elif opt in ('--longitude'):
@@ -67,13 +67,10 @@ def main(argv):
     elif s.display == 'ssd1327':
         s.device = ssd1327(serial, width=s.display_width, height=s.display_height, rotate=0, mode='RGB')
 
-    # Set url
-    if s.room == 'RRF':
-        url = 'http://rrf.f5nlg.ovh/api/svxlink/RRF'
-    elif s.room == 'TEC':
-        url = 'http://rrf.f5nlg.ovh/api/svxlink/technique'
-    elif s.room == 'FON':
-        url = 'http://rrf.f5nlg.ovh/api/svxlink/FON'
+
+    print s.room[s.room_current]['url']
+
+    exit(0)
 
     # Boucle principale
     s.timestamp_start = time.time()

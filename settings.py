@@ -10,7 +10,7 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 
 # Version
 
-version = '2.6.2'
+version = '3.0.0'
 
 # Default i2c_port, i2c_address, display and room
 
@@ -19,7 +19,7 @@ i2c_address = 0x3C                      # Default value ! Check with i2detect
 display = 'sh1106'                      # Default value !
 display_width = 128                     # Default value !
 display_height = 64                     # Default value !
-room = 'RRF'                            # Default value !
+room_current = 'RRF'                    # Default value !
 latitude = 48.8483808                   # Default value ! Check WGS84 on https://www.coordonnees-gps.fr/
 longitude = 2.2704347                   # Default value ! Check WGS84 on https://www.coordonnees-gps.fr/
 
@@ -63,6 +63,46 @@ SMALL_BITMAP_FONT = [
     [0x1f, 0x06, 0x0c, 0x06, 0x1f],     # M
     [0x00, 0x00, 0x00, 0x00]            # Space
 ]
+
+# Room list
+
+room = {
+    'PARROT': {
+        'url': '',
+        'tot': 0,
+        'last': ''
+    },
+    'RRF': {
+        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/RRF-today/rrf.json',
+        'tot': 120,
+        'last': ''
+    }, 
+    'TECHNIQUE': {
+        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/TECHNIQUE-today/rrf.json',
+        'tot': 600,
+        'last': ''
+    }, 
+    'INTERNATIONAL': {
+        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/INTERNATIONAL-today/rrf.json',
+        'tot': 600,
+        'last': ''
+    }, 
+    'LOCAL': {
+        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/LOCAL-today/rrf.json',
+        'tot': 600,
+        'last': ''
+    },  
+    'BAVARDAGE': {
+        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/BAVARDAGE-today/rrf.json',
+        'tot': 600,
+        'last': ''
+    },  
+    'FON': {
+        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/FON-today/rrf.json',
+        'tot': 600,
+        'last': ''
+    }
+}
 
 # Set some letters for room
 
