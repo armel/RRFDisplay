@@ -275,7 +275,7 @@ def extended_best(draw, limit = 5):
 
 def elsewhere(draw, data):
 
-    i = 82
+    i = 80
 
     for d in data:
         d = d.split('/')
@@ -452,7 +452,7 @@ def display_128():
                 tot(draw, legacy, s.duration, 57)
             else:
                 # Draw stats histogram
-                histogram(draw, legacy, 72, 30)
+                histogram(draw, legacy, 70, 30)
                 # Elsewhere
                 elsewhere(draw, s.raptor)
 
