@@ -140,8 +140,10 @@ def system_info(value):
         tmp = tmp.split()
 
         disk = tmp[1]
-        disk_total = (tmp[1][:-1]).replace(',', '.')
-        disk_use = (tmp[2][:-1]).replace(',', '.')
+        #disk_total = (tmp[1][:-1]).replace(',', '.')
+        #disk_use = (tmp[2][:-1]).replace(',', '.')
+        disk_total = (tmp[1][:-2]).replace(',', '.')
+        disk_use = (tmp[2][:-2]).replace(',', '.')
 
         return str(int((float(disk_use) / float(disk_total)) * 100)), str(disk)
 
