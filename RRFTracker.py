@@ -138,7 +138,6 @@ def main(argv):
 
         print s.message
 
-        exit()
         # Print screen
         if s.device.height == 128:
             d.display_128()
