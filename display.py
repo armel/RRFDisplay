@@ -285,7 +285,8 @@ def elsewhere(draw, data):
             color = 'white'
 
         draw.text((1, i), d[1], font=font, fill=color)
-        draw.text((54, i), d[2], font=font, fill=color)
+        draw.text((20, i), d[2], font=font, fill=color)
+        draw.text((50, i), d[3], font=font, fill=color)
 
         i += 10
 
