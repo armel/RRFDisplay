@@ -289,7 +289,7 @@ def elsewhere(draw, data):
 
         draw.text((1, i), d[1], font=font, fill=color)
         draw.text((26, i), d[2], font=font, fill=color)
-        draw.text((70, i), d[3], font=font, fill=color)
+        draw.text((76, i), d[3], font=font, fill=color)
 
         i += 10
 
@@ -430,8 +430,8 @@ def display_128():
                 draw.point((i, 118), fill='indigo')
 
             for i in xrange(78, 128, 2):
-                draw.point((24, i), fill='indigo')
-
+                draw.point((22, i), fill='indigo')
+                draw.point((70, i), fill='indigo')
 
             # Icon stat
             draw.text((0, 26), u'\ue801', font=icon, fill='indigo')
