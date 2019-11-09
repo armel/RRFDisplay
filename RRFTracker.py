@@ -133,10 +133,10 @@ def main(argv):
             for data in rrf_data['elsewhere'][6]:
                 if data in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
                     tmp = rrf_data['elsewhere'][6][data]
-                        if tmp != 0:
-                            color = 'white'
-                        else:
-                            color = 'blue'
+                    if tmp != 0:
+                        color = 'white'
+                    else:
+                        color = 'blue'
 
                     s.message[5 + i] = data[:3] + rrf_data['elsewhere'][3][data]
                     i += 1
