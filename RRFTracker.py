@@ -65,7 +65,7 @@ def main(argv):
     elif s.display == 'ssd1306':
         s.device = ssd1306(serial, width=s.display_width, height=s.display_height, rotate=0)
     elif s.display == 'ssd1327':
-        s.device = ssd1327(serial, width=s.display_width, height=s.display_height, rotate=0, mode='RGB')
+        s.device = ssd1327(serial, width=s.display_width, height=s.display_height, rotate=90, mode='RGB')
 
     # Set url
     if s.room == 'RRF':
