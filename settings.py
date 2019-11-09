@@ -131,6 +131,7 @@ stat_save = False                           # If False, stat need to be save
 
 history = dict()                            # History dict
 message = [None] * 10                       # Message list
+raptor = [None] * 10                        # Message list
 
 # Set time and date
 

@@ -138,10 +138,10 @@ def main(argv):
                     else:
                         color = 'blue'
 
-                    s.message[5 + i] = data[:3] + '  ' + rrf_data['elsewhere'][3][data] + ' ' + rrf_data['elsewhere'][5][data]
+                    s.raptor[i] = data[:3] + '  ' + rrf_data['elsewhere'][3][data] + ' ' + rrf_data['elsewhere'][5][data]
                     i += 1
 
-            for m in s.message:
+            for m in s.raptor:
                 print m
 
             if data_transmit['Indicatif'] != '':
