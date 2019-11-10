@@ -78,9 +78,11 @@ def tot(draw, legacy, duration, position, height = 54):
         tab = 2
     else:
         tab = 0
+
+    legacy.text(draw, (60 + tab, position + 2), msg, fill='white', font=font_tot)
     '''
-    tab = 0
-    legacy.text(draw, (60 + tab, position + 2), duration, fill='white', font=font_tot)
+
+    draw.text((40, 70), duration, font=font_tot, fill='white')
 
 
 # Draw histogram
