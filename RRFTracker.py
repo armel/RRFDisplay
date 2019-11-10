@@ -67,9 +67,6 @@ def main(argv):
     elif s.display == 'ssd1327':
         s.device = ssd1327(serial, width=s.display_width, height=s.display_height, rotate=0, mode='RGB')
 
-
-    url = s.room[s.room_current]['url']
-
     # Boucle principale
     s.timestamp_start = time.time()
 
@@ -80,6 +77,8 @@ def main(argv):
         s.hour = int(tmp.strftime('%H'))
         s.minute = int(s.now[3:-3])
         s.seconde = int(s.now[-2:])
+
+        url = s.room[s.room_current]['url']
 
         # Requete HTTP vers le flux json du salon produit par le RRFTracker 
         try:
@@ -103,6 +102,12 @@ def main(argv):
             data_last = rrf_data['last']
             data_all = rrf_data['allExtended']
             data_elsewhere = rrf_data['elsewhere'][0]
+            data_node = rrf_data['nodeExtended'][0]
+
+            for d in data_node:
+                print d
+
+            exit(0)
 
             for q in xrange(0, 24):         # Load histogram
                 s.qso_hour[q] = data_activity[q][u'TX']

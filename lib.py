@@ -253,3 +253,7 @@ def convert_time_to_second(time):
 # Sanitize call
 def sanitize_call(call):
     return call.translate(None, '\\\'!@#$"()[]')
+
+# Scan
+def scan(call):
+    
