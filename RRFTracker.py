@@ -105,7 +105,7 @@ def main(argv):
             data_node = rrf_data['nodeExtended']
 
             for n in data_node:
-                for d in n:
+                for d in data_node[n]:
                     print d
 
             exit(0)
