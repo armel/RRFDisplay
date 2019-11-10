@@ -290,8 +290,8 @@ def elsewhere(draw, data):
             d[2] = tmp
 
         draw.text((1, i), d[1], font=font, fill=color)
-        draw.text((26, i), d[2], font=font, fill=color)
-        draw.text((102, i), d[3], font=font, fill=color)
+        draw.text((30, i), d[2], font=font, fill=color)
+        draw.text((104, i), d[3], font=font, fill=color)
 
         i += 10
 
