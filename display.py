@@ -461,7 +461,7 @@ def display_128():
                     elif j == 1:
                         color = 'indigo'
                     else:
-                        color 'white'
+                        color = 'white'
 
                     draw.text((0, i), vide, font=font, fill='white')
                     draw.text((tab, i), m, font=font, fill=color)
