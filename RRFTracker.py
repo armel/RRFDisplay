@@ -206,9 +206,6 @@ def main(argv):
                     s.message[4] = 'Scan On ' + s.callsign
                 else:
                     s.message[4] = 'Scan Off '          
-                s.blanc_alternate = 7
-            elif(s.blanc_alternate == 7):   # Scan
-                s.message[4] = 'Code By F4HWN'
                 s.blanc_alternate = 0
 
         # Print screen
