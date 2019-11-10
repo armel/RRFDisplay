@@ -102,7 +102,7 @@ def main(argv):
             data_last = rrf_data['last']
             data_all = rrf_data['allExtended']
             data_elsewhere = rrf_data['elsewhere'][0]
-            data_node = rrf_data['nodeExtended'][0]
+            data_node = rrf_data['nodeExtended']
 
             for d in data_node:
                 print d
