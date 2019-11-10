@@ -259,7 +259,7 @@ def sanitize_call(call):
 # Scan
 def scan():
     try:
-        r = requests.get(s.room_list[s.room_current]['api'], verify=False, timeout=10)
+        r = requests.get(s.room[s.room_current]['api'], verify=False, timeout=10)
         page = r.content
     except requests.exceptions.ConnectionError as errc:
         print ('Error Connecting:', errc)
@@ -274,7 +274,7 @@ def scan():
             if q != s.room:
 
                 try:
-                    r = requests.get(s.room_list[q]['api'], verify=False, timeout=10)
+                    r = requests.get(s.room[q]['api'], verify=False, timeout=10)
                     page = r.content
                 except requests.exceptions.ConnectionError as errc:
                     print ('Error Connecting:', errc)
