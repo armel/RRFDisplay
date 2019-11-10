@@ -22,67 +22,67 @@ font_tot = ImageFont.truetype('fonts/astro.ttf', 50)    # Text font
 
 
 # Draw tot
-def tot(draw, legacy, duration, position, height = 54):
+def tot(draw, legacy, duration, position):
     #duration += (duration / 60)     # Reajust time latence
-    '''
-    duration_min = 0
+    if s.device.height <= 128:
 
-    timer = [i for i in xrange(60, 360, 60)]
+        duration_min = 0
 
-    for i in timer:
-        if duration < i:
-            duration_max = i
-            break
+        timer = [i for i in xrange(60, 360, 60)]
+
+        for i in timer:
+            if duration < i:
+                duration_max = i
+                break
+            else:
+                duration_min = i
+
+        h = l.interpolation(duration, duration_min, duration_max, 0, 120)
+
+        draw.rectangle((0, height, 128, 43), fill='black')
+        for i in xrange(3, h, 2):
+            if s.room_current == 'RRF' and duration > 90:
+                color = 'indigo'
+            elif s.room_current == 'RRF' and duration > 105:
+                color = 'blue'
+            else:
+                color = 'white'
+            draw.rectangle((i, height, i, 43), fill=color)
+
+        for i in xrange(0, 128, 4):
+            draw.line((i, position, i + 1, position), fill='white')
+
+        # Duration min
+        tmp = list(str(duration_min))
+        msg = ''
+        for c in tmp:
+            msg += chr(s.letter[c])
+        legacy.text(draw, (0, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
+
+        # Duration max
+        tmp = list(str(duration_max))
+        msg = ''
+        for c in tmp:
+            msg += chr(s.letter[c])
+        if duration_max < 100:
+            tab = 4
         else:
-            duration_min = i
+            tab = 0
+        legacy.text(draw, (115 + tab, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
 
-    h = l.interpolation(duration, duration_min, duration_max, 0, 120)
-
-    draw.rectangle((0, height, 128, 43), fill='black')
-    for i in xrange(3, h, 2):
-        if s.room_current == 'RRF' and duration > 90:
-            color = 'indigo'
-        elif s.room_current == 'RRF' and duration > 105:
-            color = 'blue'
+        # duration
+        tmp = list(str(duration))
+        msg = ''
+        for c in tmp:
+            msg += chr(s.letter[c])
+        if duration < 10:
+            tab = 2
         else:
-            color = 'white'
-        draw.rectangle((i, height, i, 43), fill=color)
+            tab = 0
 
-    for i in xrange(0, 128, 4):
-        draw.line((i, position, i + 1, position), fill='white')
-
-    # Duration min
-    tmp = list(str(duration_min))
-    msg = ''
-    for c in tmp:
-        msg += chr(s.letter[c])
-    legacy.text(draw, (0, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
-
-    # Duration max
-    tmp = list(str(duration_max))
-    msg = ''
-    for c in tmp:
-        msg += chr(s.letter[c])
-    if duration_max < 100:
-        tab = 4
+        legacy.text(draw, (60 + tab, position + 2), msg, fill='white', font=font_tot)
     else:
-        tab = 0
-    legacy.text(draw, (115 + tab, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
-
-    # duration
-    tmp = list(str(duration))
-    msg = ''
-    for c in tmp:
-        msg += chr(s.letter[c])
-    if duration < 10:
-        tab = 2
-    else:
-        tab = 0
-
-    legacy.text(draw, (60 + tab, position + 2), msg, fill='white', font=font_tot)
-    '''
-
-    draw.text((10, 30), l.convert_second_to_time(duration), font=font_tot, fill='white')
+        draw.text((14, 30), l.convert_second_to_time(duration), font=font_tot, fill='white')
 
 
 # Draw histogram
@@ -484,7 +484,7 @@ def display_128():
 
             if s.transmit is True and s.duration > 0:
                 # Draw tot
-                tot(draw, legacy, s.duration, 70, 68)
+                tot(draw, legacy, s.duration, 70)
                 # Elsewhere
                 elsewhere(draw, s.raptor)
             else:
