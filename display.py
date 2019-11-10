@@ -24,7 +24,7 @@ font_tot = ImageFont.truetype('fonts/astro.ttf', 50)    # Text font
 # Draw tot
 def tot(draw, legacy, duration, position):
     #duration += (duration / 60)     # Reajust time latence
-    if s.device.height <= 128:
+    if s.device.height < 128:
 
         duration_min = 0
 
