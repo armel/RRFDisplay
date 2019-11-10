@@ -38,9 +38,9 @@ def tot(draw, legacy, duration, position, height = 54):
 
     draw.rectangle((0, height, 128, 43), fill='black')
     for i in xrange(3, h, 2):
-        if s.room_current == 'RRF' and duration > 60:
+        if s.room_current == 'RRF' and duration > 90:
             color = 'indigo'
-        elif s.room_current == 'RRF' and duration > 90:
+        elif s.room_current == 'RRF' and duration > 105:
             color = 'blue'
         else:
             color = 'white'
