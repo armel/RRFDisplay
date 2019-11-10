@@ -179,7 +179,7 @@ def main(argv):
                 else:
                     tmp = tmp[0] + 'h ' + tmp[1] + 'm ' + tmp[2] + 's'    
 
-                s.message[4] = 'Total Time ' + tmp
+                s.message[4] = 'Total BF ' + tmp
                 s.blanc_alternate = 5
 
             elif(s.blanc_alternate == 5):   # Last TX
