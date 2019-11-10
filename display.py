@@ -18,11 +18,13 @@ from PIL import ImageFont
 
 icon = ImageFont.truetype('fonts/fontello.ttf', 14)     # Icon font
 font = ImageFont.truetype('fonts/7x5.ttf', 8)           # Text font
+font_tot = ImageFont.truetype('fonts/alien.ttf', 10)    # Text font
 
 
 # Draw tot
 def tot(draw, legacy, duration, position, height = 54):
     #duration += (duration / 60)     # Reajust time latence
+    '''
     duration_min = 0
 
     timer = [i for i in xrange(60, 360, 60)]
@@ -67,6 +69,7 @@ def tot(draw, legacy, duration, position, height = 54):
         tab = 0
     legacy.text(draw, (115 + tab, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
 
+    '''
     # duration
     tmp = list(str(duration))
     msg = ''
@@ -76,7 +79,8 @@ def tot(draw, legacy, duration, position, height = 54):
         tab = 2
     else:
         tab = 0
-    legacy.text(draw, (60 + tab, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
+
+    legacy.text(draw, (60 + tab, position + 2), duration, fill='white', font=font_tot)
 
 
 # Draw histogram
