@@ -433,7 +433,7 @@ def display_128():
 
             for i in xrange(78, 128, 2):
                 draw.point((22, i), fill='indigo')
-                draw.point((100, i), fill='indigo')
+                draw.point((98, i), fill='indigo')
 
             # Icon stat
             draw.text((0, 26), u'\ue801', font=icon, fill='indigo')
