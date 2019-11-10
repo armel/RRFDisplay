@@ -172,14 +172,17 @@ def main(argv):
                 
             elif(s.blanc_alternate == 4):   # Total emission
                 tmp = data_abstract[u'Emission cumulée']
+                '''
                 tmp = tmp.split(':')
 
                 if len(tmp) == 2:
                     tmp = '00h ' + tmp[0] + 'm ' + tmp[1] + 's'
                 else:
                     tmp = tmp[0] + 'h ' + tmp[1] + 'm ' + tmp[2] + 's'    
-
+            
                 s.message[4] = 'Total BF ' + tmp[:7]
+                '''
+                s.message[4] = 'Total BF ' + tmp
                 s.blanc_alternate = 5
 
             elif(s.blanc_alternate == 5):   # Last TX
