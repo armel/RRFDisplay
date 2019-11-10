@@ -55,6 +55,7 @@ def main(argv):
             if arg == 'SCAN':
                 s.scan = True
                 s.room_current = 'RRF'
+                l.scan()
             else:
                 s.room_current = arg
         elif opt in ('--latitude'):
@@ -83,9 +84,9 @@ def main(argv):
         s.seconde = int(s.now[-2:])
 
         if s.seconde % 5 == 0 and s.scan == True: # On scan
-            print '>>>>' + s.room_current
+            #print '>>>>' + s.room_current
             l.scan()
-            print '<<<<' + s.room_current
+            #print '<<<<' + s.room_current
 
         url = s.room[s.room_current]['url']
 
