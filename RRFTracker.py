@@ -77,6 +77,8 @@ def main(argv):
     # Boucle principale
     s.timestamp_start = time.time()
 
+    rrf_data = ''
+
     while(True):
         tmp = datetime.datetime.now()
         s.day = tmp.strftime('%Y-%m-%d')
@@ -85,23 +87,20 @@ def main(argv):
         s.minute = int(s.now[3:-3])
         s.seconde = int(s.now[-2:])
 
-        if s.seconde % 5 == 0 and s.scan == True: # On scan
-            #print '>>>>' + s.room_current
+        if s.seconde % 15 == 0 and s.scan == True: # On scan
             l.scan()
-            #print '<<<<' + s.room_current
 
         url = s.room[s.room_current]['url']
 
         # Requete HTTP vers le flux json du salon produit par le RRFTracker 
         try:
-            r = requests.get(url, verify=False, timeout=10)
+            r = requests.get(url, verify=False, timeout=1)
         except requests.exceptions.ConnectionError as errc:
             print ('Error Connecting:', errc)
         except requests.exceptions.Timeout as errt:
             print ('Timeout Error:', errt)
 
         # Controle de la validité du flux json
-        rrf_data = ''
         try:
             rrf_data = r.json()
         except:
@@ -118,11 +117,7 @@ def main(argv):
             for q in xrange(0, 24):         # Load histogram
                 s.qso_hour[q] = data_activity[q][u'TX']
 
-            if len(rrf_data['last']) >= 10:
-                limit = 10
-            else:
-                limit = len(rrf_data['last'])
-
+            limit = len(rrf_data['last'])
             s.call = [''] * 10 
             s.call_time = [''] * 10 
 
@@ -130,11 +125,7 @@ def main(argv):
                 s.call[q] = l.sanitize_call(rrf_data['last'][q][u'Indicatif'].encode('utf-8'))
                 s.call_time[q] = rrf_data['last'][q][u'Heure']
 
-            if len(rrf_data['allExtended']) >= 10:
-                limit = 10
-            else:
-                limit = len(rrf_data['allExtended'])
-
+            limit = len(rrf_data['allExtended'])
             s.best = [''] * 10 
             s.best_time = [0] * 10 
 
@@ -165,7 +156,6 @@ def main(argv):
                     s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
 
                 s.call_current = l.sanitize_call(data_transmit[u'Indicatif'].encode('utf-8'))
-
                 s.duration = data_transmit[u'TOT']
 
             else:
@@ -189,18 +179,7 @@ def main(argv):
                 s.blanc_alternate = 4
                 
             elif(s.blanc_alternate == 4):   # Total emission
-                tmp = data_abstract[u'Emission cumulée']
-                '''
-                tmp = tmp.split(':')
-
-                if len(tmp) == 2:
-                    tmp = '00h ' + tmp[0] + 'm ' + tmp[1] + 's'
-                else:
-                    tmp = tmp[0] + 'h ' + tmp[1] + 'm ' + tmp[2] + 's'    
-            
-                s.message[4] = 'Total BF ' + tmp[:7]
-                '''
-                s.message[4] = 'Total BF ' + tmp
+                s.message[4] = 'Total BF ' + data_abstract[u'Emission cumulée']
                 s.blanc_alternate = 5
 
             elif(s.blanc_alternate == 5):   # Last TX
