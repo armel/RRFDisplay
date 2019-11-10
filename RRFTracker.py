@@ -112,25 +112,29 @@ def main(argv):
             data_transmit = rrf_data['transmit'][0]
             data_last = rrf_data['last']
             data_all = rrf_data['allExtended']
-            data_elsewhere = rrf_data['elsewhere'][0]
 
             s.message[0] = l.sanitize_call(data_last[2][u'Indicatif'].encode('utf-8'))
             s.message[1] = l.sanitize_call(data_last[1][u'Indicatif'].encode('utf-8'))
             s.message[2] = l.sanitize_call(data_last[0][u'Indicatif'].encode('utf-8'))
 
             if s.device.height == 128:      # Only if place...
-                i = 0
-                s.transmit_elsewhere = False
-                for data in rrf_data['elsewhere'][6]:
-                    if data in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
-                        tmp = rrf_data['elsewhere'][6][data]
-                        if tmp != 0:
-                            s.transmit_elsewhere = True
-                            s.raptor[i] = str(1) + '/' + data[:3] + '/' + l.sanitize_call(rrf_data['elsewhere'][1][data].encode('utf-8')) + '/' + rrf_data['elsewhere'][5][data]
-                        else:
-                            s.raptor[i] = str(0) + '/' + data[:3] + '/' + rrf_data['elsewhere'][3][data] + '/' + rrf_data['elsewhere'][5][data]
+                try:
+                    data_elsewhere = rrf_data['elsewhere'][0]
 
-                        i += 1
+                    i = 0
+                    s.transmit_elsewhere = False
+                    for data in rrf_data['elsewhere'][6]:
+                        if data in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
+                            tmp = rrf_data['elsewhere'][6][data]
+                            if tmp != 0:
+                                s.transmit_elsewhere = True
+                                s.raptor[i] = str(1) + '/' + data[:3] + '/' + l.sanitize_call(rrf_data['elsewhere'][1][data].encode('utf-8')) + '/' + rrf_data['elsewhere'][5][data]
+                            else:
+                                s.raptor[i] = str(0) + '/' + data[:3] + '/' + rrf_data['elsewhere'][3][data] + '/' + rrf_data['elsewhere'][5][data]
+
+                            i += 1
+                except:
+                    pass
 
             if data_transmit['Indicatif'] != '':
                 if s.transmit is False:      # Wake up screen...
