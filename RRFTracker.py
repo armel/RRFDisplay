@@ -199,6 +199,16 @@ def main(argv):
 
             elif(s.blanc_alternate == 5):   # Last TX
                 s.message[4] = 'Last TX ' + data_last[0][u'Heure']
+                s.blanc_alternate = 6
+
+            elif(s.blanc_alternate == 6):   # Scan
+                if s.scan is True:
+                    s.message[4] = 'Scan On ' + s.callsign
+                else:
+                    s.message[4] = 'Scan Off '          
+                s.blanc_alternate = 7
+            elif(s.blanc_alternate == 7):   # Scan
+                s.message[4] = 'Code By F4HWN'
                 s.blanc_alternate = 0
 
         # Print screen
