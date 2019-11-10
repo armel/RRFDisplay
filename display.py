@@ -18,7 +18,7 @@ from PIL import ImageFont
 
 icon = ImageFont.truetype('fonts/fontello.ttf', 14)     # Icon font
 font = ImageFont.truetype('fonts/7x5.ttf', 8)           # Text font
-font_tot = ImageFont.truetype('fonts/alien.ttf', 40)    # Text font
+font_tot = ImageFont.truetype('fonts/astro.ttf', 40)    # Text font
 
 
 # Draw tot
