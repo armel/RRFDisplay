@@ -22,7 +22,7 @@ font = ImageFont.truetype('fonts/7x5.ttf', 8)           # Text font
 
 # Draw tot
 def tot(draw, legacy, duration, position, height = 54):
-    duration += (duration / 60)     # Reajust time latence
+    #duration += (duration / 60)     # Reajust time latence
     duration_min = 0
 
     timer = [i for i in xrange(60, 360, 60)]
@@ -38,7 +38,13 @@ def tot(draw, legacy, duration, position, height = 54):
 
     draw.rectangle((0, height, 128, 43), fill='black')
     for i in xrange(3, h, 2):
-        draw.rectangle((i, height, i, 43), fill='white')
+        if s.room_current == 'RRF' and duration > 60:
+            color = 'indigo'
+        elif s.room_current == 'RRF' and duration > 90:
+            color = 'blue'
+        else:
+            color = 'white'
+        draw.rectangle((i, height, i, 43), fill=color)
 
     for i in xrange(0, 128, 4):
         draw.line((i, position, i + 1, position), fill='white')
