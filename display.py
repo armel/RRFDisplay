@@ -69,7 +69,6 @@ def tot(draw, legacy, duration, position, height = 54):
         tab = 0
     legacy.text(draw, (115 + tab, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
 
-    '''
     # duration
     tmp = list(str(duration))
     msg = ''
@@ -79,7 +78,8 @@ def tot(draw, legacy, duration, position, height = 54):
         tab = 2
     else:
         tab = 0
-
+    '''
+    tab = 0
     legacy.text(draw, (60 + tab, position + 2), duration, fill='white', font=font_tot)
 
 
