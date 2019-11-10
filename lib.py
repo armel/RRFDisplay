@@ -30,7 +30,8 @@ def usage():
     print '  --display-height   set display height (default=64)'
     print
     print 'Room settings:'
-    print '  --room ROOM        set room (default=RRF, choose between [RRF, TECHNIQUE, INTERNATIONAL, LOCAL, BAVARDAGE, FON] or SCAN)'
+    print '  --room             set room (default=RRF, choose between [RRF, TECHNIQUE, INTERNATIONAL, LOCAL, BAVARDAGE, FON] or SCAN)'
+    print '  --callsign         set callsign (default=F4HWN, choose yours for SCAN mode)'
     print
     print 'WGS84 settings:'
     print '  --latitude         set latitude (default=48.8483808, format WGS84)'

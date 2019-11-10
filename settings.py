@@ -10,7 +10,7 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 
 # Version
 
-version = '3.0.0'
+version = '3.0.1'
 
 # Default i2c_port, i2c_address, display and room
 
@@ -20,7 +20,7 @@ display = 'sh1106'                      # Default value !
 display_width = 128                     # Default value !
 display_height = 64                     # Default value !
 room_current = 'RRF'                    # Default value !
-callsign = 'F1ZPX'                      # Default value !
+callsign = 'F4HWN'                      # Default value !
 scan = False                            # Default value !
 latitude = 48.8483808                   # Default value ! Check WGS84 on https://www.coordonnees-gps.fr/
 longitude = 2.2704347                   # Default value ! Check WGS84 on https://www.coordonnees-gps.fr/

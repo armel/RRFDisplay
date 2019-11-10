@@ -27,7 +27,7 @@ def main(argv):
 
     # Check and get arguments
     try:
-        options, remainder = getopt.getopt(argv, '', ['help', 'i2c-port=', 'i2c-address=', 'display=', 'display-width=', 'display-height=', 'room=', 'latitude=', 'longitude='])
+        options, remainder = getopt.getopt(argv, '', ['help', 'i2c-port=', 'i2c-address=', 'display=', 'display-width=', 'display-height=', 'room=', 'callsign=', 'latitude=', 'longitude='])
     except getopt.GetoptError:
         l.usage()
         sys.exit(2)
@@ -48,6 +48,8 @@ def main(argv):
             s.display_width = int(arg)
         elif opt in ('--display-height'):
             s.display_height = int(arg)
+        elif opt in ('--callsign'):
+            s.callsign = arg
         elif opt in ('--room'):
             if arg not in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON', 'SCAN']:
                 print 'Unknown room name (choose between \'RRF\', \'TECHNIQUE\', \'INTERNATIONAL\', \'LOCAL\', \'BAVARDAGE\', \'FON\' or \'SCAN\')'
