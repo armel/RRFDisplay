@@ -123,6 +123,9 @@ def main(argv):
             else:
                 limit = len(rrf_data['last'])
 
+            s.call = [''] * 10 
+            s.call_time = [''] * 10 
+
             for q in xrange(0, limit):
                 s.call[q] = l.sanitize_call(rrf_data['last'][q][u'Indicatif'].encode('utf-8'))
                 s.call_time[q] = rrf_data['last'][q][u'Heure']
@@ -131,6 +134,9 @@ def main(argv):
                 limit = 10
             else:
                 limit = len(rrf_data['allExtended'])
+
+            s.best = [''] * 10 
+            s.best_time = [0] * 10 
 
             for q in xrange(0, limit):
                 s.best[q] = l.sanitize_call(rrf_data['allExtended'][q][u'Indicatif'].encode('utf-8'))
