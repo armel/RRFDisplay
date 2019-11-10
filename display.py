@@ -21,7 +21,7 @@ font = ImageFont.truetype('fonts/7x5.ttf', 8)           # Text font
 
 
 # Draw tot
-def tot(draw, legacy, duration, position):
+def tot(draw, legacy, duration, position, height = 54):
     duration += (duration / 30)     # Reajust time latence
     duration_min = 0
 
@@ -36,9 +36,9 @@ def tot(draw, legacy, duration, position):
 
     h = l.interpolation(duration, duration_min, duration_max, 0, 120)
 
-    draw.rectangle((0, 54, 128, 43), fill='black')
+    draw.rectangle((0, height, 128, 43), fill='black')
     for i in xrange(3, h, 2):
-        draw.rectangle((i, 54, i, 43), fill='white')
+        draw.rectangle((i, height, i, 43), fill='white')
 
     for i in xrange(0, 128, 4):
         draw.line((i, 57, i + 1, 57), fill='white')
@@ -472,7 +472,7 @@ def display_128():
 
             if s.transmit is True and s.duration > 0:
                 # Draw tot
-                tot(draw, legacy, s.duration, 57)
+                tot(draw, legacy, s.duration, 70, 68)
                 # Elsewhere
                 elsewhere(draw, s.raptor)
             else:
