@@ -138,8 +138,7 @@ def distance(draw):
 def extended_system(draw, page):
 
     draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
-    print 'ici'
-    
+
     #draw.text((0, 0), u'\ue801', font=icon, fill='white')
 
     legacy.text(draw, (0, -2), chr(0) + chr(1), fill='indigo', font=s.SMALL_BITMAP_CPU)
@@ -426,7 +425,7 @@ def display_128():
             for i in xrange(0, 128, 2):
                 draw.point((i, 25), fill='indigo')
                 draw.point((i, 40), fill='indigo')
-                #draw.point((i, 78), fill='indigo')
+                draw.point((i, 78), fill='indigo')
                 draw.point((i, 88), fill='indigo')
                 draw.point((i, 98), fill='indigo')
                 draw.point((i, 108), fill='indigo')
