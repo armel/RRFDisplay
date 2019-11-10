@@ -255,7 +255,7 @@ def sanitize_call(call):
     return call.translate(None, '\\\'!@#$"()[]')
 
 # Scan
-def scan(call):
+def scan():
     try:
         r = requests.get(s.room_list[s.room_current]['api'], verify=False, timeout=10)
         page = r.content
