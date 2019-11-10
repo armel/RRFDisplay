@@ -22,10 +22,10 @@ font = ImageFont.truetype('fonts/7x5.ttf', 8)           # Text font
 
 # Draw tot
 def tot(draw, legacy, duration, position, height = 54):
-    duration += (duration / 30)     # Reajust time latence
+    duration += (duration / 60)     # Reajust time latence
     duration_min = 0
 
-    timer = [i for i in xrange(30, 901, 30)]
+    timer = [i for i in xrange(60, 360, 60)]
 
     for i in timer:
         if duration < i:
