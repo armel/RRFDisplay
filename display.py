@@ -239,7 +239,7 @@ def extended_best(draw, limit = 5):
 
     draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
 
-    draw.text((0, 0), u'\ue801', font=icon, fill='indigo')
+    draw.text((0, 0), u'\ue801', font=icon, fill='white')
 
     w, h = draw.textsize(text=s.room_current[:3] + ' Best Links', font=font)
     tab = (s.device.width - w) / 2
@@ -436,11 +436,11 @@ def display_128():
                 draw.point((98, i), fill='indigo')
 
             # Icon stat
-            draw.text((0, 26), u'\ue801', font=icon, fill='indigo')
+            draw.text((0, 26), u'\ue801', font=icon, fill='white')
 
             # Icon talk
             if s.transmit is True:
-                draw.text((2, 10), u'\uf130', font=icon, fill='indigo')
+                draw.text((2, 10), u'\uf130', font=icon, fill='white')
                 distance(draw)
 
             # Icon clock (DIY...)
@@ -450,17 +450,25 @@ def display_128():
 
             # Print data
             i = 0
-
+            j = 0
             for m in s.message:
                 if m is not None:
                     w, h = draw.textsize(text=m, font=font)
                     tab = (s.device.width - w) / 2
                     vide = ' ' * 22     # Hack to speed clear screen line...
+                    if j == 0:
+                        color = 'blue'
+                    elif j == 1:
+                        color = 'indigo'
+                    else:
+                        color 'white'
+
                     draw.text((0, i), vide, font=font, fill='white')
-                    draw.text((tab, i), m, font=font, fill='white')
+                    draw.text((tab, i), m, font=font, fill=color)
                     i += h
                     if i == 24:
                         i += 6
+                    j += 1
 
             if s.transmit is True and s.duration > 0:
                 # Draw tot
