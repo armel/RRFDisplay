@@ -301,7 +301,7 @@ def elsewhere(draw, data):
             tmp = '00:' + tmp[0] + ':' + tmp[1]
             d[2] = tmp
 
-        draw.text((1, i), d[1], font=font, fill=color)
+        draw.text((1, i), d[1], font=font, fill='white')
         draw.text((30, i), d[2], font=font, fill=color)
         draw.text((104, i), d[3], font=font, fill=color)
 
