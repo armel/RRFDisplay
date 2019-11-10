@@ -114,25 +114,6 @@ def main(argv):
             data_all = rrf_data['allExtended']
             data_elsewhere = rrf_data['elsewhere'][0]
 
-            for q in xrange(0, 24):         # Load histogram
-                s.qso_hour[q] = data_activity[q][u'TX']
-
-            limit = len(rrf_data['last'])
-            s.call = [''] * 10 
-            s.call_time = [''] * 10 
-
-            for q in xrange(0, limit):
-                s.call[q] = l.sanitize_call(rrf_data['last'][q][u'Indicatif'].encode('utf-8'))
-                s.call_time[q] = rrf_data['last'][q][u'Heure']
-
-            limit = len(rrf_data['allExtended'])
-            s.best = [''] * 10 
-            s.best_time = [0] * 10 
-
-            for q in xrange(0, limit):
-                s.best[q] = l.sanitize_call(rrf_data['allExtended'][q][u'Indicatif'].encode('utf-8'))
-                s.best_time[q] = l.convert_time_to_second(rrf_data['allExtended'][q][u'Durée'])
-
             s.message[0] = l.sanitize_call(data_last[2][u'Indicatif'].encode('utf-8'))
             s.message[1] = l.sanitize_call(data_last[1][u'Indicatif'].encode('utf-8'))
             s.message[2] = l.sanitize_call(data_last[0][u'Indicatif'].encode('utf-8'))
@@ -161,6 +142,28 @@ def main(argv):
             else:
                 if s.transmit is True:       # Sleep screen...
                     s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
+
+                # Load Histogram
+                for q in xrange(0, 24):
+                    s.qso_hour[q] = data_activity[q][u'TX']
+
+                # Load Last
+                limit = len(rrf_data['last'])
+                s.call = [''] * 10 
+                s.call_time = [''] * 10 
+
+                for q in xrange(0, limit):
+                    s.call[q] = l.sanitize_call(rrf_data['last'][q][u'Indicatif'].encode('utf-8'))
+                    s.call_time[q] = rrf_data['last'][q][u'Heure']
+
+                # Load Best
+                limit = len(rrf_data['allExtended'])
+                s.best = [''] * 10 
+                s.best_time = [0] * 10 
+
+                for q in xrange(0, limit):
+                    s.best[q] = l.sanitize_call(rrf_data['allExtended'][q][u'Indicatif'].encode('utf-8'))
+                    s.best_time[q] = l.convert_time_to_second(rrf_data['allExtended'][q][u'Durée'])
 
             if(s.seconde < 10):     # TX today
                 s.message[4] = 'Total TX ' + str(data_abstract[u'TX total'])
