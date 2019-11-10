@@ -49,10 +49,14 @@ def main(argv):
         elif opt in ('--display-height'):
             s.display_height = int(arg)
         elif opt in ('--room'):
-            if arg not in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
-                print 'Unknown room name (choose between \'RRF\', \'TECHNIQUE\', \'INTERNATIONAL\', \'LOCAL\', \'BAVARDAGE\' and \'FON\')'
+            if arg not in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON', 'SCAN']:
+                print 'Unknown room name (choose between \'RRF\', \'TECHNIQUE\', \'INTERNATIONAL\', \'LOCAL\', \'BAVARDAGE\', \'FON\' or \'SCAN\')'
                 sys.exit()
-            s.room_current = arg
+            if arg == 'SCAN':
+                s.scan = True
+                s.room_current = 'RRF'
+            else:
+                s.room_current = arg
         elif opt in ('--latitude'):
             s.latitude = float(arg)
         elif opt in ('--longitude'):
@@ -78,6 +82,11 @@ def main(argv):
         s.minute = int(s.now[3:-3])
         s.seconde = int(s.now[-2:])
 
+        if s.seconde % 5 == 0 and s.scan == True: # On scan
+            print '>>>>' + s.room_current
+            l.scan()
+            print '<<<<' + s.room_current
+
         url = s.room[s.room_current]['url']
 
         # Requete HTTP vers le flux json du salon produit par le RRFTracker 
@@ -102,13 +111,6 @@ def main(argv):
             data_last = rrf_data['last']
             data_all = rrf_data['allExtended']
             data_elsewhere = rrf_data['elsewhere'][0]
-            data_node = rrf_data['nodeExtended']
-
-            for n in data_node:
-                for d in data_node[n]:
-                    print d
-
-            exit(0)
 
             for q in xrange(0, 24):         # Load histogram
                 s.qso_hour[q] = data_activity[q][u'TX']

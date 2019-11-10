@@ -28,7 +28,7 @@ def usage():
     print '  --display-height   set display height (default=64)'
     print
     print 'Room settings:'
-    print '  --room ROOM        set room (default=RRF, choose between [RRF, TECHNIQUE, INTERNATIONAL, LOCAL, BAVARDAGE, FON])'
+    print '  --room ROOM        set room (default=RRF, choose between [RRF, TECHNIQUE, INTERNATIONAL, LOCAL, BAVARDAGE, FON] or SCAN)'
     print
     print 'WGS84 settings:'
     print '  --latitude         set latitude (default=48.8483808, format WGS84)'
@@ -256,4 +256,33 @@ def sanitize_call(call):
 
 # Scan
 def scan(call):
-    return
+    try:
+        r = requests.get(s.room_list[s.room_current]['api'], verify=False, timeout=10)
+        page = r.content
+    except requests.exceptions.ConnectionError as errc:
+        print ('Error Connecting:', errc)
+    except requests.exceptions.Timeout as errt:
+        print ('Timeout Error:', errt)
+
+    if s.callsign in page:
+        return 0
+
+    else:
+        for q in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
+            if q not != s.room:
+
+                try:
+                    r = requests.get(s.room_list[q]['api'], verify=False, timeout=10)
+                    page = r.content
+                except requests.exceptions.ConnectionError as errc:
+                    print ('Error Connecting:', errc)
+                except requests.exceptions.Timeout as errt:
+                    print ('Timeout Error:', errt)
+
+                if s.callsign in page:
+                    s.room_current = q
+                    return 0
+
+    s.room_current = 'RRF'
+    
+    return 0

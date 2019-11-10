@@ -21,6 +21,7 @@ display_width = 128                     # Default value !
 display_height = 64                     # Default value !
 room_current = 'RRF'                    # Default value !
 callsign = 'F1ZPX'                      # Default value !
+scan = False                            # Default value !
 latitude = 48.8483808                   # Default value ! Check WGS84 on https://www.coordonnees-gps.fr/
 longitude = 2.2704347                   # Default value ! Check WGS84 on https://www.coordonnees-gps.fr/
 
@@ -75,33 +76,27 @@ SMALL_BITMAP_FONT = [
 room = {
     'RRF': {
         'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/RRF-today/rrf.json',
-        'tot': 120,
-        'last': ''
+        'api': 'http://rrf.f5nlg.ovh/api/svxlink/RRF'
     }, 
     'TECHNIQUE': {
         'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/TECHNIQUE-today/rrf.json',
-        'tot': 600,
-        'last': ''
+        'api': 'http://rrf.f5nlg.ovh/api/svxlink/technique'
     }, 
     'INTERNATIONAL': {
         'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/INTERNATIONAL-today/rrf.json',
-        'tot': 600,
-        'last': ''
+        'api': 'http://rrf.f5nlg.ovh/api/svxlink/international'
     }, 
     'LOCAL': {
         'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/LOCAL-today/rrf.json',
-        'tot': 600,
-        'last': ''
+        'api': 'http://rrf.f5nlg.ovh/api/svxlink/local'
     },  
     'BAVARDAGE': {
         'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/BAVARDAGE-today/rrf.json',
-        'tot': 600,
-        'last': ''
+        'api': 'http://rrf.f5nlg.ovh/api/svxlink/bavardage'
     },  
     'FON': {
         'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/FON-today/rrf.json',
-        'tot': 600,
-        'last': ''
+        'api': 'http://rrf.f5nlg.ovh/api/svxlink/FON'
     }
 }
 
@@ -124,13 +119,9 @@ call_current = call[0]                                  # Call current
 
 blanc_alternate = 0                         # Detect alternate
 
-qso = 0                                     # QSO count
-qso_total = 0                               # QSO total count
 qso_hour = [0] * 24                         # QSO list for histogramm
 transmit = True                             # Detect transmit
 transmit_elsewhere = True                   # Detect transmit elsewhere
-stat_save = False                           # If False, stat need to be save
-
 history = dict()                            # History dict
 message = [None] * 10                       # Message list
 raptor = [None] * 5                         # Message list
@@ -138,8 +129,6 @@ raptor = [None] * 5                         # Message list
 # Set time and date
 
 timestamp_start = ''
-tot_start = ''
-tot_current = ''
 hour = ''
 minute = ''
 seconde = ''
