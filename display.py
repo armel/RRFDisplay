@@ -41,7 +41,7 @@ def tot(draw, legacy, duration, position, height = 54):
         draw.rectangle((i, height, i, 43), fill='white')
 
     for i in xrange(0, 128, 4):
-        draw.line((i, 57, i + 1, 57), fill='white')
+        draw.line((i, position, i + 1, position), fill='white')
 
     # Duration min
     tmp = list(str(duration_min))
