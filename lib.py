@@ -262,12 +262,11 @@ def scan():
     try:
         r = requests.get(s.room[s.room_current]['api'], verify=False, timeout=10)
         page = r.content
+        if s.callsign in page:
+            return 0
     except requests.exceptions.ConnectionError as errc:
-        print ('Error Connecting:', errc)
+        return 0
     except requests.exceptions.Timeout as errt:
-        print ('Timeout Error:', errt)
-
-    if s.callsign in page:
         return 0
 
     else:
@@ -277,13 +276,12 @@ def scan():
                 try:
                     r = requests.get(s.room[q]['api'], verify=False, timeout=10)
                     page = r.content
+                    if s.callsign in page:
+                        s.room_current = q
+                        return 0
                 except requests.exceptions.ConnectionError as errc:
-                    print ('Error Connecting:', errc)
+                    return 0
                 except requests.exceptions.Timeout as errt:
-                    print ('Timeout Error:', errt)
-
-                if s.callsign in page:
-                    s.room_current = q
                     return 0
 
     s.room_current = 'RRF'
