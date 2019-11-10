@@ -269,7 +269,7 @@ def scan(call):
 
     else:
         for q in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
-            if q not != s.room:
+            if q != s.room:
 
                 try:
                     r = requests.get(s.room_list[q]['api'], verify=False, timeout=10)
