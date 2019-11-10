@@ -127,6 +127,7 @@ qso = 0                                     # QSO count
 qso_total = 0                               # QSO total count
 qso_hour = [0] * 24                         # QSO list for histogramm
 transmit = True                             # Detect transmit
+transmit_elsewhere = True                   # Detect transmit elsewhere
 stat_save = False                           # If False, stat need to be save
 
 history = dict()                            # History dict
