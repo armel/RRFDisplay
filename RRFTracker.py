@@ -162,36 +162,27 @@ def main(argv):
                 if s.transmit is True:       # Sleep screen...
                     s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
 
-            if(s.blanc_alternate == 0):     # TX today
+            if(s.seconde < 10):     # TX today
                 s.message[4] = 'Total TX ' + str(data_abstract[u'TX total'])
-                s.blanc_alternate = 1
 
-            elif(s.blanc_alternate == 1):   # Boot time
-                s.message[4] = 'Up ' + l.calc_uptime(time.time() - s.timestamp_start)
-                s.blanc_alternate = 2
-
-            elif(s.blanc_alternate == 2):   # Active node
+            elif(s.seconde < 20):   # Active node
                 s.message[4] = 'Active Links ' + str(data_abstract[u'Links actifs'])
-                s.blanc_alternate = 3
 
-            elif(s.blanc_alternate == 3):   # Online node
+            elif(s.seconde < 30):   # Online node
                 s.message[4] = 'Online Links ' + str(data_abstract[u'Links connectés'])
-                s.blanc_alternate = 4
                 
-            elif(s.blanc_alternate == 4):   # Total emission
+            elif(s.seconde < 40):   # Total emission
                 s.message[4] = 'Total BF ' + data_abstract[u'Emission cumulée']
-                s.blanc_alternate = 5
 
-            elif(s.blanc_alternate == 5):   # Last TX
+            elif(s.seconde < 50):   # Last TX
                 s.message[4] = 'Last TX ' + data_last[0][u'Heure']
                 s.blanc_alternate = 6
 
-            elif(s.blanc_alternate == 6):   # Scan
+            elif(s.seconde < 60):   # Scan
                 if s.scan is True:
                     s.message[4] = 'Scan On ' + s.callsign
                 else:
                     s.message[4] = 'Scan Off '          
-                s.blanc_alternate = 0
 
         # Print screen
         if s.device.height == 128:

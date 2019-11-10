@@ -113,7 +113,7 @@ def histogram(draw, legacy, position, height = 15):
 def clock_room(draw):
 
     # Print Room
-    if s.blanc_alternate %3 != 0:
+    if s.seconde %5 != 0:
         i = 115
 
         for c in s.room_current[:3]:
