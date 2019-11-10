@@ -104,8 +104,9 @@ def main(argv):
             data_elsewhere = rrf_data['elsewhere'][0]
             data_node = rrf_data['nodeExtended']
 
-            for d in data_node:
-                print d
+            for n in data_node:
+                for d in n:
+                    print d
 
             exit(0)
 
