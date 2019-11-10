@@ -150,8 +150,7 @@ def distance(draw):
 def extended_system(draw, page):
 
     #draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
-    s.device.hide()
-
+    
     legacy.text(draw, (0, -2), chr(0) + chr(1), fill='indigo', font=s.SMALL_BITMAP_CPU)
     legacy.text(draw, (0, 6), chr(2) + chr(3), fill='indigo', font=s.SMALL_BITMAP_CPU)
 
@@ -216,14 +215,11 @@ def extended_system(draw, page):
 
         i += 10
 
-        s.device.show()
-
-
 # Print Call Log Extended
 
 def extended_call(draw, limit = 5):
 
-    draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
+    #draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
 
     legacy.text(draw, (0, -2), chr(0) + chr(1), fill='indigo', font=s.SMALL_BITMAP_CLOCK)
     legacy.text(draw, (0, 6), chr(2) + chr(3), fill='indigo', font=s.SMALL_BITMAP_CLOCK)
@@ -250,7 +246,7 @@ def extended_call(draw, limit = 5):
 
 def extended_best(draw, limit = 5):
 
-    draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
+    #draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
 
     draw.text((0, 0), u'\ue801', font=icon, fill='white')
 
