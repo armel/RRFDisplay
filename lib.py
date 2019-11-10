@@ -256,4 +256,4 @@ def sanitize_call(call):
 
 # Scan
 def scan(call):
-    
+    return
