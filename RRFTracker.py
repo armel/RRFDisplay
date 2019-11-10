@@ -135,9 +135,9 @@ def main(argv):
                     if data in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
                         tmp = rrf_data['elsewhere'][6][data]
                         if tmp != 0:
-                            s.raptor[i] = str(status) + '/' + data[:3] + '/' + l.sanitize_call(rrf_data['elsewhere'][1][data].encode('utf-8')) + '/' + rrf_data['elsewhere'][5][data]
+                            s.raptor[i] = str(1) + '/' + data[:3] + '/' + l.sanitize_call(rrf_data['elsewhere'][1][data].encode('utf-8')) + '/' + rrf_data['elsewhere'][5][data]
                         else:
-                            s.raptor[i] = str(status) + '/' + data[:3] + '/' + rrf_data['elsewhere'][3][data] + '/' + rrf_data['elsewhere'][5][data]
+                            s.raptor[i] = str(0) + '/' + data[:3] + '/' + rrf_data['elsewhere'][3][data] + '/' + rrf_data['elsewhere'][5][data]
 
                         i += 1
 
