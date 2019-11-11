@@ -399,8 +399,8 @@ def display_64():
                     draw.text((tab, i), m, font=font, fill='white')
                     i += h
                     print h
-                    if i == 24:
-                        i += 6
+                    #if i == 24:
+                    #    i += 6
 
             if s.transmit is True and s.duration > 0:
                 # Draw tot
