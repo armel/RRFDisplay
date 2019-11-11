@@ -330,12 +330,11 @@ def display_32():
 
             # Print data
             i = 0
-
+            vide = ' ' * 22     # Hack to speed clear screen line...
             for m in s.message:
                 if m is not None:
                     w, h = draw.textsize(text=m, font=font)
                     tab = (s.device.width - w) / 2
-                    vide = ' ' * 22     # Hack to speed clear screen line...
                     draw.text((0, i), vide, font=font, fill='white')
                     draw.text((tab, i), m, font=font, fill='white')
                     i += h
@@ -371,7 +370,7 @@ def display_64():
             draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
 
             for i in xrange(0, 128, 2):
-                #draw.point((i, 23), fill='white')
+                draw.point((i, 25), fill='white')
                 draw.point((i, 40), fill='white')
 
             # Icon stat
@@ -389,18 +388,16 @@ def display_64():
 
             # Print data
             i = 0
-
+            vide = ' ' * 22     # Hack to speed clear screen line...
             for m in s.message:
                 if m is not None:
                     w, h = draw.textsize(text=m, font=font)
                     tab = (s.device.width - w) / 2
-                    vide = ' ' * 22     # Hack to speed clear screen line...
                     draw.text((0, i), vide, font=font, fill='white')
                     draw.text((tab, i), m, font=font, fill='white')
                     i += h
-                    print h
-                    #if i == 24:
-                    #    i += 6
+                    if i == 24:
+                        i += 6
 
             if s.transmit is True and s.duration > 0:
                 # Draw tot
@@ -430,7 +427,11 @@ def display_128():
 
         # If not extended
         else:
-            draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
+            #draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
+            vide = ' ' * 22     # Hack to speed clear screen line...
+            for i in xrange(0, 16):
+                draw.text((0, i * 8), vide, font=font, fill='black')
+
 
             for i in xrange(0, 128, 2):
                 draw.point((i, 25), fill='indigo')
@@ -461,11 +462,11 @@ def display_128():
             # Print data
             i = 0
             j = 0
+            vide = ' ' * 22     # Hack to speed clear screen line...
             for m in s.message:
                 if m is not None:
                     w, h = draw.textsize(text=m, font=font)
                     tab = (s.device.width - w) / 2
-                    vide = ' ' * 22     # Hack to speed clear screen line...
                     if j == 0:
                         color = 'blue'
                     elif j == 1:
