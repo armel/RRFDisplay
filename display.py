@@ -151,8 +151,8 @@ def extended_system(draw, page):
 
     draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
     
-    legacy.text(draw, (0, -2), chr(0) + chr(1), fill='indigo', font=s.SMALL_BITMAP_CPU)
-    legacy.text(draw, (0, 6), chr(2) + chr(3), fill='indigo', font=s.SMALL_BITMAP_CPU)
+    legacy.text(draw, (0, -2), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CPU)
+    legacy.text(draw, (0, 6), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_CPU)
 
     w, h = draw.textsize(text='Spotnik Infos', font=font)
     tab = (s.device.width - w) / 2
@@ -221,8 +221,8 @@ def extended_call(draw, limit = 5):
 
     draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
 
-    legacy.text(draw, (0, -2), chr(0) + chr(1), fill='indigo', font=s.SMALL_BITMAP_CLOCK)
-    legacy.text(draw, (0, 6), chr(2) + chr(3), fill='indigo', font=s.SMALL_BITMAP_CLOCK)
+    legacy.text(draw, (0, -2), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CLOCK)
+    legacy.text(draw, (0, 6), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_CLOCK)
 
     w, h = draw.textsize(text=s.room_current[:3] + ' Last TX', font=font)
     tab = (s.device.width - w) / 2
