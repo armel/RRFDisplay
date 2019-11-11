@@ -371,7 +371,7 @@ def display_64():
             draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
 
             for i in xrange(0, 128, 2):
-                draw.point((i, 25), fill='white')
+                draw.point((i, 23), fill='white')
                 draw.point((i, 40), fill='white')
 
             # Icon stat
