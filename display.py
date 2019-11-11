@@ -41,13 +41,7 @@ def tot(draw, legacy, duration, position):
 
         draw.rectangle((0, 54, 128, 43), fill='black')
         for i in xrange(3, h, 2):
-            if s.room_current == 'RRF' and duration > 90:
-                color = 'indigo'
-            elif s.room_current == 'RRF' and duration > 105:
-                color = 'blue'
-            else:
-                color = 'white'
-            draw.rectangle((i, 54, i, 43), fill=color)
+            draw.rectangle((i, 54, i, 43), fill='white')
 
         for i in xrange(0, 128, 4):
             draw.line((i, position, i + 1, position), fill='white')
@@ -82,7 +76,14 @@ def tot(draw, legacy, duration, position):
 
         legacy.text(draw, (60 + tab, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
     else:
-        draw.text((8, 30), l.convert_second_to_time(duration), font=font_tot, fill='white')
+        if s.room_current == 'RRF' and duration > 90:
+            color = 'white'
+        elif s.room_current == 'RRF' and duration > 60:
+            color = 'indigo'
+        else:
+            color = 'blue'
+
+        draw.text((8, 30), l.convert_second_to_time(duration), font=font_tot, fill=color)
 
 
 # Draw histogram
@@ -465,9 +466,7 @@ def display_128():
                     w, h = draw.textsize(text=m, font=font)
                     tab = (s.device.width - w) / 2
                     vide = ' ' * 22     # Hack to speed clear screen line...
-                    if j == 0:
-                        color = 'blue'
-                    elif j == 1:
+                    if j < 2:
                         color = 'indigo'
                     else:
                         color = 'white'
