@@ -76,12 +76,20 @@ def tot(draw, legacy, duration, position):
 
         legacy.text(draw, (60 + tab, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
     else:
-        if s.room_current == 'RRF' and duration > 90:
-            color = 'white'
-        elif s.room_current == 'RRF' and duration > 60:
-            color = 'indigo'
+        if s.room_current == 'RRF':
+            if duration > 90:
+                color = 'white'
+            elif duration > 60:
+                color = 'indigo'
+            else:
+                color = 'blue'
         else:
-            color = 'blue'
+            if duration > 240:
+                color = 'white'
+            elif duration > 180:
+                color = 'indigo'
+            else:
+                color = 'blue'
 
         draw.text((8, 30), l.convert_second_to_time(duration), font=font_tot, fill=color)
 
