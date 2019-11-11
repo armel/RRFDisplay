@@ -339,7 +339,6 @@ def display_32():
                     draw.text((0, i), vide, font=font, fill='white')
                     draw.text((tab, i), m, font=font, fill='white')
                     i += h
-                    print h
                     if i == 24:
                         break
 
@@ -399,6 +398,7 @@ def display_64():
                     draw.text((0, i), vide, font=font, fill='white')
                     draw.text((tab, i), m, font=font, fill='white')
                     i += h
+                    print h
                     if i == 24:
                         i += 6
 
