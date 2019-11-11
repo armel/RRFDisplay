@@ -5,13 +5,15 @@ Suivi temps réel de l'activité du réseau [RRF](https://f5nlg.wordpress.com/20
 
 Cette version du RRFTracker et une évolution d'un [premier projet](https://github.com/armel/RRFTracker) réalisé mi novembre 2018 à partir d'un Nodemcu ESP8266 et d'un écran LCD 16x2.
 
-Il permet de suivre en temps réel l'activité du réseau [RRF](https://f5nlg.wordpress.com/2015/12/28/nouveau-reseau-french-repeater-network/) (Réseau des Répéteurs Francophones), mais également du [FON](http://www.f1tzo.com/) (French Open Networks), en utilisant un Raspberry Pi 3 ou un Orange Pi Zero et un écran OLED type SH1106 ou SSD1306 piloté par I2C. Ces écrans ont un QSJ de moins de 5€. C'était une des contraintes de mon cahier des charges. À noter que vous pouvez les trouver à moins de 3€ sur des boutiques chinoises, si vous acceptez de patienter 30 à 60 jours pour la livraison.  
+Il permet de suivre en temps réel l'activité du réseau [RRF](https://f5nlg.wordpress.com/2015/12/28/nouveau-reseau-french-repeater-network/) (Réseau des Répéteurs Francophones), mais également du [FON](http://www.f1tzo.com/) (French Open Networks), en utilisant un Raspberry Pi 3 ou un Orange Pi Zero et un écran OLED type SH1106, SSD1306 ou SSD1327 piloté par I2C. Les 2 premiers écrans ont un QSJ de moins de 5€. Le troisième est un peu plus onéreux, mais tourne autour de 10€. C'était une des contraintes de mon cahier des charges. À noter que vous pouvez les trouver moins cher sur des boutiques chinoises, si vous acceptez de patienter 30 à 60 jours pour la livraison.  
 
 Pour le moment, cette version du RRFTracker prend en charge [3 tailles d'écrans](http://www.dsdtech-global.com/2018/05/iic-oled-lcd-u8glib.html) OLED et 2 résolutions. 
 
 - 1.30" en 128 x 64
 - 0.96" en 128 x 64 
 - 0.91" en 128 x 32
+
+La résolution 128 x 128 en 1.50" est disponible depuis peu en utilisant des écrans de type [SSD1327](https://www.waveshare.com/wiki/1.5inch_OLED_Module).
 
 Ce dispositif peut donc être associé sans (_trop de_) difficulté à un Spotnik Gamma, Delta, etc. afin de profiter d'un minimum de remontée d'informations, à l'image des Hotspots MMDVM type ZUMspot, Jumbo SPOT, etc. si precieux aux porteurs de casques de chantier... j'ai nommé les DMRistes ;)
 
@@ -55,6 +57,10 @@ Alternativement, si aucune station n'est en émission, le RRFTracker affichera d
 Enfin, si une station passe en émission, en lieu et place de l'histogramme du trafic, une jauge affichant le temps de parole s'affichera, par tranche de 30 secondes. 
 
 À noter qu'à minuit, le nombre de passages en émission sur la journée, l'historique des 5 noeuds les plus actifs, ainsi que l'histogramme sont réinitialisés (à zéro).
+
+### Ecran 128 x 128
+
+En complément des informations visibles sur un écran 128 x 64 pixels, cette résolution permet d'afficher plus d'informations et plus particulièrement de suivre l'activiter sur les autres salons.
 
 ## Post installation sur Spotnik 3.0
 
@@ -200,11 +206,41 @@ Et voilà ;)
 Voici la liste des composants dont vous aurez besoin:
 
 * 1 Raspberry Pi 3 ou 1 Orange Pi Zero
-* 1 écran OLED 128 x 64 (1.30" ou 0.96") ou 128 x 32 (0.91"), type SH1106 ou SSD1306
+* 1 écran OLED 128 x 64 (1.30" ou 0.96") ou 128 x 32 (0.91"), type SH1106 ou SSD1306 ou un écran OLED 128 x 128 type SSD1327
 * 4 cables Dupont femelle / femelle
 
 Il est possible d'adapter ce projet à d'autres platines et d'autres écrans. Ne pas hésitez à me contacter pour avis si vous le souhaitez ;)
  
+## Augmenter la vitesse de transfert du bus I2C
+
+Si vous utilisez un écran OLED 128 x 128 type SSD1327, vous aurez probablement à augmenter la vitesse de transfert du bus I2C. La résolution et le fait que cet écran fonctionne en niveau de gris impose une certaine bande passante afin d'avoir un FPS acceptable. 
+
+Par chance, il est possible d'augmenter la vitesse du bus I2C sur un Orange PI Zero. Je n'ai pas testé sur Raspberry. 
+
+Commencez par convertir le fichier `/boot/dtb/sun8i-h2-plus-orangepi-zero.dtb.dtb` en format .dts (format text éditable).
+
+```
+cd /boot/dtb
+dtc -I dtb -O dts sun8i-h2-plus-orangepi-zero.dtb -o sun8i-h2-plus-orangepi-zero.dts
+```
+
+Editez le fichier .dts et ajouter une fréquence aux sections i2c0 (i2c@01c2ac00), i2c1 (i2c@01c2b000) et i2c2 (i2c@01c2b400). La valeur suivante correspond à 400 KHz (400 000 Hz).
+
+```
+clock-frequency = <0x61A80>; 
+```
+
+Et faites la convertion inverse.
+
+```
+dtc -I dts -O dtb sun8i-h2-plus-orangepi-zero.dts -o sun8i-h2-plus-orangepi-zero.dtb
+```
+
+Vous n'avez plus qu'à rebooter.
+
+Au cas ou, dans le répertoire `tools/i2c` du projet, se trouve un script shell qui permet de faire cette modification. 
+
+
 ## Schémas de cablage
 
 ### Raspberry PI 3
