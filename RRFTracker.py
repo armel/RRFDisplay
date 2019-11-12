@@ -111,7 +111,7 @@ def main(argv):
             data_activity = rrf_data['activity']
             data_transmit = rrf_data['transmit'][0]
             data_last = rrf_data['last']
-            data_all = rrf_data['extended']
+            data_all = rrf_data['all']
 
             s.message[0] = l.sanitize_call(data_last[2][u'Indicatif'].encode('utf-8'))
             s.message[1] = l.sanitize_call(data_last[1][u'Indicatif'].encode('utf-8'))
@@ -161,13 +161,13 @@ def main(argv):
                     s.call_time[q] = rrf_data['last'][q][u'Heure']
 
                 # Load Best
-                limit = len(rrf_data['extended'])
+                limit = len(rrf_data['all'])
                 s.best = [''] * 10 
                 s.best_time = [0] * 10 
 
                 for q in xrange(0, limit):
-                    s.best[q] = l.sanitize_call(rrf_data['extended'][q][u'Indicatif'].encode('utf-8'))
-                    s.best_time[q] = l.convert_time_to_second(rrf_data['extended'][q][u'Durée'])
+                    s.best[q] = l.sanitize_call(rrf_data['all'][q][u'Indicatif'].encode('utf-8'))
+                    s.best_time[q] = l.convert_time_to_second(rrf_data['all'][q][u'Durée'])
 
             if(s.seconde < 10):     # TX today
                 s.message[4] = 'Total TX ' + str(data_abstract[u'TX total'])
