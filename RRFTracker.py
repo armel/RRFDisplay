@@ -176,7 +176,7 @@ def main(argv):
                 s.message[4] = 'Links actifs ' + str(data_abstract[u'Links actifs'])
 
             elif(s.seconde < 30):   # Online node
-                s.message[4] = 'Links connectés ' + str(data_abstract[u'Links connectés'])
+                s.message[4] = 'Links total ' + str(data_abstract[u'Links connectés'])
                 
             elif(s.seconde < 40):   # Total emission
                 s.message[4] = 'BF total ' + data_abstract[u'Emission cumulée']
