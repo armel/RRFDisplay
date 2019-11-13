@@ -170,16 +170,16 @@ def main(argv):
                     s.best_time[q] = l.convert_time_to_second(rrf_data['all'][q][u'Durée'])
 
             if(s.seconde < 10):     # TX today
-                s.message[4] = 'TX total' + str(data_abstract[u'TX total'])
+                s.message[4] = 'TX total ' + str(data_abstract[u'TX total'])
 
             elif(s.seconde < 20):   # Active node
-                s.message[4] = 'Links actifs' + str(data_abstract[u'Links actifs'])
+                s.message[4] = 'Links actifs ' + str(data_abstract[u'Links actifs'])
 
             elif(s.seconde < 30):   # Online node
-                s.message[4] = 'Links connectés' + str(data_abstract[u'Links connectés'])
+                s.message[4] = 'Links connectés ' + str(data_abstract[u'Links connectés'])
                 
             elif(s.seconde < 40):   # Total emission
-                s.message[4] = 'BF total' + data_abstract[u'Emission cumulée']
+                s.message[4] = 'BF total ' + data_abstract[u'Emission cumulée']
 
             elif(s.seconde < 50):   # Last TX
                 s.message[4] = 'Dernier TX ' + data_last[0][u'Heure']
