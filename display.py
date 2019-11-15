@@ -461,7 +461,7 @@ def display_128():
 
             # Icon talk
             if s.transmit is True:
-                draw.text((2, 10), u'\uf130', font=icon, fill=s.color['white'])
+                draw.text((2, 20), u'\uf130', font=icon, fill=s.color['white'])
                 distance(draw)
 
             # Icon clock (DIY...)
