@@ -127,7 +127,7 @@ def clock_room(draw):
 
     # Print Room
     if s.seconde %5 != 0:
-        i = 115
+        i = 116
 
         for c in s.room_current[:3]:
             legacy.text(draw, (i, 5), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
@@ -476,12 +476,20 @@ def display_128():
                     w, h = draw.textsize(text=m, font=font)
                     tab = (s.device.width - w) / 2
                     vide = ' ' * 22     # Hack to speed clear screen line...
-                    if j == 0:
-                        color = s.color['white']
-                    elif j == 1:
-                        color = s.color['silver']
+                    if s.transmit is True:
+                        if j == 0:
+                            color = s.color['white']
+                        elif j == 1:
+                            color = s.color['silver']
+                        else:
+                            color = s.color['gray']
                     else:
-                        color = s.color['gray']
+                        if j == 0:
+                            color = s.color['silver']
+                        elif j == 1:
+                            color = s.color['gray']
+                        else:
+                            color = s.color['dimgray']
 
                     draw.text((0, i), vide, font=font, fill=s.color['white'])
                     draw.text((tab, i), m, font=font, fill=color)
