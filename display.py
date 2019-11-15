@@ -39,19 +39,19 @@ def tot(draw, legacy, duration, position):
 
         h = l.interpolation(duration, duration_min, duration_max, 0, 120)
 
-        draw.rectangle((0, 54, 128, 43), fill='black')
+        draw.rectangle((0, 54, 128, 43), fill=s.color['black'])
         for i in xrange(3, h, 2):
-            draw.rectangle((i, 54, i, 43), fill='white')
+            draw.rectangle((i, 54, i, 43), fill=s.color['white'])
 
         for i in xrange(0, 128, 4):
-            draw.line((i, position, i + 1, position), fill='white')
+            draw.line((i, position, i + 1, position), fill=s.color['white'])
 
         # Duration min
         tmp = list(str(duration_min))
         msg = ''
         for c in tmp:
             msg += chr(s.letter[c])
-        legacy.text(draw, (0, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
+        legacy.text(draw, (0, position + 2), msg, fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
 
         # Duration max
         tmp = list(str(duration_max))
@@ -62,7 +62,7 @@ def tot(draw, legacy, duration, position):
             tab = 4
         else:
             tab = 0
-        legacy.text(draw, (115 + tab, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
+        legacy.text(draw, (115 + tab, position + 2), msg, fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
 
         # duration
         tmp = list(str(duration))
@@ -74,7 +74,7 @@ def tot(draw, legacy, duration, position):
         else:
             tab = 0
 
-        legacy.text(draw, (60 + tab, position + 2), msg, fill='white', font=s.SMALL_BITMAP_FONT)
+        legacy.text(draw, (60 + tab, position + 2), msg, fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
     else:
         if s.room_current == 'RRF':
             if duration > 90:
@@ -107,15 +107,15 @@ def histogram(draw, legacy, position, height = 15):
         else:
             h = 0
 
-        draw.rectangle((0 + i, position, i + 2, (position - height)), fill='black')
-        draw.rectangle((0 + i, position, i + 2, (position - h)), fill='indigo')
+        draw.rectangle((0 + i, position, i + 2, (position - height)), fill=s.color['black'])
+        draw.rectangle((0 + i, position, i + 2, (position - h)), fill=s.color['gray'])
         i += 5
 
-    legacy.text(draw, (1, position + 2), chr(0) + chr(0), fill='white', font=s.SMALL_BITMAP_FONT)
-    legacy.text(draw, (33, position + 2), chr(0) + chr(6), fill='white', font=s.SMALL_BITMAP_FONT)
-    legacy.text(draw, (63, position + 2), chr(1) + chr(2), fill='white', font=s.SMALL_BITMAP_FONT)
-    legacy.text(draw, (93, position + 2), chr(1) + chr(8), fill='white', font=s.SMALL_BITMAP_FONT)
-    legacy.text(draw, (120, position + 2), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw, (1, position + 2), chr(0) + chr(0), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw, (33, position + 2), chr(0) + chr(6), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw, (63, position + 2), chr(1) + chr(2), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw, (93, position + 2), chr(1) + chr(8), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
+    legacy.text(draw, (120, position + 2), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
 
 
 # Print clock and room
@@ -126,7 +126,7 @@ def clock_room(draw):
         i = 115
 
         for c in s.room_current[:3]:
-            legacy.text(draw, (i, 1), chr(s.letter[c]), fill='white', font=s.SMALL_BITMAP_FONT)
+            legacy.text(draw, (i, 1), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
             i += 4
 
     # Print Clock
@@ -134,7 +134,7 @@ def clock_room(draw):
         i = 108
 
         for c in s.now:
-            legacy.text(draw, (i, 1), chr(s.letter[c]), fill='white', font=s.SMALL_BITMAP_FONT)
+            legacy.text(draw, (i, 1), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
             i += 4
 
 
@@ -150,7 +150,7 @@ def distance(draw):
         #    d = d[:-2]
 
         for c in d:
-            legacy.text(draw, (i, 0), chr(s.letter[c]), fill='white', font=s.SMALL_BITMAP_FONT)
+            legacy.text(draw, (i, 0), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
             i += 4
 
 
@@ -158,14 +158,14 @@ def distance(draw):
 
 def extended_system(draw, page):
 
-    draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
+    draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
     
-    legacy.text(draw, (0, -2), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CPU)
-    legacy.text(draw, (0, 6), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_CPU)
+    legacy.text(draw, (0, -2), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CPU)
+    legacy.text(draw, (0, 6), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CPU)
 
     w, h = draw.textsize(text='Infos Spotnik', font=font)
     tab = (s.device.width - w) / 2
-    draw.text((tab, 0), 'Infos Spotnik', font=font, fill='white')
+    draw.text((tab, 0), 'Infos Spotnik', font=font, fill=s.color['white'])
 
     if page == 1:
         sys = {'Arch': '', 'Kernel': '', 'Uptime': '', 'Load': '', 'Freq': ''}
@@ -214,13 +214,13 @@ def extended_system(draw, page):
     i = 16
 
     for j in sys_order:
-        draw.rectangle((0, i - 1, 38, i + 7), fill='indigo')
-        draw.line((39, i, 39, i + 6), fill='indigo')
-        draw.line((40, i + 2, 40, i + 4), fill='indigo')
-        draw.point((41, i + 3), fill='indigo')
+        draw.rectangle((0, i - 1, 38, i + 7), fill=s.color['gray'])
+        draw.line((39, i, 39, i + 6), fill=s.color['gray'])
+        draw.line((40, i + 2, 40, i + 4), fill=s.color['gray'])
+        draw.point((41, i + 3), fill=s.color['gray'])
 
-        draw.text((1, i), j, font=font, fill='black')
-        draw.text((48, i), sys[j], font=font, fill='white')
+        draw.text((1, i), j, font=font, fill=s.color['black'])
+        draw.text((48, i), sys[j], font=font, fill=s.color['white'])
 
         i += 10
 
@@ -228,25 +228,25 @@ def extended_system(draw, page):
 
 def extended_call(draw, limit = 5):
 
-    draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
+    draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
 
-    legacy.text(draw, (0, -2), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CLOCK)
-    legacy.text(draw, (0, 6), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_CLOCK)
+    legacy.text(draw, (0, -2), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
+    legacy.text(draw, (0, 6), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
 
     w, h = draw.textsize(text='TX recents', font=font)
     tab = (s.device.width - w) / 2
-    draw.text((tab, 0), 'TX recents', font=font, fill='white')
+    draw.text((tab, 0), 'TX recents', font=font, fill=s.color['white'])
 
     i = 16
 
     for j in xrange(0, limit):
-        draw.rectangle((0, i - 1, 42, i + 7), fill='indigo')
-        draw.line((43, i, 43, i + 6), fill='indigo')
-        draw.line((44, i + 2, 44, i + 4), fill='indigo')
-        draw.point((45, i + 3), fill='indigo')
+        draw.rectangle((0, i - 1, 42, i + 7), fill=s.color['gray'])
+        draw.line((43, i, 43, i + 6), fill=s.color['gray'])
+        draw.line((44, i + 2, 44, i + 4), fill=s.color['gray'])
+        draw.point((45, i + 3), fill=s.color['gray'])
 
-        draw.text((1, i), s.call_time[j], font=font, fill='black')
-        draw.text((54, i), s.call[j], font=font, fill='white')
+        draw.text((1, i), s.call_time[j], font=font, fill=s.color['black'])
+        draw.text((54, i), s.call[j], font=font, fill=s.color['white'])
 
         i += 10
 
@@ -255,13 +255,13 @@ def extended_call(draw, limit = 5):
 
 def extended_best(draw, limit = 5):
 
-    draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
+    draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
 
-    draw.text((0, 0), u'\ue801', font=icon, fill='white')
+    draw.text((0, 0), u'\ue801', font=icon, fill=s.color['white'])
 
     w, h = draw.textsize(text='Top links', font=font)
     tab = (s.device.width - w) / 2
-    draw.text((tab, 0), 'Top links', font=font, fill='white')
+    draw.text((tab, 0), 'Top links', font=font, fill=s.color['white'])
 
     best_min = min(s.best_time)
     best_max = max(s.best_time)
@@ -279,13 +279,13 @@ def extended_best(draw, limit = 5):
         if t == 0:
             t = 42
 
-        draw.rectangle((0, i - 1, t, i + 7), fill='indigo')
-        draw.line((t + 1, i, t + 1, i + 6), fill='indigo')
-        draw.line((t + 2, i + 2, t + 2, i + 4), fill='indigo')
-        draw.point((t + 3, i + 3), fill='indigo')
+        draw.rectangle((0, i - 1, t, i + 7), fill=s.color['gray'])
+        draw.line((t + 1, i, t + 1, i + 6), fill=s.color['gray'])
+        draw.line((t + 2, i + 2, t + 2, i + 4), fill=s.color['gray'])
+        draw.point((t + 3, i + 3), fill=s.color['gray'])
 
-        draw.text((1, i), l.convert_second_to_time(n), font=font, fill='black')
-        draw.text((54, i), c, font=font, fill='white')
+        draw.text((1, i), l.convert_second_to_time(n), font=font, fill=s.color['black'])
+        draw.text((54, i), c, font=font, fill=s.color['white'])
 
         i += 10
 
@@ -307,7 +307,7 @@ def elsewhere(draw, data):
             tmp = '00:' + tmp[0] + ':' + tmp[1]
             d[2] = tmp
 
-        draw.text((1, i), d[1], font=font, fill='white')
+        draw.text((1, i), d[1], font=font, fill=s.color['white'])
         draw.text((30, i), d[2], font=font, fill=color)
         draw.text((104, i), d[3], font=font, fill=color)
 
@@ -320,22 +320,22 @@ def display_32():
 
         # Histogram extended
         if s.transmit is False and s.minute % 2 == 0 and s.seconde < 30:
-            draw.rectangle((0, 0, 127, 31), fill='black')
+            draw.rectangle((0, 0, 127, 31), fill=s.color['black'])
             histogram(draw, legacy, 25)
 
         # If not extended
         else:
-            draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
+            draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
 
             # Icon talk
             if s.transmit is True:
-                draw.text((2, 10), u'\uf130', font=icon, fill='white')
+                draw.text((2, 10), u'\uf130', font=icon, fill=s.color['white'])
                 distance(draw)
 
             # Icon clock (DIY...)
             if s.message[2][:4] == 'Last':
-                legacy.text(draw, (0, 8), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CLOCK)
-                legacy.text(draw, (0, 16), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_CLOCK)
+                legacy.text(draw, (0, 8), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
+                legacy.text(draw, (0, 16), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
 
             # Print data
             i = 0
@@ -345,8 +345,8 @@ def display_32():
                     w, h = draw.textsize(text=m, font=font)
                     tab = (s.device.width - w) / 2
                     vide = ' ' * 22     # Hack to speed clear screen line...
-                    draw.text((0, i), vide, font=font, fill='white')
-                    draw.text((tab, i), m, font=font, fill='white')
+                    draw.text((0, i), vide, font=font, fill=s.color['white'])
+                    draw.text((tab, i), m, font=font, fill=s.color['white'])
                     i += h
                     if i == 24:
                         break
@@ -377,24 +377,24 @@ def display_64():
 
         # If not extended
         else:
-            draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
+            draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
 
             for i in xrange(0, 128, 2):
-                draw.point((i, 25), fill='white')
-                draw.point((i, 40), fill='white')
+                draw.point((i, 25), fill=s.color['white'])
+                draw.point((i, 40), fill=s.color['white'])
 
             # Icon stat
-            draw.text((0, 26), u'\ue801', font=icon, fill='white')
+            draw.text((0, 26), u'\ue801', font=icon, fill=s.color['white'])
 
             # Icon talk
             if s.transmit is True:
-                draw.text((2, 10), u'\uf130', font=icon, fill='white')
+                draw.text((2, 10), u'\uf130', font=icon, fill=s.color['white'])
                 distance(draw)
 
             # Icon clock (DIY...)
             if s.message[2][:4] == 'Last':
-                legacy.text(draw, (0, 8), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CLOCK)
-                legacy.text(draw, (0, 16), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_CLOCK)
+                legacy.text(draw, (0, 8), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
+                legacy.text(draw, (0, 16), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
 
             # Print data
             i = 0
@@ -404,8 +404,8 @@ def display_64():
                     w, h = draw.textsize(text=m, font=font)
                     tab = (s.device.width - w) / 2
                     vide = ' ' * 22     # Hack to speed clear screen line...
-                    draw.text((0, i), vide, font=font, fill='white')
-                    draw.text((tab, i), m, font=font, fill='white')
+                    draw.text((0, i), vide, font=font, fill=s.color['white'])
+                    draw.text((tab, i), m, font=font, fill=s.color['white'])
                     i += h
                     if i == 24:
                         i += 6
@@ -438,33 +438,33 @@ def display_128():
 
         # If not extended
         else:
-            draw.rectangle((0, 0, 127, s.device.height - 1), fill='black')
+            draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
 
             for i in xrange(0, 128, 2):
-                draw.point((i, 25), fill='indigo')
-                draw.point((i, 40), fill='indigo')
-                draw.point((i, 78), fill='indigo')
-                draw.point((i, 88), fill='indigo')
-                draw.point((i, 98), fill='indigo')
-                draw.point((i, 108), fill='indigo')
-                draw.point((i, 118), fill='indigo')
+                draw.point((i, 25), fill=s.color['gray'])
+                draw.point((i, 40), fill=s.color['gray'])
+                draw.point((i, 78), fill=s.color['gray'])
+                draw.point((i, 88), fill=s.color['gray'])
+                draw.point((i, 98), fill=s.color['gray'])
+                draw.point((i, 108), fill=s.color['gray'])
+                draw.point((i, 118), fill=s.color['gray'])
 
             for i in xrange(78, 128, 2):
-                draw.point((22, i), fill='indigo')
-                draw.point((98, i), fill='indigo')
+                draw.point((22, i), fill=s.color['gray'])
+                draw.point((98, i), fill=s.color['gray'])
 
             # Icon stat
-            draw.text((0, 26), u'\ue801', font=icon, fill='white')
+            draw.text((0, 26), u'\ue801', font=icon, fill=s.color['white'])
 
             # Icon talk
             if s.transmit is True:
-                draw.text((2, 10), u'\uf130', font=icon, fill='white')
+                draw.text((2, 10), u'\uf130', font=icon, fill=s.color['white'])
                 distance(draw)
 
             # Icon clock (DIY...)
             if s.message[2][:4] == 'Last':
-                legacy.text(draw, (0, 8), chr(0) + chr(1), fill='white', font=s.SMALL_BITMAP_CLOCK)
-                legacy.text(draw, (0, 16), chr(2) + chr(3), fill='white', font=s.SMALL_BITMAP_CLOCK)
+                legacy.text(draw, (0, 8), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
+                legacy.text(draw, (0, 16), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
 
             # Print data
             i = 0
@@ -481,7 +481,7 @@ def display_128():
                     else:
                         color = 'white'
 
-                    draw.text((0, i), vide, font=font, fill='white')
+                    draw.text((0, i), vide, font=font, fill=s.color['white'])
                     draw.text((tab, i), m, font=font, fill=color)
                     i += h
                     if i == 24:
