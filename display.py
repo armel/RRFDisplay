@@ -108,7 +108,7 @@ def histogram(draw, legacy, position, height = 15):
             h = 0
 
         draw.rectangle((0 + i, position, i + 2, (position - height)), fill=s.color['black'])
-        draw.rectangle((0 + i, position, i + 2, (position - h)), fill=s.color['gray'])
+        draw.rectangle((0 + i, position, i + 2, (position - h)), fill=s.color['dimgray'])
         i += 5
 
     legacy.text(draw, (1, position + 2), chr(0) + chr(0), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
@@ -214,10 +214,10 @@ def extended_system(draw, page):
     i = 16
 
     for j in sys_order:
-        draw.rectangle((0, i - 1, 38, i + 7), fill=s.color['gray'])
-        draw.line((39, i, 39, i + 6), fill=s.color['gray'])
-        draw.line((40, i + 2, 40, i + 4), fill=s.color['gray'])
-        draw.point((41, i + 3), fill=s.color['gray'])
+        draw.rectangle((0, i - 1, 38, i + 7), fill=s.color['dimgray'])
+        draw.line((39, i, 39, i + 6), fill=s.color['dimgray'])
+        draw.line((40, i + 2, 40, i + 4), fill=s.color['dimgray'])
+        draw.point((41, i + 3), fill=s.color['dimgray'])
 
         draw.text((1, i), j, font=font, fill=s.color['black'])
         draw.text((48, i), sys[j], font=font, fill=s.color['white'])
@@ -240,10 +240,10 @@ def extended_call(draw, limit = 5):
     i = 16
 
     for j in xrange(0, limit):
-        draw.rectangle((0, i - 1, 42, i + 7), fill=s.color['gray'])
-        draw.line((43, i, 43, i + 6), fill=s.color['gray'])
-        draw.line((44, i + 2, 44, i + 4), fill=s.color['gray'])
-        draw.point((45, i + 3), fill=s.color['gray'])
+        draw.rectangle((0, i - 1, 42, i + 7), fill=s.color['dimgray'])
+        draw.line((43, i, 43, i + 6), fill=s.color['dimgray'])
+        draw.line((44, i + 2, 44, i + 4), fill=s.color['dimgray'])
+        draw.point((45, i + 3), fill=s.color['dimgray'])
 
         draw.text((1, i), s.call_time[j], font=font, fill=s.color['black'])
         draw.text((54, i), s.call[j], font=font, fill=s.color['white'])
@@ -279,10 +279,10 @@ def extended_best(draw, limit = 5):
         if t == 0:
             t = 42
 
-        draw.rectangle((0, i - 1, t, i + 7), fill=s.color['gray'])
-        draw.line((t + 1, i, t + 1, i + 6), fill=s.color['gray'])
-        draw.line((t + 2, i + 2, t + 2, i + 4), fill=s.color['gray'])
-        draw.point((t + 3, i + 3), fill=s.color['gray'])
+        draw.rectangle((0, i - 1, t, i + 7), fill=s.color['dimgray'])
+        draw.line((t + 1, i, t + 1, i + 6), fill=s.color['dimgray'])
+        draw.line((t + 2, i + 2, t + 2, i + 4), fill=s.color['dimgray'])
+        draw.point((t + 3, i + 3), fill=s.color['dimgray'])
 
         draw.text((1, i), l.convert_second_to_time(n), font=font, fill=s.color['black'])
         draw.text((54, i), c, font=font, fill=s.color['white'])
@@ -441,17 +441,17 @@ def display_128():
             draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
 
             for i in xrange(0, 128, 2):
-                draw.point((i, 25), fill=s.color['gray'])
-                draw.point((i, 40), fill=s.color['gray'])
-                draw.point((i, 78), fill=s.color['gray'])
-                draw.point((i, 88), fill=s.color['gray'])
-                draw.point((i, 98), fill=s.color['gray'])
-                draw.point((i, 108), fill=s.color['gray'])
-                draw.point((i, 118), fill=s.color['gray'])
+                draw.point((i, 25), fill=s.color['dimgray'])
+                draw.point((i, 40), fill=s.color['dimgray'])
+                draw.point((i, 78), fill=s.color['dimgray'])
+                draw.point((i, 88), fill=s.color['dimgray'])
+                draw.point((i, 98), fill=s.color['dimgray'])
+                draw.point((i, 108), fill=s.color['dimgray'])
+                draw.point((i, 118), fill=s.color['dimgray'])
 
             for i in xrange(78, 128, 2):
-                draw.point((22, i), fill=s.color['gray'])
-                draw.point((98, i), fill=s.color['gray'])
+                draw.point((22, i), fill=s.color['dimgray'])
+                draw.point((98, i), fill=s.color['dimgray'])
 
             # Icon stat
             draw.text((0, 26), u'\ue801', font=icon, fill=s.color['white'])
