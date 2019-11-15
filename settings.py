@@ -126,11 +126,11 @@ raptor = [None] * 5         # Message list
 
 color = {
     'black': '0x000000',
-    'darkslategray': '0x111111',
-    'dimgray': '0x222222',
-    'gray': '0x333333',
-    'silver': '0x44444',
-    'white': '0xffffff'
+    'darkslategray': int('0x111111', 16),
+    'dimgray': int('0x222222', 16),
+    'gray': int('0x333333', 16),
+    'silver': int('0x44444', 16),
+    'white': int('0xffffff', 16)
 }
 
 # Set time and date
