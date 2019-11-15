@@ -464,6 +464,8 @@ def display_128():
             if s.transmit is True:
                 draw.text((2, 20), u'\uf130', font=icon, fill=s.color['white'])
                 distance(draw)
+            else:
+                draw.text((2, 20), u'\uf131', font=icon, fill=s.color['white'])
 
             # Icon clock (DIY...)
             if s.message[2][:4] == 'Last':
