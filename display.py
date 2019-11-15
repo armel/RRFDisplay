@@ -296,7 +296,7 @@ def elsewhere(draw, data):
     for d in data:
         d = d.split('/')
         if d[0] == '0':
-            color = s.color['dimgray']
+            color = s.color['gray']
         else:
             color = s.color['white']
 
