@@ -147,14 +147,14 @@ def distance(draw):
     d = l.calc_distance(s.message[2], s.latitude, s.longitude)
 
     if d != 0:
-        i = 108
+        i = 110
         #d = str(d) + 'KM'
         d = str(d)
         #if '.0' in d:
         #    d = d[:-2]
 
         for c in d:
-            legacy.text(draw, (i, 20), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
+            legacy.text(draw, (i, 18), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
             i += 4
 
 
