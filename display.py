@@ -423,7 +423,6 @@ def display_128():
         draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
 
         draw.rectangle((0, 1, 127, 13), fill=s.color['darkslategray'])
-        draw.rectangle((0, 78, 22, 127), fill=s.color['darkslategray'])
 
         for i in xrange(0, 128, 1):
             draw.point((i, 0), fill=s.color['dimgray'])
@@ -443,6 +442,8 @@ def display_128():
 
         # If not extended
         else:
+            draw.rectangle((0, 78, 22, 127), fill=s.color['darkslategray'])
+
             for i in xrange(0, 128, 2):     # Horizontal
                 draw.point((i, 40), fill=s.color['dimgray'])    # Zone haut | Zone Histogramme - TOT
                 draw.point((i, 78), fill=s.color['dimgray'])    # Zone Histogramme - TOT | Zone Elsewhere
