@@ -130,7 +130,7 @@ def clock_room(draw):
         i = 115
 
         for c in s.room_current[:3]:
-            legacy.text(draw, (i, 6), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
+            legacy.text(draw, (i, 5), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
             i += 4
 
     # Print Clock
@@ -138,7 +138,7 @@ def clock_room(draw):
         i = 108
 
         for c in s.now:
-            legacy.text(draw, (i, 6), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
+            legacy.text(draw, (i, 5), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
             i += 4
 
 
