@@ -491,7 +491,7 @@ def display_128():
                     draw.text((tab, i), m, font=font, fill=color)
                     i += h
                     if i == 40:
-                        i = 0
+                        i = 4
                     j += 1
 
             if s.transmit is True and s.duration > 0:
