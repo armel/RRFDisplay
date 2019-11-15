@@ -213,7 +213,7 @@ def extended_system(draw, page):
         sys['Disk'] = percent + ' of ' + disk
         sys['Version'] = s.version
 
-    i = 16
+    i = 18
 
     for j in sys_order:
         draw.rectangle((0, i - 1, 38, i + 7), fill=s.color['dimgray'])
@@ -232,9 +232,9 @@ def extended_call(draw, limit = 5):
     draw.rectangle((0, 1, s.device.height - 1, 13), fill=s.color['darkslategray'])
     draw.text((0, 0), u'\uf161', font=icon, fill=s.color['white'])
 
-    w, h = draw.textsize(text='Dernieres emissions', font=font)
+    w, h = draw.textsize(text='Derniers TX', font=font)
     tab = (s.device.width - w) / 2
-    draw.text((tab, 4), 'Dernieres emissions', font=font, fill=s.color['white'])
+    draw.text((tab, 4), 'Derniers TX', font=font, fill=s.color['white'])
 
     i = 16
 
