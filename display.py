@@ -149,7 +149,7 @@ def distance(draw):
     if d != 0:
         #d = str(d) + 'KM'
         d = str(d)
-        i = 128 - len(d) * 5
+        i = 128 - len(d) * 4
 
         for c in d:
             legacy.text(draw, (i, 18), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
