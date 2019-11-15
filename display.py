@@ -16,7 +16,7 @@ from luma.core import legacy
 
 from PIL import ImageFont
 
-icon = ImageFont.truetype('fonts/fontello.ttf', 14)     # Icon font
+icon = ImageFont.truetype('fonts/fontello.ttf', 12)     # Icon font
 font = ImageFont.truetype('fonts/7x5.ttf', 8)           # Text font
 font_tot = ImageFont.truetype('fonts/astro.ttf', 50)    # Text font
 
@@ -161,7 +161,7 @@ def distance(draw):
 # Print System Log Extended
 
 def extended_system(draw, page):
-    draw.rectangle((0, 15, 127, s.device.height - 1), fill=s.color['black'])
+    draw.rectangle((0, 1, s.device.height - 1, 13), fill=s.color['darkslategray'])
     legacy.text(draw, (0, -2), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CPU)
     legacy.text(draw, (0, 6), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CPU)
 
@@ -213,7 +213,7 @@ def extended_system(draw, page):
         sys['Disk'] = percent + ' of ' + disk
         sys['Version'] = s.version
 
-    i = 24
+    i = 16
 
     for j in sys_order:
         draw.rectangle((0, i - 1, 38, i + 7), fill=s.color['dimgray'])
@@ -229,7 +229,7 @@ def extended_system(draw, page):
 # Print Call Log Extended
 
 def extended_call(draw, limit = 5):
-    draw.rectangle((0, 15, 127, s.device.height - 1), fill=s.color['black'])
+    draw.rectangle((0, 1, s.device.height - 1, 13), fill=s.color['darkslategray'])
     legacy.text(draw, (0, -2), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
     legacy.text(draw, (0, 6), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
 
@@ -237,7 +237,7 @@ def extended_call(draw, limit = 5):
     tab = (s.device.width - w) / 2
     draw.text((tab, 4), 'Dernieres emissions', font=font, fill=s.color['white'])
 
-    i = 24
+    i = 16
 
     for j in xrange(0, limit):
         draw.rectangle((0, i - 1, 42, i + 7), fill=s.color['dimgray'])
@@ -254,7 +254,7 @@ def extended_call(draw, limit = 5):
 # Print Best Log Extended
 
 def extended_best(draw, limit = 5):
-    draw.rectangle((0, 15, 127, s.device.height - 1), fill=s.color['black'])
+    draw.rectangle((0, 1, s.device.height - 1, 13), fill=s.color['darkslategray'])
     draw.text((0, 0), u'\ue801', font=icon, fill=s.color['white'])
 
     w, h = draw.textsize(text='Top links', font=font)
@@ -264,7 +264,7 @@ def extended_best(draw, limit = 5):
     best_min = min(s.best_time)
     best_max = max(s.best_time)
 
-    i = 24
+    i = 16
 
     for j in xrange(0, limit):
         c = s.best[j]
@@ -423,8 +423,8 @@ def display_128():
     with canvas(s.device) as draw:
         draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
 
-        draw.rectangle((0, 0, 128, 14), fill=s.color['darkslategray'])
-        draw.rectangle((0, 78, 22, 128), fill=s.color['darkslategray'])
+        draw.rectangle((0, 1, 127, 13), fill=s.color['darkslategray'])
+        draw.rectangle((0, 78, 22, 127), fill=s.color['darkslategray'])
 
         for i in xrange(0, 128, 1):
             draw.point((i, 0), fill=s.color['dimgray'])
@@ -444,17 +444,16 @@ def display_128():
 
         # If not extended
         else:
-            for i in xrange(0, 128, 2):
-                draw.point((i, 14), fill=s.color['dimgray'])
-                draw.point((i, 40), fill=s.color['dimgray'])
-                draw.point((i, 78), fill=s.color['dimgray'])
-                draw.point((i, 88), fill=s.color['dimgray'])
-                draw.point((i, 98), fill=s.color['dimgray'])
-                draw.point((i, 108), fill=s.color['dimgray'])
-                draw.point((i, 118), fill=s.color['dimgray'])
+            for i in xrange(0, 128, 2):     # Horizontal
+                draw.point((i, 40), fill=s.color['dimgray'])    # Zone haut | Zone Histogramme - TOT
+                draw.point((i, 78), fill=s.color['dimgray'])    # Zone Histogramme - TOT | Zone Elsewhere
+                draw.point((i, 88), fill=s.color['dimgray'])    # Zone Elsewhere
+                draw.point((i, 98), fill=s.color['dimgray'])    # Zone Elsewhere
+                draw.point((i, 108), fill=s.color['dimgray'])   # Zone Elsewhere
+                draw.point((i, 118), fill=s.color['dimgray'])   # Zone Elsewhere
                 
-            for i in xrange(78, 128, 2):
-                draw.point((22, i), fill=s.color['dimgray'])
+            for i in xrange(78, 128, 2):    # Vertical
+                draw.point((22, i), fill=s.color['dimgray'])    # Zone Elsewhere
                 draw.point((98, i), fill=s.color['dimgray'])
 
             # Icon stat
