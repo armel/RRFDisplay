@@ -452,6 +452,7 @@ def display_128():
 
             for i in xrange(0, 128, 2):
                 draw.point((i, 15), fill=s.color['dimgray'])
+                draw.point((i, 44), fill=s.color['dimgray'])
                 draw.point((i, 78), fill=s.color['dimgray'])
                 draw.point((i, 88), fill=s.color['dimgray'])
                 draw.point((i, 98), fill=s.color['dimgray'])
