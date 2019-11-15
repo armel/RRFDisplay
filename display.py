@@ -233,9 +233,9 @@ def extended_call(draw, limit = 5):
     legacy.text(draw, (0, -2), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
     legacy.text(draw, (0, 6), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
 
-    w, h = draw.textsize(text='TX recents', font=font)
+    w, h = draw.textsize(text='Dernieres emissions', font=font)
     tab = (s.device.width - w) / 2
-    draw.text((tab, 4), 'TX recents', font=font, fill=s.color['white'])
+    draw.text((tab, 4), 'Dernieres emissions', font=font, fill=s.color['white'])
 
     i = 24
 
@@ -496,7 +496,7 @@ def display_128():
                     draw.text((0, i), vide, font=font, fill=s.color['white'])
                     draw.text((tab, i), m, font=font, fill=color)
                     if j < 3:
-                        legacy.text(draw, (18, i), chr(s.letter[str(j + 1)]), font=s.SMALL_BITMAP_FONT, fill=color)
+                        legacy.text(draw, (18, i + 1), chr(s.letter[str(j + 1)]), font=s.SMALL_BITMAP_FONT, fill=color)
 
                     i += h
                     if i == 40:
