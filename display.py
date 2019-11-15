@@ -213,7 +213,7 @@ def extended_system(draw, page):
         sys['Disk'] = percent + ' of ' + disk
         sys['Version'] = s.version
 
-    i = 16
+    i = 20
 
     for j in sys_order:
         draw.rectangle((0, i - 1, 38, i + 7), fill=s.color['dimgray'])
@@ -237,7 +237,7 @@ def extended_call(draw, limit = 5):
     tab = (s.device.width - w) / 2
     draw.text((tab, 4), 'TX recents', font=font, fill=s.color['white'])
 
-    i = 16
+    i = 20
 
     for j in xrange(0, limit):
         draw.rectangle((0, i - 1, 42, i + 7), fill=s.color['dimgray'])
@@ -264,7 +264,7 @@ def extended_best(draw, limit = 5):
     best_min = min(s.best_time)
     best_max = max(s.best_time)
 
-    i = 16
+    i = 20
 
     for j in xrange(0, limit):
         c = s.best[j]
