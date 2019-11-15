@@ -177,7 +177,7 @@ def main(argv):
                 s.message[4] = 'BF total ' + data_abstract[u'Emission cumulée']
 
             elif(s.seconde < 50):   # Last TX
-                s.message[4] = 'TX recent ' + data_last[0][u'Heure']
+                s.message[4] = 'Dernier ' + data_last[0][u'Heure']
 
             elif(s.seconde < 60):   # Scan
                 if s.scan is True:
