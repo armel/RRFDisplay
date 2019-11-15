@@ -16,7 +16,7 @@ from luma.core import legacy
 
 from PIL import ImageFont
 
-icon = ImageFont.truetype('fonts/fontello.ttf', 14)     # Icon font
+icon = ImageFont.truetype('fonts/fontello.ttf', 13)     # Icon font
 font = ImageFont.truetype('fonts/7x5.ttf', 8)           # Text font
 font_tot = ImageFont.truetype('fonts/astro.ttf', 50)    # Text font
 
@@ -456,18 +456,18 @@ def display_128():
                 draw.point((22, i), fill=s.color['dimgray'])    # Zone Elsewhere
                 draw.point((98, i), fill=s.color['dimgray'])
 
+            # Icon clock (DIY...)
+            if ['s.message[4] == 'Last':
+                legacy.text(draw, (0, 8), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
+                legacy.text(draw, (0, 16), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
+
             # Icon stat
             draw.text((0, 0), u'\ue801', font=icon, fill=s.color['white'])
 
             # Icon talk
             if s.transmit is True:
-                draw.text((2, 20), u'\uf130', font=icon, fill=s.color['white'])
+                draw.text((0, 24), u'\uf130', font=icon, fill=s.color['white'])
                 distance(draw)
-
-            # Icon clock (DIY...)
-            if s.message[2][:4] == 'Last':
-                legacy.text(draw, (0, 8), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
-                legacy.text(draw, (0, 16), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
 
             # Print data
             i = 16
