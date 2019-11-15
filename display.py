@@ -78,18 +78,22 @@ def tot(draw, legacy, duration, position):
     else:
         if s.room_current == 'RRF':
             if duration > 90:
-                color = 'white'
+                color = s.color['white']
             elif duration > 60:
-                color = 'indigo'
+                color = s.color['silver']
+            elif duration > 30:
+                color = s.color['gray']
             else:
-                color = 'blue'
+                color = s.color['dimgray']
         else:
             if duration > 240:
-                color = 'white'
-            elif duration > 180:
-                color = 'indigo'
+                color = s.color['white']
+            elif duration > 120:
+                color = s.color['silver']
+            elif duration > 60:
+                color = s.color['gray']
             else:
-                color = 'blue'
+                color = s.color['dimgray']
 
         draw.text((8, 30), l.convert_second_to_time(duration), font=font_tot, fill=color)
 
