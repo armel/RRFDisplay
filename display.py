@@ -427,6 +427,7 @@ def display_128():
         draw.rectangle((0, 78, 22, 128), fill=s.color['darkslategray'])
 
         for i in xrange(0, 128, 1):
+            draw.point((i, 0), fill=s.color['dimgray'])
             draw.point((i, 14), fill=s.color['dimgray'])
 
         # System log extended Page 1
