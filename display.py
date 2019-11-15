@@ -298,9 +298,9 @@ def elsewhere(draw, data):
     for d in data:
         d = d.split('/')
         if d[0] == '0':
-            color = 'indigo'
+            color = s.color['dimgray']
         else:
-            color = 'white'
+            color = s.color['white']
 
         tmp = d[2].split(':')
         if len(tmp) == 2:
