@@ -129,7 +129,7 @@ color = {
     'darkslategray': int('0x111111', 16),
     'dimgray': int('0x222222', 16),
     'gray': int('0x333333', 16),
-    'silver': int('0x44444', 16),
+    'silver': int('0x4444444', 16),
     'white': int('0xffffff', 16)
 }
 
