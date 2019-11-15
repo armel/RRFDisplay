@@ -130,7 +130,7 @@ def clock_room(draw):
         i = 115
 
         for c in s.room_current[:3]:
-            legacy.text(draw, (i, 4), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
+            legacy.text(draw, (i, 6), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
             i += 4
 
     # Print Clock
@@ -138,7 +138,7 @@ def clock_room(draw):
         i = 108
 
         for c in s.now:
-            legacy.text(draw, (i, 4), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
+            legacy.text(draw, (i, 6), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
             i += 4
 
 
@@ -163,13 +163,14 @@ def distance(draw):
 def extended_system(draw, page):
 
     draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
-    
+    draw.rectangle((0, 78, 22, 128), fill=s.color['darkslategray'])
+
     legacy.text(draw, (0, -2), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CPU)
     legacy.text(draw, (0, 6), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CPU)
 
     w, h = draw.textsize(text='Infos Spotnik', font=font)
     tab = (s.device.width - w) / 2
-    draw.text((tab, 3), 'Infos Spotnik', font=font, fill=s.color['white'])
+    draw.text((tab, 4), 'Infos Spotnik', font=font, fill=s.color['white'])
 
     if page == 1:
         sys = {'Arch': '', 'Kernel': '', 'Uptime': '', 'Load': '', 'Freq': ''}
@@ -233,13 +234,14 @@ def extended_system(draw, page):
 def extended_call(draw, limit = 5):
 
     draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
+    draw.rectangle((0, 78, 22, 128), fill=s.color['darkslategray'])
 
     legacy.text(draw, (0, -2), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
     legacy.text(draw, (0, 6), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
 
     w, h = draw.textsize(text='TX recents', font=font)
     tab = (s.device.width - w) / 2
-    draw.text((tab, 3), 'TX recents', font=font, fill=s.color['white'])
+    draw.text((tab, 4), 'TX recents', font=font, fill=s.color['white'])
 
     i = 16
 
@@ -260,12 +262,13 @@ def extended_call(draw, limit = 5):
 def extended_best(draw, limit = 5):
 
     draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
+    draw.rectangle((0, 78, 22, 128), fill=s.color['darkslategray'])
 
     draw.text((0, 0), u'\ue801', font=icon, fill=s.color['white'])
 
     w, h = draw.textsize(text='Top links', font=font)
     tab = (s.device.width - w) / 2
-    draw.text((tab, 3), 'Top links', font=font, fill=s.color['white'])
+    draw.text((tab, 4), 'Top links', font=font, fill=s.color['white'])
 
     best_min = min(s.best_time)
     best_max = max(s.best_time)
