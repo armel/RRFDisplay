@@ -457,7 +457,7 @@ def display_128():
                 draw.point((98, i), fill=s.color['dimgray'])
 
             # Icon clock (DIY...)
-            if ['Dernier'] in s.message[4]:
+            if 'Dernier' in s.message[4]:
                 legacy.text(draw, (0, 8), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
                 legacy.text(draw, (0, 16), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
 
