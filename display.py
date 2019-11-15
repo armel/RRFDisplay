@@ -496,7 +496,7 @@ def display_128():
                     draw.text((0, i), vide, font=font, fill=s.color['white'])
                     draw.text((tab, i), m, font=font, fill=color)
                     if j < 3:
-                        draw.text((18, i), chr(s.letter['1']), font=s.SMALL_BITMAP_FONT, fill=color)
+                        legacy.text((18, i), chr(s.letter[str(j + 1)]), font=s.SMALL_BITMAP_FONT, fill=color)
 
                     i += h
                     if i == 40:
