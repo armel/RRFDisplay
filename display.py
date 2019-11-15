@@ -146,14 +146,16 @@ def clock_room(draw):
 def distance(draw):
     d = l.calc_distance(s.message[2], s.latitude, s.longitude)
 
-    if d != 0:
-        #d = str(d) + 'KM'
+    if d == 0:
+        d = '---'
+    else:
         d = str(d)
-        i = 128 - len(d) * 4
 
-        for c in d:
-            legacy.text(draw, (i, 18), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
-            i += 4
+    i = 128 - len(d) * 4
+
+    for c in d:
+        legacy.text(draw, (i, 18), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
+        i += 4
 
 
 # Print System Log Extended
