@@ -498,7 +498,7 @@ def display_128():
                 elsewhere(draw, s.raptor)
             else:
                 # Draw stats histogram
-                histogram(draw, legacy, 70, 29)
+                histogram(draw, legacy, 70, 28)
                 # Elsewhere
                 elsewhere(draw, s.raptor)
 
