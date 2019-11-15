@@ -122,6 +122,17 @@ history = dict()            # History dict
 message = [None] * 10       # Message list
 raptor = [None] * 5         # Message list
 
+# Set color
+
+color = {
+    'black': '0x000000',
+    'darkslategray': '0x111111',
+    'dimgray': '0x222222',
+    'gray': '0x333333',
+    'silver': '0x44444',
+    'white': '0xffffff'
+}
+
 # Set time and date
 
 timestamp_start = ''
