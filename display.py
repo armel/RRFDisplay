@@ -426,6 +426,9 @@ def display_128():
         draw.rectangle((0, 0, 128, 14), fill=s.color['darkslategray'])
         draw.rectangle((0, 78, 22, 128), fill=s.color['darkslategray'])
 
+        for i in xrange(0, 128, 2):
+            draw.point((i, 14), fill=s.color['dimgray'])
+
         # System log extended Page 1
         if s.transmit is False and s.minute % 2 == 0 and s.seconde < 20:
             extended_system(draw, 3)
