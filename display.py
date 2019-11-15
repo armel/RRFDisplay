@@ -480,14 +480,14 @@ def display_128():
                         if j == 0:
                             color = s.color['white']
                         elif j == 1:
-                            color = s.color['silver']
+                            color = s.color['gray']
                         else:
                             color = s.color['gray']
                     else:
                         if j == 0:
                             color = s.color['silver']
                         elif j == 1:
-                            color = s.color['gray']
+                            color = s.color['dimgray']
                         else:
                             color = s.color['dimgray']
 
