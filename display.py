@@ -430,6 +430,10 @@ def display_64():
 # Print display on 128 x 128
 def display_128():
     with canvas(s.device) as draw:
+        draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
+
+        draw.rectangle((0, 0, 128, 14), fill=s.color['darkslategray'])
+        draw.rectangle((0, 78, 22, 128), fill=s.color['darkslategray'])
 
         # System log extended Page 1
         if s.transmit is False and s.minute % 2 == 0 and s.seconde < 20:
@@ -445,11 +449,6 @@ def display_128():
 
         # If not extended
         else:
-            draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
-
-            draw.rectangle((0, 0, 128, 14), fill=s.color['darkslategray'])
-            draw.rectangle((0, 78, 22, 128), fill=s.color['darkslategray'])
-
             for i in xrange(0, 128, 2):
                 draw.point((i, 14), fill=s.color['dimgray'])
                 draw.point((i, 40), fill=s.color['dimgray'])
