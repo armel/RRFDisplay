@@ -27,7 +27,7 @@ def main(argv):
 
     # Check and get arguments
     try:
-        options, remainder = getopt.getopt(argv, '', ['help', 'i2c-port=', 'i2c-address=', 'display=', 'display-width=', 'display-height=', 'room=', 'callsign=', 'latitude=', 'longitude='])
+        options, remainder = getopt.getopt(argv, '', ['help', 'i2c-port=', 'i2c-address=', 'display=', 'display-width=', 'display-height=', 'follow=', 'latitude=', 'longitude='])
     except getopt.GetoptError:
         l.usage()
         sys.exit(2)
@@ -48,18 +48,13 @@ def main(argv):
             s.display_width = int(arg)
         elif opt in ('--display-height'):
             s.display_height = int(arg)
-        elif opt in ('--callsign'):
-            s.callsign = arg
-        elif opt in ('--room'):
-            if arg not in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON', 'SCAN']:
-                print 'Unknown room name (choose between \'RRF\', \'TECHNIQUE\', \'INTERNATIONAL\', \'LOCAL\', \'BAVARDAGE\', \'FON\' or \'SCAN\')'
-                sys.exit()
-            if arg == 'SCAN':
-                s.scan = True
-                s.room_current = 'RRF'
-                l.scan()
-            else:
+        elif opt in ('--follow'):
+            if arg in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
                 s.room_current = arg
+            else:
+                s.scan = True
+                s.callsign = arg
+                l.scan()
         elif opt in ('--latitude'):
             s.latitude = float(arg)
         elif opt in ('--longitude'):
@@ -183,7 +178,6 @@ def main(argv):
 
             elif(s.seconde < 50):   # Last TX
                 s.message[4] = 'TX recent ' + data_last[0][u'Heure']
-                s.blanc_alternate = 6
 
             elif(s.seconde < 60):   # Scan
                 if s.scan is True:

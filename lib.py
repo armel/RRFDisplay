@@ -29,9 +29,8 @@ def usage():
     print '  --display-width    set display width (default=128)'
     print '  --display-height   set display height (default=64)'
     print
-    print 'Room settings:'
-    print '  --room             set room (default=RRF, choose between [RRF, TECHNIQUE, INTERNATIONAL, LOCAL, BAVARDAGE, FON] or SCAN)'
-    print '  --callsign         set callsign (default=F4HWN, choose yours for SCAN mode)'
+    print 'Follow settings:'
+    print '  --follow           set room (default=RRF, choose between [RRF, TECHNIQUE, INTERNATIONAL, LOCAL, BAVARDAGE, FON]) or callsign to follow'
     print
     print 'WGS84 settings:'
     print '  --latitude         set latitude (default=48.8483808, format WGS84)'
@@ -272,7 +271,6 @@ def scan():
     else:
         for q in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
             if q != s.room:
-
                 try:
                     r = requests.get(s.room[q]['api'], verify=False, timeout=10)
                     page = r.content

@@ -108,23 +108,19 @@ letter = {
     'T': 15, 'N': 16, 'C': 17, 'E': 18, 'K': 19, 'L': 20, 'I': 21, 'A': 22, 'B': 23, 'V': 24, 'M': 25, ' ': 26
 }
 
-# Set call
+# Set variables
 
-call = [''] * 10         # Call list
-call_time = [''] * 10    # Call time list
-best = [''] * 10         # Best list
-best_time = [0] * 10     # Best time list
-
-call_current = call[0]                                  # Call current
-
-blanc_alternate = 0                         # Detect alternate
-
-qso_hour = [0] * 24                         # QSO list for histogramm
-transmit = True                             # Detect transmit
-transmit_elsewhere = True                   # Detect transmit elsewhere
-history = dict()                            # History dict
-message = [None] * 10                       # Message list
-raptor = [None] * 5                         # Message list
+call = [''] * 10            # Call list
+call_time = [''] * 10       # Call time list
+best = [''] * 10            # Best list
+best_time = [0] * 10        # Best time list
+call_current = call[0]      # Call current
+qso_hour = [0] * 24         # QSO list for histogramm
+transmit = True             # Detect transmit
+transmit_elsewhere = True   # Detect transmit elsewhere
+history = dict()            # History dict
+message = [None] * 10       # Message list
+raptor = [None] * 5         # Message list
 
 # Set time and date
 
