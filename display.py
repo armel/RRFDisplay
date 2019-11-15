@@ -460,7 +460,7 @@ def display_128():
                 draw.point((98, i), fill=s.color['dimgray'])
 
             # Icon stat
-            draw.text((0, 26), u'\ue801', font=icon, fill=s.color['white'])
+            draw.text((0, 0), u'\ue801', font=icon, fill=s.color['white'])
 
             # Icon talk
             if s.transmit is True:
