@@ -169,7 +169,7 @@ def extended_system(draw, page):
 
     w, h = draw.textsize(text='Infos Spotnik', font=font)
     tab = (s.device.width - w) / 2
-    draw.text((tab, 0), 'Infos Spotnik', font=font, fill=s.color['white'])
+    draw.text((tab, 3), 'Infos Spotnik', font=font, fill=s.color['white'])
 
     if page == 1:
         sys = {'Arch': '', 'Kernel': '', 'Uptime': '', 'Load': '', 'Freq': ''}
@@ -239,7 +239,7 @@ def extended_call(draw, limit = 5):
 
     w, h = draw.textsize(text='TX recents', font=font)
     tab = (s.device.width - w) / 2
-    draw.text((tab, 0), 'TX recents', font=font, fill=s.color['white'])
+    draw.text((tab, 3), 'TX recents', font=font, fill=s.color['white'])
 
     i = 16
 
@@ -265,7 +265,7 @@ def extended_best(draw, limit = 5):
 
     w, h = draw.textsize(text='Top links', font=font)
     tab = (s.device.width - w) / 2
-    draw.text((tab, 0), 'Top links', font=font, fill=s.color['white'])
+    draw.text((tab, 3), 'Top links', font=font, fill=s.color['white'])
 
     best_min = min(s.best_time)
     best_max = max(s.best_time)
@@ -473,7 +473,7 @@ def display_128():
                 legacy.text(draw, (0, 16), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
 
             # Print data
-            i = 0
+            i = 16
             j = 0
             for m in s.message:
                 if m is not None:
@@ -490,8 +490,8 @@ def display_128():
                     draw.text((0, i), vide, font=font, fill=s.color['white'])
                     draw.text((tab, i), m, font=font, fill=color)
                     i += h
-                    if i == 24:
-                        i += 6
+                    if i == 40:
+                        i = 0
                     j += 1
 
             if s.transmit is True and s.duration > 0:
