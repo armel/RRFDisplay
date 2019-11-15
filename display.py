@@ -478,11 +478,11 @@ def display_128():
                     tab = (s.device.width - w) / 2
                     vide = ' ' * 22     # Hack to speed clear screen line...
                     if j == 0:
-                        color = s.color['gray']
+                        color = s.color['white']
                     elif j == 1:
                         color = s.color['silver']
                     else:
-                        color = 'white'
+                        color = s.color['gray']
 
                     draw.text((0, i), vide, font=font, fill=s.color['white'])
                     draw.text((tab, i), m, font=font, fill=color)
