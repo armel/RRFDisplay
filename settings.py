@@ -125,7 +125,7 @@ raptor = [None] * 5         # Message list
 # Set color
 
 color = {
-    'black': '0x000000',
+    'black': int('0x000000', 16),
     'darkslategray': int('0x111111', 16),
     'dimgray': int('0x222222', 16),
     'gray': int('0x333333', 16),
