@@ -255,7 +255,7 @@ def extended_call(draw, limit = 5):
 
 def extended_best(draw, limit = 5):
     draw.rectangle((0, 1, s.device.height - 1, 13), fill=s.color['darkslategray'])
-    draw.text((0, 0), u'\ue801', font=icon, fill=s.color['white'])
+    draw.text((0, 0), u'\uef161', font=icon, fill=s.color['white'])
 
     w, h = draw.textsize(text='Top links', font=font)
     tab = (s.device.width - w) / 2
