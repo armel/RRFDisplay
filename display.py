@@ -440,7 +440,7 @@ def display_128():
         else:
             draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
 
-            draw.rectangle((0, 78, 22, 118), fill=s.color['darkslategray'])
+            draw.rectangle((0, 78, 22, 128), fill=s.color['darkslategray'])
 
             for i in xrange(0, 128, 2):
                 draw.point((i, 25), fill=s.color['dimgray'])
