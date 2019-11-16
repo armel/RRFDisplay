@@ -108,9 +108,9 @@ def main(argv):
             data_last = rrf_data['last']
             data_all = rrf_data['all']
 
-            s.message[0] = l.sanitize_call(data_last[0][u'Indicatif'].encode('utf-8'))
-            s.message[1] = l.sanitize_call(data_last[1][u'Indicatif'].encode('utf-8'))
-            s.message[2] = l.sanitize_call(data_last[2][u'Indicatif'].encode('utf-8'))
+            s.message[1] = l.sanitize_call(data_last[0][u'Indicatif'].encode('utf-8'))
+            s.message[2] = l.sanitize_call(data_last[1][u'Indicatif'].encode('utf-8'))
+            s.message[3] = l.sanitize_call(data_last[2][u'Indicatif'].encode('utf-8'))
 
             if s.device.height == 128:      # Only if place...
                 try:
@@ -165,25 +165,25 @@ def main(argv):
                     s.best_time[q] = l.convert_time_to_second(rrf_data['all'][q][u'Durée'])
 
             if(s.seconde < 10):     # TX today
-                s.message[4] = 'TX total ' + str(data_abstract[u'TX total'])
+                s.message[0] = 'TX total ' + str(data_abstract[u'TX total'])
 
             elif(s.seconde < 20):   # Active node
-                s.message[4] = 'Links actifs ' + str(data_abstract[u'Links actifs'])
+                s.message[0] = 'Links actifs ' + str(data_abstract[u'Links actifs'])
 
             elif(s.seconde < 30):   # Online node
-                s.message[4] = 'Links total ' + str(data_abstract[u'Links connectés'])
+                s.message[0] = 'Links total ' + str(data_abstract[u'Links connectés'])
                 
             elif(s.seconde < 40):   # Total emission
-                s.message[4] = 'BF total ' + data_abstract[u'Emission cumulée']
+                s.message[0] = 'BF total ' + data_abstract[u'Emission cumulée']
 
             elif(s.seconde < 50):   # Last TX
-                s.message[4] = 'Dernier ' + data_last[0][u'Heure']
+                s.message[0] = 'Dernier ' + data_last[0][u'Heure']
 
             elif(s.seconde < 60):   # Scan
                 if s.scan is True:
-                    s.message[4] = 'Suivi de ' + s.callsign
+                    s.message[0] = 'Suivi de ' + s.callsign
                 else:
-                    s.message[4] = 'Salon ' + s.room_current[:3]         
+                    s.message[0] = 'Salon ' + s.room_current[:3]         
 
         # Print screen
         if s.device.height == 128:
