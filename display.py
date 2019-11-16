@@ -428,6 +428,7 @@ def display_128():
         for i in xrange(0, 128, 1):
             draw.point((i, 0), fill=s.color['dimgray'])
             draw.point((i, 14), fill=s.color['dimgray'])
+            draw.point((i, 78), fill=s.color['dimgray'])    # Zone Histogramme - TOT | Zone Elsewhere
 
         # System log extended Page 1
         if s.transmit is False and s.minute % 2 == 0 and s.seconde < 20:
@@ -447,7 +448,7 @@ def display_128():
 
             for i in xrange(0, 128, 2):     # Horizontal
                 draw.point((i, 40), fill=s.color['dimgray'])    # Zone haut | Zone Histogramme - TOT
-                draw.point((i, 78), fill=s.color['dimgray'])    # Zone Histogramme - TOT | Zone Elsewhere
+                #draw.point((i, 78), fill=s.color['dimgray'])    # Zone Histogramme - TOT | Zone Elsewhere
                 draw.point((i, 88), fill=s.color['dimgray'])    # Zone Elsewhere
                 draw.point((i, 98), fill=s.color['dimgray'])    # Zone Elsewhere
                 draw.point((i, 108), fill=s.color['dimgray'])   # Zone Elsewhere
