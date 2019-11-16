@@ -292,7 +292,7 @@ def extended_best(draw, limit = 5):
 
 def elsewhere(draw, data):
 
-    i = 80
+    i = 79
 
     for d in data:
         d = d.split('/')
@@ -443,7 +443,7 @@ def display_128():
 
         # If not extended
         else:
-            draw.rectangle((0, 78, 22, 127), fill=s.color['darkslategray'])
+            draw.rectangle((0, 78, 20, 127), fill=s.color['darkslategray'])
 
             for i in xrange(0, 128, 2):     # Horizontal
                 draw.point((i, 40), fill=s.color['dimgray'])    # Zone haut | Zone Histogramme - TOT
