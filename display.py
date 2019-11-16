@@ -16,7 +16,7 @@ from luma.core import legacy
 
 from PIL import ImageFont
 
-icon = ImageFont.truetype('fonts/fontello.ttf', 18)     # Icon font
+icon = ImageFont.truetype('fonts/fontello.ttf', 12)     # Icon font
 font = ImageFont.truetype('fonts/7x5.ttf', 8)           # Text font
 font_tot = ImageFont.truetype('fonts/astro.ttf', 50)    # Text font
 
