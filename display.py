@@ -95,7 +95,7 @@ def tot(draw, legacy, duration, position):
             else:
                 color = s.color['dimgray']
 
-        draw.text((8, 26), l.convert_second_to_time(duration), font=font_tot, fill=color)
+        draw.text((8, 28), l.convert_second_to_time(duration), font=font_tot, fill=color)
 
 
 # Draw histogram
