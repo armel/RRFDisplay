@@ -423,7 +423,6 @@ def display_64():
 def display_128():
     with canvas(s.device) as draw:
         draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
-
         draw.rectangle((0, 1, 127, 13), fill=s.color['darkslategray'])
 
         for i in xrange(0, 128, 1):
@@ -490,15 +489,19 @@ def display_128():
                             color = s.color['white']
                         elif j == 1:
                             color = s.color['gray']
-                        else:
+                        elif j == 2:
                             color = s.color['gray']
+                        else:
+                            color = s.color['white']
                     else:
                         if j == 0:
                             color = s.color['silver']
                         elif j == 1:
                             color = s.color['dimgray']
-                        else:
+                        elif j = 2:
                             color = s.color['dimgray']
+                        else:
+                            color = s.color['white']
 
                     draw.text((0, i), vide, font=font, fill=s.color['white'])
                     draw.text((tab, i), m, font=font, fill=color)
