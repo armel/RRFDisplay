@@ -310,9 +310,9 @@ def elsewhere(draw, data):
         draw.text((28, i), d[2], font=font, fill=color)
 
         if d[0] == '00:00':
-            draw.text((104, i), d[3], font=font, fill=color)
+            draw.text((100, i), d[3], font=font, fill=color)
         else:
-            draw.text((104, i), d[0], font=font, fill=color)
+            draw.text((100, i), d[0], font=font, fill=color)
 
         i += 10
 
@@ -461,10 +461,10 @@ def display_128():
                 draw.point((i, 127), fill=s.color['dimgray'])   # Zone Elsewhere
                 
             for i in xrange(77, 127, 1):    # Vertical
-                draw.point((0, i), fill=s.color['dimgray'])    # Zone Elsewhere
+                draw.point((0, i), fill=s.color['dimgray'])     # Zone Elsewhere
                 draw.point((20, i), fill=s.color['dimgray'])    # Zone Elsewhere
-                draw.point((98, i), fill=s.color['dimgray'])
-                draw.point((127, i), fill=s.color['dimgray'])
+                draw.point((94, i), fill=s.color['dimgray'])    # Zone Elsewhere
+                draw.point((127, i), fill=s.color['dimgray'])   # Zone Elsewhere
 
             if 'Dernier' in s.message[0]:   # Icon clock (DIY...)
                 legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
