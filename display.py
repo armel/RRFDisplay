@@ -443,7 +443,7 @@ def display_128():
 
         # If not extended
         else:
-            draw.rectangle((0, 78, 20, 127), fill=s.color['darkslategray'])
+            draw.rectangle((0, 78, 19, 127), fill=s.color['darkslategray'])
 
             for i in xrange(0, 128, 2):     # Horizontal
                 draw.point((i, 40), fill=s.color['dimgray'])    # Zone haut | Zone Histogramme - TOT
