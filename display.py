@@ -457,8 +457,10 @@ def display_128():
                 draw.point((i, 127), fill=s.color['dimgray'])   # Zone Elsewhere
                 
             for i in xrange(77, 127, 1):    # Vertical
+                draw.point((0, i), fill=s.color['dimgray'])    # Zone Elsewhere
                 draw.point((20, i), fill=s.color['dimgray'])    # Zone Elsewhere
                 draw.point((98, i), fill=s.color['dimgray'])
+                draw.point((127, i), fill=s.color['dimgray'])
 
             # Icon clock (DIY...)
             if 'Dernier' in s.message[0]:
