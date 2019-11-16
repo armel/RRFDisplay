@@ -216,10 +216,10 @@ def extended_system(draw, page):
     i = 17
 
     for j in sys_order:
-        draw.rectangle((0, i - 1, 38, i + 7), fill=s.color['dimgray'])
-        draw.line((39, i, 39, i + 6), fill=s.color['dimgray'])
-        draw.line((40, i + 2, 40, i + 4), fill=s.color['dimgray'])
-        draw.point((41, i + 3), fill=s.color['dimgray'])
+        draw.rectangle((0, i - 1, 38, i + 7), fill=s.color['gray'])
+        draw.line((39, i, 39, i + 6), fill=s.color['gray'])
+        draw.line((40, i + 2, 40, i + 4), fill=s.color['gray'])
+        draw.point((41, i + 3), fill=s.color['gray'])
 
         draw.text((1, i), j, font=font, fill=s.color['black'])
         draw.text((48, i), sys[j], font=font, fill=s.color['white'])
@@ -240,10 +240,10 @@ def extended_call(draw, limit = 5):
     i = 17
 
     for j in xrange(0, limit):
-        draw.rectangle((0, i - 1, 42, i + 7), fill=s.color['dimgray'])
-        draw.line((43, i, 43, i + 6), fill=s.color['dimgray'])
-        draw.line((44, i + 2, 44, i + 4), fill=s.color['dimgray'])
-        draw.point((45, i + 3), fill=s.color['dimgray'])
+        draw.rectangle((0, i - 1, 42, i + 7), fill=s.color['gray'])
+        draw.line((43, i, 43, i + 6), fill=s.color['gray'])
+        draw.line((44, i + 2, 44, i + 4), fill=s.color['gray'])
+        draw.point((45, i + 3), fill=s.color['gray'])
 
         draw.text((1, i), s.call_time[j], font=font, fill=s.color['black'])
         draw.text((54, i), s.call[j], font=font, fill=s.color['white'])
