@@ -278,10 +278,10 @@ def extended_best(draw, limit = 5):
         if t == 0:
             t = 42
 
-        draw.rectangle((0, i - 1, t, i + 7), fill=s.color['dimgray'])
-        draw.line((t + 1, i, t + 1, i + 6), fill=s.color['dimgray'])
-        draw.line((t + 2, i + 2, t + 2, i + 4), fill=s.color['dimgray'])
-        draw.point((t + 3, i + 3), fill=s.color['dimgray'])
+        draw.rectangle((0, i - 1, t, i + 7), fill=s.color['gray'])
+        draw.line((t + 1, i, t + 1, i + 6), fill=s.color['gray'])
+        draw.line((t + 2, i + 2, t + 2, i + 4), fill=s.color['gray'])
+        draw.point((t + 3, i + 3), fill=s.color['gray'])
 
         draw.text((1, i), l.convert_second_to_time(n), font=font, fill=s.color['black'])
         draw.text((54, i), c, font=font, fill=s.color['white'])
