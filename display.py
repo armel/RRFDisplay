@@ -499,7 +499,7 @@ def display_128():
 
             if s.transmit is True and s.duration > 0:
                 # Draw tot
-                tot(draw, legacy, s.duration, 70)
+                tot(draw, legacy, s.duration, 69)
                 # Elsewhere
                 elsewhere(draw, s.raptor)
             else:
