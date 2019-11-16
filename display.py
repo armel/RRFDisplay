@@ -307,12 +307,12 @@ def elsewhere(draw, data):
             d[2] = tmp
 
         draw.text((2, i), d[1], font=font, fill=color)
-        draw.text((28, i), d[2], font=font, fill=color)
+        draw.text((24, i), d[2], font=font, fill=color)
 
         if d[0] == '00:00':
-            draw.text((100, i), d[3], font=font, fill=color)
+            draw.text((98, i), d[3], font=font, fill=color)
         else:
-            draw.text((100, i), d[0], font=font, fill=color)
+            draw.text((98, i), d[0], font=font, fill=color)
 
         i += 10
 
