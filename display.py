@@ -296,7 +296,7 @@ def elsewhere(draw, data):
 
     for d in data:
         d = d.split('/')
-        if d[0] == 0:
+        if d[0] == '00:00':
             color = s.color['gray']
         else:
             color = s.color['white']
@@ -309,10 +309,10 @@ def elsewhere(draw, data):
         draw.text((2, i), d[1], font=font, fill=color)
         draw.text((28, i), d[2], font=font, fill=color)
 
-        if d[0] == 0:
+        if d[0] == '00:00':
             draw.text((104, i), d[3], font=font, fill=color)
         else:
-            draw.text((104, i), l.convert_second_to_time(d[0]), font=font, fill=color)
+            draw.text((104, i), d[0], font=font, fill=color)
 
         i += 10
 
