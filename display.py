@@ -477,40 +477,26 @@ def display_128():
                 distance(draw)
 
             # Print data
-            i = 16
+            i = 4
             j = 0
             for m in s.message:
                 if m is not None:
                     w, h = draw.textsize(text=m, font=font)
                     tab = (s.device.width - w) / 2
                     vide = ' ' * 22     # Hack to speed clear screen line...
-                    if s.transmit is True:
-                        if j == 0:
-                            color = s.color['white']
-                        elif j == 1:
-                            color = s.color['gray']
-                        elif j == 2:
-                            color = s.color['gray']
-                        else:
-                            color = s.color['white']
+                    if j < 2:
+                        color = s.color['white']
                     else:
-                        if j == 0:
-                            color = s.color['silver']
-                        elif j == 1:
-                            color = s.color['dimgray']
-                        elif j = 2:
-                            color = s.color['dimgray']
-                        else:
-                            color = s.color['white']
+                        color = s.color['gray']
 
                     draw.text((0, i), vide, font=font, fill=s.color['white'])
                     draw.text((tab, i), m, font=font, fill=color)
-                    if j < 3:
+                    if j > 1:
                         legacy.text(draw, (18, i + 1), chr(s.letter[str(j + 1)]), font=s.SMALL_BITMAP_FONT, fill=color)
 
                     i += h
-                    if i == 40:
-                        i = 4
+                    if i == 12:
+                        i = 16
                     j += 1
 
             if s.transmit is True and s.duration > 0:
