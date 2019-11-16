@@ -162,7 +162,7 @@ def distance(draw):
 
 def extended_system(draw, page):
     draw.rectangle((0, 1, s.device.height - 1, 13), fill=s.color['darkslategray'])
-    legacy.text(draw, (0, -2), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CPU)
+    legacy.text(draw, (0, 0), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CPU)
     legacy.text(draw, (0, 6), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CPU)
 
     w, h = draw.textsize(text='Infos Spotnik', font=font)
