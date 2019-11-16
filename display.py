@@ -449,14 +449,14 @@ def display_128():
                 draw.point((i, 40), fill=s.color['dimgray'])    # Zone haut | Zone Histogramme - TOT
 
             for i in xrange(0, 128, 1):
-                draw.point((i, 78), fill=s.color['dimgray'])    # Zone Histogramme - TOT | Zone Elsewhere
-                draw.point((i, 88), fill=s.color['dimgray'])    # Zone Elsewhere
-                draw.point((i, 98), fill=s.color['dimgray'])    # Zone Elsewhere
-                draw.point((i, 108), fill=s.color['dimgray'])   # Zone Elsewhere
-                draw.point((i, 118), fill=s.color['dimgray'])   # Zone Elsewhere
+                draw.point((i, 77), fill=s.color['dimgray'])    # Zone Histogramme - TOT | Zone Elsewhere
+                draw.point((i, 87), fill=s.color['dimgray'])    # Zone Elsewhere
+                draw.point((i, 97), fill=s.color['dimgray'])    # Zone Elsewhere
+                draw.point((i, 107), fill=s.color['dimgray'])   # Zone Elsewhere
+                draw.point((i, 117), fill=s.color['dimgray'])   # Zone Elsewhere
                 draw.point((i, 127), fill=s.color['dimgray'])   # Zone Elsewhere
                 
-            for i in xrange(78, 128, 1):    # Vertical
+            for i in xrange(77, 127, 1):    # Vertical
                 draw.point((20, i), fill=s.color['dimgray'])    # Zone Elsewhere
                 draw.point((98, i), fill=s.color['dimgray'])
 
