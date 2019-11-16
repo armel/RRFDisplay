@@ -470,6 +470,7 @@ def display_128():
                 #draw.text((0, 1), u'\ue805', font=icon, fill=s.color['white'])
                 #legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_STAT)
                 #legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_STAT)
+                a = 1
 
             # Icon talk
             if s.transmit is True:
