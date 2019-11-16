@@ -18,7 +18,7 @@ from PIL import ImageFont
 
 icon = ImageFont.truetype('fonts/fontello.ttf', 14)     # Icon font
 font = ImageFont.truetype('fonts/7x5.ttf', 8)           # Text font
-font_tot = ImageFont.truetype('fonts/astro.ttf', 56)    # Text font
+font_tot = ImageFont.truetype('fonts/astro.ttf', 52)    # Text font
 
 
 # Draw tot
@@ -95,7 +95,7 @@ def tot(draw, legacy, duration, position):
             else:
                 color = s.color['dimgray']
 
-        draw.text((8, 28), l.convert_second_to_time(duration), font=font_tot, fill=color)
+        draw.text((8, 26), l.convert_second_to_time(duration), font=font_tot, fill=color)
 
 
 # Draw histogram
