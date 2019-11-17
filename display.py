@@ -25,6 +25,10 @@ font_tot = ImageFont.truetype('fonts/astro.ttf', 52)    # Text font
 def tot(draw, legacy, duration, position):
     #duration += (duration / 60)     # Reajust time latence
     if s.device.height < 128:
+        if s.device.height == 32:
+            j = 32
+        elif s.device.height == 64:
+            j = 54
 
         duration_min = 0
 
@@ -39,9 +43,9 @@ def tot(draw, legacy, duration, position):
 
         h = l.interpolation(duration, duration_min, duration_max, 0, 120)
 
-        draw.rectangle((0, 54, 128, 43), fill=s.color['black'])
+        draw.rectangle((0, j, 128, j - 11), fill=s.color['black'])
         for i in xrange(3, h, 2):
-            draw.rectangle((i, 54, i, 43), fill=s.color['white'])
+            draw.rectangle((i, j, i, j - 11), fill=s.color['white'])
 
         for i in xrange(0, 128, 4):
             draw.line((i, position, i + 1, position), fill=s.color['white'])
