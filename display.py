@@ -26,7 +26,7 @@ def tot(draw, legacy, duration, position):
     #duration += (duration / 60)     # Reajust time latence
     if s.device.height < 128:
         if s.device.height == 32:
-            j = 32
+            j = 26
         elif s.device.height == 64:
             j = 54
 
