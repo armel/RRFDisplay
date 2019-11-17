@@ -385,6 +385,9 @@ def display_64():
 
         # If not extended
         else:
+            for i in xrange(0, 128, 2):     # Horizontal
+                draw.point((i, 40), fill=s.color['white'])    # Zone haut | Zone Histogramme - TOT
+
             if 'Dernier' in s.message[0]:   # Icon clock (DIY...)
                 legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
                 legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
