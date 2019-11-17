@@ -21,15 +21,24 @@ En complément, à noter l'existence du projet [Spotnik2hmi](https://github.com/
 ## Principe de fonctionnement
 
 ### Ecran 128 x 32
-Au repos, si aucune station n'est en émission, le RRFTracker affichera,
+
+Au repos, si aucune station n'est en émission, le RRFTracker affichera les informations suivantes :
+
+Sur la première ligne, en haut de l'écran, on dispose,
+
+* du nombre de passages en émission sur la journée (depuis 00h00),
+* du nombre de links actifs,
+* du nombre de links total,
+* du temps d'émission cumulée total sur la journée,
+* du salon ou de l'indicatif suivi par le RRFTracker,
+* de l'heure du dernier passage en émission.
+
+Et en dessous figure, par alternance,
 
 * l'indicatif des 2 derniers noeuds étant passés en émission,
-* l'heure du dernier passage en émission.
+* l'histogramme du trafic dans la journée, heure par heure.
 
-Si un QSO est en cours, le RRFTracker affichera,
-
-* l'indicatif des 2 derniers noeuds étant passés en émission,
-* l'indicatif du noeud en cours d'émission.
+Si un QSO est en cours, le RRFTracker affichera sur la première ligne l'indicatif de la station en émission et en dessous, une jauge affichera la durée de passage en émission, par tranche de 60 secondes.
 
 Enfin, en haut à droite de l'écran, le RRFTraker affiche alternativement l'heure courante et le salon.
 
