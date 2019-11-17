@@ -151,6 +151,12 @@ def clock_room(draw):
 def distance(draw):
     d = l.calc_distance(s.message[1], s.latitude, s.longitude)
 
+    if s.device.height == 32:
+        j = 10
+    else:
+        j = 18
+
+
     if d == 0:
         d = 'NO LOC'
     else:
@@ -159,7 +165,7 @@ def distance(draw):
     i = 128 - len(d) * 4
 
     for c in d:
-        legacy.text(draw, (i, 18), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
+        legacy.text(draw, (i, j), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
         i += 4
 
 
