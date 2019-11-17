@@ -346,7 +346,7 @@ def display_32():
 
         for i in xrange(0, 128, 2):
             draw.point((i, 0), fill=s.color['white'])
-           draw.point((i, 14), fill=s.color['white'])
+            draw.point((i, 14), fill=s.color['white'])
 
         if s.transmit is True:
             draw.rectangle((0, 0, 127, 31), fill=s.color['black'])
