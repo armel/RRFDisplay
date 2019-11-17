@@ -161,7 +161,9 @@ def distance(draw):
 # Print System Log Extended
 
 def extended_system(draw, page):
-    draw.rectangle((0, 1, s.device.height - 1, 13), fill=s.color['darkslategray'])
+    if s.device.height == 128:
+        draw.rectangle((0, 1, s.device.height - 1, 13), fill=s.color['darkslategray'])
+
     legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CPU)
     legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CPU)
 
@@ -229,7 +231,9 @@ def extended_system(draw, page):
 # Print Call Log Extended
 
 def extended_call(draw, limit = 5):
-    draw.rectangle((0, 1, s.device.height - 1, 13), fill=s.color['darkslategray'])
+    if s.device.height == 128:
+        draw.rectangle((0, 1, s.device.height - 1, 13), fill=s.color['darkslategray'])
+
     legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
     legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
 
@@ -254,7 +258,9 @@ def extended_call(draw, limit = 5):
 # Print Best Log Extended
 
 def extended_best(draw, limit = 5):
-    draw.rectangle((0, 1, s.device.height - 1, 13), fill=s.color['darkslategray'])
+    if s.device.height == 128:
+        draw.rectangle((0, 1, s.device.height - 1, 13), fill=s.color['darkslategray'])
+        
     legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_STAT)
     legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_STAT)
 
