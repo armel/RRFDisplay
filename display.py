@@ -144,7 +144,7 @@ def clock_room(draw):
 
 # Print distance
 def distance(draw):
-    d = l.calc_distance(s.message[0], s.latitude, s.longitude)
+    d = l.calc_distance(s.message[1], s.latitude, s.longitude)
 
     if d == 0:
         d = 'NO LOC'
