@@ -349,7 +349,7 @@ def display_32():
             draw.point((i, 14), fill=s.color['white'])
 
         if s.transmit is True:
-            draw.rectangle((0, 0, 127, 31), fill=s.color['black'])
+            draw.rectangle((0, 15, 127, 31), fill=s.color['black'])
             tot(draw, legacy, s.duration, 25)
         else:
             if s.minute % 2 == 0 and s.seconde < 30:
