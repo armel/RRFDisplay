@@ -359,7 +359,7 @@ def display_32():
 
             # Icon talk
             if s.transmit is True:
-                draw.text((2, 21), u'\uf130', font=icon, fill=s.color['white'])
+                draw.text((2, 16), u'\uf130', font=icon, fill=s.color['white'])
                 distance(draw)
 
             # Print data
