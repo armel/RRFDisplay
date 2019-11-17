@@ -362,11 +362,10 @@ def display_32():
 def display_64():
     with canvas(s.device) as draw:
         draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
-        draw.rectangle((0, 1, 127, 13), fill=s.color['black'])
-
+        
         for i in xrange(0, 128, 1):
-            draw.point((i, 0), fill=s.color['black'])
-            draw.point((i, 14), fill=s.color['black'])
+            draw.point((i, 0), fill=s.color['white'])
+            draw.point((i, 14), fill=s.color['white'])
 
         # System log extended Page 1
         if s.transmit is False and s.minute % 2 == 0 and s.seconde < 10:
@@ -388,22 +387,17 @@ def display_64():
         else:
             draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
 
-            for i in xrange(0, 128, 2):
-                draw.point((i, 25), fill=s.color['white'])
-                draw.point((i, 40), fill=s.color['white'])
-
-            # Icon stat
-            draw.text((0, 26), u'\ue801', font=icon, fill=s.color['white'])
+            if 'Dernier' in s.message[0]:   # Icon clock (DIY...)
+                legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
+                legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
+            else:   # Icon stat
+                legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_STAT)
+                legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_STAT)
 
             # Icon talk
             if s.transmit is True:
-                draw.text((2, 10), u'\uf130', font=icon, fill=s.color['white'])
+                draw.text((2, 21), u'\uf130', font=icon, fill=s.color['white'])
                 distance(draw)
-
-            # Icon clock (DIY...)
-            if s.message[2][:4] == 'Last':
-                legacy.text(draw, (0, 8), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
-                legacy.text(draw, (0, 16), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
 
             # Print data
             i = 0
