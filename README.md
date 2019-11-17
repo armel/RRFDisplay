@@ -7,11 +7,10 @@ Cette version du RRFTracker et une évolution d'un [premier projet](https://gith
 
 Il permet de suivre en temps réel l'activité du réseau [RRF](https://f5nlg.wordpress.com/2015/12/28/nouveau-reseau-french-repeater-network/) (Réseau des Répéteurs Francophones), mais également du [FON](http://www.f1tzo.com/) (French Open Networks), en utilisant un Raspberry Pi 3 ou un Orange Pi Zero et un écran OLED type SH1106, SSD1306 ou SSD1327 piloté par I2C. Les 2 premiers écrans ont un QSJ de moins de 5€. Le troisième est un peu plus onéreux, mais tourne autour de 10€. C'était une des contraintes de mon cahier des charges. À noter que vous pouvez les trouver moins cher sur des boutiques chinoises, si vous acceptez de patienter 30 à 60 jours pour la livraison.  
 
-Pour le moment, cette version du RRFTracker prend en charge [3 tailles d'écrans](http://www.dsdtech-global.com/2018/05/iic-oled-lcd-u8glib.html) OLED et 2 résolutions. 
+Pour le moment, cette version du RRFTracker prend en charge [2 tailles d'écrans](http://www.dsdtech-global.com/2018/05/iic-oled-lcd-u8glib.html) OLED et 2 résolutions. 
 
 - 1.30" en 128 x 64
 - 0.96" en 128 x 64 
-- 0.91" en 128 x 32
 
 La résolution 128 x 128 en 1.50" est disponible depuis peu en utilisant des écrans de type [SSD1327](https://www.waveshare.com/wiki/1.5inch_OLED_Module).
 
@@ -36,25 +35,30 @@ Enfin, en haut à droite de l'écran, le RRFTraker affiche alternativement l'heu
 
 ### Ecran 128 x 64
 
-En complément des informations visibles sur un écran 128 x 32, si votre écran dispose d'une résolution 128 x 64 pixels, des informations supplémentaires seront disponibles.
+Au repos, si aucune station n'est en émission, le RRFTracker affichera les informations suivantes :
 
-Sur la ligne centrale, au milieu de l'écran, on dispose,
+Sur la première ligne, en haut de l'écran, on dispose,
 
 * du nombre de passages en émission sur la journée (depuis 00h00),
-* du temps depuis lequel fonctionne le RRFTracker (uptime),
-* du nombre de passages en émission depuis l'allumage du RRFTracker,
-* de l'indicatif du noeud le plus actif avec le nombre de passages en émission,
-* du nombre de noeuds actifs.
+* du nombre de links actifs,
+* du nombre de links total,
+* du temps d'émission cumulée total sur la journée
+* du salon ou de l'indicatif suivi par le RRFTracker
+* de l'heure du dernier passage en émission
 
-En bas de l'écran, on retrouve l'histogramme du trafic dans la journée, heure par heure.
+En haut à droite, l'heure et le salon courant s'affiche alternativement.
+
+Sur les 3 lignes suivantes, au milieu de l'écran, figure les 3 derniers indicatifs des stations qui sont passées en émission.
+
+Enfin, en bas de l'écran, on retrouve l'histogramme du trafic dans la journée, heure par heure.
 
 Alternativement, si aucune station n'est en émission, le RRFTracker affichera différents écrans complémentaires:
 
 * l'historique des 5 derniers noeuds étant passés en émission ainsi que l'horodatage,
-* l'historique des 5 noeuds les plus actifs ainsi que le nombre de passages en émission,
-* l'état du Spotnik: architecture, uptime, charge et fréquence du CPU, température, adresse IP, occupation mémoire et disque. 
+* l'historique des 5 noeuds les plus actifs ainsi que la durée cumulée de passage en émission,
+* l'état du Spotnik: architecture, uptime, noyau, charge et fréquence du CPU, température, adresse IP, occupation mémoire et disque, version.
 
-Enfin, si une station passe en émission, en lieu et place de l'histogramme du trafic, une jauge affichant le temps de parole s'affichera, par tranche de 30 secondes. 
+Enfin, si une station passe en émission, en lieu et place de l'histogramme du trafic, une jauge affichant le temps de parole s'affichera, par tranche de 60 secondes. 
 
 À noter qu'à minuit, le nombre de passages en émission sur la journée, l'historique des 5 noeuds les plus actifs, ainsi que l'histogramme sont réinitialisés (à zéro).
 
