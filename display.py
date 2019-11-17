@@ -343,8 +343,7 @@ def display_32():
         if s.transmit is True:
             draw.rectangle((0, 0, 127, 31), fill=s.color['black'])
             tot(draw, legacy, 25)
-
-        elif:
+        else:
             if s.minute % 2 == 0 and s.seconde < 30:
                 draw.rectangle((0, 0, 127, 31), fill=s.color['black'])
                 histogram(draw, legacy, 25)
