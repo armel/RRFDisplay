@@ -27,7 +27,7 @@ def tot(draw, legacy, duration, position):
     if s.device.height < 128:
         if s.device.height == 32:
             j = 23
-            k = 8
+            k = 7
         elif s.device.height == 64:
             j = 54
             k = 11
