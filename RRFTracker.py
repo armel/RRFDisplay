@@ -190,6 +190,8 @@ def main(argv):
             d.display_128()
         elif s.device.height == 64:
             d.display_64()
+        else:
+            d.display_32()
 
         time.sleep(0.5)
 
