@@ -345,7 +345,7 @@ def display_32():
         else:
             draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
 
-           if 'Dernier' in s.message[0]:   # Icon clock (DIY...)
+            if 'Dernier' in s.message[0]:   # Icon clock (DIY...)
                 legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
                 legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
             else:   # Icon stat
