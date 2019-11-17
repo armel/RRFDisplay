@@ -125,12 +125,17 @@ def histogram(draw, legacy, position, height = 15):
 # Print clock and room
 def clock_room(draw):
 
+    if s.device.height == 32:
+        j = 0
+    else:
+        j = 5
+
     # Print Room
     if s.seconde %5 != 0:
         i = 116
 
         for c in s.room_current[:3]:
-            legacy.text(draw, (i, 5), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
+            legacy.text(draw, (i, j), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
             i += 4
 
     # Print Clock
@@ -138,7 +143,7 @@ def clock_room(draw):
         i = 108
 
         for c in s.now:
-            legacy.text(draw, (i, 5), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
+            legacy.text(draw, (i, j), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
             i += 4
 
 
