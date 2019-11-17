@@ -356,36 +356,39 @@ def display_32():
         else:
             if s.minute % 2 == 0 and s.seconde < 30:
                 histogram(draw, legacy, 25)
-            else: 
-                if 'Dernier' in s.message[0]:   # Icon clock (DIY...)
-                    legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
-                    legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
-                else:   # Icon stat
-                    legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_STAT)
-                    legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_STAT)
 
-                # Icon talk
+        if 'Dernier' in s.message[0]:   # Icon clock (DIY...)
+            legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
+            legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
+        else:   # Icon stat
+            legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_STAT)
+            legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_STAT)
+
+        # Icon talk
+        if s.transmit is True:
+            draw.text((2, 16), u'\uf130', font=icon, fill=s.color['white'])
+            distance(draw)
+
+        # Print data
+        i = 4
+        j = 0
+        for m in s.message:
+            if m is not None:
+                w, h = draw.textsize(text=m, font=font)
+                tab = (s.device.width - w) / 2
+                vide = ' ' * 22     # Hack to speed clear screen line...
+                draw.text((0, i), vide, font=font, fill=s.color['white'])
+                draw.text((tab, i), m, font=font, fill=s.color['white'])
+                if j > 0:
+                    legacy.text(draw, (16, i + 1), chr(s.letter[str(j)]), font=s.SMALL_BITMAP_FONT, fill=s.color['white'])
+
+                i += h
+                if i == 12:
+                    i = 16
+                j += 1
+
                 if s.transmit is True:
-                    draw.text((2, 16), u'\uf130', font=icon, fill=s.color['white'])
-                    distance(draw)
-
-                # Print data
-                i = 4
-                j = 0
-                for m in s.message:
-                    if m is not None:
-                        w, h = draw.textsize(text=m, font=font)
-                        tab = (s.device.width - w) / 2
-                        vide = ' ' * 22     # Hack to speed clear screen line...
-                        draw.text((0, i), vide, font=font, fill=s.color['white'])
-                        draw.text((tab, i), m, font=font, fill=s.color['white'])
-                        if j > 0:
-                            legacy.text(draw, (16, i + 1), chr(s.letter[str(j)]), font=s.SMALL_BITMAP_FONT, fill=s.color['white'])
-
-                        i += h
-                        if i == 12:
-                            i = 16
-                        j += 1
+                    break
 
         # Finaly, print clock and room
         clock_room(draw)
