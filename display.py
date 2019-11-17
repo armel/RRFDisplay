@@ -375,9 +375,10 @@ def display_32():
                             legacy.text(draw, (16, i + 1), chr(s.letter[str(j)]), font=s.SMALL_BITMAP_FONT, fill=s.color['white'])
 
                         i += h
-                        if i == 32:
-                            break
+                        if i == 12:
+                            i = 16
                         j += 1
+
 
         # Finaly, print clock and room
         clock_room(draw)
