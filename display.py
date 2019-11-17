@@ -365,6 +365,9 @@ def display_32():
             legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_STAT)
             legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_STAT)
 
+        if s.transmit is True:
+            s.message[0] = s.message[4]
+
         # Print data
         i = 4
         j = 0
