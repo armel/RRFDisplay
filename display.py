@@ -215,7 +215,10 @@ def extended_system(draw, page):
         sys['Disk'] = percent + ' of ' + disk
         sys['Version'] = s.version
 
-    i = 17
+    if s.device.height == 128:
+        i = 17
+    else:
+        i = 16
 
     for j in sys_order:
         draw.rectangle((0, i - 1, 38, i + 7), fill=s.color['gray'])
@@ -241,7 +244,10 @@ def extended_call(draw, limit = 5):
     tab = (s.device.width - w) / 2
     draw.text((tab, 4), 'Derniers TX', font=font, fill=s.color['white'])
 
-    i = 17
+    if s.device.height == 128:
+        i = 17
+    else:
+        i = 16
 
     for j in xrange(0, limit):
         draw.rectangle((0, i - 1, 42, i + 7), fill=s.color['gray'])
@@ -260,7 +266,7 @@ def extended_call(draw, limit = 5):
 def extended_best(draw, limit = 5):
     if s.device.height == 128:
         draw.rectangle((0, 1, s.device.height - 1, 13), fill=s.color['darkslategray'])
-        
+
     legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_STAT)
     legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_STAT)
 
@@ -271,7 +277,10 @@ def extended_best(draw, limit = 5):
     best_min = min(s.best_time)
     best_max = max(s.best_time)
 
-    i = 17
+    if s.device.height == 128:
+        i = 17
+    else:
+        i = 16
 
     for j in xrange(0, limit):
         c = s.best[j]
