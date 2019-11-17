@@ -351,10 +351,10 @@ def display_32():
             draw.point((i, 14), fill=s.color['white'])
 
         if s.transmit is True:
-            draw.rectangle((0, 15, 127, s.device.height - 1), fill=s.color['black'])
+            draw.rectangle((0, 15, 31, 127), fill=s.color['black'])
             tot(draw, legacy, s.duration, 25)
         else:
-            draw.rectangle((0, 15, 127, s.device.height - 1), fill=s.color['black'])
+            draw.rectangle((0, 15, 31, 127), fill=s.color['black'])
             if s.minute % 2 == 0 and s.seconde < 30:
                 histogram(draw, legacy, 25)
 
