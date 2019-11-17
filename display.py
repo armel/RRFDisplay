@@ -345,15 +345,17 @@ def display_32():
         else:
             draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
 
+           if 'Dernier' in s.message[0]:   # Icon clock (DIY...)
+                legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
+                legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
+            else:   # Icon stat
+                legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_STAT)
+                legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_STAT)
+
             # Icon talk
             if s.transmit is True:
-                draw.text((2, 10), u'\uf130', font=icon, fill=s.color['white'])
+                draw.text((2, 21), u'\uf130', font=icon, fill=s.color['white'])
                 distance(draw)
-
-            # Icon clock (DIY...)
-            if s.message[2][:4] == 'Last':
-                legacy.text(draw, (0, 8), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
-                legacy.text(draw, (0, 16), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
 
             # Print data
             i = 0
@@ -366,7 +368,7 @@ def display_32():
                     draw.text((0, i), vide, font=font, fill=s.color['white'])
                     draw.text((tab, i), m, font=font, fill=s.color['white'])
                     i += h
-                    if i == 24:
+                    if i == 32:
                         break
 
         # Finaly, print clock and room
