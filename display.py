@@ -362,7 +362,7 @@ def display_32():
                     distance(draw)
 
                 # Print data
-                i = 0
+                i = 4
                 j = 0
                 for m in s.message:
                     if m is not None:
