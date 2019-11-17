@@ -348,7 +348,7 @@ def display_32():
     with canvas(s.device) as draw:
         
         if s.transmit is True:
-            tot(draw, legacy, s.duration, 16)
+            tot(draw, legacy, s.duration, 25)
         elif s.transmit is False:
             if s.minute % 2 == 0 and s.seconde < 30:
                 draw.rectangle((0, 0, 127, 31), fill=s.color['black'])
