@@ -150,11 +150,7 @@ def clock_room(draw):
 # Print distance
 def distance(draw):
     d = l.calc_distance(s.message[1], s.latitude, s.longitude)
-
-    if s.device.height == 32:
-        j = 10
-    else:
-        j = 18
+    j = 18
 
 
     if d == 0:
