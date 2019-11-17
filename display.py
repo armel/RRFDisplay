@@ -340,7 +340,7 @@ def display_64():
     with canvas(s.device) as draw:
         draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
 
-        for i in xrange(0, 128, 1):
+        for i in xrange(0, 128, 2):
             draw.point((i, 0), fill=s.color['white'])
             draw.point((i, 14), fill=s.color['white'])
 

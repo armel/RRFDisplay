@@ -182,7 +182,7 @@ Par défaut, sans argument, le RRFTracker va démarrer avec les paramètres suiv
 - display = sh1106
 - display width = 128
 - display height = 64
-- follow = RRF
+- follow = F4HWN
 - latitude = 48.8483808
 - longitude = 2.2704347  
 
@@ -190,7 +190,7 @@ Par défaut, sans argument, le RRFTracker va démarrer avec les paramètres suiv
 
 Cela revient à lancer le RRFTracker avec les arguments suivants,
 
-`python /opt/RRFTracker_Spotnik/RRFTracker.py --i2c-port 0 --i2c-address 0x3C --display sh1106 --display-width 128 --display-height 64 --room RRF --latitude 48.8483808 --longitude 2.2704347`
+`python /opt/RRFTracker_Spotnik/RRFTracker.py --i2c-port 0 --i2c-address 0x3C --display sh1106 --display-width 128 --display-height 64 --follow F4HWN --latitude 48.8483808 --longitude 2.2704347`
 
 Il est donc possible de modifier les paramètres, notamment en fonction de ce que vous retournera la commande `i2cdetect` décrite ci dessus.
 
@@ -201,17 +201,17 @@ Par exemple, avec les paramètres suivants,
 - display = ssd1306
 - display width = 128
 - display height = 64
-- room = TEC
+- follow = TECHNIQUE
 
 Il vous suffira de lancer le RRFTracker avec les arguments suivants,
 
-`python /opt/RRFTracker_Spotnik/RRFTracker.py --i2c-port 1 --display ssd1306 --room TEC`
+`python /opt/RRFTracker_Spotnik/RRFTracker.py --i2c-port 1 --display ssd1306 --follow TECHNIQUE`
 
 Notez qu'il n'est pas nécessaire de préciser l'i2c-address, le display-width et display-height puisque ce sont déjà les valeurs par défaut. Idem pour la latitude et la longitude, qui par défaut sont les miennes...
 
 Et si vous voulez le laisser tourner en tache de fond, utilisez la commande `nohup` et l'_esperluette_ ;) Par exemple, 
 
-`nohup python /opt/RRFTracker_Spotnik/RRFTracker.py --i2c-port 1 --display ssd1306 --room TEC &`
+`nohup python /opt/RRFTracker_Spotnik/RRFTracker.py --i2c-port 1 --display ssd1306 --follow TECHNIQUE &`
 
 Et voilà ;)
 
