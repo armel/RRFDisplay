@@ -344,7 +344,7 @@ def elsewhere(draw, data):
 # Print display on 128 x 32
 def display_32():
     with canvas(s.device) as draw:
-        draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
+        draw.rectangle((0, 0, 31, 127), fill=s.color['black'])
 
         for i in xrange(0, 128, 2):
             draw.point((i, 0), fill=s.color['white'])
