@@ -340,7 +340,11 @@ def display_32():
     with canvas(s.device) as draw:
         draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
 
-        if s.transmit is False:
+        if s.transmit is True:
+            draw.rectangle((0, 0, 127, 31), fill=s.color['black'])
+            tot(draw, legacy, 25)
+
+        elif:
             if s.minute % 2 == 0 and s.seconde < 30:
                 draw.rectangle((0, 0, 127, 31), fill=s.color['black'])
                 histogram(draw, legacy, 25)
@@ -378,7 +382,6 @@ def display_32():
                         if i == 12:
                             i = 16
                         j += 1
-
 
         # Finaly, print clock and room
         clock_room(draw)
