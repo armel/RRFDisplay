@@ -125,7 +125,10 @@ def histogram(draw, legacy, position, height = 15):
 # Print clock and room
 def clock_room(draw):
 
-    j = 5
+    if s.device.height == 32:
+        j = 0
+    else:
+        j = 5
 
     # Print Room
     if s.seconde %5 != 0:
@@ -148,7 +151,11 @@ def clock_room(draw):
 def distance(draw):
     d = l.calc_distance(s.message[1], s.latitude, s.longitude)
 
-    j = 18
+    if s.device.height == 32:
+        j = 10
+    else:
+        j = 18
+
 
     if d == 0:
         d = 'NO LOC'
@@ -335,6 +342,52 @@ def elsewhere(draw, data):
 
         i += 10
 
+
+# Print display on 128 x 32
+def display_32():
+    with canvas(s.device) as draw:
+        
+        if s.transmit is False:
+            if s.minute % 2 == 0 and s.seconde < 30:
+                draw.rectangle((0, 0, 127, 31), fill=s.color['black'])
+                histogram(draw, legacy, 25)
+            else:
+                draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
+
+                if 'Dernier' in s.message[0]:   # Icon clock (DIY...)
+                    legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
+                    legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
+                else:   # Icon stat
+                    legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_STAT)
+                    legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_STAT)
+
+                # Icon talk
+                if s.transmit is True:
+                    draw.text((2, 16), u'\uf130', font=icon, fill=s.color['white'])
+                    distance(draw)
+
+                # Print data
+                i = 0
+                j = 0
+                for m in s.message:
+                    if m is not None:
+                        w, h = draw.textsize(text=m, font=font)
+                        tab = (s.device.width - w) / 2
+                        vide = ' ' * 22     # Hack to speed clear screen line...
+                        draw.text((0, i), vide, font=font, fill=s.color['white'])
+                        draw.text((tab, i), m, font=font, fill=s.color['white'])
+                        if j > 0:
+                            legacy.text(draw, (16, i + 1), chr(s.letter[str(j)]), font=s.SMALL_BITMAP_FONT, fill=s.color['white'])
+
+                        i += h
+                        if i == 32:
+                            break
+                        j += 1
+
+        # Finaly, print clock and room
+        clock_room(draw)
+
+
 # Print display on 128 x 64
 def display_64():
     with canvas(s.device) as draw:
@@ -417,7 +470,7 @@ def display_128():
         draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
         draw.rectangle((0, 1, 127, 13), fill=s.color['darkslategray'])
 
-        for i in xrange(0, 128, 1):
+        for i in xrange(0, 128, 2):
             draw.point((i, 0), fill=s.color['dimgray'])
             draw.point((i, 14), fill=s.color['dimgray'])
 
