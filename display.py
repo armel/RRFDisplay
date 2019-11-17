@@ -365,11 +365,6 @@ def display_32():
             legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_STAT)
             legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_STAT)
 
-        # Icon talk
-        if s.transmit is True:
-            draw.text((2, 16), u'\uf130', font=icon, fill=s.color['white'])
-            distance(draw)
-
         # Print data
         i = 4
         j = 0
