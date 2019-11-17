@@ -125,11 +125,7 @@ def histogram(draw, legacy, position, height = 15):
 # Print clock and room
 def clock_room(draw):
 
-    if s.device.height == 32:
-        j = 0
-    else:
-        j = 5
-
+    j = 5
     # Print Room
     if s.seconde %5 != 0:
         i = 116
@@ -353,8 +349,6 @@ def display_32():
                 draw.rectangle((0, 0, 127, 31), fill=s.color['black'])
                 histogram(draw, legacy, 25)
             else:
-                draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
-
                 if 'Dernier' in s.message[0]:   # Icon clock (DIY...)
                     legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
                     legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
