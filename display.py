@@ -340,15 +340,15 @@ def display_32():
     with canvas(s.device) as draw:
         draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
 
-        for i in xrange(0, 128, 2):
-            draw.point((i, 0), fill=s.color['white'])
-            draw.point((i, 14), fill=s.color['white'])
-
         if s.transmit is False:
             if s.minute % 2 == 0 and s.seconde < 30:
                 draw.rectangle((0, 0, 127, 31), fill=s.color['black'])
                 histogram(draw, legacy, 25)
             else:
+                for i in xrange(0, 128, 2):
+                    draw.point((i, 0), fill=s.color['white'])
+                    draw.point((i, 14), fill=s.color['white'])
+
                 if 'Dernier' in s.message[0]:   # Icon clock (DIY...)
                     legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
                     legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
