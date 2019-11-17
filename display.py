@@ -362,7 +362,7 @@ def display_32():
 def display_64():
     with canvas(s.device) as draw:
         draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
-        
+
         for i in xrange(0, 128, 1):
             draw.point((i, 0), fill=s.color['white'])
             draw.point((i, 14), fill=s.color['white'])
@@ -400,18 +400,28 @@ def display_64():
                 distance(draw)
 
             # Print data
-            i = 0
+            i = 4
+            j = 0
 
             for m in s.message:
                 if m is not None:
                     w, h = draw.textsize(text=m, font=font)
                     tab = (s.device.width - w) / 2
                     vide = ' ' * 22     # Hack to speed clear screen line...
+                    if j < 2:
+                        color = s.color['white']
+                    else:
+                        color = s.color['white']
+
                     draw.text((0, i), vide, font=font, fill=s.color['white'])
-                    draw.text((tab, i), m, font=font, fill=s.color['white'])
+                    draw.text((tab, i), m, font=font, fill=color)
+                    if j > 0:
+                        legacy.text(draw, (16, i + 1), chr(s.letter[str(j)]), font=s.SMALL_BITMAP_FONT, fill=color)
+
                     i += h
-                    if i == 24:
-                        i += 6
+                    if i == 12:
+                        i = 16
+                    j += 1
 
             if s.transmit is True and s.duration > 0:
                 # Draw tot
