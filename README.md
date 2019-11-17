@@ -42,9 +42,9 @@ Sur la première ligne, en haut de l'écran, on dispose,
 * du nombre de passages en émission sur la journée (depuis 00h00),
 * du nombre de links actifs,
 * du nombre de links total,
-* du temps d'émission cumulée total sur la journée
-* du salon ou de l'indicatif suivi par le RRFTracker
-* de l'heure du dernier passage en émission
+* du temps d'émission cumulée total sur la journée,
+* du salon ou de l'indicatif suivi par le RRFTracker,
+* de l'heure du dernier passage en émission.
 
 En haut à droite, l'heure et le salon courant s'affiche alternativement.
 
@@ -58,13 +58,23 @@ Alternativement, si aucune station n'est en émission, le RRFTracker affichera d
 * l'historique des 5 noeuds les plus actifs ainsi que la durée cumulée de passage en émission,
 * l'état du Spotnik: architecture, uptime, noyau, charge et fréquence du CPU, température, adresse IP, occupation mémoire et disque, version.
 
-Enfin, si une station passe en émission, en lieu et place de l'histogramme du trafic, une jauge affichant le temps de parole s'affichera, par tranche de 60 secondes. 
+Enfin, si une station passe en émission, en lieu et place de l'histogramme du trafic, une jauge affichera la durée de passage en émission, par tranche de 60 secondes. 
 
 À noter qu'à minuit, le nombre de passages en émission sur la journée, l'historique des 5 noeuds les plus actifs, ainsi que l'histogramme sont réinitialisés (à zéro).
 
 ### Ecran 128 x 128
 
-En complément des informations visibles sur un écran 128 x 64 pixels, cette résolution permet d'afficher plus d'informations et plus particulièrement de suivre l'activiter sur les autres salons.
+En complément des informations visibles sur un écran 128 x 64 pixels, cette résolution permet d'afficher plus d'informations.
+
+Si aucune station n'est en émission, le RRFTracker affichera :
+
+* l'historique des 10 derniers noeuds étant passés en émission ainsi que l'horodatage,
+* l'historique des 10 noeuds les plus actifs ainsi que la durée cumulée de passage en émission,
+* l'état du Spotnik: architecture, uptime, noyau, charge et fréquence du CPU, température, adresse IP, occupation mémoire et disque, version.
+
+Si une station passe en émission, en lieu et place de l'histogramme du trafic, un compte à rebours affichera la durée de passage en émission.
+
+Enfin, sur la partie basse de l'écran, figure un tableau listant l'activité sur les autres salons. A tout moment, il est donc possible de savoir s'il se passe quelque chose ailleurs. 
 
 ## Post installation sur Spotnik 3.0
 
@@ -152,8 +162,8 @@ Display settings:
   --display-width    set display width (default = 128)
   --display-height   set display height (default = 64)
 
-Room settings:
-  --room ROOM        set room (default = RRF, choose between [RRF, TEC, FON])
+Follow settings:
+  --follow           set room (default=RRF, choose between [RRF, TECHNIQUE, INTERNATIONAL, LOCAL, BAVARDAGE, FON]) or callsign to follow'
   
 WGS84 settings:
   --latitude         set latitude (default=48.8483808, format WGS84)
@@ -172,7 +182,7 @@ Par défaut, sans argument, le RRFTracker va démarrer avec les paramètres suiv
 - display = sh1106
 - display width = 128
 - display height = 64
-- room = RRF
+- follow = RRF
 - latitude = 48.8483808
 - longitude = 2.2704347  
 
