@@ -364,7 +364,7 @@ def display_32():
 
             # Print data
             i = 0
-
+            j = 0
             for m in s.message:
                 if m is not None:
                     w, h = draw.textsize(text=m, font=font)
@@ -378,6 +378,7 @@ def display_32():
                     i += h
                     if i == 32:
                         break
+                    j += 1
 
         # Finaly, print clock and room
         clock_room(draw)
