@@ -261,7 +261,7 @@ def scan(call):
         r = requests.get(s.room[s.room_current]['api'], verify=False, timeout=10)
         page = r.content
         if call in page:
-            return call
+            return s.room_current
     except requests.exceptions.ConnectionError as errc:
         return False
     except requests.exceptions.Timeout as errt:
