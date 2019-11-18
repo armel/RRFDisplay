@@ -106,7 +106,6 @@ def tot(draw, legacy, duration, position):
 
 # Draw histogram
 def histogram(draw, legacy, position, height = 15):
-
     qso_hour_max = max(s.qso_hour)
 
     i = 5
@@ -130,7 +129,6 @@ def histogram(draw, legacy, position, height = 15):
 
 # Print clock and room
 def clock_room(draw):
-
     j = 5
     # Print Room
     if s.seconde %5 != 0:
@@ -315,7 +313,6 @@ def extended_best(draw, limit = 5):
 # Print Elsewhere
 
 def elsewhere(draw, data):
-
     i = 79
 
     for d in data:
