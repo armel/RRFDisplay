@@ -95,6 +95,7 @@ def main(argv):
         if s.seconde % 15 == 0 and s.scan == True: # On scan
             tmp = l.scan(s.callsign)
             if tmp is not False:
+                print s.now, tmp
                 s.room_current = tmp
 
         url = s.room[s.room_current]['url']
