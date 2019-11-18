@@ -366,9 +366,9 @@ def extended_config(draw, page):
 
         sys['Scan'] = str(s.scan)
         sys['Follow'] = str(s.follow)
-        sys['Indicatif'] = s.callsign
-        sys['Latitude'] = str(s.latitude)
-        sys['Longitude'] = str(s.longitude)
+        sys['Call'] = s.callsign
+        sys['Lat'] = str(s.latitude)
+        sys['Long'] = str(s.longitude)
 
     else:
         sys = {'I2C Port': '', 'I2C Add': '', 'Display': '', 'Width': '', 'Height': '', 'Scan': '', 'Follow': '', 'Indicatif': '', 'Latitude': '', 'Longitude': ''}
@@ -463,19 +463,27 @@ def display_64():
             draw.point((i, 14), fill=s.color['white'])
 
         # System log extended Page 1
-        if s.transmit is False and s.minute % 2 == 0 and s.seconde < 10:
+        if s.transmit is False and s.minute % 2 == 0 and s.seconde < 5:
             extended_system(draw, 1)
 
         # System log extended Page 2
-        elif s.transmit is False and s.minute % 2 == 0 and s.seconde < 20:
+        elif s.transmit is False and s.minute % 2 == 0 and s.seconde < 10:
             extended_system(draw, 2)
 
+        # System log extended Page 1
+        if s.transmit is False and s.minute % 2 == 0 and s.seconde < 15:
+            extended_config(draw, 1)
+
+        # System log extended Page 2
+        elif s.transmit is False and s.minute % 2 == 0 and s.seconde < 20:
+            extended_config(draw, 2)
+
         # Call log extended
-        elif s.transmit is False and len(s.call) >=5 and s.minute % 2 == 0 and s.seconde < 30:
+        elif s.transmit is False and len(s.call) >=5 and s.minute % 2 == 0 and s.seconde < 25:
             extended_call(draw, len(s.call))
 
         # Best log extended
-        elif s.transmit is False and len(s.best) >= 5 and s.minute % 2 == 0 and s.seconde < 40:
+        elif s.transmit is False and len(s.best) >= 5 and s.minute % 2 == 0 and s.seconde < 30:
             extended_best(draw, len(s.best))
 
         # If not extended
@@ -540,19 +548,19 @@ def display_128():
             draw.point((i, 14), fill=s.color['dimgray'])
 
         # System log extended
-        if s.transmit is False and s.minute % 2 == 0 and s.seconde < 10:
+        if s.transmit is False and s.minute % 2 == 0 and s.seconde < 5:
             extended_system(draw, 3)
 
          # Config log extended
-        elif s.transmit is False and s.minute % 2 == 0 and s.seconde < 20:
+        elif s.transmit is False and s.minute % 2 == 0 and s.seconde < 10:
             extended_config(draw, 3)
 
         # Call log extended
-        elif s.transmit is False and len(s.call) >=5 and s.minute % 2 == 0 and s.seconde < 30:
+        elif s.transmit is False and len(s.call) >=5 and s.minute % 2 == 0 and s.seconde < 15:
             extended_call(draw, len(s.call))
 
         # Best log extended
-        elif s.transmit is False and len(s.best) >= 5 and s.minute % 2 == 0 and s.seconde < 40:
+        elif s.transmit is False and len(s.best) >= 5 and s.minute % 2 == 0 and s.seconde < 20:
             extended_best(draw, len(s.best))
 
         # If not extended
