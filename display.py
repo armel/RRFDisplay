@@ -343,8 +343,7 @@ def extended_config(draw, page):
     if s.device.height == 128:
         draw.rectangle((0, 1, s.device.height - 1, 13), fill=s.color['darkslategray'])
 
-    legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CPU)
-    legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CPU)
+    draw.text((2, 0), u'\uf1de', font=icon, fill=s.color['white'])
 
     w, h = draw.textsize(text='Config RRFTracker', font=font)
     tab = (s.device.width - w) / 2
