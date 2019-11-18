@@ -5,14 +5,17 @@ Suivi temps réel de l'activité du réseau [RRF](https://f5nlg.wordpress.com/20
 
 Cette version du RRFTracker et une évolution d'un [premier projet](https://github.com/armel/RRFTracker) réalisé mi novembre 2018 à partir d'un Nodemcu ESP8266 et d'un écran LCD 16x2.
 
-Il permet de suivre en temps réel l'activité du réseau [RRF](https://f5nlg.wordpress.com/2015/12/28/nouveau-reseau-french-repeater-network/) (Réseau des Répéteurs Francophones), mais également du [FON](http://www.f1tzo.com/) (French Open Networks), en utilisant un Raspberry Pi 3 ou un Orange Pi Zero et un écran OLED type SH1106, SSD1306 ou SSD1327 piloté par I2C. Les 2 premiers écrans ont un QSJ de moins de 5€. Le troisième est un peu plus onéreux, mais tourne autour de 10€. C'était une des contraintes de mon cahier des charges. À noter que vous pouvez les trouver moins cher sur des boutiques chinoises, si vous acceptez de patienter 30 à 60 jours pour la livraison.  
+Il permet de suivre en temps réel l'activité du réseau [RRF](https://f5nlg.wordpress.com/2015/12/28/nouveau-reseau-french-repeater-network/) (Réseau des Répéteurs Francophones), mais également du [FON](http://www.f1tzo.com/) (French Open Networks), en utilisant un Raspberry Pi 3 ou un Orange Pi Zero et un écran OLED type SH1106, SSD1306 ou SSD1327 piloté par I2C. 
 
-Pour le moment, cette version du RRFTracker prend en charge [2 tailles d'écrans](http://www.dsdtech-global.com/2018/05/iic-oled-lcd-u8glib.html) OLED et 2 résolutions. 
+Les 2 premiers écrans ont un QSJ de moins de 5€. Le troisième est un peu plus onéreux, mais coûte moins de 10€. C'était une des contraintes de mon cahier des charges. À noter que vous pouvez les trouver moins cher sur des boutiques chinoises, si vous acceptez de patienter 30 à 60 jours pour la livraison.  
+
+Cette version du RRFTracker prend en charge [3 tailles d'écrans](http://www.dsdtech-global.com/2018/05/iic-oled-lcd-u8glib.html) OLED et 2 résolutions. 
 
 - 1.30" en 128 x 64
 - 0.96" en 128 x 64 
+- 0.91" en 128 x 32
 
-La résolution 128 x 128 en 1.50" est disponible depuis peu en utilisant des écrans de type [SSD1327](https://www.waveshare.com/wiki/1.5inch_OLED_Module).
+En complément, depuis la dernière mise à jour, la résolution 128 x 128 en 1.50" est disponible en utilisant des écrans de type [SSD1327](https://www.waveshare.com/wiki/1.5inch_OLED_Module). C'est ma résolution préférée. 
 
 Ce dispositif peut donc être associé sans (_trop de_) difficulté à un Spotnik Gamma, Delta, etc. afin de profiter d'un minimum de remontée d'informations, à l'image des Hotspots MMDVM type ZUMspot, Jumbo SPOT, etc. si precieux aux porteurs de casques de chantier... j'ai nommé les DMRistes ;)
 
@@ -65,7 +68,8 @@ Alternativement, si aucune station n'est en émission, le RRFTracker affichera d
 
 * l'historique des 5 derniers noeuds étant passés en émission ainsi que l'horodatage,
 * l'historique des 5 noeuds les plus actifs ainsi que la durée cumulée de passage en émission,
-* l'état du Spotnik: architecture, uptime, noyau, charge et fréquence du CPU, température, adresse IP, occupation mémoire et disque, version.
+* l'état du Spotnik (sur 2 pages): architecture, uptime, noyau, charge et fréquence du CPU, température, adresse IP, occupation mémoire et disque, version,
+* la configuration courante (sur 2 pages).
 
 Enfin, si une station passe en émission, en lieu et place de l'histogramme du trafic, une jauge affichera la durée de passage en émission, par tranche de 60 secondes. 
 
@@ -75,13 +79,14 @@ Enfin, si une station passe en émission, en lieu et place de l'histogramme du t
 
 En complément des informations visibles sur un écran 128 x 64 pixels, cette résolution permet d'afficher plus d'informations.
 
-Si aucune station n'est en émission, le RRFTracker affichera :
+A ce titre, si aucune station n'est en émission, le RRFTracker affichera :
 
 * l'historique des 10 derniers noeuds étant passés en émission ainsi que l'horodatage,
 * l'historique des 10 noeuds les plus actifs ainsi que la durée cumulée de passage en émission,
-* l'état du Spotnik: architecture, uptime, noyau, charge et fréquence du CPU, température, adresse IP, occupation mémoire et disque, version.
+* l'état du Spotnik: architecture, uptime, noyau, charge et fréquence du CPU, température, adresse IP, occupation mémoire et disque, version,
+* la configuration courante.
 
-Si une station passe en émission, en lieu et place de l'histogramme du trafic, un compte à rebours affichera la durée de passage en émission.
+Si une station passe en émission, en lieu et place de l'histogramme du trafic, un compte à rebours affichera la durée de passage en émission. C'est plus lisible qu'une jauge.
 
 Enfin, sur la partie basse de l'écran, figure un tableau listant l'activité sur les autres salons. A tout moment, il est donc possible de savoir s'il se passe quelque chose ailleurs. 
 
@@ -191,7 +196,7 @@ Par défaut, sans argument, le RRFTracker va démarrer avec les paramètres suiv
 - display = sh1106
 - display width = 128
 - display height = 64
-- follow = F4HWN
+- follow = RRF
 - latitude = 48.8483808
 - longitude = 2.2704347  
 
@@ -199,7 +204,7 @@ Par défaut, sans argument, le RRFTracker va démarrer avec les paramètres suiv
 
 Cela revient à lancer le RRFTracker avec les arguments suivants,
 
-`python /opt/RRFTracker_Spotnik/RRFTracker.py --i2c-port 0 --i2c-address 0x3C --display sh1106 --display-width 128 --display-height 64 --follow F4HWN --latitude 48.8483808 --longitude 2.2704347`
+`python /opt/RRFTracker_Spotnik/RRFTracker.py --i2c-port 0 --i2c-address 0x3C --display sh1106 --display-width 128 --display-height 64 --follow RRF --latitude 48.8483808 --longitude 2.2704347`
 
 Il est donc possible de modifier les paramètres, notamment en fonction de ce que vous retournera la commande `i2cdetect` décrite ci dessus.
 
@@ -218,7 +223,13 @@ Il vous suffira de lancer le RRFTracker avec les arguments suivants,
 
 Notez qu'il n'est pas nécessaire de préciser l'i2c-address, le display-width et display-height puisque ce sont déjà les valeurs par défaut. Idem pour la latitude et la longitude, qui par défaut sont les miennes...
 
-Et si vous voulez le laisser tourner en tache de fond, utilisez la commande `nohup` et l'_esperluette_ ;) Par exemple, 
+Point important, il est aussi possible de préciser un indicatif de link à suivre, plutôt qu'un salon. Par exemple, si vous désirez suivre le F1ZPX, il suffit de préciser,
+
+`python /opt/RRFTracker_Spotnik/RRFTracker.py --i2c-port 1 --display ssd1306 --follow F1ZPX`
+
+Dès lors, le RRFTracker affichera les informations du salon sur lequel se trouvre le link F1ZPX et le suivra automatiquement au grès de ses QSY.
+
+Enfin, si vous voulez le laisser tourner en tache de fond, utilisez la commande `nohup` et l'_esperluette_ ;) Par exemple, 
 
 `nohup python /opt/RRFTracker_Spotnik/RRFTracker.py --i2c-port 1 --display ssd1306 --follow TECHNIQUE &`
 
