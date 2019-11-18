@@ -80,9 +80,9 @@ def main(argv):
 
     rrf_data = ''
 
-    print s.scan
-    print s.callsign
-    print s.room_current
+    #print s.scan
+    #print s.callsign
+    #print s.room_current
 
     while(True):
         tmp = datetime.datetime.now()
@@ -95,7 +95,7 @@ def main(argv):
         if s.seconde % 15 == 0 and s.scan == True: # On scan
             tmp = l.scan(s.callsign)
             if tmp is not False:
-                print s.now, tmp
+                #print s.now, tmp
                 s.room_current = tmp
 
         url = s.room[s.room_current]['url']
