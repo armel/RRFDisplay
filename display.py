@@ -352,16 +352,14 @@ def display_32():
 
         if s.transmit is True:
             draw.rectangle((0, 15, 31, 127), fill=s.color['black'])
+            draw.text((2, 0), u'\uf130', font=icon, fill=s.color['white'])
             tot(draw, legacy, s.duration, 25)
+            s.message[0] = s.message[4]
         else:
             draw.rectangle((0, 15, 31, 127), fill=s.color['black'])
             if s.minute % 2 == 0 and s.seconde < 30:
                 histogram(draw, legacy, 25)
-
-        if s.transmit is True:
-            s.message[0] = s.message[4]
-            draw.text((2, 0), u'\uf130', font=icon, fill=s.color['white'])
-        else:
+                
             if 'Dernier' in s.message[0]:   # Icon clock (DIY...)
                 legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
                 legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
