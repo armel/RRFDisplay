@@ -52,9 +52,13 @@ def main(argv):
             if arg in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
                 s.room_current = arg
             else:
-                s.scan = True
-                s.callsign = arg
-                l.scan()
+                s.room_current = l.scan(arg)
+                if s.room_current is False:
+                    s.room_current = 'RRF'
+                else:
+                    s.callsign = arg
+                    s.scan = True
+
         elif opt in ('--latitude'):
             s.latitude = float(arg)
         elif opt in ('--longitude'):
@@ -83,7 +87,7 @@ def main(argv):
         s.seconde = int(s.now[-2:])
 
         if s.seconde % 15 == 0 and s.scan == True: # On scan
-            l.scan()
+            s.room_current = l.scan(s.callsign)
 
         url = s.room[s.room_current]['url']
 

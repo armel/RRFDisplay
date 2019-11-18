@@ -19,9 +19,7 @@ i2c_address = 0x3C                      # Default value ! Check with i2detect
 display = 'sh1106'                      # Default value !
 display_width = 128                     # Default value !
 display_height = 64                     # Default value !
-room_current = 'RRF'                    # Default value !
-callsign = 'F4HWN'                      # Default value !
-scan = False                            # Default value !
+follow = 'RRF'                          # Default value !
 latitude = 48.8439433                   # Default value ! Check WGS84 on https://www.coordonnees-gps.fr/
 longitude = 2.2817099                   # Default value ! Check WGS84 on https://www.coordonnees-gps.fr/
 
@@ -117,6 +115,10 @@ letter = {
 }
 
 # Set variables
+
+room_current = 'RRF'        # Current Room
+callsign = 'F4HWN'          # Callsign if follow
+scan = False                # Scan mode
 
 call = [''] * 10            # Call list
 call_time = [''] * 10       # Call time list

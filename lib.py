@@ -107,7 +107,6 @@ def interpolation(value, in_min, in_max, out_min, out_max):
 
 # Get system info
 def system_info(value):
-
     if value == 'temp':
         tmp = int(os.popen('cat /sys/class/thermal/thermal_zone0/temp').readline())
         if tmp > 1000:
@@ -257,16 +256,16 @@ def sanitize_call(call):
     return call.translate(None, '\\\'!@#$"()[]')
 
 # Scan
-def scan():
+def scan(call):
     try:
         r = requests.get(s.room[s.room_current]['api'], verify=False, timeout=10)
         page = r.content
         if s.callsign in page:
-            return 0
+            return False
     except requests.exceptions.ConnectionError as errc:
-        return 0
+        return False
     except requests.exceptions.Timeout as errt:
-        return 0
+        return False
 
     else:
         for q in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
@@ -274,14 +273,11 @@ def scan():
                 try:
                     r = requests.get(s.room[q]['api'], verify=False, timeout=10)
                     page = r.content
-                    if s.callsign in page:
-                        s.room_current = q
-                        return 0
+                    if call in page:
+                        return q
                 except requests.exceptions.ConnectionError as errc:
-                    return 0
+                    return False
                 except requests.exceptions.Timeout as errt:
-                    return 0
-
-    s.room_current = 'RRF'
+                    return False
     
-    return 0
+    return False
