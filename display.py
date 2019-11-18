@@ -355,7 +355,7 @@ def extended_config(draw, page):
         sys_order = ['I2C Port', 'I2C Address', 'Display', 'Width', 'Height']
 
         sys['I2C Port'] = str(s.i2c_port)
-        sys['I2C Address'] = str(s.i2c_address)
+        sys['I2C Address'] = hex(s.i2c_address)
         sys['Display'] = s.display
         sys['Width'] = str(s.display_width)
         sys['Height'] = str(s.display_height)
