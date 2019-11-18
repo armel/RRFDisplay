@@ -392,13 +392,13 @@ def extended_config(draw, page):
         i = 16
 
     for j in sys_order:
-        draw.rectangle((0, i - 1, 48, i + 7), fill=s.color['gray'])
-        draw.line((49, i, 49, i + 6), fill=s.color['gray'])
-        draw.line((50, i + 2, 50, i + 4), fill=s.color['gray'])
-        draw.point((51, i + 3), fill=s.color['gray'])
+        draw.rectangle((0, i - 1, 52, i + 7), fill=s.color['gray'])
+        draw.line((53, i, 53, i + 6), fill=s.color['gray'])
+        draw.line((54, i + 2, 54, i + 4), fill=s.color['gray'])
+        draw.point((55, i + 3), fill=s.color['gray'])
 
         draw.text((1, i), j, font=font, fill=s.color['black'])
-        draw.text((58, i), sys[j], font=font, fill=s.color['white'])
+        draw.text((62, i), sys[j], font=font, fill=s.color['white'])
 
         i += 10
 
