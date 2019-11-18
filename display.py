@@ -358,7 +358,7 @@ def display_32():
         else:
             draw.rectangle((0, 15, 31, 127), fill=s.color['black'])
             if s.minute % 2 == 0 and s.seconde < 30:
-                histogram(draw, legacy, 25)
+                histogram(draw, legacy, 25, 10)
 
             if 'Dernier' in s.message[0]:   # Icon clock (DIY...)
                 legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CLOCK)
