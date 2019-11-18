@@ -351,38 +351,38 @@ def extended_config(draw, page):
     draw.text((tab, 4), 'Infos Spotnik', font=font, fill=s.color['white'])
 
     if page == 1:
-        sys = {'I2C Port': '', 'I2C Add': '', 'Display': '', 'Width': '', 'Height': ''}
-        sys_order = ['I2C Port', 'I2C Add', 'Display', 'Width', 'Height']
+        sys = {'I2C Port': '', 'I2C Address': '', 'Display': '', 'Width': '', 'Height': ''}
+        sys_order = ['I2C Port', 'I2C Address', 'Display', 'Width', 'Height']
 
         sys['I2C Port'] = str(s.i2c_port)
-        sys['I2C Add'] = str(s.i2c_address)
+        sys['I2C Address'] = str(s.i2c_address)
         sys['Display'] = s.display
         sys['Width'] = str(s.display_width)
         sys['Height'] = str(s.display_height)
 
     elif page == 2:
-        sys = {'Scan': '', 'Follow': '', 'Call': '', 'Lat': '', 'Long': ''}
-        sys_order = ['Scan', 'Follow', 'Call', 'Lat', 'Long']
+        sys = {'Scan': '', 'Follow': '', 'Indicatif': '', 'Lat': '', 'Long': ''}
+        sys_order = ['Scan', 'Follow', 'Indicatif', 'Lat', 'Long']
 
         sys['Scan'] = str(s.scan)
         sys['Follow'] = str(s.follow)
-        sys['Call'] = s.callsign
+        sys['Indicatif'] = s.callsign
         sys['Lat'] = str(s.latitude)
         sys['Long'] = str(s.longitude)
 
     else:
-        sys = {'I2C Port': '', 'I2C Add': '', 'Display': '', 'Width': '', 'Height': '', 'Scan': '', 'Follow': '', 'Call': '', 'Lat': '', 'Long': ''}
-        sys_order = ['I2C Port', 'I2C Add', 'Display', 'Width', 'Height', 'Scan', 'Follow', 'Call', 'Lat', 'Long']
+        sys = {'I2C Port': '', 'I2C Add': '', 'Display': '', 'Width': '', 'Height': '', 'Scan': '', 'Follow': '', 'Indicatif': '', 'Lat': '', 'Long': ''}
+        sys_order = ['I2C Port', 'I2C Add', 'Display', 'Width', 'Height', 'Scan', 'Follow', 'Indicatif', 'Lat', 'Long']
         
         sys['I2C Port'] = str(s.i2c_port)
-        sys['I2C Add'] = str(s.i2c_address)
+        sys['I2C Address'] = str(s.i2c_address)
         sys['Display'] = s.display
         sys['Width'] = str(s.display_width)
         sys['Height'] = str(s.display_height)
 
         sys['Scan'] = str(s.scan)
         sys['Follow'] = str(s.follow)
-        sys['Call'] = s.callsign
+        sys['Indicatif'] = s.callsign
         sys['Lat'] = str(s.latitude)
         sys['Long'] = str(s.longitude)
 
@@ -392,13 +392,13 @@ def extended_config(draw, page):
         i = 16
 
     for j in sys_order:
-        draw.rectangle((0, i - 1, 38, i + 7), fill=s.color['gray'])
-        draw.line((39, i, 39, i + 6), fill=s.color['gray'])
-        draw.line((40, i + 2, 40, i + 4), fill=s.color['gray'])
-        draw.point((41, i + 3), fill=s.color['gray'])
+        draw.rectangle((0, i - 1, 48, i + 7), fill=s.color['gray'])
+        draw.line((49, i, 49, i + 6), fill=s.color['gray'])
+        draw.line((50, i + 2, 50, i + 4), fill=s.color['gray'])
+        draw.point((51, i + 3), fill=s.color['gray'])
 
         draw.text((1, i), j, font=font, fill=s.color['black'])
-        draw.text((48, i), sys[j], font=font, fill=s.color['white'])
+        draw.text((58, i), sys[j], font=font, fill=s.color['white'])
 
         i += 10
 
