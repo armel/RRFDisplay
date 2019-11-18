@@ -343,11 +343,12 @@ def extended_config(draw, page):
     if s.device.height == 128:
         draw.rectangle((0, 1, s.device.height - 1, 13), fill=s.color['darkslategray'])
 
-    draw.text((2, 0), u'\uf1de', font=icon, fill=s.color['white'])
+    #draw.text((2, 0), u'\uf1de', font=icon, fill=s.color['white'])
+    draw.text((2, 0), u'\ue800', font=icon, fill=s.color['white'])
 
     w, h = draw.textsize(text='Config RRFTracker', font=font)
     tab = (s.device.width - w) / 2
-    draw.text((tab, 4), 'Infos Spotnik', font=font, fill=s.color['white'])
+    draw.text((tab, 4), 'Config RRFTracker', font=font, fill=s.color['white'])
 
     if page == 1:
         sys = {'I2C Port': '', 'I2C Address': '', 'Display': '', 'Width': '', 'Height': ''}
