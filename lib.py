@@ -9,6 +9,8 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 '''
 
 import os
+import requests
+import settings as s
 from math import cos, asin, sqrt, ceil
 
 
@@ -27,8 +29,8 @@ def usage():
     print '  --display-width    set display width (default=128)'
     print '  --display-height   set display height (default=64)'
     print
-    print 'Room settings:'
-    print '  --room ROOM        set room (default=RRF, choose between [RRF, TEC, FON])'
+    print 'Follow settings:'
+    print '  --follow           set room (default=RRF, choose between [RRF, TECHNIQUE, INTERNATIONAL, LOCAL, BAVARDAGE, FON]) or callsign to follow'
     print
     print 'WGS84 settings:'
     print '  --latitude         set latitude (default=48.8483808, format WGS84)'
@@ -105,7 +107,6 @@ def interpolation(value, in_min, in_max, out_min, out_max):
 
 # Get system info
 def system_info(value):
-
     if value == 'temp':
         tmp = int(os.popen('cat /sys/class/thermal/thermal_zone0/temp').readline())
         if tmp > 1000:
@@ -191,6 +192,8 @@ def system_info(value):
     elif value == 'ip':
         tmp = list(os.popen('hostname -I'))
         tmp = tmp[0].strip()
+        tmp = tmp.split()
+        tmp = tmp[0]
 
         return str(tmp)
 
@@ -200,7 +203,10 @@ def system_info(value):
             tmp = 'Orange Pi'
         else:
             tmp = 'Raspberry Pi'
+        return str(tmp)
 
+    elif value == 'kernel':
+        tmp = os.popen('uname -r').readline()
         return str(tmp)
 
 
@@ -222,3 +228,56 @@ def calc_distance(call, latitude_1, longitude_1):
                 r = int(ceil(12742 * asin(sqrt(a))))
             return r
     return 0
+
+# Convert second to time
+def convert_second_to_time(time):
+    hours = time // 3600
+    time = time - (hours * 3600)
+
+    minutes = time // 60
+    seconds = time - (minutes * 60)
+
+    if hours == 0:
+        return str('{:0>2d}'.format(int(minutes))) + ':' + str('{:0>2d}'.format(int(seconds)))
+    else:
+        return str('{:0>2d}'.format(int(hours))) + ':' + str('{:0>2d}'.format(int(minutes))) + ':' + str('{:0>2d}'.format(int(seconds)))
+
+# Convert time to second
+def convert_time_to_second(time):
+    if len(time) > 5:
+        format = [3600, 60, 1]
+    else:
+        format = [60, 1]        
+    
+    return sum([a * b for a, b in zip(format, map(int, time.split(':')))])
+
+# Sanitize call
+def sanitize_call(call):
+    return call.translate(None, '\\\'!@#$"()[]')
+
+# Scan
+def scan(call):
+    try:
+        r = requests.get(s.room[s.room_current]['api'], verify=False, timeout=10)
+        page = r.content
+        if call in page:
+            return s.room_current
+    except requests.exceptions.ConnectionError as errc:
+        return False
+    except requests.exceptions.Timeout as errt:
+        return False
+
+    else:
+        for q in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
+            if q != s.room:
+                try:
+                    r = requests.get(s.room[q]['api'], verify=False, timeout=10)
+                    page = r.content
+                    if call in page:
+                        return q
+                except requests.exceptions.ConnectionError as errc:
+                    return False
+                except requests.exceptions.Timeout as errt:
+                    return False
+    
+    return False

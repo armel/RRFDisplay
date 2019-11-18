@@ -27,7 +27,7 @@ def main(argv):
 
     # Check and get arguments
     try:
-        options, remainder = getopt.getopt(argv, '', ['help', 'i2c-port=', 'i2c-address=', 'display=', 'display-width=', 'display-height=', 'room=', 'latitude=', 'longitude='])
+        options, remainder = getopt.getopt(argv, '', ['help', 'i2c-port=', 'i2c-address=', 'display=', 'display-width=', 'display-height=', 'follow=', 'latitude=', 'longitude='])
     except getopt.GetoptError:
         l.usage()
         sys.exit(2)
@@ -48,11 +48,19 @@ def main(argv):
             s.display_width = int(arg)
         elif opt in ('--display-height'):
             s.display_height = int(arg)
-        elif opt in ('--room'):
-            if arg not in ['RRF', 'TEC', 'FON']:
-                print 'Unknown room name (choose between \'RRF\', \'TEC\' and \'FON\')'
-                sys.exit()
-            s.room = arg
+        elif opt in ('--follow'):
+            if arg in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
+                s.room_current = arg
+            else:
+                s.room_current = 'RRF'
+                tmp = l.scan(arg)
+                if tmp is False:
+                    s.room_current = 'RRF'
+                else:
+                    s.room_current = tmp
+                    s.callsign = arg
+                    s.scan = True
+
         elif opt in ('--latitude'):
             s.latitude = float(arg)
         elif opt in ('--longitude'):
@@ -67,20 +75,16 @@ def main(argv):
     elif s.display == 'ssd1327':
         s.device = ssd1327(serial, width=s.display_width, height=s.display_height, rotate=0, mode='RGB')
 
-    # Set url
-    if s.room == 'RRF':
-        url = 'http://rrf.f5nlg.ovh/api/svxlink/RRF'
-    elif s.room == 'TEC':
-        url = 'http://rrf.f5nlg.ovh/api/svxlink/technique'
-    elif s.room == 'FON':
-        url = 'http://rrf.f5nlg.ovh/api/svxlink/FON'
-
     # Boucle principale
     s.timestamp_start = time.time()
 
-    while(True):
+    rrf_data = ''
 
-        # If midnight...
+    #print s.scan
+    #print s.callsign
+    #print s.room_current
+
+    while(True):
         tmp = datetime.datetime.now()
         s.day = tmp.strftime('%Y-%m-%d')
         s.now = tmp.strftime('%H:%M:%S')
@@ -88,146 +92,111 @@ def main(argv):
         s.minute = int(s.now[3:-3])
         s.seconde = int(s.now[-2:])
 
-        if(s.now[:5] == '00:00'):
-            s.qso_total += s.qso
-            s.qso = 0
-            for q in xrange(0, 24):         # Clean histogram
-                s.qso_hour[q] = 0
-            s.history.clear()               # Clear history
+        if s.seconde % 15 == 0 and s.scan == True: # On scan
+            tmp = l.scan(s.callsign)
+            if tmp is not False:
+                #print s.now, tmp
+                s.room_current = tmp
 
-        # Request HTTP datas
+        url = s.room[s.room_current]['url']
+
+        # Requete HTTP vers le flux json du salon produit par le RRFTracker 
         try:
-            r = requests.get(url, verify=False, timeout=10)
-            page = r.content
+            r = requests.get(url, verify=False, timeout=1)
         except requests.exceptions.ConnectionError as errc:
             print ('Error Connecting:', errc)
         except requests.exceptions.Timeout as errt:
             print ('Timeout Error:', errt)
 
-        search_start = page.find('TXmit":"')            # Search this pattern
-        search_start += 8                               # Shift...
-        search_stop = page.find('"', search_start)      # And close it...
+        # Controle de la validité du flux json
+        try:
+            rrf_data = r.json()
+        except:
+            pass
 
-        # If transmitter...
-        if search_stop != search_start:
+        if rrf_data != '': # Si le flux est valide
+            data_abstract = rrf_data['abstract'][0]
+            data_activity = rrf_data['activity']
+            data_transmit = rrf_data['transmit'][0]
+            data_last = rrf_data['last']
+            data_all = rrf_data['all']
 
-            if s.transmit is False:      # Wake up screen...
-                s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
+            s.message[1] = l.sanitize_call(data_last[0][u'Indicatif'].encode('utf-8'))
+            s.message[2] = l.sanitize_call(data_last[1][u'Indicatif'].encode('utf-8'))
+            s.message[3] = l.sanitize_call(data_last[2][u'Indicatif'].encode('utf-8'))
 
-            # Clean call
-            tmp = page[search_start:search_stop]
-            tmp = tmp.replace('(', '')
-            tmp = tmp.replace(') ', ' ')
-            tmp = tmp.replace('\u0026U', '&')   # Replace ampersand...
+            if s.device.height == 128:      # Only if place...
+                try:
+                    data_elsewhere = rrf_data['elsewhere'][0]
 
-            s.call_current = tmp
+                    i = 0
+                    s.transmit_elsewhere = False
+                    for data in rrf_data['elsewhere'][6]:
+                        if data in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
+                            tmp = rrf_data['elsewhere'][6][data]
+                            if tmp != 0:
+                                s.transmit_elsewhere = True
+                                s.raptor[i] = l.convert_second_to_time(tmp) + '/' + data[:3] + '/' + l.sanitize_call(rrf_data['elsewhere'][1][data].encode('utf-8')) + '/' + str(rrf_data['elsewhere'][5][data])
+                            else:
+                                s.raptor[i] = l.convert_second_to_time(tmp) + '/' + data[:3] + '/' + rrf_data['elsewhere'][3][data] + '/' + str(rrf_data['elsewhere'][5][data])
 
-            if (s.call_previous != s.call_current):
-                s.tot_start = time.time()
-                s.tot_current = s.tot_start
-                s.call_previous = s.call_current
+                            i += 1
+                except:
+                    pass
 
-                for i in xrange(4, 0, -1):
-                    s.call[i] = s.call[i - 1]
-                    s.call_time[i] = s.call_time[i - 1]
+            if data_transmit['Indicatif'] != '':
+                if s.transmit is False:      # Wake up screen...
+                    s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
 
-                s.call[0] = s.call_current
+                s.call_current = l.sanitize_call(data_transmit[u'Indicatif'].encode('utf-8'))
+                s.duration = data_transmit[u'TOT']
+
             else:
-                if s.tot_start is '':
-                    s.tot_start = time.time()
-                    s.tot_current = s.tot_start
+                if s.transmit is True:       # Sleep screen...
+                    s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
 
-                    for i in xrange(4, 0, -1):
-                        s.call[i] = s.call[i - 1]
-                        s.call_time[i] = s.call_time[i - 1]
+                # Load Histogram
+                for q in xrange(0, 24):
+                    s.qso_hour[q] = data_activity[q][u'TX']
 
-                    s.call[0] = s.call_current
+                # Load Last
+                limit = len(rrf_data['last'])
+                s.call = [''] * 10 
+                s.call_time = [''] * 10 
+
+                for q in xrange(0, limit):
+                    s.call[q] = l.sanitize_call(rrf_data['last'][q][u'Indicatif'].encode('utf-8'))
+                    s.call_time[q] = rrf_data['last'][q][u'Heure']
+
+                # Load Best
+                limit = len(rrf_data['all'])
+                s.best = [''] * 10 
+                s.best_time = [0] * 10 
+
+                for q in xrange(0, limit):
+                    s.best[q] = l.sanitize_call(rrf_data['all'][q][u'Indicatif'].encode('utf-8'))
+                    s.best_time[q] = l.convert_time_to_second(rrf_data['all'][q][u'Durée'])
+
+            if(s.seconde < 10):     # TX today
+                s.message[0] = 'TX total ' + str(data_abstract[u'TX total'])
+
+            elif(s.seconde < 20):   # Active node
+                s.message[0] = 'Links actifs ' + str(data_abstract[u'Links actifs'])
+
+            elif(s.seconde < 30):   # Online node
+                s.message[0] = 'Links total ' + str(data_abstract[u'Links connectés'])
+                
+            elif(s.seconde < 40):   # Total emission
+                s.message[0] = 'BF total ' + data_abstract[u'Emission cumulée']
+
+            elif(s.seconde < 50):   # Last TX
+                s.message[0] = 'Dernier ' + data_last[0][u'Heure']
+
+            elif(s.seconde < 60):   # Scan
+                if s.scan is True:
+                    s.message[0] = 'Suivi de ' + s.callsign
                 else:
-                    s.tot_current = time.time()
-
-            s.duration = int(s.tot_current) - int(s.tot_start)
-
-            # Save stat only if real transmit
-            if (s.stat_save is False and s.duration > 2):
-                s.history = l.save_stat(s.history, s.call[0])
-                s.qso += 1
-                s.stat_save = True
-
-            # Format call time
-            tmp = datetime.datetime.now()
-            s.now = tmp.strftime('%H:%M:%S')
-            s.hour = int(tmp.strftime('%H'))
-
-            s.qso_hour[s.hour] = s.qso - sum(s.qso_hour[:s.hour])
-
-            s.call_time[0] = s.now
-
-            s.message[0] = s.call[2]
-            s.message[1] = s.call[1]
-            s.message[2] = s.call[0]
-
-        # If no Transmitter...
-        else:
-            if s.transmit is True:       # Sleep screen...
-                s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
-                s.stat_save = False
-                s.tot_current = ''
-                s.tot_start = ''
-
-            s.message[0] = s.call[1]
-            s.message[1] = s.call[0]
-            if s.qso == 0:
-                s.call_time[0] = 'Waiting TX'
-                s.message[2] = s.call_time[0]
-            else:
-                s.message[2] = 'Last TX ' + s.call_time[0]
-
-        if(s.blanc_alternate == 0):     # TX today
-            tmp = 'TX Today '
-            tmp += str(s.qso)
-
-            s.message[4] = tmp
-
-            s.blanc_alternate = 1
-
-        elif(s.blanc_alternate == 1):   # Boot time
-            tmp = 'Up '
-            tmp += l.calc_uptime(time.time() - s.timestamp_start)
-
-            s.message[4] = tmp
-
-            s.blanc_alternate = 2
-
-        elif(s.blanc_alternate == 2):   # TX total
-            tmp = 'TX Total '
-            tmp += str(s.qso_total + s.qso)
-
-            s.message[4] = tmp
-
-            s.blanc_alternate = 3
-
-        elif(s.blanc_alternate == 3):   # Best link
-            if len(s.history) >= 5:
-                best = max(s.history, key=s.history.get)
-                s.message[4] = best + ' ' + str(s.history[best]) + ' TX'
-            else:
-                s.message[4] = 'Need more datas'
-
-            s.blanc_alternate = 4
-
-        elif(s.blanc_alternate == 4):   # count node
-
-            search_start = page.find('nodes":[')                        # Search this pattern
-            search_start += 9                                           # Shift...
-            search_stop = page.find('],"TXmit"', search_start)       # And close it...
-
-            tmp = page[search_start:search_stop]
-
-            tmp = tmp.split(',')
-
-            s.message[4] = 'Online nodes ' + str(len(tmp))
-
-            s.blanc_alternate = 0
+                    s.message[0] = 'Salon ' + s.room_current[:3]         
 
         # Print screen
         if s.device.height == 128:
@@ -237,7 +206,7 @@ def main(argv):
         else:
             d.display_32()
 
-        time.sleep(1)
+        time.sleep(0.5)
 
 if __name__ == '__main__':
     try:
