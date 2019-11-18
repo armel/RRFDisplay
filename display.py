@@ -337,6 +337,70 @@ def elsewhere(draw, data):
 
         i += 10
 
+# Print config
+
+def extended_config(draw, page):
+    if s.device.height == 128:
+        draw.rectangle((0, 1, s.device.height - 1, 13), fill=s.color['darkslategray'])
+
+    legacy.text(draw, (0, 1), chr(0) + chr(1), fill=s.color['white'], font=s.SMALL_BITMAP_CPU)
+    legacy.text(draw, (0, 9), chr(2) + chr(3), fill=s.color['white'], font=s.SMALL_BITMAP_CPU)
+
+    w, h = draw.textsize(text='Config RRFTracker', font=font)
+    tab = (s.device.width - w) / 2
+    draw.text((tab, 4), 'Infos Spotnik', font=font, fill=s.color['white'])
+
+    if page == 1:
+        sys = {'I2C Port': '', 'I2C Add': '', 'Display': '', 'Width': '', 'Height': ''}
+        sys_order = ['I2C Port', 'I2C Add', 'Display', 'Width', 'Height']
+
+        sys['I2C Port'] = s.i2c_port
+        sys['I2C Add'] = s.i2c_address
+        sys['Display'] = s.display
+        sys['Width'] = s.display_width
+        sys['Height'] = s.display_height
+
+    elif page == 2:
+        sys = {'Scan': '', 'Follow': '', 'Indicatif': '', 'Latitude': '', 'Longitude': ''}
+        sys_order = ['Scan', 'Follow', 'Indicatif', 'Latitude', 'Longitude']
+
+        sys['Scan'] = s.scan
+        sys['Follow'] = s.follow
+        sys['Indicatif'] = s.callsign
+        sys['Latitude'] = s.latitude
+        sys['Longitude'] = s.longitude
+
+    else:
+        sys = {'I2C Port': '', 'I2C Add': '', 'Display': '', 'Width': '', 'Height': '', 'Scan': '', 'Follow': '', 'Indicatif': '', 'Latitude': '', 'Longitude': ''}
+        sys_order = ['I2C Port', 'I2C Add', 'Display', 'Width', 'Height', 'Scan', 'Follow', 'Indicatif', 'Latitude', 'Longitude']
+        
+        sys['I2C Port'] = s.i2c_port
+        sys['I2C Add'] = s.i2c_address
+        sys['Display'] = s.display
+        sys['Width'] = s.display_width
+        sys['Height'] = s.display_height
+
+        sys['Scan'] = s.scan
+        sys['Follow'] = s.follow
+        sys['Indicatif'] = s.callsign
+        sys['Latitude'] = s.latitude
+        sys['Longitude'] = s.longitude
+
+    if s.device.height == 128:
+        i = 17
+    else:
+        i = 16
+
+    for j in sys_order:
+        draw.rectangle((0, i - 1, 38, i + 7), fill=s.color['gray'])
+        draw.line((39, i, 39, i + 6), fill=s.color['gray'])
+        draw.line((40, i + 2, 40, i + 4), fill=s.color['gray'])
+        draw.point((41, i + 3), fill=s.color['gray'])
+
+        draw.text((1, i), j, font=font, fill=s.color['black'])
+        draw.text((48, i), sys[j], font=font, fill=s.color['white'])
+
+        i += 10
 
 # Print display on 128 x 32
 def display_32():
@@ -475,9 +539,13 @@ def display_128():
             draw.point((i, 0), fill=s.color['dimgray'])
             draw.point((i, 14), fill=s.color['dimgray'])
 
-        # System log extended Page 1
-        if s.transmit is False and s.minute % 2 == 0 and s.seconde < 20:
+        # System log extended
+        if s.transmit is False and s.minute % 2 == 0 and s.seconde < 10:
             extended_system(draw, 3)
+
+         # Config log extended
+        elif s.transmit is False and s.minute % 2 == 0 and s.seconde < 20:
+            extended_config(draw, 3)
 
         # Call log extended
         elif s.transmit is False and len(s.call) >=5 and s.minute % 2 == 0 and s.seconde < 30:
