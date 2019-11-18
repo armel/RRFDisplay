@@ -52,6 +52,7 @@ def main(argv):
             if arg in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
                 s.room_current = arg
             else:
+                s.room_current = 'RRF'
                 s.room_current = l.scan(arg)
                 if s.room_current is False:
                     s.room_current = 'RRF'

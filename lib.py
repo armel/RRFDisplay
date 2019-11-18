@@ -260,8 +260,8 @@ def scan(call):
     try:
         r = requests.get(s.room[s.room_current]['api'], verify=False, timeout=10)
         page = r.content
-        if s.callsign in page:
-            return False
+        if call in page:
+            return True
     except requests.exceptions.ConnectionError as errc:
         return False
     except requests.exceptions.Timeout as errt:
