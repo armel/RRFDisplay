@@ -53,10 +53,11 @@ def main(argv):
                 s.room_current = arg
             else:
                 s.room_current = 'RRF'
-                s.room_current = l.scan(arg)
-                if s.room_current is False:
+                tmp = l.scan(arg)
+                if tmp is False:
                     s.room_current = 'RRF'
                 else:
+                    s.room_current = tmp
                     s.callsign = arg
                     s.scan = True
 
@@ -92,7 +93,9 @@ def main(argv):
         s.seconde = int(s.now[-2:])
 
         if s.seconde % 15 == 0 and s.scan == True: # On scan
-            s.room_current = l.scan(s.callsign)
+            tmp = l.scan(s.callsign)
+            if tmp not False:
+                s.room_current = tmp
 
         url = s.room[s.room_current]['url']
 
