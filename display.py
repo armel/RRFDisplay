@@ -480,11 +480,11 @@ def display_64():
             extended_config(draw, 2)
 
         # Call log extended
-        elif s.transmit is False and len(s.call) >=5 and s.minute % 2 == 0 and s.seconde < 25:
+        elif s.transmit is False and len(s.call) >=5 and s.minute % 2 == 0 and s.seconde < 30:
             extended_call(draw, len(s.call))
 
         # Best log extended
-        elif s.transmit is False and len(s.best) >= 5 and s.minute % 2 == 0 and s.seconde < 30:
+        elif s.transmit is False and len(s.best) >= 5 and s.minute % 2 == 0 and s.seconde < 40:
             extended_best(draw, len(s.best))
 
         # If not extended
