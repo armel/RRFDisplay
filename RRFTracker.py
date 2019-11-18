@@ -79,6 +79,10 @@ def main(argv):
 
     rrf_data = ''
 
+    print s.scan
+    print s.callsign
+    print s.room_current
+
     while(True):
         tmp = datetime.datetime.now()
         s.day = tmp.strftime('%Y-%m-%d')
