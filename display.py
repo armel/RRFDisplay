@@ -457,6 +457,7 @@ def display_32():
 def display_64():
     with canvas(s.device) as draw:
         draw.rectangle((0, 0, 127, s.device.height - 1), fill=s.color['black'])
+        draw.rectangle((0, 1, 127, 13), fill=s.color['darkslategray'])
 
         for i in xrange(0, 128, 2):
             draw.point((i, 0), fill=s.color['white'])
@@ -471,7 +472,7 @@ def display_64():
             extended_system(draw, 2)
 
         # System log extended Page 1
-        if s.transmit is False and s.minute % 2 == 0 and s.seconde < 15:
+        elif s.transmit is False and s.minute % 2 == 0 and s.seconde < 15:
             extended_config(draw, 1)
 
         # System log extended Page 2
