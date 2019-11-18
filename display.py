@@ -361,18 +361,18 @@ def extended_config(draw, page):
         sys['Height'] = str(s.display_height)
 
     elif page == 2:
-        sys = {'Scan': '', 'Follow': '', 'Indicatif': '', 'Lat': '', 'Long': ''}
-        sys_order = ['Scan', 'Follow', 'Indicatif', 'Lat', 'Long']
+        sys = {'Scan': '', 'Follow': '', 'Indicatif': '', 'Latitude': '', 'Longitude': ''}
+        sys_order = ['Scan', 'Follow', 'Indicatif', 'Latitude', 'Longitude']
 
         sys['Scan'] = str(s.scan)
         sys['Follow'] = str(s.follow)
         sys['Indicatif'] = s.callsign
-        sys['Lat'] = str(s.latitude)
-        sys['Long'] = str(s.longitude)
+        sys['Latitude'] = str(s.latitude)
+        sys['Longitude'] = str(s.longitude)
 
     else:
-        sys = {'I2C Port': '', 'I2C Add': '', 'Display': '', 'Width': '', 'Height': '', 'Scan': '', 'Follow': '', 'Indicatif': '', 'Lat': '', 'Long': ''}
-        sys_order = ['I2C Port', 'I2C Add', 'Display', 'Width', 'Height', 'Scan', 'Follow', 'Indicatif', 'Lat', 'Long']
+        sys = {'I2C Port': '', 'I2C Address': '', 'Display': '', 'Width': '', 'Height': '', 'Scan': '', 'Follow': '', 'Indicatif': '', 'Latitude': '', 'Longitude': ''}
+        sys_order = ['I2C Port', 'I2C Address', 'Display', 'Width', 'Height', 'Scan', 'Follow', 'Indicatif', 'Latitude', 'Longitude']
         
         sys['I2C Port'] = str(s.i2c_port)
         sys['I2C Address'] = str(s.i2c_address)
@@ -383,8 +383,8 @@ def extended_config(draw, page):
         sys['Scan'] = str(s.scan)
         sys['Follow'] = str(s.follow)
         sys['Indicatif'] = s.callsign
-        sys['Lat'] = str(s.latitude)
-        sys['Long'] = str(s.longitude)
+        sys['Latitude'] = str(s.latitude)
+        sys['Longitude'] = str(s.longitude)
 
     if s.device.height == 128:
         i = 17
