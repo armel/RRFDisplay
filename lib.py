@@ -81,11 +81,11 @@ def save_stat(history, call):
 # Wake up screen
 def wake_up_screen(device, display, wake_up):
     if 'sh1106' in display:
-        sleep_level = 32
+        sleep_level = 16
     elif 'ssd1306' in display:
-        sleep_level = 32
+        sleep_level = 16
     else:
-        sleep_level = 32
+        sleep_level = 16
 
     if wake_up is True:
         for i in xrange(225, sleep_level, -1):
