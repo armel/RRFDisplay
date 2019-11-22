@@ -117,7 +117,12 @@ def histogram(draw, legacy, position, height = 15):
             h = 0
 
         draw.rectangle((0 + i, position, i + 2, (position - height)), fill=s.color['black'])
-        draw.rectangle((0 + i, position, i + 2, (position - h)), fill=s.color['dimgray'])
+        if q == s.hour:
+            color = 'white'
+        else:
+            color = 'dimgray'
+
+        draw.rectangle((0 + i, position, i + 2, (position - h)), fill=s.color[color])
         i += 5
 
     legacy.text(draw, (1, position + 2), chr(0) + chr(0), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
