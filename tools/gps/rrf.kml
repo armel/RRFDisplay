@@ -153,6 +153,42 @@
         <styleUrl>#icon-503-DB4436-nodesc-highlight</styleUrl>
       </Pair>
     </StyleMap>
+    <Style id="icon-503-F4B400-normal">
+      <IconStyle>
+        <color>ff00b4f4</color>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="16" xunits="pixels" y="32" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-503-F4B400-highlight">
+      <IconStyle>
+        <color>ff00b4f4</color>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="16" xunits="pixels" y="32" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1.1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-503-F4B400">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-503-F4B400-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-503-F4B400-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
     <Style id="icon-503-F8971B-normal">
       <IconStyle>
         <color>ff1b97f8</color>
@@ -221,6 +257,40 @@
       <Pair>
         <key>highlight</key>
         <styleUrl>#icon-959-DB4436-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-959-F4B400-normal">
+      <IconStyle>
+        <color>ff00b4f4</color>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/959-wht-circle-blank.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-959-F4B400-highlight">
+      <IconStyle>
+        <color>ff00b4f4</color>
+        <scale>1.1</scale>
+        <Icon>
+          <href>http://www.gstatic.com/mapspro/images/stock/959-wht-circle-blank.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1.1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-959-F4B400">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-959-F4B400-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-959-F4B400-highlight</styleUrl>
       </Pair>
     </StyleMap>
     <Style id="icon-960-3F5BA9-normal">
@@ -534,7 +604,7 @@
       <Placemark>
         <name>(80) F5KOU V</name>
         <description><![CDATA[145.225MHz Tone 123Hz<br>F4EHY]]></description>
-        <styleUrl>#icon-503-F8971B</styleUrl>
+        <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
             2.6844406,49.9900839,0
@@ -692,8 +762,8 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(57) F4EVC T10M</name>
-        <description>145.3375MHz, 29.100MHZ Tone 71,9Hz</description>
+        <name>(57) F1ZRZ T10M</name>
+        <description><![CDATA[145.3375 MHz, 29.100 MHZ Tone 71.9 Hz<br>F4EVC]]></description>
         <styleUrl>#icon-503-4186F0</styleUrl>
         <Point>
           <coordinates>
@@ -794,7 +864,7 @@
       <Placemark>
         <name>(59) F6ION V</name>
         <description>144.725MHZ Tone 123HZ</description>
-        <styleUrl>#icon-503-DB4436</styleUrl>
+        <styleUrl>#icon-503-F4B400</styleUrl>
         <Point>
           <coordinates>
             2.9998135,50.7142448,0
@@ -882,12 +952,12 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(49) F5GBS V</name>
-        <description>145.350MHz Tone 103.5Hz</description>
+        <name>(49) F5ZRH V</name>
+        <description><![CDATA[145.350 MHz Tone 103.5 Hz<br>F5GBS]]></description>
         <styleUrl>#icon-503-F8971B</styleUrl>
         <Point>
           <coordinates>
-            -0.8962237,47.07037,0
+            -0.8883302,47.0416124,0
           </coordinates>
         </Point>
       </Placemark>
@@ -1414,7 +1484,7 @@
       <Placemark>
         <name>(78) F4AID H</name>
         <description>432.975MHz Tone 71.9Hz</description>
-        <styleUrl>#icon-959-DB4436</styleUrl>
+        <styleUrl>#icon-959-F4B400</styleUrl>
         <Point>
           <coordinates>
             1.9262214,48.7650309,0
@@ -1874,7 +1944,7 @@
       <Placemark>
         <name>(06) F6IMD R</name>
         <description>430.025 MHz +9.4MHz Tone 88.5Hz</description>
-        <styleUrl>#icon-503-F8971B</styleUrl>
+        <styleUrl>#icon-503-4186F0</styleUrl>
         <Point>
           <coordinates>
             7.1509481,43.8957262,0
@@ -2424,7 +2494,7 @@
       <Placemark>
         <name>(44) F5SSB V</name>
         <description>144.950 MHz Tone 103.5 Hz</description>
-        <styleUrl>#icon-503-F8971B</styleUrl>
+        <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
             -1.1822126,47.0510386,0
@@ -2522,9 +2592,9 @@
         </Point>
       </Placemark>
       <Placemark>
-        <name>(59) F4IKU H</name>
-        <description>144.975 MHz Tone 71.9Hz</description>
-        <styleUrl>#icon-959-DB4436</styleUrl>
+        <name>(59) F4IKU V</name>
+        <description>144.675 MHz Tone 123 Hz</description>
+        <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
             3.1015942,50.6731628,0
@@ -2593,7 +2663,7 @@
       </Placemark>
       <Placemark>
         <name>(85) F5BJV V</name>
-        <description>? MHz Tone 103.5Hz </description>
+        <description>145.3625 MHz Tone 103.5Hz </description>
         <styleUrl>#icon-503-DB4436</styleUrl>
         <Point>
           <coordinates>
@@ -2634,10 +2704,60 @@
       <Placemark>
         <name>(BE) ON2OD U</name>
         <description>430.025 MHz Tone 131.8 Hz</description>
-        <styleUrl>#icon-503-DB4436</styleUrl>
+        <styleUrl>#icon-503-F8971B</styleUrl>
         <Point>
           <coordinates>
             4.0416499,50.6956782,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(49) F5ZCD R</name>
+        <description><![CDATA[430.250 MHz +1.6 MHz tone 103.5 Hz<br>F5IZJ]]></description>
+        <styleUrl>#icon-503-4186F0</styleUrl>
+        <Point>
+          <coordinates>
+            -0.7377669,47.2841151,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(28) F5VMH V</name>
+        <description>145.2125 MHz Tone 123 Hz</description>
+        <styleUrl>#icon-503-DB4436</styleUrl>
+        <Point>
+          <coordinates>
+            1.3524877,48.7394054,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(37) F6CVM H</name>
+        <description>432.975 MHZ Tone 71.9 Hz</description>
+        <styleUrl>#icon-959-DB4436</styleUrl>
+        <Point>
+          <coordinates>
+            0.7114178,47.3917996,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(06) F6FDY H</name>
+        <description>432.975 MHz Tone 71.9Hz</description>
+        <styleUrl>#icon-959-DB4436</styleUrl>
+        <Point>
+          <coordinates>
+            7.2334437,43.7212653,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>(12) F1LRZ H</name>
+        <description>144.975 MHz Tone 71.9 Hz</description>
+        <styleUrl>#icon-959-DB4436</styleUrl>
+        <Point>
+          <coordinates>
+            3.0459212,44.09871,0
           </coordinates>
         </Point>
       </Placemark>
