@@ -129,9 +129,17 @@ Utilisez l'utilitaire `raspi-config`. Une fois lancé,
 
 ### Activation du support I2C sur Orange Pi Zero
 
-C'est un peu plus compliqué ;) Vous allez devoir éditer le fichier `/boot/script.fex`. Ligne 147, changer la ligne `twi_used = 0` par `twi_used = 1`.
+Utilisez l'utilitaire `armbian-config`. Une fois lancé,
 
-Puis exécutez la commande `fex2bin /boot/script.fex /boot/script.bin` et enfin rebootez...
+* System
+* Hardware
+* Cochez i2c0
+* Eventuellement, cochez i2c1
+* Save
+
+Rebootez.
+
+Cochez i2c0 et i2c1 peut-être utile pour raccorder 2 écrans.
 
 ### Vérification
 
