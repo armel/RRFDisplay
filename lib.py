@@ -88,11 +88,11 @@ def wake_up_screen(device, display, wake_up):
         sleep_level = 4
 
     if wake_up is True:
-        for i in xrange(225, sleep_level, -1):
+        for i in xrange(180, sleep_level, -1):
             device.contrast(i)         # No Transmitter
         return False
     else:
-        for i in xrange(sleep_level, 225):
+        for i in xrange(sleep_level, 180):
             device.contrast(i)         # Transmitter
         return True
 
