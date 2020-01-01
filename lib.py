@@ -85,7 +85,7 @@ def wake_up_screen(device, display, wake_up):
     elif 'ssd1306' in display:
         sleep_level = 4
     else:
-        sleep_level = 1
+        sleep_level = 4
 
     if wake_up is True:
         #for i in xrange(150, sleep_level, -1):
