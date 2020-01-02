@@ -158,7 +158,7 @@ def distance(draw):
 
 
     if d == 0:
-        d = 'N/A'
+        d = 'NO LOC'
     else:
         d = str(d)
 
