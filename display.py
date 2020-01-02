@@ -151,6 +151,11 @@ def clock_room(draw):
             legacy.text(draw, (i, j), chr(s.letter[c]), fill=s.color['white'], font=s.SMALL_BITMAP_FONT)
             i += 4
 
+# Ping network
+def ping():
+    with canvas(s.device) as draw:
+        for i in xrange(0, 128, 1):
+            draw.point((i, 0), fill=s.color['white'])
 
 # Print distance
 def distance(draw):
