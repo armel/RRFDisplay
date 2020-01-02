@@ -103,7 +103,6 @@ def main(argv):
         # Requete HTTP vers le flux json du salon produit par le RRFTracker 
         try:
             r = requests.get(url, verify=False, timeout=0.25)
-            d.ping()
         except requests.exceptions.ConnectionError as errc:
             pass
             #print ('Error Connecting:', errc)
