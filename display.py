@@ -136,7 +136,7 @@ def histogram(draw, legacy, position, height = 15):
 def clock_room(draw):
     j = 5
     # Print Room
-    if s.seconde %5 != 0:
+    if s.seconde % 2 != 0:
         i = 116
 
         for c in s.room_current[:3]:
@@ -159,7 +159,7 @@ def distance(draw):
 
 
     if d == 0:
-        d = 'NO LOC'
+        d = 'N/A'
     else:
         d = str(d)
 
