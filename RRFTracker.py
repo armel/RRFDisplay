@@ -208,7 +208,7 @@ def main(argv):
         else:
             d.display_32()
 
-        time.sleep(0.75)
+        time.sleep(0.25)
 
 if __name__ == '__main__':
     try:
