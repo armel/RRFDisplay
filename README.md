@@ -5,45 +5,23 @@ Suivi temps réel de l'activité du réseau [RRF](https://f5nlg.wordpress.com/20
 
 Cette version du RRFTracker et une évolution d'un [premier projet](https://github.com/armel/RRFTracker) réalisé mi novembre 2018 à partir d'un Nodemcu ESP8266 et d'un écran LCD 16x2.
 
-Il permet de suivre en temps réel l'activité du réseau [RRF](https://f5nlg.wordpress.com/2015/12/28/nouveau-reseau-french-repeater-network/) (Réseau des Répéteurs Francophones), mais également du [FON](http://www.f1tzo.com/) (French Open Networks), en utilisant un Raspberry Pi 3 ou un Orange Pi Zero et un écran OLED type SH1106, SSD1306 ou SSD1327 piloté par I2C. 
+Il permet de suivre en temps réel l'activité du réseau [RRF](https://f5nlg.wordpress.com/2015/12/28/nouveau-reseau-french-repeater-network/) (Réseau des Répéteurs Francophones), mais également du [FON](http://www.f1tzo.com/) (French Open Networks), en utilisant un Raspberry Pi 3 ou un Orange Pi Zero et un écran OLED type SH1106, SSD1306 ou SSD1327 piloté par I2C. Les écrans de type SSD1351 pilotés par SPI fonctionne également, mais pour le moment, uniquement sur Raspberry Pi.
 
-Les 2 premiers écrans ont un QSJ de moins de 5€. Le troisième est un peu plus onéreux, mais coûte moins de 10€. C'était une des contraintes de mon cahier des charges. À noter que vous pouvez les trouver moins cher sur des boutiques chinoises, si vous acceptez de patienter 30 à 60 jours pour la livraison.  
+Les 2 premiers écrans ont un QSJ de moins de 5€. Le troisième est un peu plus onéreux, mais coûte moins de 8€. C'était une des contraintes de mon cahier des charges. À noter que vous pouvez les trouver moins cher sur des boutiques chinoises, si vous acceptez de patienter 30 à 60 jours pour la livraison.  
 
 Cette version du RRFTracker prend en charge [3 tailles d'écrans](http://www.dsdtech-global.com/2018/05/iic-oled-lcd-u8glib.html) OLED et 2 résolutions. 
 
+- 1.50" en 128 x 128
 - 1.30" en 128 x 64
 - 0.96" en 128 x 64 
-- 0.91" en 128 x 32
 
-En complément, depuis la dernière mise à jour, la résolution 128 x 128 en 1.50" est disponible en utilisant des écrans de type [SSD1327](https://www.waveshare.com/wiki/1.5inch_OLED_Module). C'est ma résolution préférée. 
+La résolution 128 x 128 en 1.50" est disponible en utilisant des écrans de type [SSD1327](https://www.waveshare.com/wiki/1.5inch_OLED_Module). C'est ma résolution préférée. 
 
 Ce dispositif peut donc être associé sans (_trop de_) difficulté à un Spotnik Gamma, Delta, etc. afin de profiter d'un minimum de remontée d'informations, à l'image des Hotspots MMDVM type ZUMspot, Jumbo SPOT, etc. si precieux aux porteurs de casques de chantier... j'ai nommé les DMRistes ;)
 
-En complément, à noter l'existence du projet [Spotnik2hmi](https://github.com/F8ASB/spotnik2hmi), porté par F8ASB (Juan), F5SWB (Dimitri) et F0DEI (Toufik) et basé sur l'utilisation d'un écran type Nextion. Du fait des caractéristiques beaucoup plus évoluées de ce type d'écrans tactiles, ce projet offre plus de possibilités, notamment en terme d'interactivité (changement de salon, etc.). Je ne peux que vous encourager à le tester, si le QSJ d'un écran Nextion ne vous fait pas peur. 
+En complément, à noter l'existence du projet [Spotnik2hmi](https://github.com/F8ASB/spotnik2hmi), porté par F8ASB (Juan), F5SWB (Dimitri) et F4ICR (Pascal) et basé sur l'utilisation d'un écran type Nextion. Du fait des caractéristiques beaucoup plus évoluées de ce type d'écrans tactiles, ce projet offre plus de possibilités, notamment en terme d'interactivité (changement de salon, etc.). Je ne peux que vous encourager à le tester, si le QSJ d'un écran Nextion ne vous fait pas peur. 
 
 ## Principe de fonctionnement
-
-### Ecran 128 x 32
-
-Au repos, si aucune station n'est en émission, le RRFTracker affichera les informations suivantes :
-
-Sur la première ligne, en haut de l'écran, on dispose,
-
-* du nombre de passages en émission sur la journée (depuis 00h00),
-* du nombre de links actifs,
-* du nombre de links total,
-* du temps d'émission cumulée total sur la journée,
-* du salon ou de l'indicatif suivi par le RRFTracker,
-* de l'heure du dernier passage en émission.
-
-Et en dessous figure, par alternance,
-
-* l'indicatif des 2 derniers noeuds étant passés en émission,
-* l'histogramme du trafic dans la journée, heure par heure.
-
-Si un QSO est en cours, le RRFTracker affichera sur la première ligne l'indicatif de la station en émission et en dessous, une jauge affichera la durée de passage en émission, par tranche de 60 secondes.
-
-Enfin, en haut à droite de l'écran, le RRFTraker affiche alternativement l'heure courante et le salon.
 
 ### Ecran 128 x 64
 
@@ -175,14 +153,16 @@ Usage: RRFTracker.py [options ...]
 
 --help               this help
 
-I2C settings:
+Interface settings:
+  --interface        set interface (default=i2c, choose between [i2c, spi])
   --i2c-port         set i2c port (default = 0)
   --i2c-address      set i2c address (default = 0x3C)
 
 Display settings:
-  --display          set display (default = sh1106, choose between [sh1106, ssd1306])
+  --display          set display (default=sh1106, choose between [sh1106, ssd1306, ssd1327, ssd1351])
   --display-width    set display width (default = 128)
   --display-height   set display height (default = 64)
+  --display-theme    set display theme (default=theme.cfg)
 
 Follow settings:
   --follow           set room (default=RRF, choose between [RRF, TECHNIQUE, INTERNATIONAL, LOCAL, BAVARDAGE, FON]) or callsign to follow'
@@ -204,15 +184,16 @@ Par défaut, sans argument, le RRFTracker va démarrer avec les paramètres suiv
 - display = sh1106
 - display width = 128
 - display height = 64
+- display_theme = theme.cfg 
 - follow = RRF
 - latitude = 48.8483808
 - longitude = 2.2704347  
 
-À noter que latitude et longitude sont à paramétrer au format [WGS84](https://fr.wikipedia.org/wiki/WGS_84) (degrés décimaux).
+À noter que latitude et longitude sont à paramétrer au format [WGS84](https://fr.wikipedia.org/wiki/WGS_84) (degrés décimaux) dans le fichier settings.py. 
 
 Cela revient à lancer le RRFTracker avec les arguments suivants,
 
-`python /opt/RRFTracker_Spotnik/RRFTracker.py --i2c-port 0 --i2c-address 0x3C --display sh1106 --display-width 128 --display-height 64 --follow RRF --latitude 48.8483808 --longitude 2.2704347`
+`python /opt/RRFTracker_Spotnik/RRFTracker.py --i2c-port 0 --i2c-address 0x3C --display sh1106 --display-width 128 --display-height 64 --display_theme theme.cfg --follow RRF --latitude 48.8483808 --longitude 2.2704347`
 
 Il est donc possible de modifier les paramètres, notamment en fonction de ce que vous retournera la commande `i2cdetect` décrite ci dessus.
 
@@ -243,12 +224,16 @@ Enfin, si vous voulez le laisser tourner en tache de fond, utilisez la commande 
 
 Et voilà ;)
 
+## Script de démarrages
+
+Je vous suggère de regarder les scripts de démarrages (fichier shell portant l'extension .sh) et des les adapater à vos besoins. Vous y trouverez des exemples en I2C et SPI.
+
 ## Liste des composants
 
 Voici la liste des composants dont vous aurez besoin:
 
 * 1 Raspberry Pi 3 ou 1 Orange Pi Zero
-* 1 écran OLED 128 x 64 (1.30" ou 0.96") ou 128 x 32 (0.91"), type SH1106 ou SSD1306 ou un écran OLED 128 x 128 type SSD1327
+* 1 écran OLED 128 x 128 (1.5" type SSD1327 ou SSD1351) ou 128 x 64 (1.30" ou 0.96" type SH1106 ou SSD1306)
 * 4 cables Dupont femelle / femelle
 
 Il est possible d'adapter ce projet à d'autres platines et d'autres écrans. Ne pas hésitez à me contacter pour avis si vous le souhaitez ;)
@@ -283,7 +268,7 @@ Vous n'avez plus qu'à rebooter.
 Au cas ou, dans le répertoire `tools/i2c` du projet, se trouve un script shell qui permet de faire cette modification. 
 
 
-## Schémas de cablage
+## Cablage I2C
 
 ### Raspberry PI 3
 
@@ -292,3 +277,17 @@ Au cas ou, dans le répertoire `tools/i2c` du projet, se trouve un script shell 
 ### Orange PI Zero
 
 ![alt text](https://github.com/armel/RRFTracker_Spotnik/blob/master/doc/RRFTracker_OPI.png)
+
+## Cablage SPI
+
+| Ecran  |   Raspberry  | 
+| ------ | ------------ | 
+| VCC    |  +3.3V / +5V  | 
+| GND    |   GND        |
+| DIN    |   MOSI       | 
+| CLK    |    SCK       | 
+| CS     |    CE0       |
+| DC     |    24 (BCM)   |
+| RST    |    25 (BCM)   |
+ 
+

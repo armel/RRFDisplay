@@ -20,21 +20,21 @@ def usage():
     print
     print '--help               this help'
     print
-    print 'I2C settings:'
+    print 'Interface settings :'
     print '  --interface        set interface (default=i2c, choose between [i2c, spi])'
     print '  --i2c-port         set i2c port (default=0)'
     print '  --i2c-address      set i2c address (default=0x3C)'
     print
-    print 'Display settings:'
+    print 'Display settings :'
     print '  --display          set display (default=sh1106, choose between [sh1106, ssd1306, ssd1327, ssd1351])'
     print '  --display-width    set display width (default=128)'
     print '  --display-height   set display height (default=64)'
     print '  --display-theme    set display theme (default=theme.cfg)'
     print
-    print 'Follow settings:'
+    print 'Follow settings :'
     print '  --follow           set room (default=RRF, choose between [RRF, TECHNIQUE, INTERNATIONAL, LOCAL, BAVARDAGE, FON]) or callsign to follow'
     print
-    print 'WGS84 settings:'
+    print 'WGS84 settings :'
     print '  --latitude         set latitude (default=48.8483808, format WGS84)'
     print '  --longitude        set longitude (default=2.2704347, format WGS84)'
     print
