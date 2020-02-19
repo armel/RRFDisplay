@@ -1,6 +1,6 @@
 #!/bin/sh
-PATH_SCRIPT='/opt/RRFTracker_Sponik/RRFTracker.py'
-PATH_PID='/tmp'
+PATH_SCRIPT='/opt/RRFTracker_Spotnik/RRFTracker.py'
+PATH_PID='/var/log'
 
 case "$1" in
     start)
