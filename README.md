@@ -94,6 +94,8 @@ Il faut également procéder à l'installation de quelques paquets complémentai
 
 `sudo -H pip install --upgrade luma.oled`
 
+`sudo pip install configparser`
+
 Enfin, si ce n'est pas déjà fait, il reste à activer le support du protocole I2C afin de pouvoir dialoguer avec l'écran OLED. Ce sera l'étape la plus compliquée...
 
 ### Activation du support I2C sur Raspberry Pi
