@@ -21,13 +21,15 @@ def usage():
     print '--help               this help'
     print
     print 'I2C settings:'
+    print '  --interface        set interface (default=i2c, choose between [i2c, spi])'
     print '  --i2c-port         set i2c port (default=0)'
     print '  --i2c-address      set i2c address (default=0x3C)'
     print
     print 'Display settings:'
-    print '  --display          set display (default=sh1106, choose between [sh1106, ssd1306, ssd1327])'
+    print '  --display          set display (default=sh1106, choose between [sh1106, ssd1306, ssd1327, ssd1351])'
     print '  --display-width    set display width (default=128)'
     print '  --display-height   set display height (default=64)'
+    print '  --display-theme    set display theme (default=theme.cfg)'
     print
     print 'Follow settings:'
     print '  --follow           set room (default=RRF, choose between [RRF, TECHNIQUE, INTERNATIONAL, LOCAL, BAVARDAGE, FON]) or callsign to follow'
@@ -81,21 +83,28 @@ def save_stat(history, call):
 # Wake up screen
 def wake_up_screen(device, display, wake_up):
     if 'sh1106' in display:
-        sleep_level = 4
+        level_sleep = 4
+        level_wake_up = 150
     elif 'ssd1306' in display:
-        sleep_level = 4
+        level_sleep = 4
+        level_wake_up = 150
+    elif 'ssd1327' in display:
+        level_sleep = 4
+        level_wake_up = 15
+    elif 'ssd1351' in display:
+        level_sleep = 50
+        level_wake_up = 150
     else:
-        sleep_level = 4
+        level_sleep = 4
+        level_wake_up = 150
 
     if wake_up is True:
-        for i in xrange(150, sleep_level, -1):
+        for i in xrange(level_wake_up, level_sleep, -1):
             device.contrast(i)         # No Transmitter
-        #device.contrast(sleep_level)
         return False
     else:
-        for i in xrange(sleep_level, 150):
-             device.contrast(i)         # Transmitter
-        #device.contrast(150)
+        for i in xrange(level_sleep, level_wake_up):
+            device.contrast(i)         # Transmitter
         return True
 
 
@@ -214,20 +223,17 @@ def system_info(value):
 
 # Compute distance
 def calc_distance(call, latitude_1, longitude_1):
-    data = [line.strip() for line in open('data/wgs84.dat')]
-
-    for line in data:
-        tmp = line.split(' ')
-        if tmp[0] in call:
-            latitude_2 = float(tmp[1])
-            longitude_2 = float(tmp[2])
-            p = 0.017453292519943295        # Approximation Pi/180
-            a = 0.5 - cos((latitude_2 - latitude_1) * p) / 2 + cos(latitude_1 * p) * cos(latitude_2 * p) * (1 - cos((longitude_2 - longitude_1) * p)) / 2
-            r = (12742 * asin(sqrt(a)))
-            if r < 100:
-                r = round((12742 * asin(sqrt(a))), 1)
-            else:
-                r = int(ceil(12742 * asin(sqrt(a))))
+    latitude_2 = float(s.call_latitude)
+    longitude_2 = float(s.call_longitude)
+    
+    if (latitude_2 + longitude_2) != 0:
+        p = 0.017453292519943295        # Approximation Pi/180
+        a = 0.5 - cos((latitude_2 - latitude_1) * p) / 2 + cos(latitude_1 * p) * cos(latitude_2 * p) * (1 - cos((longitude_2 - longitude_1) * p)) / 2
+        r = (12742 * asin(sqrt(a)))
+        if r < 100:
+            r = round((12742 * asin(sqrt(a))), 1)
+        else:
+            r = int(ceil(12742 * asin(sqrt(a))))
             return r
     return 0
 

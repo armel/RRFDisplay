@@ -10,15 +10,17 @@ Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
 
 # Version
 
-version = '3.0.5'
+version = '4.1.5'
 
 # Default i2c_port, i2c_address, display and room
 
+interface = 'i2c'                       # Default value !
 i2c_port = 0                            # Default value ! Check with i2detect
 i2c_address = 0x3C                      # Default value ! Check with i2detect
 display = 'sh1106'                      # Default value !
 display_width = 128                     # Default value !
 display_height = 64                     # Default value !
+display_theme = './themes/theme.cfg'    # Default value ! 
 follow = 'RRF'                          # Default value !
 latitude = 48.8439433                   # Default value ! Check WGS84 on https://www.coordonnees-gps.fr/
 longitude = 2.2817099                   # Default value ! Check WGS84 on https://www.coordonnees-gps.fr/
@@ -125,6 +127,13 @@ call_time = [''] * 10       # Call time list
 best = [''] * 10            # Best list
 best_time = [0] * 10        # Best time list
 call_current = call[0]      # Call current
+call_type = ''              # Call type
+call_description = ''       # Call description
+call_tone = ''              # Call tone
+call_locator = ''           # Call locator
+call_sysop = ''             # Call sysop
+call_latitude = ''          # Call latitude
+call_longitude = ''         # Call longitude
 qso_hour = [0] * 24         # QSO list for histogramm
 transmit = True             # Detect transmit
 transmit_elsewhere = True   # Detect transmit elsewhere
@@ -132,7 +141,7 @@ history = dict()            # History dict
 message = [None] * 10       # Message list
 raptor = [None] * 5         # Message list
 
-# Set color
+# Set special color for SSD1327
 
 color = {
     'black': int('0x000000', 16),

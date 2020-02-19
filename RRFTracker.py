@@ -17,17 +17,21 @@ import datetime
 import time
 import sys
 import getopt
+import configparser as cp
 
-from luma.core.interface.serial import i2c
+from luma.core.interface.serial import i2c, spi
 from luma.oled.device import sh1106
 from luma.oled.device import ssd1306
 from luma.oled.device import ssd1327
+from luma.oled.device import ssd1351
+
+from luma.core.render import canvas
 
 def main(argv):
 
     # Check and get arguments
     try:
-        options, remainder = getopt.getopt(argv, '', ['help', 'i2c-port=', 'i2c-address=', 'display=', 'display-width=', 'display-height=', 'follow=', 'latitude=', 'longitude='])
+        options, remainder = getopt.getopt(argv, '', ['help', 'interface=', 'i2c-port=', 'i2c-address=', 'display=', 'display-width=', 'display-height=', 'display-theme=', 'follow=', 'latitude=', 'longitude='])
     except getopt.GetoptError:
         l.usage()
         sys.exit(2)
@@ -35,13 +39,18 @@ def main(argv):
         if opt == '--help':
             l.usage()
             sys.exit()
+        elif opt in ('--interface'):
+            if arg not in ['i2c', 'spi']:
+                print 'Unknown interface type (choose between \'i2c\' and \'spi\')'
+                sys.exit()
+            s.interface = arg
         elif opt in ('--i2c-port'):
             s.i2c_port = int(arg)
         elif opt in ('--i2c-address'):
             s.i2c_address = int(arg, 16)
         elif opt in ('--display'):
-            if arg not in ['sh1106', 'ssd1306', 'ssd1327']:
-                print 'Unknown display type (choose between \'sh1106\', \'ssd1306\' and \'ssd1327\')'
+            if arg not in ['sh1106', 'ssd1306', 'ssd1327', 'ssd1351']:
+                print 'Unknown display type (choose between \'sh1106\', \'ssd1306\',  \'ssd1327\' and \'ssd1351\')'
                 sys.exit()
             s.display = arg
         elif opt in ('--display-width'):
@@ -65,15 +74,26 @@ def main(argv):
             s.latitude = float(arg)
         elif opt in ('--longitude'):
             s.longitude = float(arg)
+        elif opt in ('--display-theme'):
+            s.display_theme = arg
 
     # Set serial
-    serial = i2c(port=s.i2c_port, address=s.i2c_address)
-    if s.display == 'sh1106':
-        s.device = sh1106(serial, width=s.display_width, height=s.display_height, rotate=0)
-    elif s.display == 'ssd1306':
-        s.device = ssd1306(serial, width=s.display_width, height=s.display_height, rotate=0)
-    elif s.display == 'ssd1327':
-        s.device = ssd1327(serial, width=s.display_width, height=s.display_height, rotate=0, mode='RGB')
+    if s.interface == 'i2c':
+        serial = i2c(port=s.i2c_port, address=s.i2c_address)
+        if s.display == 'sh1106':
+            s.device = sh1106(serial, width=s.display_width, height=s.display_height, rotate=0)
+        elif s.display == 'ssd1306':
+            s.device = ssd1306(serial, width=s.display_width, height=s.display_height, rotate=0)
+        elif s.display == 'ssd1327':
+            s.device = ssd1327(serial, width=s.display_width, height=s.display_height, rotate=0, mode='RGB')
+    else:
+        serial = spi(device=0, port=0)        
+        s.device = ssd1351(serial, width=s.display_width, height=s.display_height, rotate=1, mode='RGB', bgr=True)
+
+
+    # Lecture du fichier de theme
+    s.theme = cp.ConfigParser()
+    s.theme.read('./themes/' + s.display_theme)
 
     # Boucle principale
     s.timestamp_start = time.time()
@@ -102,13 +122,13 @@ def main(argv):
 
         # Requete HTTP vers le flux json du salon produit par le RRFTracker 
         try:
-            r = requests.get(url, verify=False, timeout=0.25)
+            r = requests.get(url, verify=False, timeout=0.30)
         except requests.exceptions.ConnectionError as errc:
-            pass
             #print ('Error Connecting:', errc)
-        except requests.exceptions.Timeout as errt:
             pass
+        except requests.exceptions.Timeout as errt:
             #print ('Timeout Error:', errt)
+            pass
 
         # Controle de la validité du flux json
         try:
@@ -151,6 +171,14 @@ def main(argv):
                     s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
 
                 s.call_current = l.sanitize_call(data_transmit[u'Indicatif'].encode('utf-8'))
+                s.call_type = data_transmit[u'Type'].encode('utf-8')
+                s.call_description = data_transmit[u'Description'].encode('utf-8')
+                s.call_tone = data_transmit[u'Tone'].encode('utf-8')
+                s.call_locator = data_transmit[u'Locator'].encode('utf-8')
+                s.call_sysop = data_transmit[u'Sysop'].encode('utf-8')
+                s.call_latitude = data_transmit[u'Latitude']
+                s.call_longitude = data_transmit[u'Longitude']
+
                 s.duration = data_transmit[u'TOT']
 
             else:
@@ -203,10 +231,8 @@ def main(argv):
         # Print screen
         if s.device.height == 128:
             d.display_128()
-        elif s.device.height == 64:
-            d.display_64()
         else:
-            d.display_32()
+            d.display_64()
 
         time.sleep(0.25)
 
