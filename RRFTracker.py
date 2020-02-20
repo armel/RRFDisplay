@@ -24,6 +24,7 @@ from luma.oled.device import sh1106
 from luma.oled.device import ssd1306
 from luma.oled.device import ssd1327
 from luma.oled.device import ssd1351
+from luma.lcd.device  import st7735
 
 from luma.core.render import canvas
 
@@ -87,8 +88,11 @@ def main(argv):
         elif s.display == 'ssd1327':
             s.device = ssd1327(serial, width=s.display_width, height=s.display_height, rotate=0, mode='RGB')
     else:
-        serial = spi(device=0, port=0)        
-        s.device = ssd1351(serial, width=s.display_width, height=s.display_height, rotate=1, mode='RGB', bgr=True)
+        serial = spi(device=0, port=0)
+        if s.display == 'ssd1351':        
+            s.device = ssd1351(serial, width=s.display_width, height=s.display_height, rotate=1, mode='RGB', bgr=True)
+        elif s.display == 'st7735':
+            s.device = st7735(serial, width=s.display_width, height=s.display_height, rotate=1, mode='RGB', bgr=True)
 
 
     # Lecture du fichier de theme
