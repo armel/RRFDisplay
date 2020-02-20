@@ -92,7 +92,7 @@ def main(argv):
         if s.display == 'ssd1351':        
             s.device = ssd1351(serial, width=s.display_width, height=s.display_height, rotate=1, mode='RGB', bgr=True)
         elif s.display == 'st7735':
-            s.device = st7735(serial, width=s.display_width, height=s.display_height, mode='RGB')
+            s.device = st7735(serial, width=s.display_width, height=s.display_height, rotate=1, mode='RGB')
 
 
     # Lecture du fichier de theme
