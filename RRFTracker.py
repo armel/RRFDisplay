@@ -99,8 +99,6 @@ def main(argv):
     s.theme = cp.ConfigParser()
     s.theme.read('./themes/' + s.display_theme)
 
-    print s.display_theme
-
     # Boucle principale
     s.timestamp_start = time.time()
 
