@@ -549,6 +549,8 @@ def display_128():
             # Print data
             i = 4
             j = 0
+
+            print s.message
             for m in s.message:
                 if m is not None:
                     w, h = draw.textsize(text=m, font=font)
