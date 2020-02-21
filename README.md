@@ -10,10 +10,7 @@ Il permet de suivre en temps réel l'activité du réseau [RRF](https://f5nlg.wo
 - un écran type SH1106, SSD1306 ou SSD1327 piloté par I2C
 - un écran de type SSD1351 ou ST7735 piloté par SPI
 
-> Attention, les écrans SSD1327 pilotés en I2C ne fonctionnent que sur l'Orange Pi Zero. Quant aux écrans SSD1351 ou ST7735 piloté par SPI, je n'ai réussi à les faire fonctionner que sur Raspberry Pi 3.
-
-
-Les 2 premiers écrans ont un QSJ de moins de 5€. Le troisième est un peu plus onéreux, mais coûte moins de 8€. C'était une des contraintes de mon cahier des charges. À noter que vous pouvez les trouver moins cher sur des boutiques chinoises, si vous acceptez de patienter 30 à 60 jours pour la livraison.  
+Les écrans type SH1106 ou SSD1306 ont un QSJ de moins de 5€. Les écrans type SSD1327 et ST7735 sont un peu plus onéreux, mais coûte moins de 8€. Quant aux écrans type SSD1351, compter environ 15€. Le QSJ était une des contraintes de mon cahier des charges. À noter que vous pouvez les trouver moins cher sur des boutiques chinoises, si vous acceptez de patienter 30 à 60 jours pour la livraison.  
 
 Cette version du RRFTracker prend en charge [3 tailles d'écrans](http://www.dsdtech-global.com/2018/05/iic-oled-lcd-u8glib.html) OLED et 2 résolutions. 
 
@@ -21,7 +18,9 @@ Cette version du RRFTracker prend en charge [3 tailles d'écrans](http://www.dsd
 - 1.30" en 128 x 64
 - 0.96" en 128 x 64 
 
-La résolution 128 x 128 en 1.50" est disponible en utilisant des écrans de type [SSD1327](https://www.waveshare.com/wiki/1.5inch_OLED_Module). C'est ma résolution préférée. 
+La résolution 128 x 128 en 1.50" est disponible en utilisant des écrans de type [SSD1327](https://www.waveshare.com/wiki/1.5inch_OLED_Module) ou [SSD1351](https://www.waveshare.com/wiki/1.5inch_RGB_OLED_Module). Le premier fonctionne en I2C et gère des niveaux de gris. Le second fonctionne en SPI et supporte 65K couleurs. Ce sont mes 2 écrans préférés.
+
+> Attention, les écrans SSD1327 pilotés en I2C ne fonctionnent que sur l'Orange Pi Zero. Quant aux écrans SSD1351 ou ST7735 piloté par SPI, je n'ai réussi à les faire fonctionner que sur Raspberry Pi 3.
 
 Ce dispositif peut donc être associé sans (_trop de_) difficulté à un Spotnik Gamma, Delta, etc. afin de profiter d'un minimum de remontée d'informations, à l'image des Hotspots MMDVM type ZUMspot, Jumbo SPOT, etc. si precieux aux porteurs de casques de chantier... j'ai nommé les DMRistes ;)
 
