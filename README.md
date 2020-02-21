@@ -5,7 +5,13 @@ Suivi temps réel de l'activité du réseau [RRF](https://f5nlg.wordpress.com/20
 
 Cette version du RRFTracker et une évolution d'un [premier projet](https://github.com/armel/RRFTracker) réalisé mi novembre 2018 à partir d'un Nodemcu ESP8266 et d'un écran LCD 16x2.
 
-Il permet de suivre en temps réel l'activité du réseau [RRF](https://f5nlg.wordpress.com/2015/12/28/nouveau-reseau-french-repeater-network/) (Réseau des Répéteurs Francophones), mais également du [FON](http://www.f1tzo.com/) (French Open Networks), en utilisant un Raspberry Pi 3 ou un Orange Pi Zero et un écran OLED type SH1106, SSD1306 ou SSD1327 piloté par I2C. Les écrans de type SSD1351 pilotés par SPI fonctionne également, mais pour le moment, uniquement sur Raspberry Pi.
+Il permet de suivre en temps réel l'activité du réseau [RRF](https://f5nlg.wordpress.com/2015/12/28/nouveau-reseau-french-repeater-network/) (Réseau des Répéteurs Francophones), mais également du [FON](http://www.f1tzo.com/) (French Open Networks), en utilisant un Raspberry Pi 3 ou un Orange Pi Zero et 
+
+- un écran type SH1106, SSD1306 ou SSD1327 piloté par I2C
+- un écran de type SSD1351 ou ST7735 piloté par SPI
+
+> Attention, les écrans SSD1327 pilotés en I2C ne fonctionnent que sur l'Orange Pi Zero. Quant aux écrans SSD1351 ou ST7735 piloté par SPI, je n'ai réussi à les faire fonctionner que sur Raspberry Pi 3.
+
 
 Les 2 premiers écrans ont un QSJ de moins de 5€. Le troisième est un peu plus onéreux, mais coûte moins de 8€. C'était une des contraintes de mon cahier des charges. À noter que vous pouvez les trouver moins cher sur des boutiques chinoises, si vous acceptez de patienter 30 à 60 jours pour la livraison.  
 
@@ -92,7 +98,7 @@ Il faut également procéder à l'installation de quelques paquets complémentai
 
 `sudo pip install requests`
 
-`sudo -H pip install --upgrade luma.oled`
+`sudo pip install luma.oled luma.lcd`
 
 `sudo pip install configparser`
 
