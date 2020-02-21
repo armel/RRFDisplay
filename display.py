@@ -550,7 +550,6 @@ def display_128():
             i = 4
             j = 0
 
-            print s.message
             for m in s.message:
                 if m is not None:
                     w, h = draw.textsize(text=m, font=font)
@@ -558,7 +557,7 @@ def display_128():
                     vide = ' ' * 22     # Hack to speed clear screen line...
                     if j == 0:
                         color = get_color('header', 'foreground')
-                    if j == 1:
+                    elif j == 1:
                         color = get_color('log', 'call_last')
                     else:
                         color = get_color('log', 'call')
