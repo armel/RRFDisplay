@@ -481,7 +481,7 @@ def extended_propagation(draw, page):
         value['Geomag Field'] = s.solar_value['Geomag Field']
         value['Signal Noise'] = s.solar_value['Signal Noise']
 
-        position = 60
+        position = 70
 
     elif page == 5:
         value = {'80m-40m Night': '', '30m-20m Night': '', '17m-15m Night': '', '12m-10m Night': '', 'VHF Aurora': '', 'E-Skip EU 2m': '', 'E-Skip EU 4m': '', 'E-Skip EU 6m': '', 'Geomag Field': '', 'Signal Noise': ''}
@@ -499,7 +499,7 @@ def extended_propagation(draw, page):
         value['Geomag Field'] = s.solar_value['Geomag Field']
         value['Signal Noise'] = s.solar_value['Signal Noise']
 
-        position = 60
+        position = 70
 
     if s.device.height == 128:
         i = 17

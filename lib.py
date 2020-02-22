@@ -390,13 +390,18 @@ def get_propagation():
         # Page 3
         for value in solar_data.xpath('/solar/solardata/calculatedvhfconditions/phenomenon[@name="vhf-aurora" and @location="northern_hemi"]'):
             s.solar_value['VHF Aurora'] = value.text.strip()
+            s.solar_value['VHF Aurora'] = s.solar_value['VHF Aurora'].replace('Band ', '')
         for value in solar_data.xpath('/solar/solardata/calculatedvhfconditions/phenomenon[@name="E-Skip" and @location="europe"]'):
             s.solar_value['E-Skip EU 2m'] = value.text.strip()
+            s.solar_value['E-Skip EU 2m'] = s.solar_value['E-Skip EU 2m'].replace('Band ', '')
         for value in solar_data.xpath('/solar/solardata/calculatedvhfconditions/phenomenon[@name="E-Skip" and @location="europe_4m"]'):
             s.solar_value['E-Skip EU 4m'] = value.text.strip()
+            s.solar_value['E-Skip EU 4m'] = s.solar_value['E-Skip EU 4m'].replace('Band ', '')
         for value in solar_data.xpath('/solar/solardata/calculatedvhfconditions/phenomenon[@name="E-Skip" and @location="europe_6m"]'):
             s.solar_value['E-Skip EU 6m'] = value.text.strip()
+            s.solar_value['E-Skip EU 6m'] = s.solar_value['E-Skip EU 6m'].replace('Band ', '')
         for value in solar_data.xpath('/solar/solardata/calculatedvhfconditions/phenomenon[@name="E-Skip" and @location="north_america"]'):
             s.solar_value['E-Skip NA 2m'] = value.text.strip()
+            s.solar_value['E-Skip NA 2m'] = s.solar_value['E-Skip NA 2m'].replace('Band ', '')
 
     return True  
