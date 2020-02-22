@@ -158,3 +158,9 @@ timestamp_start = ''
 hour = ''
 minute = ''
 seconde = ''
+
+# Set propagation
+
+solar_url = 'http://www.hamqsl.com/solarxml.php'
+solar_file = './data/solar.xml'
+solar_value = {}

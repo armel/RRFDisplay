@@ -416,6 +416,62 @@ def extended_config(draw, page):
         label(draw, i, 63, get_color('label', 'background'), get_color('label', 'foreground'), j, sys[j])
         i += 11
 
+# Print config
+def extended_propagation(draw, page):
+    if s.device.height == 128:
+        draw.rectangle((0, 1, s.device.height - 1, 13), fill=get_color('header', 'background'))
+
+    draw.text((2, 0), u'\ue800', font=icon, fill=get_color('header', 'foreground'))
+
+    w, h = draw.textsize(text='Propagation', font=font)
+    tab = (s.device.width - w) / 2
+    draw.text((tab, 4), 'Propagation', font=font, fill=get_color('header', 'foreground'))
+
+    if page == 1:
+        value = {'Updated': '', 'Solar Flux': '', 'A-Index': '', 'K-Index': '', 'Sun Spots': ''}
+        value_order = ['Updated', 'Solar Flux', 'A-Index', 'K-Index', 'Sun Spots']
+
+        value['Updated'] = s.solar_value['Updated']
+        value['Solar Flux'] = s.solar_value['Solar Flux']
+        value['A-Index'] = s.solar_value['A-Index']
+        value['K-Index'] = s.solar_value['K-Index']
+        value['Sun Spots'] = s.solar_value['Sun Spots']
+        
+    elif page == 2:
+        value = {'X-Ray': '', 'Ptn Flux': '', 'Elc Flux': '', 'Mag (BZ)': '', 'Solar Wind': ''}
+        value_order = ['X-Ray', 'Ptn Flux', 'Elc Flux', 'Mag (BZ)', 'Solar Wind']
+
+        value['X-Ray'] = s.solar_value['X-Ray']
+        value['Ptn Flux'] = s.solar_value['Ptn Flux']
+        value['Elc Flux'] = s.solar_value['Elc Flux']
+        value['Mag (BZ)'] = s.solar_value['Mag (BZ)']
+        value['Solar Wind'] = s.solar_value['Solar Wind']
+
+    else:
+        value = {'Updated': '', 'Solar Flux': '', 'A-Index': '', 'K-Index': '', 'Sun Spots': '', 'X-Ray': '', 'Ptn Flux': '', 'Elc Flux': '', 'Mag (BZ)': '', 'Solar Wind': ''}
+        value_order = ['Updated', 'Solar Flux', 'A-Index', 'K-Index', 'Sun Spots', 'X-Ray', 'Ptn Flux', 'Elc Flux', 'Mag (BZ)', 'Solar Wind']
+        
+        value['Updated'] = s.solar_value['Updated']
+        value['Solar Flux'] = s.solar_value['Solar Flux']
+        value['A-Index'] = s.solar_value['A-Index']
+        value['K-Index'] = s.solar_value['K-Index']
+        value['Sun Spots'] = s.solar_value['Sun Spots']
+
+        value['X-Ray'] = s.solar_value['X-Ray']
+        value['Ptn Flux'] = s.solar_value['Ptn Flux']
+        value['Elc Flux'] = s.solar_value['Elc Flux']
+        value['Mag (BZ)'] = s.solar_value['Mag (BZ)']
+        value['Solar Wind'] = s.solar_value['Solar Wind']
+
+    if s.device.height == 128:
+        i = 17
+    else:
+        i = 16
+
+    for j in value_order:
+        label(draw, i, 63, get_color('label', 'background'), get_color('label', 'foreground'), j, value[j])
+        i += 11
+
 # Print display on 128 x 64
 def display_64():
     with canvas(s.device) as draw:
@@ -528,6 +584,10 @@ def display_128():
         # Best log extended
         elif s.transmit is False and len(s.best) >= 5 and s.minute % 2 == 0 and s.seconde < 40:
             extended_best(draw, len(s.best))
+
+        # Propag extended
+        elif s.transmit is False and  s.minute % 2 == 0 and s.seconde < 50:
+            extended_propagation(draw, 3)
 
         # If not extended
         else:
