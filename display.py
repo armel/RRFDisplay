@@ -447,7 +447,7 @@ def extended_propagation(draw, page):
         value['Mag (BZ)'] = s.solar_value['Mag (BZ)']
         value['Solar Wind'] = s.solar_value['Solar Wind']
 
-    else:
+    elif page == 3:
         value = {'Updated': '', 'Solar Flux': '', 'A-Index': '', 'K-Index': '', 'Sun Spots': '', 'X-Ray': '', 'Ptn Flux': '', 'Elc Flux': '', 'Mag (BZ)': '', 'Solar Wind': ''}
         value_order = ['Updated', 'Solar Flux', 'A-Index', 'K-Index', 'Sun Spots', 'X-Ray', 'Ptn Flux', 'Elc Flux', 'Mag (BZ)', 'Solar Wind']
         
@@ -462,6 +462,38 @@ def extended_propagation(draw, page):
         value['Elc Flux'] = s.solar_value['Elc Flux']
         value['Mag (BZ)'] = s.solar_value['Mag (BZ)']
         value['Solar Wind'] = s.solar_value['Solar Wind']
+
+    elif page == 4:
+        value = {'80m-40m Day': '', '30m-20m Day': '', '17m-15m Day': '', '12m-10m Day': '', 'VHF Aurora': '', 'E-Skip EU 2m': '', 'E-Skip EU 4m': '', 'E-Skip EU 6m': '', 'Geomag Field': '', 'Signal Noise': ''}
+        value_order = ['80m-40m Day', '30m-20m Day', '17m-15m Day', '12m-10m Day', 'VHF Aurora', 'E-Skip EU 2m', 'E-Skip EU 4m', 'E-Skip EU 6m', 'Geomag Field', 'Signal Noise']
+        
+        value['80m-40m Day'] = s.solar_value['80m-40m Day']
+        value['30m-20m Day'] = s.solar_value['30m-20m Day']
+        value['17m-15m Day'] = s.solar_value['17m-15m Day']
+        value['12m-10m Day'] = s.solar_value['12m-10m Day']
+        value['VHF Aurora'] = s.solar_value['VHF Aurora']
+
+        value['E-Skip EU 2m'] = s.solar_value['E-Skip EU 2m']
+        value['E-Skip EU 4m'] = s.solar_value['E-Skip EU 4m']
+        value['E-Skip EU 6m'] = s.solar_value['E-Skip EU 6m']
+        value['Geomag Field'] = s.solar_value['Geomag Field']
+        value['Signal Noise'] = s.solar_value['Signal Noise']
+
+    elif page == 5:
+        value = {'80m-40m Night': '', '30m-20m Night': '', '17m-15m Night': '', '12m-10m Night': '', 'VHF Aurora': '', 'E-Skip EU 2m': '', 'E-Skip EU 4m': '', 'E-Skip EU 6m': '', 'Geomag Field': '', 'Signal Noise': ''}
+        value_order = ['80m-40m Night', '30m-20m Night', '17m-15m Night', '12m-10m Night', 'VHF Aurora', 'E-Skip EU 2m', 'E-Skip EU 4m', 'E-Skip EU 6m', 'Geomag Field', 'Signal Noise']
+        
+        value['80m-40m Night'] = s.solar_value['80m-40m Night']
+        value['30m-20m Night'] = s.solar_value['30m-20m Night']
+        value['17m-15m Night'] = s.solar_value['17m-15m Night']
+        value['12m-10m Night'] = s.solar_value['12m-10m Night']
+        value['VHF Aurora'] = s.solar_value['VHF Aurora']
+
+        value['E-Skip EU 2m'] = s.solar_value['E-Skip EU 2m']
+        value['E-Skip EU 4m'] = s.solar_value['E-Skip EU 4m']
+        value['E-Skip EU 6m'] = s.solar_value['E-Skip EU 6m']
+        value['Geomag Field'] = s.solar_value['Geomag Field']
+        value['Signal Noise'] = s.solar_value['Signal Noise']
 
     if s.device.height == 128:
         i = 17
@@ -591,9 +623,14 @@ def display_128():
             extended_propagation(draw, 3)
         '''
 
-        if s.transmit is False and  s.minute % 2 == 0:
+        if s.transmit is False and  s.minute % 2 == 0 and s.seconde < 20:
             extended_propagation(draw, 3)
 
+        elif s.transmit is False and  s.minute % 2 == 0 and s.seconde < 40:
+            extended_propagation(draw, 4)
+
+        elif s.transmit is False and  s.minute % 2 == 0 and s.seconde < 60:
+            extended_propagation(draw, 5)
 
         # If not extended
         else:
