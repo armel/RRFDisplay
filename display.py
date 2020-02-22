@@ -466,31 +466,13 @@ def extended_propagation(draw, page):
         position = 50
 
     elif page == 4:
-        value = {'80m-40m Day': '', '30m-20m Day': '', '17m-15m Day': '', '12m-10m Day': '', 'VHF Aurora': '', 'E-Skip EU 2m': '', 'E-Skip EU 4m': '', 'E-Skip EU 6m': '', 'Geomag Field': '', 'Signal Noise': ''}
-        value_order = ['80m-40m Day', '30m-20m Day', '17m-15m Day', '12m-10m Day', 'VHF Aurora', 'E-Skip EU 2m', 'E-Skip EU 4m', 'E-Skip EU 6m', 'Geomag Field', 'Signal Noise']
+        value = {'80m-40m': '', '30m-20m': '', '17m-15m': '', '12m-10m': '', 'VHF Aurora': '', 'E-Skip EU 2m': '', 'E-Skip EU 4m': '', 'E-Skip EU 6m': '', 'Geomag Field': '', 'Signal Noise': ''}
+        value_order = ['80m-40m', '30m-20m', '17m-15m', '12m-10m', 'VHF Aurora', 'E-Skip EU 2m', 'E-Skip EU 4m', 'E-Skip EU 6m', 'Geomag Field', 'Signal Noise']
         
-        value['80m-40m Day'] = s.solar_value['80m-40m Day']
-        value['30m-20m Day'] = s.solar_value['30m-20m Day']
-        value['17m-15m Day'] = s.solar_value['17m-15m Day']
-        value['12m-10m Day'] = s.solar_value['12m-10m Day']
-        value['VHF Aurora'] = s.solar_value['VHF Aurora']
-
-        value['E-Skip EU 2m'] = s.solar_value['E-Skip EU 2m']
-        value['E-Skip EU 4m'] = s.solar_value['E-Skip EU 4m']
-        value['E-Skip EU 6m'] = s.solar_value['E-Skip EU 6m']
-        value['Geomag Field'] = s.solar_value['Geomag Field']
-        value['Signal Noise'] = s.solar_value['Signal Noise']
-
-        position = 70
-
-    elif page == 5:
-        value = {'80m-40m Night': '', '30m-20m Night': '', '17m-15m Night': '', '12m-10m Night': '', 'VHF Aurora': '', 'E-Skip EU 2m': '', 'E-Skip EU 4m': '', 'E-Skip EU 6m': '', 'Geomag Field': '', 'Signal Noise': ''}
-        value_order = ['80m-40m Night', '30m-20m Night', '17m-15m Night', '12m-10m Night', 'VHF Aurora', 'E-Skip EU 2m', 'E-Skip EU 4m', 'E-Skip EU 6m', 'Geomag Field', 'Signal Noise']
-        
-        value['80m-40m Night'] = s.solar_value['80m-40m Night']
-        value['30m-20m Night'] = s.solar_value['30m-20m Night']
-        value['17m-15m Night'] = s.solar_value['17m-15m Night']
-        value['12m-10m Night'] = s.solar_value['12m-10m Night']
+        value['80m-40m'] = s.solar_value['80m-40m Day'] + ' ' + s.solar_value['80m-40m Night']
+        value['30m-20m'] = s.solar_value['30m-20m Day'] + ' ' + s.solar_value['30m-20m Night']
+        value['17m-15m'] = s.solar_value['17m-15m Day'] + ' ' + s.solar_value['17m-15m Night']
+        value['12m-10m'] = s.solar_value['12m-10m Day'] + ' ' + s.solar_value['12m-10m Night']
         value['VHF Aurora'] = s.solar_value['VHF Aurora']
 
         value['E-Skip EU 2m'] = s.solar_value['E-Skip EU 2m']
@@ -634,9 +616,6 @@ def display_128():
 
         elif s.transmit is False and  s.minute % 2 == 0 and s.seconde < 40:
             extended_propagation(draw, 4)
-
-        elif s.transmit is False and  s.minute % 2 == 0 and s.seconde < 60:
-            extended_propagation(draw, 5)
 
         # If not extended
         else:
