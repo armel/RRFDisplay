@@ -369,7 +369,7 @@ def extended_config(draw, page):
 
     w, h = draw.textsize(text='Config RRFTracker', font=font)
     tab = (s.device.width - w) / 2
-    draw.text((tab, 4), 'Config Tracker', font=font, fill=get_color('header', 'foreground'))
+    draw.text((tab, 4), 'Config RRFTracker', font=font, fill=get_color('header', 'foreground'))
 
     if page == 1:
         sys = {'I2C Port': '', 'I2C Address': '', 'Display': '', 'Width': '', 'Height': ''}
@@ -609,7 +609,7 @@ def display_128():
         elif s.transmit is False and  s.minute % 2 == 0 and s.seconde < 50:
             extended_propagation(draw, 3)
     
-        elif s.transmit is False and  s.minute % 2 == 0 and s.seconde > 50:
+        elif s.transmit is False and  s.minute % 2 == 0 and s.seconde >= 50:
             extended_propagation(draw, 4)
 
         # If not extended
