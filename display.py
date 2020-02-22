@@ -589,7 +589,6 @@ def display_128():
             draw.point((i, 0), fill=get_color('header', 'border'))
             draw.point((i, 14), fill=get_color('header', 'border'))
 
-        '''
         # System log extended
         if s.transmit is False and s.minute % 2 == 0 and s.seconde < 10:
             extended_system(draw, 3)
@@ -609,12 +608,8 @@ def display_128():
         # Propag extended
         elif s.transmit is False and  s.minute % 2 == 0 and s.seconde < 50:
             extended_propagation(draw, 3)
-        '''
-
-        if s.transmit is False and  s.minute % 2 == 0 and s.seconde < 20:
-            extended_propagation(draw, 3)
-
-        elif s.transmit is False and  s.minute % 2 == 0 and s.seconde < 40:
+    
+        elif s.transmit is False and  s.minute % 2 == 0 and s.seconde > 50:
             extended_propagation(draw, 4)
 
         # If not extended
