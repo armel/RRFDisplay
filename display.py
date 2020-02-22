@@ -626,7 +626,7 @@ def display_128():
 
             # Icon talk
             if s.transmit is True:
-                draw.text((2, 21), u'\uf130', font=icon, fill=get_color('screen', 'text'))
+                draw.text((2, 21), u'\uf130', font=icon, fill=get_color('log', 'call_last'))
                 distance(draw)
 
             # Print data
