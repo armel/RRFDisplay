@@ -367,9 +367,9 @@ def extended_config(draw, page):
 
     draw.text((2, 0), u'\ue800', font=icon, fill=get_color('header', 'foreground'))
 
-    w, h = draw.textsize(text='Config RRFTracker', font=font)
+    w, h = draw.textsize(text='Config Tracker', font=font)
     tab = (s.device.width - w) / 2
-    draw.text((tab, 4), 'Config RRFTracker', font=font, fill=get_color('header', 'foreground'))
+    draw.text((tab, 4), 'Config Tracker', font=font, fill=get_color('header', 'foreground'))
 
     if page == 1:
         sys = {'I2C Port': '', 'I2C Address': '', 'Display': '', 'Width': '', 'Height': ''}
@@ -466,8 +466,8 @@ def extended_propagation(draw, page):
         position = 50
 
     elif page == 4:
-        value = {'80m-40m': '', '30m-20m': '', '17m-15m': '', '12m-10m': '', 'VHF Aurora': '', 'E-Skip EU 2m': '', 'E-Skip EU 4m': '', 'E-Skip EU 6m': '', 'Geomag Field': '', 'Signal Noise': ''}
-        value_order = ['80m-40m', '30m-20m', '17m-15m', '12m-10m', 'VHF Aurora', 'E-Skip EU 2m', 'E-Skip EU 4m', 'E-Skip EU 6m', 'Geomag Field', 'Signal Noise']
+        value = {'80m-40m J/N': '', '30m-20m J/N': '', '17m-15m J/N': '', '12m-10m J/N': '', 'VHF Aurora': '', 'E-Skip EU 2m': '', 'E-Skip EU 4m': '', 'E-Skip EU 6m': '', 'Geomag Field': '', 'Signal Noise': ''}
+        value_order = ['80m-40m J/N', '30m-20m J/N', '17m-15m J/N', '12m-10m J/N', 'VHF Aurora', 'E-Skip EU 2m', 'E-Skip EU 4m', 'E-Skip EU 6m', 'Geomag Field', 'Signal Noise']
         
         value['80m-40m J/N'] = s.solar_value['80m-40m Day'] + ' / ' + s.solar_value['80m-40m Night']
         value['30m-20m J/N'] = s.solar_value['30m-20m Day'] + ' / ' + s.solar_value['30m-20m Night']
