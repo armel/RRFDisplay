@@ -463,6 +463,8 @@ def extended_propagation(draw, page):
         value['Mag (BZ)'] = s.solar_value['Mag (BZ)']
         value['Solar Wind'] = s.solar_value['Solar Wind']
 
+        position = 50
+
     elif page == 4:
         value = {'80m-40m Day': '', '30m-20m Day': '', '17m-15m Day': '', '12m-10m Day': '', 'VHF Aurora': '', 'E-Skip EU 2m': '', 'E-Skip EU 4m': '', 'E-Skip EU 6m': '', 'Geomag Field': '', 'Signal Noise': ''}
         value_order = ['80m-40m Day', '30m-20m Day', '17m-15m Day', '12m-10m Day', 'VHF Aurora', 'E-Skip EU 2m', 'E-Skip EU 4m', 'E-Skip EU 6m', 'Geomag Field', 'Signal Noise']
@@ -478,6 +480,8 @@ def extended_propagation(draw, page):
         value['E-Skip EU 6m'] = s.solar_value['E-Skip EU 6m']
         value['Geomag Field'] = s.solar_value['Geomag Field']
         value['Signal Noise'] = s.solar_value['Signal Noise']
+
+        position = 60
 
     elif page == 5:
         value = {'80m-40m Night': '', '30m-20m Night': '', '17m-15m Night': '', '12m-10m Night': '', 'VHF Aurora': '', 'E-Skip EU 2m': '', 'E-Skip EU 4m': '', 'E-Skip EU 6m': '', 'Geomag Field': '', 'Signal Noise': ''}
@@ -495,13 +499,15 @@ def extended_propagation(draw, page):
         value['Geomag Field'] = s.solar_value['Geomag Field']
         value['Signal Noise'] = s.solar_value['Signal Noise']
 
+        position = 60
+
     if s.device.height == 128:
         i = 17
     else:
         i = 16
 
     for j in value_order:
-        label(draw, i, 50, get_color('label', 'background'), get_color('label', 'foreground'), j, value[j])
+        label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), j, value[j])
         i += 11
 
 # Print display on 128 x 64
