@@ -340,8 +340,8 @@ def get_propagation():
             
             tmp = s.solar_value['Updated'].split(' ')
             tmp = tmp[0] + ' ' + tmp[1] + ' ' + tmp[2] + ' ' + tmp[3]
-            tmp = datetime.strptime(date_time_str, '%b %d %Y %I%M')
-            
+            tmp = datetime.strptime(tmp, '%b %d %Y %I%M')
+
             s.solar_value['Updated'] = tmp.date()+ ' ' + tmp.time()
 
         for value in solar_data.xpath('/solar/solardata/solarflux'):
