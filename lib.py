@@ -342,7 +342,7 @@ def get_propagation():
             tmp = tmp[0] + ' ' + tmp[1] + ' ' + tmp[2] + ' ' + tmp[3]
             tmp = datetime.strptime(tmp, '%d %b %Y %I%M')
 
-            s.solar_value['Updated'] = tmp
+            s.solar_value['Updated'] = str(tmp)
 
         for value in solar_data.xpath('/solar/solardata/solarflux'):
             s.solar_value['Solar Flux'] = value.text.strip()
