@@ -337,8 +337,13 @@ def get_propagation():
         # Page 1
         for value in solar_data.xpath('/solar/solardata/updated'):
             s.solar_value['Updated'] = value.text.strip()
+            
             tmp = s.solar_value['Updated'].split(' ')
-            s.solar_value['Updated'] = tmp[0] + ' ' + tmp[1] + ' a ' + tmp[3][:2] + ':' + tmp[3][-2:]
+            tmp = tmp[0] + ' ' + tmp[1] + ' ' + tmp[2] + ' ' + tmp[3]
+            tmp = datetime.strptime(date_time_str, '%b %d %Y %I%M')
+            
+            s.solar_value['Updated'] = tmp.date()+ ' ' + tmp.time()
+
         for value in solar_data.xpath('/solar/solardata/solarflux'):
             s.solar_value['Solar Flux'] = value.text.strip()
         for value in solar_data.xpath('/solar/solardata/aindex'):
