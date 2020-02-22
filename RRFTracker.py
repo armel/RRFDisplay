@@ -122,6 +122,9 @@ def main(argv):
                 #print s.now, tmp
                 s.room_current = tmp
 
+        if s.minute == 0 or not s.solar_value: # Update propagation
+            l.get_propagation()
+
         url = s.room[s.room_current]['url']
 
         # Requete HTTP vers le flux json du salon produit par le RRFTracker 

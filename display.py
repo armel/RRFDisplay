@@ -369,7 +369,7 @@ def extended_config(draw, page):
 
     w, h = draw.textsize(text='Config RRFTracker', font=font)
     tab = (s.device.width - w) / 2
-    draw.text((tab, 4), 'Config Tracker', font=font, fill=get_color('header', 'foreground'))
+    draw.text((tab, 4), 'Config RRFTracker', font=font, fill=get_color('header', 'foreground'))
 
     if page == 1:
         sys = {'I2C Port': '', 'I2C Address': '', 'Display': '', 'Width': '', 'Height': ''}
@@ -414,6 +414,82 @@ def extended_config(draw, page):
 
     for j in sys_order:
         label(draw, i, 63, get_color('label', 'background'), get_color('label', 'foreground'), j, sys[j])
+        i += 11
+
+# Print config
+def extended_propagation(draw, page):
+    if s.device.height == 128:
+        draw.rectangle((0, 1, s.device.height - 1, 13), fill=get_color('header', 'background'))
+
+    draw.text((2, 0), u'\ue803', font=icon, fill=get_color('header', 'foreground'))
+
+    w, h = draw.textsize(text='Propagation', font=font)
+    tab = (s.device.width - w) / 2
+    draw.text((tab, 4), 'Propagation', font=font, fill=get_color('header', 'foreground'))
+
+    if page == 1:
+        value = {'Updated': '', 'Solar Flux': '', 'A-Index': '', 'K-Index': '', 'Sun Spots': ''}
+        value_order = ['Updated', 'Solar Flux', 'A-Index', 'K-Index', 'Sun Spots']
+
+        value['Updated'] = s.solar_value['Updated']
+        value['Solar Flux'] = s.solar_value['Solar Flux']
+        value['A-Index'] = s.solar_value['A-Index']
+        value['K-Index'] = s.solar_value['K-Index']
+        value['Sun Spots'] = s.solar_value['Sun Spots']
+        
+    elif page == 2:
+        value = {'X-Ray': '', 'Ptn Flux': '', 'Elc Flux': '', 'Mag (BZ)': '', 'Solar Wind': ''}
+        value_order = ['X-Ray', 'Ptn Flux', 'Elc Flux', 'Mag (BZ)', 'Solar Wind']
+
+        value['X-Ray'] = s.solar_value['X-Ray']
+        value['Ptn Flux'] = s.solar_value['Ptn Flux']
+        value['Elc Flux'] = s.solar_value['Elc Flux']
+        value['Mag (BZ)'] = s.solar_value['Mag (BZ)']
+        value['Solar Wind'] = s.solar_value['Solar Wind']
+
+    elif page == 3:
+        value = {'Updated': '', 'Solar Flux': '', 'A-Index': '', 'K-Index': '', 'Sun Spots': '', 'X-Ray': '', 'Ptn Flux': '', 'Elc Flux': '', 'Mag (BZ)': '', 'Solar Wind': ''}
+        value_order = ['Updated', 'Solar Flux', 'A-Index', 'K-Index', 'Sun Spots', 'X-Ray', 'Ptn Flux', 'Elc Flux', 'Mag (BZ)', 'Solar Wind']
+        
+        value['Updated'] = s.solar_value['Updated']
+        value['Solar Flux'] = s.solar_value['Solar Flux']
+        value['A-Index'] = s.solar_value['A-Index']
+        value['K-Index'] = s.solar_value['K-Index']
+        value['Sun Spots'] = s.solar_value['Sun Spots']
+
+        value['X-Ray'] = s.solar_value['X-Ray']
+        value['Ptn Flux'] = s.solar_value['Ptn Flux']
+        value['Elc Flux'] = s.solar_value['Elc Flux']
+        value['Mag (BZ)'] = s.solar_value['Mag (BZ)']
+        value['Solar Wind'] = s.solar_value['Solar Wind']
+
+        position = 50
+
+    elif page == 4:
+        value = {'80m-40m': '', '30m-20m': '', '17m-15m': '', '12m-10m': '', 'VHF Aurora': '', 'E-Skip EU 2m': '', 'E-Skip EU 4m': '', 'E-Skip EU 6m': '', 'Geomag Field': '', 'Signal Noise': ''}
+        value_order = ['80m-40m', '30m-20m', '17m-15m', '12m-10m', 'VHF Aurora', 'E-Skip EU 2m', 'E-Skip EU 4m', 'E-Skip EU 6m', 'Geomag Field', 'Signal Noise']
+        
+        value['80m-40m J/N'] = s.solar_value['80m-40m Day'] + ' / ' + s.solar_value['80m-40m Night']
+        value['30m-20m J/N'] = s.solar_value['30m-20m Day'] + ' / ' + s.solar_value['30m-20m Night']
+        value['17m-15m J/N'] = s.solar_value['17m-15m Day'] + ' / ' + s.solar_value['17m-15m Night']
+        value['12m-10m J/N'] = s.solar_value['12m-10m Day'] + ' / ' + s.solar_value['12m-10m Night']
+        value['VHF Aurora'] = s.solar_value['VHF Aurora']
+
+        value['E-Skip EU 2m'] = s.solar_value['E-Skip EU 2m']
+        value['E-Skip EU 4m'] = s.solar_value['E-Skip EU 4m']
+        value['E-Skip EU 6m'] = s.solar_value['E-Skip EU 6m']
+        value['Geomag Field'] = s.solar_value['Geomag Field']
+        value['Signal Noise'] = s.solar_value['Signal Noise']
+
+        position = 60
+
+    if s.device.height == 128:
+        i = 17
+    else:
+        i = 16
+
+    for j in value_order:
+        label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), j, value[j])
         i += 11
 
 # Print display on 128 x 64
@@ -529,6 +605,13 @@ def display_128():
         elif s.transmit is False and len(s.best) >= 5 and s.minute % 2 == 0 and s.seconde < 40:
             extended_best(draw, len(s.best))
 
+        # Propag extended
+        elif s.transmit is False and  s.minute % 2 == 0 and s.seconde < 50:
+            extended_propagation(draw, 3)
+    
+        elif s.transmit is False and  s.minute % 2 == 0 and s.seconde >= 50:
+            extended_propagation(draw, 4)
+
         # If not extended
         else:
             for i in xrange(0, 128, 2):     # Horizontal
@@ -543,7 +626,7 @@ def display_128():
 
             # Icon talk
             if s.transmit is True:
-                draw.text((2, 21), u'\uf130', font=icon, fill=get_color('screen', 'text'))
+                draw.text((2, 21), u'\uf130', font=icon, fill=get_color('log', 'call_last'))
                 distance(draw)
 
             # Print data
