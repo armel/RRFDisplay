@@ -469,7 +469,7 @@ def extended_propagation(draw, page):
         i = 16
 
     for j in value_order:
-        label(draw, i, 54, get_color('label', 'background'), get_color('label', 'foreground'), j, value[j])
+        label(draw, i, 50, get_color('label', 'background'), get_color('label', 'foreground'), j, value[j])
         i += 11
 
 # Print display on 128 x 64
