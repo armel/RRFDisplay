@@ -123,7 +123,7 @@ def main(argv):
                 s.room_current = tmp
 
         if s.minute == 0 or not s.solar_value: # Update propagation
-            get_propagation()
+            l.get_propagation()
 
         url = s.room[s.room_current]['url']
 

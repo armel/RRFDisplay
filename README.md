@@ -89,7 +89,7 @@ Il faut également procéder à l'installation de quelques paquets complémentai
 
 `sudo apt-get update`
 
-`sudo apt-get install i2c-tools libi2c-dev python-smbus python-pip python-dev python-pil`
+`sudo apt-get install i2c-tools libi2c-dev python-smbus python-pip python-dev python-pil python-lxml`
 
 `sudo apt-get install libfreetype6-dev libjpeg-dev build-essential`
 
