@@ -593,7 +593,7 @@ def display_128():
         # System log extended
         if s.transmit is False and s.minute % 2 == 0 and s.seconde < 10:
             extended_system(draw, 3)
-        '''
+
         # Config log extended
         elif s.transmit is False and s.minute % 2 == 0 and s.seconde < 20:
             extended_config(draw, 3)
@@ -612,7 +612,7 @@ def display_128():
     
         elif s.transmit is False and  s.minute % 2 == 0 and s.seconde >= 50:
             extended_propagation(draw, 4)
-        '''
+
         # If not extended
         else:
             for i in xrange(0, 128, 2):     # Horizontal
