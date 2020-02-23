@@ -230,6 +230,9 @@ def calc_distance(call, latitude_1, longitude_1):
     latitude_2 = float(s.call_latitude)
     longitude_2 = float(s.call_longitude)
     
+    if latitude_2 == latitude_1 and longitude_2 == longitude_1:
+        return 0.1
+
     if (latitude_2 + longitude_2) != 0:
         p = 0.017453292519943295        # Approximation Pi/180
         a = 0.5 - cos((latitude_2 - latitude_1) * p) / 2 + cos(latitude_1 * p) * cos(latitude_2 * p) * (1 - cos((longitude_2 - longitude_1) * p)) / 2
