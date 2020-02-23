@@ -240,7 +240,7 @@ def calc_distance(call, latitude_1, longitude_1):
             r = round((12742 * asin(sqrt(a))), 1)
         else:
             r = int(ceil(12742 * asin(sqrt(a))))
-            return r
+        return r
     return 0
 
 # Convert second to time
