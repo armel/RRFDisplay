@@ -2,6 +2,8 @@
 PATH_SCRIPT='/opt/RRFTracker_Spotnik/RRFTracker.py'
 PATH_PID='/tmp'
 
+cd ..
+
 case "$1" in
     start)
         echo "Starting RRFTracker: SPI"
