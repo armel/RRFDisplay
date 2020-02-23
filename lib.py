@@ -230,6 +230,7 @@ def calc_distance(call, latitude_1, longitude_1):
     latitude_2 = float(s.call_latitude)
     longitude_2 = float(s.call_longitude)
     
+    print latitude_1, latitude_2, longitude_1, longitude_2
     if latitude_2 == latitude_1 and longitude_2 == longitude_1:
         print 'ici'
         return 0.1
