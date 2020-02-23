@@ -232,7 +232,7 @@ def distance(draw):
     else:
         d = str(d)
 
-    i = 128 - len(d) * 4
+    i = 1
 
     for c in d:
         legacy.text(draw, (i, j), chr(s.letter[c]), fill=get_color('screen', 'text'), font=s.SMALL_BITMAP_FONT)
