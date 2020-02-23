@@ -652,7 +652,7 @@ def display_128():
                         
                         k = 108
                         for c in s.call_time:
-                            legacy.text(draw, (k, i + 1), chr(s.call_time[c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
+                            legacy.text(draw, (k, i + 1), chr(s.call_time[j -1][c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
                             k += 4
 
                     i += h
