@@ -119,6 +119,11 @@ def elsewhere(draw, data):
     i = 79
     for d in data:
         d = d.split('/')
+        tmp = d[2].split(':')
+        if len(tmp) == 2:
+            tmp = '00:' + tmp[0] + ':' + tmp[1]
+            d[2] = tmp
+
         if d[0] == '00:00':
             draw.rectangle((21, i - 1, 126, i + 7), fill=get_color('elsewhere', 'background'))
             draw.text((24, i), d[2], font=font, fill=get_color('elsewhere', 'foreground'))
@@ -127,11 +132,6 @@ def elsewhere(draw, data):
             draw.rectangle((21, i - 1, 126, i + 7), fill=get_color('elsewhere', 'background_active'))
             draw.text((24, i), d[2], font=font, fill=get_color('elsewhere', 'foreground_active'))
             draw.text((98, i), d[3], font=font, fill=get_color('elsewhere', 'foreground_active'))
-
-        tmp = d[2].split(':')
-        if len(tmp) == 2:
-            tmp = '00:' + tmp[0] + ':' + tmp[1]
-            d[2] = tmp
 
         draw.rectangle((1, i - 1, 19, i + 7), fill=get_color('elsewhere', 'background_active'))
         draw.text(( 2, i), d[1], font=font, fill=get_color('elsewhere', 'foreground_active'))
