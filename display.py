@@ -43,9 +43,9 @@ def label(draw, position, width, bg_color, fg_color, label, value, fixed = 0):
 
     draw.text((1, position), label, font=font, fill=fg_color)
     if fixed == 0:
-        draw.text((width + 10, position), value, font=font, fill=get_color('label', 'text'))
+        draw.text((width + 10, position), value, font=font, fill=get_color('screen', 'foreground'))
     else:
-        draw.text((fixed, position), value, font=font, fill=get_color('label', 'text'))        
+        draw.text((fixed, position), value, font=font, fill=get_color('screen', 'foreground'))        
 
 # Draw tot
 def tot(draw, legacy, duration, position):
@@ -69,17 +69,17 @@ def tot(draw, legacy, duration, position):
 
         draw.rectangle((0, j, 128, j - k), fill=get_color('screen', 'background'))
         for i in xrange(3, h, 2):
-            draw.rectangle((i, j, i, j - k), fill=get_color('screen', 'text'))
+            draw.rectangle((i, j, i, j - k), fill=get_color('screen', 'foreground'))
 
         for i in xrange(0, 128, 4):
-            draw.line((i, position, i + 1, position), fill=get_color('screen', 'text'))
+            draw.line((i, position, i + 1, position), fill=get_color('screen', 'foreground'))
 
         # Duration min
         tmp = list(str(duration_min))
         msg = ''
         for c in tmp:
             msg += chr(s.letter[c])
-        legacy.text(draw, (0, position + 2), msg, fill=get_color('screen', 'text'), font=s.SMALL_BITMAP_FONT)
+        legacy.text(draw, (0, position + 2), msg, fill=get_color('screen', 'foreground'), font=s.SMALL_BITMAP_FONT)
 
         # Duration max
         tmp = list(str(duration_max))
@@ -90,7 +90,7 @@ def tot(draw, legacy, duration, position):
             tab = 4
         else:
             tab = 0
-        legacy.text(draw, (115 + tab, position + 2), msg, fill=get_color('screen', 'text'), font=s.SMALL_BITMAP_FONT)
+        legacy.text(draw, (115 + tab, position + 2), msg, fill=get_color('screen', 'foreground'), font=s.SMALL_BITMAP_FONT)
 
         # duration
         tmp = list(str(duration))
@@ -102,14 +102,14 @@ def tot(draw, legacy, duration, position):
         else:
             tab = 0
 
-        legacy.text(draw, (60 + tab, position + 2), msg, fill=get_color('screen', 'text'), font=s.SMALL_BITMAP_FONT)
+        legacy.text(draw, (60 + tab, position + 2), msg, fill=get_color('screen', 'foreground'), font=s.SMALL_BITMAP_FONT)
     else:
-        draw.text((8, 28), l.convert_second_to_time(duration), font=font_tot, fill=get_color('tot', 'text'))
+        draw.text((8, 28), l.convert_second_to_time(duration), font=font_tot, fill=get_color('tot', 'foreground'))
 
 
 # Print elsewhere
 def elsewhere(draw, data):
-    draw.rectangle((0, 77, 127, 127), outline=get_color('elsewhere', 'border'), fill=get_color('screen', 'foreground'))
+    draw.rectangle((0, 77, 127, 127), outline=get_color('elsewhere', 'border'), fill=get_color('elsewhere', 'background'))
 
     # Horizontal
 
@@ -120,9 +120,9 @@ def elsewhere(draw, data):
     for d in data:
         d = d.split('/')
         if d[0] == '00:00':
-            draw.rectangle((21, i - 1, 126, i + 7), fill=get_color('screen', 'foreground'))
-        else:
             draw.rectangle((21, i - 1, 126, i + 7), fill=get_color('elsewhere', 'background'))
+        else:
+            draw.rectangle((21, i - 1, 126, i + 7), fill=get_color('elsewhere', 'background_active'))
 
         tmp = d[2].split(':')
         if len(tmp) == 2:
@@ -145,8 +145,8 @@ def elsewhere(draw, data):
 
 # Print whois
 def whois(draw):
-    draw.rectangle((0, 77, 127, 127), outline=get_color('whois', 'border'), fill=get_color('screen', 'background'))
-    draw.rectangle((1, 78,  47, 126), fill=get_color('whois', 'background'))
+    draw.rectangle((0, 77, 127, 127), outline=get_color('whois', 'border'), fill=get_color('whois', 'background'))
+    draw.rectangle((1, 78,  47, 126), fill=get_color('whois', 'background_active'))
 
     # Vertical
 
@@ -155,24 +155,24 @@ def whois(draw):
     # Horizontal
 
     for i in [87, 97, 107, 117]:
-        draw.line((0,  i, 127,  i), fill=get_color('elsewhere', 'border'))
+        draw.line((0,  i, 127,  i), fill=get_color('whois', 'border'))
 
-    draw.text((2, 79), 'Type', font=font, fill=get_color('whois', 'foreground'))
+    draw.text((2, 79), 'Type', font=font, fill=get_color('whois', 'foreground-active'))
     draw.text((50, 79), s.call_type, font=font, fill=get_color('whois', 'foreground'))
 
-    draw.text((2, 89), 'Detail', font=font, fill=get_color('whois', 'foreground'))
+    draw.text((2, 89), 'Detail', font=font, fill=get_color('whois', 'foreground-active'))
     if len(s.call_description) > 14:
         draw.text((50, 89), s.call_description[:14] + '...', font=font, fill=get_color('whois', 'foreground'))
     else:
         draw.text((50, 89), s.call_description, font=font, fill=get_color('whois', 'foreground'))
 
-    draw.text((2, 99), 'Tone', font=font, fill=get_color('whois', 'foreground'))
+    draw.text((2, 99), 'Tone', font=font, fill=get_color('whois', 'foreground-active'))
     draw.text((50, 99), s.call_tone, font=font, fill=get_color('whois', 'foreground'))
 
-    draw.text((2, 109), 'Locator', font=font, fill=get_color('whois', 'foreground'))
+    draw.text((2, 109), 'Locator', font=font, fill=get_color('whois', 'foreground-active'))
     draw.text((50, 109), s.call_locator, font=font, fill=get_color('whois', 'foreground'))
 
-    draw.text((2, 119), 'Sysop', font=font, fill=get_color('whois', 'foreground'))
+    draw.text((2, 119), 'Sysop', font=font, fill=get_color('whois', 'foreground-active'))
     draw.text((50, 119), s.call_sysop, font=font, fill=get_color('whois', 'foreground'))
 
 
@@ -235,7 +235,7 @@ def distance(draw):
     i = 128 - len(d) * 4
 
     for c in d:
-        legacy.text(draw, (i, j), chr(s.letter[c]), fill=get_color('screen', 'text'), font=s.SMALL_BITMAP_FONT)
+        legacy.text(draw, (i, j), chr(s.letter[c]), fill=get_color('screen', 'foreground'), font=s.SMALL_BITMAP_FONT)
         i += 4
 
 
@@ -532,15 +532,15 @@ def display_64():
                 draw.point((i, 40), fill=get_color('screen', 'border'))    # Zone haut | Zone Histogramme - TOT
 
             if 'Dernier' in s.message[0]:   # Icon clock (DIY...)
-                legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('screen', 'text'), font=s.SMALL_BITMAP_CLOCK)
-                legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('screen', 'text'), font=s.SMALL_BITMAP_CLOCK)
+                legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('screen', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
+                legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('screen', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
             else:   # Icon stat
-                legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('screen', 'text'), font=s.SMALL_BITMAP_STAT)
-                legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('screen', 'text'), font=s.SMALL_BITMAP_STAT)
+                legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('screen', 'foreground'), font=s.SMALL_BITMAP_STAT)
+                legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('screen', 'foreground'), font=s.SMALL_BITMAP_STAT)
 
             # Icon talk
             if s.transmit is True:
-                draw.text((2, 21), u'\uf130', font=icon, fill=get_color('screen', 'text'))
+                draw.text((2, 21), u'\uf130', font=icon, fill=get_color('screen', 'foreground'))
                 distance(draw)
 
             # Print data
@@ -559,7 +559,7 @@ def display_64():
                     else:
                         color = get_color('log', 'call')
 
-                    draw.text((0, i), vide, font=font, fill=get_color('screen', 'text'))
+                    draw.text((0, i), vide, font=font, fill=get_color('screen', 'foreground'))
                     draw.text((tab, i), m, font=font, fill=color)
                     if j > 0:
                         legacy.text(draw, (16, i + 1), chr(s.letter[str(j)]), font=s.SMALL_BITMAP_FONT, fill=color)
@@ -571,7 +571,7 @@ def display_64():
 
             if s.transmit is True and s.duration > 0:
                 # Draw tot
-                tot(draw, legacy, s.duration, 57, get_color('screen', 'text'))
+                tot(draw, legacy, s.duration, 57, get_color('screen', 'foreground'))
             else:
                 # Draw stats histogram
                 histogram(draw, legacy, 57)
@@ -626,7 +626,7 @@ def display_128():
 
             # Icon talk
             if s.transmit is True:
-                draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'text'))
+                draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
                 distance(draw)
 
             # Print data
