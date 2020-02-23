@@ -227,7 +227,7 @@ def distance(draw):
     d = l.calc_distance(s.message[1], s.latitude, s.longitude)
     j = 18
 
-    if d == 0:
+    if d is false:
         d = 'NO LOC'
     else:
         d = str(d)
