@@ -594,11 +594,11 @@ def display_128():
         if s.transmit is False and s.minute % 2 == 0 and s.seconde < 10:
             extended_system(draw, 3)
 
-        '''
          # Config log extended
         elif s.transmit is False and s.minute % 2 == 0 and s.seconde < 20:
             extended_config(draw, 3)
 
+        '''
         # Call log extended
         elif s.transmit is False and len(s.call) >=5 and s.minute % 2 == 0 and s.seconde < 30:
             extended_call(draw, len(s.call))
