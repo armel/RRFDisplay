@@ -243,6 +243,8 @@ def calc_distance(call, latitude_1, longitude_1):
             r = round((12742 * asin(sqrt(a))), 1)
         else:
             r = int(ceil(12742 * asin(sqrt(a))))
+
+        print r
         return r
     return 0
 
