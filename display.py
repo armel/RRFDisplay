@@ -158,22 +158,22 @@ def whois(draw):
     for i in [87, 97, 107, 117]:
         draw.line((0,  i, 127,  i), fill=get_color('whois', 'border'))
 
-    draw.text((2, 79), 'Type', font=font, fill=get_color('whois', 'foreground-active'))
+    draw.text((2, 79), 'Type', font=font, fill=get_color('whois', 'foreground_active'))
     draw.text((50, 79), s.call_type, font=font, fill=get_color('whois', 'foreground'))
 
-    draw.text((2, 89), 'Detail', font=font, fill=get_color('whois', 'foreground-active'))
+    draw.text((2, 89), 'Detail', font=font, fill=get_color('whois', 'foreground_active'))
     if len(s.call_description) > 14:
         draw.text((50, 89), s.call_description[:14] + '...', font=font, fill=get_color('whois', 'foreground'))
     else:
         draw.text((50, 89), s.call_description, font=font, fill=get_color('whois', 'foreground'))
 
-    draw.text((2, 99), 'Tone', font=font, fill=get_color('whois', 'foreground-active'))
+    draw.text((2, 99), 'Tone', font=font, fill=get_color('whois', 'foreground_active'))
     draw.text((50, 99), s.call_tone, font=font, fill=get_color('whois', 'foreground'))
 
-    draw.text((2, 109), 'Locator', font=font, fill=get_color('whois', 'foreground-active'))
+    draw.text((2, 109), 'Locator', font=font, fill=get_color('whois', 'foreground_active'))
     draw.text((50, 109), s.call_locator, font=font, fill=get_color('whois', 'foreground'))
 
-    draw.text((2, 119), 'Sysop', font=font, fill=get_color('whois', 'foreground-active'))
+    draw.text((2, 119), 'Sysop', font=font, fill=get_color('whois', 'foreground_active'))
     draw.text((50, 119), s.call_sysop, font=font, fill=get_color('whois', 'foreground'))
 
 
