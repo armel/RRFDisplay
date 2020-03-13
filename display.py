@@ -546,15 +546,15 @@ def display_64():
                 draw.point((i, 40), fill=get_color('screen', 'border'))    # Zone haut | Zone Histogramme - TOT
 
             if 'Dernier' in s.message[0]:   # Icon clock (DIY...)
-                legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('screen', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
-                legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('screen', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
+                legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
+                legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
             else:   # Icon stat
-                legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('screen', 'foreground'), font=s.SMALL_BITMAP_STAT)
-                legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('screen', 'foreground'), font=s.SMALL_BITMAP_STAT)
+                legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
+                legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
 
             # Icon talk
             if s.transmit is True:
-                draw.text((2, 21), u'\uf130', font=icon, fill=get_color('screen', 'foreground'))
+                draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
                 distance(draw)
 
             # Print data
@@ -573,7 +573,7 @@ def display_64():
                     else:
                         color = get_color('log', 'call')
 
-                    draw.text((0, i), vide, font=font, fill=get_color('screen', 'foreground'))
+                    draw.text((0, i), vide, font=font, fill=get_color('header', 'foreground'))
                     draw.text((tab, i), m, font=font, fill=color)
                     if j > 0:
                         legacy.text(draw, (16, i + 1), chr(s.letter[str(j)]), font=s.SMALL_BITMAP_FONT, fill=color)
