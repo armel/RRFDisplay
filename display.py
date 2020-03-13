@@ -43,7 +43,8 @@ def label(draw, position, width, bg_color, fg_color, label, value, fixed = 0):
         draw.line((width + 1, position, width + 1, position + 6), fill=bg_color)
         draw.line((width + 2, position + 1, width + 2, position + 5), fill=bg_color)
         draw.line((width + 3, position + 2, width + 3, position + 4), fill=bg_color)
-        draw.point((width + 4, position + 4), fill=bg_color)
+        draw.line((width + 4, position + 3, width + 4, position + 3), fill=bg_color)
+        #draw.point((width + 4, position + 4), fill=bg_color)
 
     draw.text((1, position), label, font=font, fill=fg_color)
     if fixed == 0:
