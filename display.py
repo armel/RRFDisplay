@@ -500,8 +500,8 @@ def display_64():
         draw.rectangle((0, 1, 127, 13), fill=get_color('header', 'background'))
 
         for i in xrange(0, 128, 2):
-            draw.point((i,  0), fill=get_color('header', 'foreground'))
-            draw.point((i, 14), fill=get_color('header', 'foreground'))
+            draw.point((i,  0), fill=get_color('header', 'border'))
+            draw.point((i, 14), fill=get_color('header', 'border'))
 
         # System log extended Page 1
         if s.transmit is False and s.minute % 2 == 0 and s.seconde < 5:
