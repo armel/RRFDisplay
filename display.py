@@ -176,7 +176,6 @@ def whois(draw):
     draw.text((2, 119), 'Sysop', font=font, fill=get_color('whois', 'foreground_active'))
     draw.text((50, 119), s.call_sysop, font=font, fill=get_color('whois', 'foreground'))
 
-
 # Draw histogram
 def histogram(draw, legacy, position, height = 15):
     qso_hour_max = max(s.qso_hour)
@@ -303,7 +302,10 @@ def extended_system(draw, page):
 
     for j in sys_order:
         label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), j, sys[j])
-        i += 11
+        if s.device.height == 128:
+            i += 11
+        else:
+            i += 10
 
 # Print Call Log Extended
 def extended_call(draw, limit = 5):
@@ -324,8 +326,10 @@ def extended_call(draw, limit = 5):
 
     for j in xrange(0, limit):
         label(draw, i, 44, get_color('label', 'background'), get_color('label', 'foreground'), s.call_time[j], s.call[j])
-        i += 11
-
+        if s.device.height == 128:
+            i += 11
+        else:
+            i += 10
 
 # Print Best Log Extended
 def extended_best(draw, limit = 5):
@@ -359,7 +363,10 @@ def extended_best(draw, limit = 5):
             t = 42
 
         label(draw, i, t, get_color('label', 'background'), get_color('label', 'foreground'), l.convert_second_to_time(n), c, 54)
-        i += 11
+        if s.device.height == 128:
+            i += 11
+        else:
+            i += 10
 
 # Print config
 def extended_config(draw, page):
@@ -415,7 +422,10 @@ def extended_config(draw, page):
 
     for j in sys_order:
         label(draw, i, 63, get_color('label', 'background'), get_color('label', 'foreground'), j, sys[j])
-        i += 11
+        if s.device.height == 128:
+            i += 11
+        else:
+            i += 10
 
 # Print config
 def extended_propagation(draw, page):
@@ -491,7 +501,10 @@ def extended_propagation(draw, page):
 
     for j in value_order:
         label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), j, value[j])
-        i += 11
+        if s.device.height == 128:
+            i += 11
+        else:
+            i += 10
 
 # Print display on 128 x 64
 def display_64():
