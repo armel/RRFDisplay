@@ -11,6 +11,6 @@ case "$1" in
         ;;
     stop) 
         echo "Stopping RRFTracker: I2C 1"
-        kill `cat $PATH_PID/RRFTracker_Spotnik_0.pid`
+        kill `cat $PATH_PID/RRFTracker_Spotnik_1.pid`
         ;;
 esac
