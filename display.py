@@ -33,10 +33,11 @@ def get_color(section, value):
 def label(draw, position, width, bg_color, fg_color, label, value, fixed = 0):
     if s.device.height == 128:
         position += 3
+        draw.rectangle((0, position - 1, width, position + 8), fill=bg_color)
+        draw.line((width + 1, position, width + 1, position + 7), fill=bg_color)
+    else:
+        draw.rectangle((0, position - 1, width, position + 7), fill=bg_color)
 
-    draw.rectangle((0, position - 1, width, position + 8), fill=bg_color)
-
-    draw.line((width + 1, position, width + 1, position + 7), fill=bg_color)
     draw.line((width + 2, position + 1, width + 2, position + 6), fill=bg_color)
     draw.line((width + 3, position + 2, width + 3, position + 5), fill=bg_color)
     draw.line((width + 4, position + 3, width + 4, position + 4), fill=bg_color)
