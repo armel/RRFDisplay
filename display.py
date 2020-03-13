@@ -582,6 +582,11 @@ def display_64():
                     draw.text((tab, i), m, font=font, fill=color)
                     if j > 0:
                         legacy.text(draw, (16, i + 1), chr(s.letter[str(j)]), font=s.SMALL_BITMAP_FONT, fill=color)
+                        if s.transmit is False:
+                            k = 108
+                            for c in s.call_time[j - 1]:
+                                legacy.text(draw, (k, i + 1), chr(s.letter[c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
+                                k += 4
 
                     i += h
                     if i == 12:
