@@ -585,7 +585,7 @@ def display_64():
 
             if s.transmit is True and s.duration > 0:
                 # Draw tot
-                tot(draw, legacy, s.duration, 57, get_color('screen', 'foreground'))
+                tot(draw, legacy, s.duration, 57)
             else:
                 # Draw stats histogram
                 histogram(draw, legacy, 57)
