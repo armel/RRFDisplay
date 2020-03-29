@@ -1,5 +1,5 @@
 # RRFDisplay
-Suivi temps réel de l'activité du réseau [RRF](https://f5nlg.wordpress.com/2015/12/28/nouveau-reseau-french-repeater-network/) (Réseau des Répéteurs Francophones) pour Spotnik. Une video du fonctionnement est visible sur [Youtube](https://www.youtube.com/watch?v=xXCy9Il3eUI) ;)
+Suivi temps réel de l'activité du réseau [RRF](https://f5nlg.wordpress.com/2015/12/28/nouveau-reseau-french-repeater-network/) (Réseau des Répéteurs Francophones) pour Spotnik. Une video du fonctionnement est visible sur ecran [SSD1327](https://www.youtube.com/watch?v=xXCy9Il3eUI) et [SSD1351](https://www.youtube.com/watch?v=IrK_z7EGy34) ;)
 
 ## Présentation
 
