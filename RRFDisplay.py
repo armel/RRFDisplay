@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 '''
-RRFTracker version Raspberry Pi 3B et Orange Pi Zero
+RRFDisplay version Raspberry Pi 3B et Orange Pi Zero
 Learn more about RRF on https://f5nlg.wordpress.com
-Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
+Check video about RRFDisplay on https://www.youtube.com/watch?v=rVW8xczVpEo
 73 & 88 de F4HWN Armel
 '''
 
@@ -127,7 +127,7 @@ def main(argv):
 
         url = s.room[s.room_current]['url']
 
-        # Requete HTTP vers le flux json du salon produit par le RRFTracker 
+        # Requete HTTP vers le flux json du salon produit par le RRFDisplay 
         try:
             r = requests.get(url, verify=False, timeout=0.30)
         except requests.exceptions.ConnectionError as errc:

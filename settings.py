@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 '''
-RRFTracker version Raspberry Pi 3B et Orange Pi Zero
+RRFDisplay version Raspberry Pi 3B et Orange Pi Zero
 Learn more about RRF on https://f5nlg.wordpress.com
-Check video about RRFTracker on https://www.youtube.com/watch?v=rVW8xczVpEo
+Check video about RRFDisplay on https://www.youtube.com/watch?v=rVW8xczVpEo
 73 & 88 de F4HWN Armel
 '''
 

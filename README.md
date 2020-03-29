@@ -1,9 +1,9 @@
-# RRFTracker_Spotnik
+# RRFDisplay
 Suivi temps réel de l'activité du réseau [RRF](https://f5nlg.wordpress.com/2015/12/28/nouveau-reseau-french-repeater-network/) (Réseau des Répéteurs Francophones) pour Spotnik. Une video du fonctionnement est visible sur [Youtube](https://www.youtube.com/watch?v=H2tEJSdAOHU) ;)
 
 ## Présentation
 
-Cette version du RRFTracker et une évolution d'un [premier projet](https://github.com/armel/RRFTracker) réalisé mi novembre 2018 à partir d'un Nodemcu ESP8266 et d'un écran LCD 16x2.
+Cette version du RRFDisplay et une évolution d'un [premier projet](https://github.com/armel/RRFLcd) réalisé mi novembre 2018 à partir d'un Nodemcu ESP8266 et d'un écran LCD 16x2.
 
 Il permet de suivre en temps réel l'activité du réseau [RRF](https://f5nlg.wordpress.com/2015/12/28/nouveau-reseau-french-repeater-network/) (Réseau des Répéteurs Francophones), mais également du [FON](http://www.f1tzo.com/) (French Open Networks), en utilisant un Raspberry Pi 3 ou un Orange Pi Zero et 
 
@@ -12,7 +12,7 @@ Il permet de suivre en temps réel l'activité du réseau [RRF](https://f5nlg.wo
 
 Les écrans type SH1106 ou SSD1306 ont un QSJ de moins de 5€. Les écrans type SSD1327 et ST7735 sont un peu plus onéreux, mais coûte moins de 8€. Quant aux écrans type SSD1351, compter environ 15€. Le QSJ était une des contraintes de mon cahier des charges. À noter que vous pouvez les trouver moins cher sur des boutiques chinoises, si vous acceptez de patienter 30 à 60 jours pour la livraison.  
 
-Cette version du RRFTracker prend en charge [3 tailles d'écrans](http://www.dsdtech-global.com/2018/05/iic-oled-lcd-u8glib.html) OLED et 2 résolutions. 
+Cette version du RRFDisplay prend en charge [3 tailles d'écrans](http://www.dsdtech-global.com/2018/05/iic-oled-lcd-u8glib.html) OLED et 2 résolutions. 
 
 - 1.50" en 128 x 128
 - 1.30" en 128 x 64
@@ -30,7 +30,7 @@ En complément, à noter l'existence du projet [Spotnik2hmi](https://github.com/
 
 ### Ecran 128 x 64
 
-Au repos, si aucune station n'est en émission, le RRFTracker affichera les informations suivantes :
+Au repos, si aucune station n'est en émission, le RRFDisplay affichera les informations suivantes :
 
 Sur la première ligne, en haut de l'écran, on dispose,
 
@@ -38,7 +38,7 @@ Sur la première ligne, en haut de l'écran, on dispose,
 * du nombre de links actifs,
 * du nombre de links total,
 * du temps d'émission cumulée total sur la journée,
-* du salon ou de l'indicatif suivi par le RRFTracker,
+* du salon ou de l'indicatif suivi par le RRFDisplay,
 * de l'heure du dernier passage en émission.
 
 En haut à droite, l'heure et le salon courant s'affiche alternativement.
@@ -47,7 +47,7 @@ Sur les 3 lignes suivantes, au milieu de l'écran, figure les 3 derniers indicat
 
 Enfin, en bas de l'écran, on retrouve l'histogramme du trafic dans la journée, heure par heure.
 
-Alternativement, si aucune station n'est en émission, le RRFTracker affichera différents écrans complémentaires:
+Alternativement, si aucune station n'est en émission, le RRFDisplay affichera différents écrans complémentaires:
 
 * l'historique des 5 derniers noeuds étant passés en émission ainsi que l'horodatage,
 * l'historique des 5 noeuds les plus actifs ainsi que la durée cumulée de passage en émission,
@@ -62,7 +62,7 @@ Enfin, si une station passe en émission, en lieu et place de l'histogramme du t
 
 En complément des informations visibles sur un écran 128 x 64 pixels, cette résolution permet d'afficher plus d'informations.
 
-A ce titre, si aucune station n'est en émission, le RRFTracker affichera :
+A ce titre, si aucune station n'est en émission, le RRFDisplay affichera :
 
 * l'historique des 10 derniers noeuds étant passés en émission ainsi que l'horodatage,
 * l'historique des 10 noeuds les plus actifs ainsi que la durée cumulée de passage en émission,
@@ -83,7 +83,7 @@ En partant de la version 3.0 de Spotnik, commencez par cloner ce projet dans le 
 
 Puis, 
 
-`git clone https://github.com/armel/RRFTracker_Spotnik.git`
+`git clone https://github.com/armel/RRFDisplay.git`
 
 Il faut également procéder à l'installation de quelques paquets complémentaires. Toujours depuis une connexion SSH, lancez les commandes suivantes:
 
@@ -152,11 +152,11 @@ Votre écran est bien raccordé. Et il utilise le port 0 et l'adresse 3c. Si la 
 
 ## Lancement
 
-Le script `RRFTracker.py` peut recevoir des arguments au lancement afin d'affiner les paramètres. Par exemple,
+Le script `RRFDisplay.py` peut recevoir des arguments au lancement afin d'affiner les paramètres. Par exemple,
 
 ```
-root@spotnik:/opt/RRFTracker_Spotnik# python RRFTracker.py -h
-Usage: RRFTracker.py [options ...]
+root@spotnik:/opt/RRFDisplay# python RRFDisplay.py -h
+Usage: RRFDisplay.py [options ...]
 
 --help               this help
 
@@ -184,7 +184,7 @@ Log settings:
 88 & 73 from F4HWN Armel
 ```
 
-Par défaut, sans argument, le RRFTracker va démarrer avec les paramètres suivants,
+Par défaut, sans argument, le RRFDisplay va démarrer avec les paramètres suivants,
 
 - i2c port = 0
 - i2c address = 0x3C
@@ -198,9 +198,9 @@ Par défaut, sans argument, le RRFTracker va démarrer avec les paramètres suiv
 
 À noter que latitude et longitude sont à paramétrer au format [WGS84](https://fr.wikipedia.org/wiki/WGS_84) (degrés décimaux) dans le fichier settings.py. 
 
-Cela revient à lancer le RRFTracker avec les arguments suivants,
+Cela revient à lancer le RRFDisplay avec les arguments suivants,
 
-`python /opt/RRFTracker_Spotnik/RRFTracker.py --i2c-port 0 --i2c-address 0x3C --display sh1106 --display-width 128 --display-height 64 --display_theme theme.cfg --follow RRF --latitude 48.8483808 --longitude 2.2704347`
+`python /opt/RRFDisplay/RRFDisplay.py --i2c-port 0 --i2c-address 0x3C --display sh1106 --display-width 128 --display-height 64 --display_theme theme.cfg --follow RRF --latitude 48.8483808 --longitude 2.2704347`
 
 Il est donc possible de modifier les paramètres, notamment en fonction de ce que vous retournera la commande `i2cdetect` décrite ci dessus.
 
@@ -213,21 +213,21 @@ Par exemple, avec les paramètres suivants,
 - display height = 64
 - follow = TECHNIQUE
 
-Il vous suffira de lancer le RRFTracker avec les arguments suivants,
+Il vous suffira de lancer le RRFDisplay avec les arguments suivants,
 
-`python /opt/RRFTracker_Spotnik/RRFTracker.py --i2c-port 1 --display ssd1306 --follow TECHNIQUE`
+`python /opt/RRFDisplay/RRFDisplay.py --i2c-port 1 --display ssd1306 --follow TECHNIQUE`
 
 Notez qu'il n'est pas nécessaire de préciser l'i2c-address, le display-width et display-height puisque ce sont déjà les valeurs par défaut. Idem pour la latitude et la longitude, qui par défaut sont les miennes...
 
 Point important, il est aussi possible de préciser un indicatif de link à suivre, plutôt qu'un salon. Par exemple, si vous désirez suivre le F1ZPX, il suffit de préciser,
 
-`python /opt/RRFTracker_Spotnik/RRFTracker.py --i2c-port 1 --display ssd1306 --follow F1ZPX`
+`python /opt/RRFDisplay/RRFDisplay.py --i2c-port 1 --display ssd1306 --follow F1ZPX`
 
-Dès lors, le RRFTracker affichera les informations du salon sur lequel se trouvre le link F1ZPX et le suivra automatiquement au grès de ses QSY.
+Dès lors, le RRFDisplay affichera les informations du salon sur lequel se trouvre le link F1ZPX et le suivra automatiquement au grès de ses QSY.
 
 Enfin, si vous voulez le laisser tourner en tache de fond, utilisez la commande `nohup` et l'_esperluette_ ;) Par exemple, 
 
-`nohup python /opt/RRFTracker_Spotnik/RRFTracker.py --i2c-port 1 --display ssd1306 --follow TECHNIQUE &`
+`nohup python /opt/RRFDisplay/RRFDisplay.py --i2c-port 1 --display ssd1306 --follow TECHNIQUE &`
 
 Et voilà ;)
 
@@ -279,11 +279,11 @@ Au cas ou, dans le répertoire `tools/i2c` du projet, se trouve un script shell 
 
 ### Raspberry PI 3
 
-![alt text](https://github.com/armel/RRFTracker_Spotnik/blob/master/doc/RRFTracker_RPI.png)
+![alt text](https://github.com/armel/RRFDisplay/blob/master/doc/RRFDisplay_RPI.png)
 
 ### Orange PI Zero
 
-![alt text](https://github.com/armel/RRFTracker_Spotnik/blob/master/doc/RRFTracker_OPI.png)
+![alt text](https://github.com/armel/RRFDisplay/blob/master/doc/RRFDisplay_OPI.png)
 
 ## Cablage SPI
 
