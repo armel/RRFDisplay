@@ -380,9 +380,9 @@ def extended_config(draw, page):
 
     draw.text((2, 0), u'\ue800', font=icon, fill=get_color('header', 'foreground'))
 
-    w, h = draw.textsize(text='Config Tracker', font=font)
+    w, h = draw.textsize(text='Config Display', font=font)
     tab = (s.device.width - w) / 2
-    draw.text((tab, 4), 'Config Tracker', font=font, fill=get_color('header', 'foreground'))
+    draw.text((tab, 4), 'Config Display', font=font, fill=get_color('header', 'foreground'))
 
     if page == 1:
         sys = {'I2C Port': '', 'I2C Address': '', 'Display': '', 'Width': '', 'Height': ''}
