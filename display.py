@@ -17,9 +17,9 @@ from luma.core import legacy
 
 from PIL import ImageFont
 
-icon = ImageFont.truetype('fonts/fontello.ttf', 14)     # Icon font
-font = ImageFont.truetype('fonts/7x5.ttf', 8)           # Text font
-font_tot = ImageFont.truetype('fonts/astro.ttf', 52)    # Text font
+icon = ImageFont.truetype('./fonts/fontello.ttf', 14)     # Icon font
+font = ImageFont.truetype('./fonts/7x5.ttf', 8)           # Text font
+font_tot = ImageFont.truetype('./fonts/astro.ttf', 52)    # Text font
 
 # Manage color
 def get_color(section, value):
