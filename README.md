@@ -24,6 +24,8 @@ La résolution 128 x 128 en 1.50" est disponible en utilisant des écrans de typ
 
 Ce dispositif peut donc être associé sans (_trop de_) difficulté à un Spotnik Gamma, Delta, etc. afin de profiter d'un minimum de remontée d'informations, à l'image des Hotspots MMDVM type ZUMspot, Jumbo SPOT, etc. si precieux aux porteurs de casques de chantier... j'ai nommé les DMRistes ;)
 
+À noter que vous pouvez installer le RRFDisplay sur un  Raspberry Pi ou un Orange Pi Zero ne disposant pas d'interface Gamma, Beta, Delta ou Zeta. Ce projet fonctionne indépendament de ces interfaces. 
+
 En complément, à noter l'existence du projet [Spotnik2hmi](https://github.com/F8ASB/spotnik2hmi), porté par F8ASB (Juan), F5SWB (Dimitri) et F4ICR (Pascal) et basé sur l'utilisation d'un écran type Nextion. Du fait des caractéristiques beaucoup plus évoluées de ce type d'écrans tactiles, ce projet offre plus de possibilités, notamment en terme d'interactivité (changement de salon, etc.). Je ne peux que vous encourager à le tester, si le QSJ d'un écran Nextion ne vous fait pas peur. 
 
 ## Principe de fonctionnement
@@ -119,12 +121,11 @@ Utilisez l'utilitaire `armbian-config`. Une fois lancé,
 * System
 * Hardware
 * Cochez i2c0
-* Eventuellement, cochez i2c1
 * Save
 
 Rebootez.
 
-Cochez i2c0 et i2c1 peut-être utile pour raccorder 2 écrans.
+> Attention, si vous activez également i2c1, il y aura des conflits avec l'ouverture des GPIO sur la version 3 du Spotnik. Mais si vous utilisez un Orange Pi Zero avec une distribution type Armbian, vous pouvez le faire et racorder 2 écrans en I2C.
 
 ### Vérification
 
