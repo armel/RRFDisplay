@@ -70,7 +70,8 @@ def main(argv):
                     s.room_current = tmp
                     s.callsign = arg
                     s.scan = True
-
+        elif opt in ('--refresh'):
+            s.refresh = float(arg)
         elif opt in ('--latitude'):
             s.latitude = float(arg)
         elif opt in ('--longitude'):

@@ -173,8 +173,8 @@ Display settings:
   --display-theme    set display theme (default=theme.cfg)
 
 Follow settings:
-  --follow           set room (default=RRF, choose between [RRF, TECHNIQUE, INTERNATIONAL, LOCAL, BAVARDAGE, FON]) or callsign to follow'
-  --refresh          set refresh (default=1, in second)'
+  --follow           set room (default=RRF, choose between [RRF, TECHNIQUE, INTERNATIONAL, LOCAL, BAVARDAGE, FON]) or callsign to follow
+  --refresh          set refresh (default=1, in second)
   
 WGS84 settings:
   --latitude         set latitude (default=48.8483808, format WGS84)
