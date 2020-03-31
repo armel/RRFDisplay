@@ -249,8 +249,8 @@ def main(argv):
             sleep = s.main_loop - chrono_time
         else:
             sleep = 0
-        print "Temps d'execution : %.2f %.2f secondes" % (chrono_time, sleep)
-        sys.stdout.flush()
+        #print "Temps d'execution : %.2f %.2f secondes" % (chrono_time, sleep)
+        #sys.stdout.flush()
 
         time.sleep(sleep)
 
