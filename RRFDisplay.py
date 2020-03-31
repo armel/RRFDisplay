@@ -245,8 +245,8 @@ def main(argv):
 
         chrono_stop = time.time()
         chrono_time = chrono_stop - chrono_start
-        if chrono_time < s.main_loop:
-            sleep = s.main_loop - chrono_time
+        if chrono_time < s.refresh:
+            sleep = s.refresh - chrono_time
         else:
             sleep = 0
         #print "Temps d'execution : %.2f %.2f secondes" % (chrono_time, sleep)

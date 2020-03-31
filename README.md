@@ -174,6 +174,7 @@ Display settings:
 
 Follow settings:
   --follow           set room (default=RRF, choose between [RRF, TECHNIQUE, INTERNATIONAL, LOCAL, BAVARDAGE, FON]) or callsign to follow'
+  --refresh          set refresh (default=1, in second)'
   
 WGS84 settings:
   --latitude         set latitude (default=48.8483808, format WGS84)
@@ -194,6 +195,7 @@ Par défaut, sans argument, le RRFDisplay va démarrer avec les paramètres suiv
 - display height = 64
 - display_theme = theme.cfg 
 - follow = RRF
+- refresh = 1
 - latitude = 48.8483808
 - longitude = 2.2704347  
 

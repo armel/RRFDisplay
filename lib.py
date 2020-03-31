@@ -38,6 +38,7 @@ def usage():
     print
     print 'Follow settings :'
     print '  --follow           set room (default=RRF, choose between [RRF, TECHNIQUE, INTERNATIONAL, LOCAL, BAVARDAGE, FON]) or callsign to follow'
+    print '  --refresh          set refresh (default=1, in second)'
     print
     print 'WGS84 settings :'
     print '  --latitude         set latitude (default=48.8483808, format WGS84)'
