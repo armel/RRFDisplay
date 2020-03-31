@@ -896,7 +896,7 @@
 			#address-cells = < 0x01 >;
 			#size-cells = < 0x00 >;
 			phandle = < 0x5c >;
-			clock-frequency = <0x186A0>;
+			clock-frequency = <0x61A80>; 
 		};
 
 		i2c@1c2b000 {
