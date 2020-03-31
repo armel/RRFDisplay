@@ -24,7 +24,7 @@ display_theme = 'theme.cfg'             # Default value !
 follow = 'RRF'                          # Default value !
 latitude = 48.8482855                   # Default value ! Check WGS84 on https://www.coordonnees-gps.fr/
 longitude = 2.2708201                   # Default value ! Check WGS84 on https://www.coordonnees-gps.fr/
-main_loop = .250                        # Main loop tempo
+main_loop = 1.0                         # Main loop tempo
 
 # Set special small bitmap font for clock and cpu
 
