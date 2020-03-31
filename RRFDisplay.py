@@ -109,6 +109,8 @@ def main(argv):
     #print s.room_current
 
     while(True):
+        chrono_start = time.time()
+
         tmp = datetime.datetime.now()
         s.day = tmp.strftime('%Y-%m-%d')
         s.now = tmp.strftime('%H:%M:%S')
@@ -241,7 +243,16 @@ def main(argv):
         else:
             d.display_64()
 
-        time.sleep(0.25)
+        chrono_stop = time.time()
+        chrono_time = chrono_stop - chrono_start
+        if chrono_time < s.main_loop:
+            sleep = s.main_loop - chrono_time
+        else:
+            sleep = 0
+        print "Temps d'execution : %.2f %.2f secondes" % (chrono_time, sleep)
+        sys.stdout.flush()
+
+        time.sleep(sleep)
 
 if __name__ == '__main__':
     try:

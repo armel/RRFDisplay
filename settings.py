@@ -10,7 +10,7 @@ Check video about RRFDisplay on https://www.youtube.com/watch?v=rVW8xczVpEo
 
 # Version
 
-version = '5.0.2'
+version = '5.0.3'
 
 # Default i2c_port, i2c_address, display and room
 
@@ -24,6 +24,7 @@ display_theme = 'theme.cfg'             # Default value !
 follow = 'RRF'                          # Default value !
 latitude = 48.8482855                   # Default value ! Check WGS84 on https://www.coordonnees-gps.fr/
 longitude = 2.2708201                   # Default value ! Check WGS84 on https://www.coordonnees-gps.fr/
+main_loop = .250                        # Main loop tempo
 
 # Set special small bitmap font for clock and cpu
 
