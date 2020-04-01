@@ -148,6 +148,7 @@ def main(argv):
             pass
 
         if rrf_data != '' and rrf_data != rrf_data_old: # Si le flux est valide
+            print "Change"
             rrf_data_old = rrf_data
             data_abstract = rrf_data['abstract'][0]
             data_activity = rrf_data['activity']
@@ -242,8 +243,9 @@ def main(argv):
 
         else: 
             print "No change"
-            sys.stdout.flush()
-            
+        
+        sys.stdout.flush()
+
         # Print screen
         if s.device.height == 128:
             d.display_128()
