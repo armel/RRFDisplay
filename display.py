@@ -124,10 +124,6 @@ def elsewhere(draw, data):
     i = 79
     for d in data:
         d = d.split('/')
-        tmp = d[2].split(':')
-        if len(tmp) == 2:
-            tmp = '00:' + tmp[0] + ':' + tmp[1]
-            d[2] = tmp
 
         if d[0] == '00:00':
             draw.rectangle((21, i - 1, 126, i + 7), fill=get_color('elsewhere', 'background'))
