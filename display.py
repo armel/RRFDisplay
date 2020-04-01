@@ -649,7 +649,7 @@ def display_128():
             '''
             draw.line((0, 40, 127, 40), fill=get_color('header', 'border'))
 
-            if 'Dernier' in s.message[0]:   # Icon clock (DIY...)
+            if s.message[0] is not None and 'Dernier' in s.message[0]:   # Icon clock (DIY...)
                 legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
                 legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
             else:   # Icon stat
