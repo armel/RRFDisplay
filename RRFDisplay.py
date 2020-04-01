@@ -168,8 +168,6 @@ def main(argv):
                     for data in rrf_data['elsewhere'][6]:
                         if data in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
                             tmp = rrf_data['elsewhere'][6][data]
-                            print tmp
-                            sys.stdout.flush()
                             if tmp != 0:
                                 s.transmit_elsewhere = True
                                 s.raptor[i] = l.convert_second_to_time(tmp) + '/' + data[:3] + '/' + l.sanitize_call(rrf_data['elsewhere'][1][data].encode('utf-8')) + '/' + str(rrf_data['elsewhere'][5][data])

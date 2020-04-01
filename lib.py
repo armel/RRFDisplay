@@ -251,9 +251,9 @@ def convert_second_to_time(time):
     seconds = time - (minutes * 60)
 
     if hours == 0:
-        return str('{:0>2d}'.format(int(minutes))) + 'm' + str('{:0>2d}'.format(int(seconds)))
+        return str('{:0>2d}'.format(int(minutes))) + ':' + str('{:0>2d}'.format(int(seconds)))
     else:
-        return str('{:0>2d}'.format(int(hours))) + 'h' + str('{:0>2d}'.format(int(minutes))) + 'm' + str('{:0>2d}'.format(int(seconds)))
+        return str('{:0>2d}'.format(int(hours))) + ':' + str('{:0>2d}'.format(int(minutes))) + ':' + str('{:0>2d}'.format(int(seconds)))
 
 # Convert time to second
 def convert_time_to_second(time):
@@ -263,6 +263,16 @@ def convert_time_to_second(time):
         format = [60, 1]        
     
     return sum([a * b for a, b in zip(format, map(int, time.split(':')))])
+
+# Convert time to second
+def convert_time_to_string(time):
+    if len(time) == 5:
+        time = time.replace(':', 'm ') + 's'
+    else:
+        time = time.replace(':', 'h ', 1)
+        time = time.replace(':', 'm ', 1) + 's'
+
+    return time
 
 # Sanitize call
 def sanitize_call(call):
