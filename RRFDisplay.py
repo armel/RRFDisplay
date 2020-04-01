@@ -229,7 +229,10 @@ def main(argv):
                 s.message[0] = 'Links total ' + str(data_abstract[u'Links connectés'])
                 
             elif(s.seconde < 40):   # Total emission
-                s.message[0] = 'BF total ' + data_abstract[u'Emission cumulée']
+                tmp = convert_time_to_string(data_abstract[u'Emission cumulée'])
+                if 'h' in tmp:
+                    tmp = tmp[0:6]
+                s.message[0] = 'BF total ' + tmp
 
             elif(s.seconde < 50):   # Last TX
                 s.message[0] = 'Dernier ' + data_last[0][u'Heure']
