@@ -229,7 +229,7 @@ def main(argv):
                 s.message[0] = 'Links total ' + str(data_abstract[u'Links connectés'])
                 
             elif(s.seconde < 40):   # Total emission
-                tmp = convert_time_to_string(data_abstract[u'Emission cumulée'])
+                tmp = l.convert_time_to_string(data_abstract[u'Emission cumulée'])
                 if 'h' in tmp:
                     tmp = tmp[0:6]
                 s.message[0] = 'BF total ' + tmp
