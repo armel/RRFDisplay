@@ -267,7 +267,7 @@ def convert_time_to_second(time):
 # Convert time to second
 def convert_time_to_string(time):
     if len(time) == 5:
-        time = time.replace(':', 'm ') + 's'
+        time = '    ' + time.replace(':', 'm ') + 's'
     else:
         time = time.replace(':', 'h ', 1)
         time = time.replace(':', 'm ', 1) + 's'
