@@ -609,9 +609,15 @@ def display_128():
         draw.rectangle((0, 0, 127, s.device.height - 1), fill=get_color('screen', 'background'))
         draw.rectangle((0, 1, 127, 13), fill=get_color('header', 'background'))
 
+        draw.line((0, 0, 0, 127), fill=get_color('header', 'border'))
+        draw.line((7, 0, 7, 127), fill=get_color('header', 'border'))
+        draw.line((14, 0, 14, 127), fill=get_color('header', 'border'))
+
+        '''
         for i in xrange(0, 128, 1):
             draw.point((i, 0), fill=get_color('header', 'border'))
             draw.point((i, 14), fill=get_color('header', 'border'))
+        '''
 
         # System log extended
         if s.transmit is False and s.minute % 2 == 0 and s.seconde < 10:
