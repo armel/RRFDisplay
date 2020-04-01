@@ -272,6 +272,8 @@ def convert_time_to_string(time):
         time = time.replace(':', 'h ', 1)
         time = time.replace(':', 'm ', 1) + 's'
 
+    print time
+
     return time
 
 # Sanitize call
