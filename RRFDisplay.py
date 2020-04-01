@@ -148,7 +148,6 @@ def main(argv):
             pass
 
         if rrf_data != '' and rrf_data != rrf_data_old: # Si le flux est valide
-            print "Change"
             rrf_data_old = rrf_data
             data_abstract = rrf_data['abstract'][0]
             data_activity = rrf_data['activity']
@@ -239,12 +238,12 @@ def main(argv):
                 if s.scan is True:
                     s.message[0] = 'Suivi de ' + s.callsign
                 else:
-                    s.message[0] = 'Salon ' + s.room_current[:3]         
+                    s.message[0] = 'Salon ' + s.room_current[:3]
 
-        else: 
-            print "No change"
-        
-        sys.stdout.flush()
+        chrono_stop = time.time()
+        chrono_time = chrono_stop - chrono_start
+
+        print "Temps d'execution : %.2f %.2f secondes" % (chrono_time, sleep)
 
         # Print screen
         if s.device.height == 128:
@@ -258,8 +257,9 @@ def main(argv):
             sleep = s.refresh - chrono_time
         else:
             sleep = 0
-        #print "Temps d'execution : %.2f %.2f secondes" % (chrono_time, sleep)
-        #sys.stdout.flush()
+        print "Temps d'execution : %.2f %.2f secondes" % (chrono_time, sleep)
+        print "------"
+        sys.stdout.flush()
 
         time.sleep(sleep)
 
