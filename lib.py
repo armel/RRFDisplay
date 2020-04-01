@@ -395,6 +395,7 @@ def get_propagation():
 
         for value in solar_data.xpath('/solar/solardata/geomagfield'):
             s.solar_value['Geomag Field'] = value.text.strip()
+            s.solar_value['Geomag Field'] = s.solar_value['Geomag Field'].title()
         for value in solar_data.xpath('/solar/solardata/signalnoise'):
             s.solar_value['Signal Noise'] = value.text.strip()
 
