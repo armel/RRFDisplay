@@ -139,8 +139,8 @@ qso_hour = [0] * 24         # QSO list for histogramm
 transmit = True             # Detect transmit
 transmit_elsewhere = True   # Detect transmit elsewhere
 history = dict()            # History dict
-message = [None] * 10       # Message list
-raptor = [None] * 5         # Message list
+message = [''] * 10       # Message list
+raptor = [''] * 5         # Message list
 
 # Set special color for SSD1327
 
