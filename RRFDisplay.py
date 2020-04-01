@@ -243,7 +243,7 @@ def main(argv):
         chrono_stop = time.time()
         chrono_time = chrono_stop - chrono_start
 
-        print "Temps d'execution : %.2f %.2f secondes" % (chrono_time)
+        print "Temps d'execution : %.2f secondes" % (chrono_time)
 
         # Print screen
         if s.device.height == 128:
