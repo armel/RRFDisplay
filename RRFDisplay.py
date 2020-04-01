@@ -230,6 +230,7 @@ def main(argv):
                 
             elif(s.seconde < 40):   # Total emission
                 s.message[0] = 'BF total ' + data_abstract[u'Emission cumulée']
+                s.message[0] = s.message[0].replace(':', 'h ')
 
             elif(s.seconde < 50):   # Last TX
                 s.message[0] = 'Dernier ' + data_last[0][u'Heure']
