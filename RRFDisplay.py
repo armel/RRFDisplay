@@ -170,9 +170,9 @@ def main(argv):
                             tmp = rrf_data['elsewhere'][6][data]
                             if tmp != 0:
                                 s.transmit_elsewhere = True
-                                s.raptor[i] = l.convert_second_to_time(tmp) + '/' + data[:3] + '/' + l.sanitize_call(rrf_data['elsewhere'][1][data].encode('utf-8')) + '/' + str(rrf_data['elsewhere'][5][data])
+                                s.raptor[i] = l.convert_second_to_time(tmp) + '/' + l.convert_time_to_string(data[:3]) + '/' + l.sanitize_call(rrf_data['elsewhere'][1][data].encode('utf-8')) + '/' + str(rrf_data['elsewhere'][5][data])
                             else:
-                                s.raptor[i] = l.convert_second_to_time(tmp) + '/' + data[:3] + '/' + rrf_data['elsewhere'][3][data] + '/' + str(rrf_data['elsewhere'][5][data])
+                                s.raptor[i] = l.convert_second_to_time(tmp) + '/' + l.convert_time_to_string(data[:3]) + '/' + rrf_data['elsewhere'][3][data] + '/' + str(rrf_data['elsewhere'][5][data])
 
                             i += 1
                 except:
