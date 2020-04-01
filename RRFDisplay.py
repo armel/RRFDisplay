@@ -240,11 +240,6 @@ def main(argv):
                 else:
                     s.message[0] = 'Salon ' + s.room_current[:3]
 
-        chrono_stop = time.time()
-        chrono_time = chrono_stop - chrono_start
-
-        print "Temps d'execution : %.2f secondes" % (chrono_time)
-
         # Print screen
         if s.device.height == 128:
             d.display_128()
@@ -257,9 +252,8 @@ def main(argv):
             sleep = s.refresh - chrono_time
         else:
             sleep = 0
-        print "Temps d'execution : %.2f %.2f secondes" % (chrono_time, sleep)
-        print "------"
-        sys.stdout.flush()
+        #print "Temps d'execution : %.2f %.2f secondes" % (chrono_time, sleep)
+        #sys.stdout.flush()
 
         time.sleep(sleep)
 
