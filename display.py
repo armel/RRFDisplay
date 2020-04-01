@@ -130,7 +130,7 @@ def elsewhere(draw, data):
             if 'h' in d[2]:
                 draw.text((28, i), d[2], font=font, fill=get_color('elsewhere', 'foreground'))
             else:
-                draw.text((50, i), d[2], font=font, fill=get_color('elsewhere', 'foreground'))
+                draw.text((49, i), d[2], font=font, fill=get_color('elsewhere', 'foreground'))
 
             draw.text((100, i), d[3], font=font, fill=get_color('elsewhere', 'foreground'))
         else:
