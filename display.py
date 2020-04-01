@@ -647,7 +647,7 @@ def display_128():
             for i in xrange(0, 128, 2):     # Horizontal
                 draw.point((i, 40), fill=get_color('screen', 'border'))    # Zone haut | Zone Histogramme - TOT
             '''
-            draw.line((0, 40, 127, 40), fill=get_color('screen', 'border'))
+            draw.line((0, 40, 127, 40), fill=get_color('header', 'border'))
 
             if 'Dernier' in s.message[0]:   # Icon clock (DIY...)
                 legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
