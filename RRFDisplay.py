@@ -104,6 +104,7 @@ def main(argv):
     s.timestamp_start = time.time()
 
     rrf_data = ''
+    rrf_data_old = ''
 
     #print s.scan
     #print s.callsign
@@ -146,7 +147,8 @@ def main(argv):
         except:
             pass
 
-        if rrf_data != '': # Si le flux est valide
+        if rrf_data != '' and rrf_data != rrf_data_old: # Si le flux est valide
+            rrf_data_old = rrf_data
             data_abstract = rrf_data['abstract'][0]
             data_activity = rrf_data['activity']
             data_transmit = rrf_data['transmit'][0]
@@ -238,6 +240,10 @@ def main(argv):
                 else:
                     s.message[0] = 'Salon ' + s.room_current[:3]         
 
+        else: 
+            print "No change"
+            sys.stdout.flush()
+            
         # Print screen
         if s.device.height == 128:
             d.display_128()
