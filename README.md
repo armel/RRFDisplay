@@ -228,6 +228,8 @@ Point important, il est aussi possible de préciser un indicatif de link à suiv
 
 Dès lors, le RRFDisplay affichera les informations du salon sur lequel se trouvre le link F1ZPX et le suivra automatiquement au grès de ses QSY.
 
+> Si vous avez plusieurs links avec le même call, vous pouvez préciser plus finement le nom du link à suivre en précisant, par exemple --follow '(75) F1ZPX V'
+
 Enfin, si vous voulez le laisser tourner en tache de fond, utilisez la commande `nohup` et l'_esperluette_ ;) Par exemple, 
 
 `nohup python /opt/RRFDisplay/RRFDisplay.py --i2c-port 1 --display ssd1306 --follow TECHNIQUE &`
