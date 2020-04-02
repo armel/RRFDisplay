@@ -618,28 +618,29 @@ def display_128():
             draw.point((i, 14), fill=get_color('header', 'border'))
         '''
 
-        # System log extended
-        if s.transmit is False and s.minute % 2 == 0 and s.seconde < 10:
-            extended_system(draw, 3)
+        if s.transmit is False and s.minute % 2 == 0:
+            # System log extended
+            if s.seconde < 10:
+                extended_system(draw, 3)
 
-        # Config log extended
-        elif s.transmit is False and s.minute % 2 == 0 and s.seconde < 20:
-            extended_config(draw, 3)
+            # Config log extended
+            elif s.seconde < 20:
+                extended_config(draw, 3)
 
-        # Call log extended
-        elif s.transmit is False and len(s.call) >=5 and s.minute % 2 == 0 and s.seconde < 30:
-            extended_call(draw, len(s.call))
+            # Call log extended
+            elif s.seconde < 30 and len(s.call) >= 5:
+                extended_call(draw, len(s.call))
 
-        # Best log extended
-        elif s.transmit is False and len(s.best) >= 5 and s.minute % 2 == 0 and s.seconde < 40:
-            extended_best(draw, len(s.best))
+            # Best log extended
+            elif s.seconde < 40 and len(s.best) >= 5:
+                extended_best(draw, len(s.best))
 
-        # Propag extended
-        elif s.transmit is False and  s.minute % 2 == 0 and s.seconde < 50:
-            extended_propagation(draw, 3)
-    
-        elif s.transmit is False and  s.minute % 2 == 0 and s.seconde >= 50:
-            extended_propagation(draw, 4)
+            # Propag extended
+            elif s.seconde < 50:
+                extended_propagation(draw, 3)
+        
+            elif s.seconde >= 50:
+                extended_propagation(draw, 4)
 
         # If not extended
         else:
@@ -657,10 +658,12 @@ def display_128():
                 legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
 
             # Icon talk
+            '''
             if s.transmit is True:
                 draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
                 distance(draw)
-
+            '''
+                
             # Print data
             i = 4
             j = 0
@@ -693,6 +696,9 @@ def display_128():
                     j += 1
 
             if s.transmit is True and s.duration > 0:
+                # Draw icon and distance
+                draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
+                distance(draw)
                 # Draw tot
                 tot(draw, legacy, s.duration, 69)
                 if s.duration < 10:
