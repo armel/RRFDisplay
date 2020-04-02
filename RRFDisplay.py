@@ -20,13 +20,13 @@ import getopt
 import configparser as cp
 
 from luma.core.interface.serial import i2c, spi
+from luma.core.render import canvas
+
 from luma.oled.device import sh1106
 from luma.oled.device import ssd1306
 from luma.oled.device import ssd1327
 from luma.oled.device import ssd1351
 from luma.lcd.device  import st7735
-
-from luma.core.render import canvas
 
 def main(argv):
 
