@@ -10,17 +10,17 @@ Check video about RRFDisplay on https://www.youtube.com/watch?v=rVW8xczVpEo
 
 # Version
 
-version = '5.1.0'
+version = '5.1.1'
 
 # Default i2c_port, i2c_address, display and room
 
 interface = 'i2c'                       # Default value !
 i2c_port = 0                            # Default value ! Check with i2detect
 i2c_address = 0x3C                      # Default value ! Check with i2detect
-display = 'sh1106'                      # Default value !
+display = 'ssd1327'                     # Default value !
 display_width = 128                     # Default value !
-display_height = 64                     # Default value !
-display_theme = 'theme.cfg'             # Default value ! 
+display_height = 128                    # Default value !
+display_theme = 'gray.cfg'              # Default value ! 
 follow = 'RRF'                          # Default value !
 refresh = 1.0                           # Default value !
 latitude = 48.8482855                   # Default value ! Check WGS84 on https://www.coordonnees-gps.fr/
