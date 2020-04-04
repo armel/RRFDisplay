@@ -319,8 +319,7 @@ def get_propagation():
     # Check file
     if os.path.isfile(s.solar_file):
         modify = datetime.fromtimestamp(os.path.getmtime(s.solar_file)).strftime("%Y-%m-%d %H:%M:%S")
-
-    print today, modify
+        print today, modify
 
     if not os.path.isfile(s.solar_file) or today > modify:     # if necessary update file
         # Request HTTP on hamqsl
