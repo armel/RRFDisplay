@@ -324,11 +324,11 @@ def get_propagation():
         try:
             r = requests.get(s.solar_url, verify=False, timeout=0.30)
         except requests.exceptions.ConnectionError as errc:
-            #print ('Error Connecting:', errc)
+            print ('Error Connecting:', errc)
             solar_data = etree.parse(s.solar_file)
             pass
         except requests.exceptions.Timeout as errt:
-            #print ('Timeout Error:', errt)
+            print ('Timeout Error:', errt)
             solar_data = etree.parse(s.solar_file)
             pass
 
