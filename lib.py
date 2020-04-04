@@ -322,7 +322,7 @@ def get_propagation():
     if not os.path.isfile(s.solar_file) or today > modify:     # if necessary update file
         # Request HTTP on hamqsl
         try:
-            r = requests.get(s.solar_url, verify=False, timeout=0.30)
+            r = requests.get(s.solar_url, verify=False, timeout=0.50)
         except requests.exceptions.ConnectionError as errc:
             print ('Error Connecting:', errc)
             solar_data = etree.parse(s.solar_file)
