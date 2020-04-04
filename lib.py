@@ -311,7 +311,8 @@ def get_propagation():
     solar_data = ''
 
     # Get date
-    now = datetime.now() - timedelta(minutes=1)
+    #now = datetime.now() - timedelta(minutes=1)
+    now = datetime.now()
     today = format(now, "%Y-%m-%d %H:%M:%S")
     year = format(now, "%Y")
 
