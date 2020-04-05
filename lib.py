@@ -314,7 +314,7 @@ def scan(call):
 def get_solar(action = 'refresh'):
     solar_data = ''
 
-    if acton == 'refresh':
+    if action == 'refresh':
         # Get date
         now = datetime.now() - timedelta(minutes=60)
         today = format(now, "%Y-%m-%d %H:%M:%S")
