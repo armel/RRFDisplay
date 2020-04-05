@@ -129,9 +129,7 @@ def main(argv):
         if s.minute == 0 or not s.solar_value: # Update solar propagation
             l.get_solar()
 
-        if s.minute % 2 == 0:
-            print s.minute
-            print 'ici'
+        if s.seconde % 45 == 0:
             l.get_cluster()
 
         url = s.room[s.room_current]['url']
