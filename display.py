@@ -669,15 +669,15 @@ def display_128():
 
             # Propag extended
             elif s.seconde < 40 and s.solar_value:
-                l.get_solar()
+                l.get_solar('read')
                 extended_solar(draw, 3)
         
             elif s.seconde < 48 and s.solar_value:
-                l.get_solar()
+                l.get_solar('read')
                 extended_solar(draw, 4)
             
             elif s.seconde >= 48 and s.cluster_value:
-                l.get_cluster()
+                l.get_cluster('read')
                 extended_cluster(draw, 1)
 
         # If not extended
