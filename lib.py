@@ -446,10 +446,10 @@ def get_cluster():
         try:
             r = requests.get(s.cluster_url, verify=False, timeout=1)
         except requests.exceptions.ConnectionError as errc:
-            print ('Error Connecting:', errc)
+            #print ('Error Connecting:', errc)
             pass
         except requests.exceptions.Timeout as errt:
-            print ('Timeout Error:', errt)
+            #print ('Timeout Error:', errt)
             pass
 
         # Check stream validity
