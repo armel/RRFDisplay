@@ -318,7 +318,6 @@ def get_solar():
     #now = datetime.now() - timedelta(minutes=1)
     now = datetime.now()
     today = format(now, "%Y-%m-%d %H:%M:%S")
-    year = format(now, "%Y")
 
     # Check file
     if os.path.isfile(s.solar_file):
@@ -328,6 +327,7 @@ def get_solar():
         # Request HTTP on hamqsl
         try:
             r = requests.get(s.solar_url, verify=False, timeout=1)
+            print 'HTTP Solar'
         except requests.exceptions.ConnectionError as errc:
             #print ('Error Connecting:', errc)
             solar_data = etree.parse(s.solar_file)
@@ -343,6 +343,7 @@ def get_solar():
             f = open(s.solar_file, 'w')
             f.write(r.content)
             f.close
+            print 'Write Solar'
         except:
             solar_data = etree.parse(s.solar_file)
             pass
@@ -431,7 +432,6 @@ def get_cluster():
     # Get date
     now = datetime.now()
     today = format(now, "%Y-%m-%d %H:%M:%S")
-    year = format(now, "%Y")
 
     with open('data/band.dat', 'r') as band_file:
         s.cluster_band = band_file.read()
@@ -445,7 +445,7 @@ def get_cluster():
         # Request HTTP on hamqsl
         try:
             r = requests.get(s.cluster_url, verify=False, timeout=1)
-            print 'Lecture'
+            print 'HTTP Cluster'
         except requests.exceptions.ConnectionError as errc:
             #print ('Error Connecting:', errc)
             pass
@@ -459,6 +459,7 @@ def get_cluster():
             f = open(s.cluster_file, 'w')
             f.write(r.content)
             f.close
+            print 'Write Cluster'
         except:
             with open(s.cluster_file) as f:
                 cluster_data = json.load(f)
