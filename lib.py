@@ -12,6 +12,7 @@ import os
 import requests
 import sys
 import getopt
+import json
 
 import settings as s
 
@@ -437,7 +438,6 @@ def get_cluster():
         with open('data/band.dat', 'r') as band_file:
             band = band_file.read()
         s.cluster_url += band
-        print band
         # Request HTTP on hamqsl
         try:
             r = requests.get(s.cluster_url, verify=False, timeout=1)
