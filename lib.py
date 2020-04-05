@@ -13,6 +13,9 @@ import requests
 import sys
 import getopt
 import json
+import urllib3
+
+urllib3.disable_warnings()
 
 import settings as s
 
