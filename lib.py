@@ -462,7 +462,8 @@ def get_cluster():
         cluster_data = json.load(s.cluster_file)
 
     if cluster_data != '': # If valid stream
-        print cluster_data
+        print len(cluster_data)
+        print cluster_data[0]
         exit()
 
     return True  
