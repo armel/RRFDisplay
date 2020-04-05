@@ -651,7 +651,6 @@ def display_128():
         '''
 
         if s.transmit is False and s.minute % 2 == 0:
-            '''
             # System log extended
             if s.seconde < 8:
                 extended_system(draw, 3)
@@ -677,8 +676,6 @@ def display_128():
             
             elif s.seconde >= 48:
                 extended_cluster(draw, 1)
-            '''
-            extended_cluster(draw, 1)
 
         # If not extended
         else:
