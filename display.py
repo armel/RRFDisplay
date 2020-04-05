@@ -651,6 +651,7 @@ def display_128():
         '''
 
         if s.transmit is False and s.minute % 2 == 0:
+            '''
             # System log extended
             if s.seconde < 8:
                 extended_system(draw, 3)
@@ -677,6 +678,19 @@ def display_128():
                 extended_solar(draw, 4)
             
             elif s.seconde >= 48 and s.cluster_value:
+                l.get_cluster('read')
+                extended_cluster(draw, 1)
+            '''
+
+            if s.seconde < 20 and s.solar_value:
+                l.get_solar('read')
+                extended_solar(draw, 3)
+        
+            elif s.seconde < 40 and s.solar_value:
+                l.get_solar('read')
+                extended_solar(draw, 4)
+            
+            elif s.seconde >= 40 and s.cluster_value:
                 l.get_cluster('read')
                 extended_cluster(draw, 1)
 

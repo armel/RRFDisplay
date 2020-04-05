@@ -337,7 +337,10 @@ def get_solar(action = 'refresh'):
 
     else:
         if os.path.isfile(s.solar_file):
-            solar_data = etree.parse(s.solar_file)
+            try:
+                solar_data = etree.parse(s.solar_file)
+            except:
+                solar_data = ''
 
         if solar_data != '': # If valid stream
             # Page 1
@@ -447,8 +450,11 @@ def get_cluster(action = 'refresh'):
 
     else:
         if os.path.isfile(s.cluster_file):
-            with open(s.cluster_file) as f:
-                cluster_data = json.load(f)
+            try:
+                with open(s.cluster_file) as f:
+                    cluster_data = json.load(f)
+            except:
+                cluster_data = ''
 
         if cluster_data != '': # If valid stream
             limit = len(cluster_data)
