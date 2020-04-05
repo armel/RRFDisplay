@@ -512,7 +512,7 @@ def extended_solar(draw, page):
             i += 10
 
 # Print cluster
-def extended_solar(draw, page):
+def extended_cluster(draw, page):
     if s.device.height == 128:
         draw.rectangle((0, 1, s.device.height - 1, 13), fill=get_color('header', 'background'))
 
