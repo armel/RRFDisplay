@@ -455,10 +455,12 @@ def get_cluster():
             f.write(r.content)
             f.close
         except:
-            cluster_data = json.load(s.cluster_file)
+            with open(s.cluster_file) as f:
+                cluster_data = json.load(f)
             pass
     else:
-        cluster_data = json.load(s.cluster_file)
+        with open(s.cluster_file) as f:
+            cluster_data = json.load(f)
 
     if cluster_data != '': # If valid stream
         limit = len(cluster_data)
