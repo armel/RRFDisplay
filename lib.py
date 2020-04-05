@@ -464,9 +464,7 @@ def get_cluster():
     if cluster_data != '': # If valid stream
         limit = len(cluster_data)
         for item in xrange(0, limit):
-            print s.cluster_exclude[band]
-            print cluster_data[item][u'freq'], cluster_data[item][u'freq']+1
-            if cluster_data[item][u'freq'] != s.cluster_exclude[band]:
+            if cluster_data[item][u'freq'] not in s.cluster_exclude[band]:
                 print cluster_data[item][u'comment'] + ' ' + cluster_data[item][u'call'] + ' ' + cluster_data[item][u'freq'] + ' ' + cluster_data[item][u'dxcall']
         exit()
 
