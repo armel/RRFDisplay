@@ -130,6 +130,7 @@ def main(argv):
             l.get_solar()
 
         if s.minute % 2 == 0:
+            print s.minute
             print 'ici'
             l.get_cluster()
 
