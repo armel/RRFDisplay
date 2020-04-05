@@ -425,7 +425,6 @@ def get_cluster():
     cluster_data = ''
 
     # Get date
-    #now = datetime.now() - timedelta(minutes=1)
     now = datetime.now()
     today = format(now, "%Y-%m-%d %H:%M:%S")
     year = format(now, "%Y")
@@ -466,9 +465,7 @@ def get_cluster():
         indice = 0
         for item in xrange(0, limit):
             if cluster_data[item][u'freq'] not in s.cluster_exclude[band]:
-                s.cluster_value[indice] = cluster_data[item][u'call'] + ' ' + cluster_data[item][u'freq']
+                s.cluster_value[indice] = cluster_data[item][u'call'] + ' ' + cluster_data[item][u'freq'] + ' ' + cluster_data[item][u'dxcall']
                 indice += 1
-        print s.cluster_value
-        exit()
 
     return True  

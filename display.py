@@ -432,7 +432,7 @@ def extended_config(draw, page):
         else:
             i += 10
 
-# Print config
+# Print solar propagation
 def extended_solar(draw, page):
     if s.device.height == 128:
         draw.rectangle((0, 1, s.device.height - 1, 13), fill=get_color('header', 'background'))
@@ -506,6 +506,33 @@ def extended_solar(draw, page):
 
     for j in value_order:
         label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), j, value[j])
+        if s.device.height == 128:
+            i += 11
+        else:
+            i += 10
+
+# Print cluster
+def extended_solar(draw, page):
+    if s.device.height == 128:
+        draw.rectangle((0, 1, s.device.height - 1, 13), fill=get_color('header', 'background'))
+
+    draw.text((2, 0), u'\ue803', font=icon, fill=get_color('header', 'foreground'))
+
+    w, h = draw.textsize(text='Cluster', font=font)
+    tab = (s.device.width - w) / 2
+    draw.text((tab, 4), 'Cluster', font=font, fill=get_color('header', 'foreground'))
+
+    if page == 1:
+        position = 60
+
+    if s.device.height == 128:
+        i = 17
+    else:
+        i = 16
+
+    for j in s.cluster_value:
+        tmp = s.cluster_value[j].split(' ')
+        label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), tmp[1], tmp[0])
         if s.device.height == 128:
             i += 11
         else:
@@ -620,27 +647,30 @@ def display_128():
 
         if s.transmit is False and s.minute % 2 == 0:
             # System log extended
-            if s.seconde < 10:
+            if s.seconde < 8:
                 extended_system(draw, 3)
 
             # Config log extended
-            elif s.seconde < 20:
+            elif s.seconde < 16:
                 extended_config(draw, 3)
 
             # Call log extended
-            elif s.seconde < 30 and len(s.call) >= 5:
+            elif s.seconde < 24 and len(s.call) >= 5:
                 extended_call(draw, len(s.call))
 
             # Best log extended
-            elif s.seconde < 40 and len(s.best) >= 5:
+            elif s.seconde < 32 and len(s.best) >= 5:
                 extended_best(draw, len(s.best))
 
             # Propag extended
-            elif s.seconde < 50:
+            elif s.seconde < 40:
                 extended_solar(draw, 3)
         
-            elif s.seconde >= 50:
+            elif s.seconde < 48:
                 extended_solar(draw, 4)
+
+            elif s.seconde > 48:
+                extended_cluster(draw, 1)
 
         # If not extended
         else:

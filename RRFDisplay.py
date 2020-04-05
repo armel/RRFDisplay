@@ -129,6 +129,9 @@ def main(argv):
         if s.minute == 0 or not s.solar_value: # Update solar propagation
             l.get_solar()
 
+        if s.minute % 2 == 0:
+            l.get_cluster()
+
         url = s.room[s.room_current]['url']
 
         # Requete HTTP vers le flux json du salon produit par le RRFDisplay 
@@ -242,8 +245,6 @@ def main(argv):
                     s.message[0] = 'Suivi de ' + s.callsign
                 else:
                     s.message[0] = 'Salon ' + s.room_current[:3]
-
-        l.get_cluster()
 
         # Print screen
         if s.device.height == 128:
