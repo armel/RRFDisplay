@@ -172,3 +172,15 @@ cluster_url = 'http://www.dxcluster.co.uk/api/data_band/'
 cluster_file = './data/cluster.json'
 cluster_value = {}
 cluster_band = 80
+cluster_exclude = {
+    '6': '50313',
+    '10': '28074',
+    '12': '24915',
+    '15': '21074',
+    '17': '18100',
+    '20': '14074',
+    '30': '10136',
+    '40': '7074',
+    '80': '3573',
+    '160': '1840'
+}
