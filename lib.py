@@ -413,8 +413,12 @@ def get_solar(action = 'refresh'):
             for value in solar_data.xpath('/solar/solardata/calculatedvhfconditions/phenomenon[@name="E-Skip" and @location="north_america"]'):
                 s.solar_value['E-Skip NA 2m'] = value.text.strip()
                 s.solar_value['E-Skip NA 2m'] = s.solar_value['E-Skip NA 2m'].replace('Band ', '')
+        
+            print 'Solar Read Success'
+
         else:
             s.solar_value.clear()
+            print 'Solar Read Failed'
 
     return True
 
@@ -465,7 +469,9 @@ def get_cluster(action = 'refresh'):
                     indice += 1
                     if indice == 10:
                         break
+            print 'Cluster Read Success'
         else:
             s.cluster_value.clear()
+            print 'Cluster Read Failded'
 
     return True  
