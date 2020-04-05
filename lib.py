@@ -465,8 +465,8 @@ def get_cluster():
         limit = len(cluster_data)
         for item in xrange(0, limit):
             if cluster_data[item][u'freq'] not in s.cluster_exclude[band]:
-                cluster_value.append(cluster_data[item][u'call'] + ' ' + cluster_data[item][u'freq'])
-        print cluster_value
+                s.cluster_value.append(cluster_data[item][u'call'] + ' ' + cluster_data[item][u'freq'])
+        print s.cluster_value
         exit()
 
     return True  
