@@ -420,7 +420,7 @@ def get_solar(action = 'refresh'):
 def get_cluster(action = 'refresh'):
     cluster_data = ''
 
-    if acton == 'refresh':
+    if action == 'refresh':
         # Get date
         now = datetime.now() - timedelta(minutes=2)
         today = format(now, "%Y-%m-%d %H:%M:%S")
