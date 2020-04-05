@@ -668,13 +668,16 @@ def display_128():
                 extended_best(draw, len(s.best))
 
             # Propag extended
-            elif s.seconde < 40:
+            elif s.seconde < 40 and s.solar_value:
+                l.get_solar()
                 extended_solar(draw, 3)
         
-            elif s.seconde < 48:
+            elif s.seconde < 48 and s.solar_value:
+                l.get_solar()
                 extended_solar(draw, 4)
             
-            elif s.seconde >= 48:
+            elif s.seconde >= 48 and s.cluster_value:
+                l.get_cluster()
                 extended_cluster(draw, 1)
 
         # If not extended
