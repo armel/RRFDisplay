@@ -100,6 +100,11 @@ def main(argv):
     s.theme = cp.ConfigParser()
     s.theme.read('./themes/' + s.display_theme)
 
+    # Lecture initiale de la progation et du cluster
+
+    l.get_solar()
+    l.get_cluster()
+
     # Boucle principale
     s.timestamp_start = time.time()
 
@@ -126,11 +131,10 @@ def main(argv):
                 #print s.now, tmp
                 s.room_current = tmp
 
-        if s.minute == 0 or not s.solar_value or not s.cluster_value: # Update solar propagation and cluster
+        if s.minute == 0: # Update solar propagation
             l.get_solar()
-            l.get_cluster()
 
-        if s.seconde == 0:
+        if s.seconde == 30: #Update cluster
             l.get_cluster()
 
         url = s.room[s.room_current]['url']
