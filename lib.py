@@ -431,14 +431,14 @@ def get_cluster():
     year = format(now, "%Y")
 
     with open('data/band.dat', 'r') as band_file:
-        band = band_file.read()
+        s.cluster_band = band_file.read()
 
     # Check file
     if os.path.isfile(s.cluster_file):
         modify = datetime.fromtimestamp(os.path.getmtime(s.cluster_file)).strftime("%Y-%m-%d %H:%M:%S")
 
     if not os.path.isfile(s.cluster_file) or today > modify:     # if necessary update file
-        s.cluster_url += band
+        s.cluster_url += s.cluster_band
         # Request HTTP on hamqsl
         try:
             r = requests.get(s.cluster_url, verify=False, timeout=1)
@@ -467,8 +467,10 @@ def get_cluster():
         limit = len(cluster_data)
         indice = 0
         for item in xrange(0, limit):
-            if cluster_data[item][u'freq'] not in s.cluster_exclude[band]:
+            if cluster_data[item][u'freq'] not in s.cluster_exclude[s.cluster_band]:
                 s.cluster_value[indice] = cluster_data[item][u'call'] + ' ' + cluster_data[item][u'freq'] + ' ' + cluster_data[item][u'dxcall']
                 indice += 1
+                if indice == 10:
+                    break
 
     return True  

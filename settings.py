@@ -171,7 +171,7 @@ solar_value = {}
 cluster_url = 'http://www.dxcluster.co.uk/api/data_band/'
 cluster_file = './data/cluster.json'
 cluster_value = {}
-cluster_band = 80
+cluster_band = 10
 cluster_exclude = {
     '6': ['50313'],
     '10': ['28074', '28080'],
