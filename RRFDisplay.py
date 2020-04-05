@@ -126,10 +126,11 @@ def main(argv):
                 #print s.now, tmp
                 s.room_current = tmp
 
-        if s.minute == 0 or not s.solar_value: # Update solar propagation
+        if s.minute == 0 or not s.solar_value or not s.cluster_value: # Update solar propagation and cluster
             l.get_solar()
+            l.get_cluster()
 
-        if s.seconde == 0:
+        if s.sconde == 0:
             l.get_cluster()
 
         url = s.room[s.room_current]['url']
