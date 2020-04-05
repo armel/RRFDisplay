@@ -523,7 +523,7 @@ def extended_cluster(draw, page):
     draw.text((tab, 4), 'Cluster' + s.cluster_band + 'M', font=font, fill=get_color('header', 'foreground'))
 
     if page == 1:
-        position = 48
+        position = 42
 
     if s.device.height == 128:
         i = 17
