@@ -243,7 +243,7 @@ def main(argv):
                 else:
                     s.message[0] = 'Salon ' + s.room_current[:3]
 
-        l.get_cluset()
+        l.get_cluster()
 
         # Print screen
         if s.device.height == 128:
