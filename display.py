@@ -433,7 +433,7 @@ def extended_config(draw, page):
             i += 10
 
 # Print config
-def extended_propagation(draw, page):
+def extended_solar(draw, page):
     if s.device.height == 128:
         draw.rectangle((0, 1, s.device.height - 1, 13), fill=get_color('header', 'background'))
 
@@ -637,10 +637,10 @@ def display_128():
 
             # Propag extended
             elif s.seconde < 50:
-                extended_propagation(draw, 3)
+                extended_solar(draw, 3)
         
             elif s.seconde >= 50:
-                extended_propagation(draw, 4)
+                extended_solar(draw, 4)
 
         # If not extended
         else:

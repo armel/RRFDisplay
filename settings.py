@@ -160,8 +160,15 @@ hour = ''
 minute = ''
 seconde = ''
 
-# Set propagation
+# Set solar
 
 solar_url = 'http://www.hamqsl.com/solarxml.php'
 solar_file = './data/solar.xml'
 solar_value = {}
+
+# Set cluster
+
+cluster_url = 'https://www.dxcluster.co.uk/api/data_band/'
+cluster_file = './data/cluster.json'
+cluster_value = {}
+cluster_band = 80

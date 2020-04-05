@@ -305,9 +305,9 @@ def scan(call):
     
     return False
 
-# Get propagation
+# Get solar propagation
 
-def get_propagation():
+def get_solar():
     solar_data = ''
 
     # Get date
@@ -319,7 +319,6 @@ def get_propagation():
     # Check file
     if os.path.isfile(s.solar_file):
         modify = datetime.fromtimestamp(os.path.getmtime(s.solar_file)).strftime("%Y-%m-%d %H:%M:%S")
-        print today, modify
 
     if not os.path.isfile(s.solar_file) or today > modify:     # if necessary update file
         # Request HTTP on hamqsl
@@ -417,5 +416,52 @@ def get_propagation():
         for value in solar_data.xpath('/solar/solardata/calculatedvhfconditions/phenomenon[@name="E-Skip" and @location="north_america"]'):
             s.solar_value['E-Skip NA 2m'] = value.text.strip()
             s.solar_value['E-Skip NA 2m'] = s.solar_value['E-Skip NA 2m'].replace('Band ', '')
+
+    return True
+
+# Get cluster
+
+def get_cluster():
+    cluster_data = ''
+
+    # Get date
+    #now = datetime.now() - timedelta(minutes=1)
+    now = datetime.now()
+    today = format(now, "%Y-%m-%d %H:%M:%S")
+    year = format(now, "%Y")
+
+    # Check file
+    if os.path.isfile(s.cluster_file):
+        modify = datetime.fromtimestamp(os.path.getmtime(s.cluster_file)).strftime("%Y-%m-%d %H:%M:%S")
+
+    if not os.path.isfile(s.cluster_file) or today > modify:     # if necessary update file
+        band = [line.strip() for line in open('data/band.dat')]
+        s.cluster_url += band
+        print band
+        # Request HTTP on hamqsl
+        try:
+            r = requests.get(s.cluster_url, verify=False, timeout=1)
+        except requests.exceptions.ConnectionError as errc:
+            #print ('Error Connecting:', errc)
+            pass
+        except requests.exceptions.Timeout as errt:
+            #print ('Timeout Error:', errt)
+            pass
+
+        # Check stream validity
+        try:
+            cluster_data = r.json()
+            f = open(s.cluster_file, 'w')
+            f.write(r.content)
+            f.close
+        except:
+            cluster_data = json.load(s.cluster_file)
+            pass
+    else:
+        cluster_data = json.load(s.cluster_file)
+
+    if cluster_data != '': # If valid stream
+        print cluster_data
+        exit()
 
     return True  

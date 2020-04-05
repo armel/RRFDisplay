@@ -126,8 +126,8 @@ def main(argv):
                 #print s.now, tmp
                 s.room_current = tmp
 
-        if s.minute == 0 or not s.solar_value: # Update propagation
-            l.get_propagation()
+        if s.minute == 0 or not s.solar_value: # Update solar propagation
+            l.get_solar()
 
         url = s.room[s.room_current]['url']
 
@@ -242,6 +242,8 @@ def main(argv):
                     s.message[0] = 'Suivi de ' + s.callsign
                 else:
                     s.message[0] = 'Salon ' + s.room_current[:3]
+
+        l.get_cluset()
 
         # Print screen
         if s.device.height == 128:
