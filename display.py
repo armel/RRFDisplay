@@ -534,6 +534,7 @@ def extended_cluster(draw, page):
         tmp = s.cluster_value[j].split(' ')
         label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), tmp[1], tmp[0])
         k = 108
+        print tmp[3]
         for c in tmp[3]:
             legacy.text(draw, (k, i), chr(s.letter[c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
             k += 4
@@ -651,6 +652,7 @@ def display_128():
         '''
 
         if s.transmit is False and s.minute % 2 == 0:
+            '''
             # System log extended
             if s.seconde < 8:
                 extended_system(draw, 3)
@@ -673,9 +675,11 @@ def display_128():
         
             elif s.seconde < 48:
                 extended_solar(draw, 4)
-
+            
             elif s.seconde >= 48:
                 extended_cluster(draw, 1)
+            '''
+            extended_cluster(draw, 1)
 
         # If not extended
         else:
