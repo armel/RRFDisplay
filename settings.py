@@ -136,6 +136,7 @@ call_sysop = ''             # Call sysop
 call_latitude = ''          # Call latitude
 call_longitude = ''         # Call longitude
 qso_hour = [0] * 24         # QSO list for histogramm
+duration = 0                # QSO time
 transmit = True             # Detect transmit
 transmit_elsewhere = True   # Detect transmit elsewhere
 history = dict()            # History dict
