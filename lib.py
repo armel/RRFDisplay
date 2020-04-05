@@ -331,7 +331,7 @@ def get_solar(action = 'refresh'):
                 f = open(s.solar_file, 'w')
                 f.write(r.content)
                 f.close
-                print 'Solar Refresh'
+                print 'Solar Refresh', today
             except:
                 pass
 
@@ -444,7 +444,7 @@ def get_cluster(action = 'refresh'):
                 f = open(s.cluster_file, 'w')
                 f.write(r.content)
                 f.close
-                print 'Cluster Refresh'
+                print 'Cluster Refresh', today
             except:
                 pass
 

@@ -682,17 +682,20 @@ def display_128():
                 extended_cluster(draw, 1)
             '''
 
-            if s.seconde < 20 and s.solar_value:
+            if s.seconde < 20:
                 l.get_solar('read')
-                extended_solar(draw, 3)
+                if s.solar_value:
+                    extended_solar(draw, 3)
         
-            elif s.seconde < 40 and s.solar_value:
+            elif s.seconde < 40:
                 l.get_solar('read')
-                extended_solar(draw, 4)
+                if s.solar_value:
+                    extended_solar(draw, 4)
             
-            elif s.seconde >= 40 and s.cluster_value:
+            elif s.seconde >= 40:
                 l.get_cluster('read')
-                extended_cluster(draw, 1)
+                if s.cluster_value:
+                    extended_cluster(draw, 1)
 
         # If not extended
         else:

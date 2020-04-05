@@ -134,7 +134,7 @@ def main(argv):
         if s.minute == 0: # Update solar propagation
             l.get_solar('refresh')
 
-        if s.seconde == 30: #Update cluster
+        if s.seconde == 30: # Update cluster
             l.get_cluster('refresh')
 
         url = s.room[s.room_current]['url']
