@@ -533,6 +533,11 @@ def extended_cluster(draw, page):
     for j in s.cluster_value:
         tmp = s.cluster_value[j].split(' ')
         label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), tmp[1], tmp[0])
+        k = 108
+        for c in tmp[3]:
+            legacy.text(draw, (k, i), chr(s.letter[c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
+            k += 4
+
         if s.device.height == 128:
             i += 11
         else:
