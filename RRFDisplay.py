@@ -130,7 +130,7 @@ def main(argv):
             l.get_solar()
             l.get_cluster()
 
-        if s.sconde == 0:
+        if s.seconde == 0:
             l.get_cluster()
 
         url = s.room[s.room_current]['url']
