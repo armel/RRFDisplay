@@ -315,19 +315,20 @@ def get_solar():
     solar_data = ''
 
     # Get date
-    #now = datetime.now() - timedelta(minutes=1)
-    now = datetime.now()
+    now = datetime.now() - timedelta(minutes=60)
     today = format(now, "%Y-%m-%d %H:%M:%S")
 
     # Check file
     if os.path.isfile(s.solar_file):
         modify = datetime.fromtimestamp(os.path.getmtime(s.solar_file)).strftime("%Y-%m-%d %H:%M:%S")
 
+    print today, ' ', modify
+
     if not os.path.isfile(s.solar_file) or today > modify:     # if necessary update file
         # Request HTTP on hamqsl
         try:
             r = requests.get(s.solar_url, verify=False, timeout=1)
-            print 'HTTP Solar'
+            #print 'HTTP Solar'
         except requests.exceptions.ConnectionError as errc:
             #print ('Error Connecting:', errc)
             solar_data = etree.parse(s.solar_file)
@@ -343,7 +344,7 @@ def get_solar():
             f = open(s.solar_file, 'w')
             f.write(r.content)
             f.close
-            print 'Write Solar'
+            #print 'Write Solar'
         except:
             solar_data = etree.parse(s.solar_file)
             pass
