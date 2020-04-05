@@ -464,8 +464,8 @@ def get_cluster():
     if cluster_data != '': # If valid stream
         limit = len(cluster_data)
         for item in xrange(0, limit):
-            if ['FT8', 'ft8', 'FT4', 'ft4'] not in cluster_data[item]['comment']:
-                print cluster_data[item]['call'] + ' ' + cluster_data[item]['freq'] + ' ' + cluster_data[item]['dxcall']
+            if ['FT8', 'ft8', 'FT4', 'ft4'] not in cluster_data[item][u'comment']:
+                print cluster_data[item][u'call'] + ' ' + cluster_data[item][u'freq'] + ' ' + cluster_data[item][u'dxcall']
         exit()
 
     return True  
