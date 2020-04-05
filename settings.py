@@ -168,7 +168,7 @@ solar_value = {}
 
 # Set cluster
 
-cluster_url = 'https://www.dxcluster.co.uk/api/data_band/'
+cluster_url = 'http://www.dxcluster.co.uk/api/data_band/'
 cluster_file = './data/cluster.json'
 cluster_value = {}
 cluster_band = 80
