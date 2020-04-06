@@ -434,6 +434,7 @@ def get_cluster():
         # Request HTTP on hamqsl
         try:
             r = requests.get(s.cluster_url, verify=False, timeout=1)
+            print r.content
             if r.content != '[]':
                 cluster_data = r.json()
                 f = open(s.cluster_file, 'w')
