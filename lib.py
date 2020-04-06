@@ -334,6 +334,7 @@ def get_solar():
             pass
 
         if solar_data != '': # If valid stream
+            s.solar_value.clear()
             # Page 1
             for value in solar_data.xpath('/solar/solardata/updated'):
                 s.solar_value['Updated'] = value.text.strip()
@@ -438,6 +439,7 @@ def get_cluster():
             pass
 
         if cluster_data != '':
+            s.cluster_value.clear()
             limit = len(cluster_data)
             indice = 0
             for item in xrange(0, limit):
