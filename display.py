@@ -514,7 +514,7 @@ def extended_cluster(draw, page):
     if s.device.height == 128:
         draw.rectangle((0, 1, s.device.height - 1, 13), fill=get_color('header', 'background'))
 
-    draw.text((2, 0), u'\ue803', font=icon, fill=get_color('header', 'foreground'))
+    draw.text((2, 0), u'\uf130', font=icon, fill=get_color('header', 'foreground'))
 
     w, h = draw.textsize(text='Cluster', font=font)
     tab = (s.device.width - w) / 2
