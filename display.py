@@ -443,61 +443,62 @@ def extended_solar(draw, page):
     tab = (s.device.width - w) / 2
     draw.text((tab, 4), 'Propagation', font=font, fill=get_color('header', 'foreground'))
 
-    if page == 1:
-        value = {'Updated': '', 'Solar Flux': '', 'A-Index': '', 'K-Index': '', 'Sun Spots': ''}
-        value_order = ['Updated', 'Solar Flux', 'A-Index', 'K-Index', 'Sun Spots']
+    if len(solar_value) != 0:
+        if page == 1:
+            value = {'Updated': '', 'Solar Flux': '', 'A-Index': '', 'K-Index': '', 'Sun Spots': ''}
+            value_order = ['Updated', 'Solar Flux', 'A-Index', 'K-Index', 'Sun Spots']
 
-        value['Updated'] = s.solar_value['Updated']
-        value['Solar Flux'] = s.solar_value['Solar Flux']
-        value['A-Index'] = s.solar_value['A-Index']
-        value['K-Index'] = s.solar_value['K-Index']
-        value['Sun Spots'] = s.solar_value['Sun Spots']
-        
-    elif page == 2:
-        value = {'X-Ray': '', 'Ptn Flux': '', 'Elc Flux': '', 'Mag (BZ)': '', 'Solar Wind': ''}
-        value_order = ['X-Ray', 'Ptn Flux', 'Elc Flux', 'Mag (BZ)', 'Solar Wind']
+            value['Updated'] = s.solar_value['Updated']
+            value['Solar Flux'] = s.solar_value['Solar Flux']
+            value['A-Index'] = s.solar_value['A-Index']
+            value['K-Index'] = s.solar_value['K-Index']
+            value['Sun Spots'] = s.solar_value['Sun Spots']
+            
+        elif page == 2:
+            value = {'X-Ray': '', 'Ptn Flux': '', 'Elc Flux': '', 'Mag (BZ)': '', 'Solar Wind': ''}
+            value_order = ['X-Ray', 'Ptn Flux', 'Elc Flux', 'Mag (BZ)', 'Solar Wind']
 
-        value['X-Ray'] = s.solar_value['X-Ray']
-        value['Ptn Flux'] = s.solar_value['Ptn Flux']
-        value['Elc Flux'] = s.solar_value['Elc Flux']
-        value['Mag (BZ)'] = s.solar_value['Mag (BZ)']
-        value['Solar Wind'] = s.solar_value['Solar Wind']
+            value['X-Ray'] = s.solar_value['X-Ray']
+            value['Ptn Flux'] = s.solar_value['Ptn Flux']
+            value['Elc Flux'] = s.solar_value['Elc Flux']
+            value['Mag (BZ)'] = s.solar_value['Mag (BZ)']
+            value['Solar Wind'] = s.solar_value['Solar Wind']
 
-    elif page == 3:
-        value = {'Updated': '', 'Solar Flux': '', 'A-Index': '', 'K-Index': '', 'Sun Spots': '', 'X-Ray': '', 'Ptn Flux': '', 'Elc Flux': '', 'Mag (BZ)': '', 'Solar Wind': ''}
-        value_order = ['Updated', 'Solar Flux', 'A-Index', 'K-Index', 'Sun Spots', 'X-Ray', 'Ptn Flux', 'Elc Flux', 'Mag (BZ)', 'Solar Wind']
-        
-        value['Updated'] = s.solar_value['Updated']
-        value['Solar Flux'] = s.solar_value['Solar Flux']
-        value['A-Index'] = s.solar_value['A-Index']
-        value['K-Index'] = s.solar_value['K-Index']
-        value['Sun Spots'] = s.solar_value['Sun Spots']
+        elif page == 3:
+            value = {'Updated': '', 'Solar Flux': '', 'A-Index': '', 'K-Index': '', 'Sun Spots': '', 'X-Ray': '', 'Ptn Flux': '', 'Elc Flux': '', 'Mag (BZ)': '', 'Solar Wind': ''}
+            value_order = ['Updated', 'Solar Flux', 'A-Index', 'K-Index', 'Sun Spots', 'X-Ray', 'Ptn Flux', 'Elc Flux', 'Mag (BZ)', 'Solar Wind']
+            
+            value['Updated'] = s.solar_value['Updated']
+            value['Solar Flux'] = s.solar_value['Solar Flux']
+            value['A-Index'] = s.solar_value['A-Index']
+            value['K-Index'] = s.solar_value['K-Index']
+            value['Sun Spots'] = s.solar_value['Sun Spots']
 
-        value['X-Ray'] = s.solar_value['X-Ray']
-        value['Ptn Flux'] = s.solar_value['Ptn Flux']
-        value['Elc Flux'] = s.solar_value['Elc Flux']
-        value['Mag (BZ)'] = s.solar_value['Mag (BZ)']
-        value['Solar Wind'] = s.solar_value['Solar Wind']
+            value['X-Ray'] = s.solar_value['X-Ray']
+            value['Ptn Flux'] = s.solar_value['Ptn Flux']
+            value['Elc Flux'] = s.solar_value['Elc Flux']
+            value['Mag (BZ)'] = s.solar_value['Mag (BZ)']
+            value['Solar Wind'] = s.solar_value['Solar Wind']
 
-        position = 50
+            position = 50
 
-    elif page == 4:
-        value = {'80m-40m J/N': '', '30m-20m J/N': '', '17m-15m J/N': '', '12m-10m J/N': '', 'VHF Aurora': '', 'E-Skip EU 2m': '', 'E-Skip EU 4m': '', 'E-Skip EU 6m': '', 'Geomag Field': '', 'Signal Noise': ''}
-        value_order = ['80m-40m J/N', '30m-20m J/N', '17m-15m J/N', '12m-10m J/N', 'VHF Aurora', 'E-Skip EU 2m', 'E-Skip EU 4m', 'E-Skip EU 6m', 'Geomag Field', 'Signal Noise']
-        
-        value['80m-40m J/N'] = s.solar_value['80m-40m Day'] + ' / ' + s.solar_value['80m-40m Night']
-        value['30m-20m J/N'] = s.solar_value['30m-20m Day'] + ' / ' + s.solar_value['30m-20m Night']
-        value['17m-15m J/N'] = s.solar_value['17m-15m Day'] + ' / ' + s.solar_value['17m-15m Night']
-        value['12m-10m J/N'] = s.solar_value['12m-10m Day'] + ' / ' + s.solar_value['12m-10m Night']
-        value['VHF Aurora'] = s.solar_value['VHF Aurora']
+        elif page == 4:
+            value = {'80m-40m J/N': '', '30m-20m J/N': '', '17m-15m J/N': '', '12m-10m J/N': '', 'VHF Aurora': '', 'E-Skip EU 2m': '', 'E-Skip EU 4m': '', 'E-Skip EU 6m': '', 'Geomag Field': '', 'Signal Noise': ''}
+            value_order = ['80m-40m J/N', '30m-20m J/N', '17m-15m J/N', '12m-10m J/N', 'VHF Aurora', 'E-Skip EU 2m', 'E-Skip EU 4m', 'E-Skip EU 6m', 'Geomag Field', 'Signal Noise']
+            
+            value['80m-40m J/N'] = s.solar_value['80m-40m Day'] + ' / ' + s.solar_value['80m-40m Night']
+            value['30m-20m J/N'] = s.solar_value['30m-20m Day'] + ' / ' + s.solar_value['30m-20m Night']
+            value['17m-15m J/N'] = s.solar_value['17m-15m Day'] + ' / ' + s.solar_value['17m-15m Night']
+            value['12m-10m J/N'] = s.solar_value['12m-10m Day'] + ' / ' + s.solar_value['12m-10m Night']
+            value['VHF Aurora'] = s.solar_value['VHF Aurora']
 
-        value['E-Skip EU 2m'] = s.solar_value['E-Skip EU 2m']
-        value['E-Skip EU 4m'] = s.solar_value['E-Skip EU 4m']
-        value['E-Skip EU 6m'] = s.solar_value['E-Skip EU 6m']
-        value['Geomag Field'] = s.solar_value['Geomag Field']
-        value['Signal Noise'] = s.solar_value['Signal Noise']
+            value['E-Skip EU 2m'] = s.solar_value['E-Skip EU 2m']
+            value['E-Skip EU 4m'] = s.solar_value['E-Skip EU 4m']
+            value['E-Skip EU 6m'] = s.solar_value['E-Skip EU 6m']
+            value['Geomag Field'] = s.solar_value['Geomag Field']
+            value['Signal Noise'] = s.solar_value['Signal Noise']
 
-        position = 60
+            position = 60
 
     if s.device.height == 128:
         i = 17
