@@ -10,7 +10,7 @@ Check video about RRFDisplay on https://www.youtube.com/watch?v=rVW8xczVpEo
 
 # Version
 
-version = '5.1.1'
+version = '5.2.1'
 
 # Default i2c_port, i2c_address, display and room
 
@@ -171,8 +171,9 @@ solar_value = {}
 
 cluster_url = 'http://www.dxcluster.co.uk/api/data_band/'
 cluster_file = './data/cluster.json'
-cluster_value = {}
 cluster_band = 10
+cluster_band_file = './data/band.dat'
+cluster_value = {}
 cluster_exclude = {
     '2': ['144174'],
     '6': ['50313'],
