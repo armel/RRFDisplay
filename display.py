@@ -443,7 +443,7 @@ def extended_solar(draw, page):
     tab = (s.device.width - w) / 2
     draw.text((tab, 4), 'Propagation', font=font, fill=get_color('header', 'foreground'))
 
-    if len(solar_value) != 0:
+    if len(s.solar_value) != 0:
         if page == 1:
             value = {'Updated': '', 'Solar Flux': '', 'A-Index': '', 'K-Index': '', 'Sun Spots': ''}
             value_order = ['Updated', 'Solar Flux', 'A-Index', 'K-Index', 'Sun Spots']
