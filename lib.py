@@ -414,7 +414,7 @@ def get_cluster():
     cluster_data = ''
 
     # Get date
-    now = datetime.now() - timedelta(minutes=2)
+    now = datetime.now() - timedelta(minutes=4)
     today = format(now, "%Y-%m-%d %H:%M:%S")
 
     # Check file
