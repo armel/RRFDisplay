@@ -434,13 +434,12 @@ def get_cluster():
         # Request HTTP on hamqsl
         try:
             r = requests.get(s.cluster_url, verify=False, timeout=1)
-            if r == '[]':
-                r = ''
-            cluster_data = r.json()
-            f = open(s.cluster_file, 'w')
-            f.write(r.content)
-            f.close
-            print 'Cluster Refresh Success', today
+            if r != '[]':
+                cluster_data = r.json()
+                f = open(s.cluster_file, 'w')
+                f.write(r.content)
+                f.close
+                print 'Cluster Refresh Success', today
         except:
             print 'Cluster Refresh Failed', today
             pass
