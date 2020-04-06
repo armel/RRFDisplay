@@ -500,17 +500,18 @@ def extended_solar(draw, page):
 
             position = 60
 
-    if s.device.height == 128:
-        i = 17
-    else:
-        i = 16
-
-    for j in value_order:
-        label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), j, value[j])
+    if value_order:
         if s.device.height == 128:
-            i += 11
+            i = 17
         else:
-            i += 10
+            i = 16
+
+        for j in value_order:
+            label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), j, value[j])
+            if s.device.height == 128:
+                i += 11
+            else:
+                i += 10
 
 # Print cluster
 def extended_cluster(draw, page):
