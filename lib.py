@@ -427,8 +427,6 @@ def get_cluster():
         else:
             band = s.cluster_band
 
-        print band
-
         # Request HTTP on hamqsl
         try:
             print s.cluster_url + band
