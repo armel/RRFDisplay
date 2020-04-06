@@ -429,7 +429,6 @@ def get_cluster():
 
         # Request HTTP on hamqsl
         try:
-            print s.cluster_url + band
             r = requests.get(s.cluster_url + band, verify=False, timeout=1)
             cluster_data = r.json()
             f = open(s.cluster_file, 'w')
