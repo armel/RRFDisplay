@@ -424,7 +424,6 @@ def get_cluster():
 
     with open('data/band.dat', 'r') as band_file:
         s.cluster_band = band_file.read().strip()
-        s.cluster_url += s.cluster_band
 
     # Check file
     if os.path.isfile(s.cluster_file):
@@ -433,15 +432,12 @@ def get_cluster():
     if not os.path.isfile(s.cluster_file) or today > modify or len(s.cluster_value) == 0:     # if necessary update file
         # Request HTTP on hamqsl
         try:
-            r = requests.get(s.cluster_url, verify=False, timeout=1)
-            print r.content
-            print s.cluster_url
-            if r.content != '[]':
-                cluster_data = r.json()
-                f = open(s.cluster_file, 'w')
-                f.write(r.content)
-                f.close
-                print 'Cluster Refresh Success', today
+            r = requests.get(s.cluster_url + s.cluster_band, verify=False, timeout=1)
+            cluster_data = r.json()
+            f = open(s.cluster_file, 'w')
+            f.write(r.content)
+            f.close
+            print 'Cluster Refresh Success', today
         except:
             print 'Cluster Refresh Failed', today
             pass
