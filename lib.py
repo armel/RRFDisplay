@@ -422,6 +422,8 @@ def get_cluster():
     else:
         band = s.cluster_band
 
+    print band
+
     # Check file
     if os.path.isfile(s.cluster_file):
         modify = datetime.fromtimestamp(os.path.getmtime(s.cluster_file)).strftime("%Y-%m-%d %H:%M:%S")
