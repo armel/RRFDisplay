@@ -500,7 +500,6 @@ def extended_solar(draw, page):
 
             position = 60
 
-    if value_order:
         if s.device.height == 128:
             i = 17
         else:
