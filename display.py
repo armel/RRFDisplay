@@ -507,7 +507,7 @@ def extended_solar(draw, page):
     else:
         w, h = draw.textsize(text='No data', font=font)
         tab = (s.device.width - w) / 2
-        draw.text((tab, 17), 'No data', font=font, fill=get_color('label', 'foreground'))
+        draw.text((tab, 17), 'No data', font=font, fill=get_color('screen', 'foreground'))
 
 # Print cluster
 def extended_cluster(draw, page):
@@ -539,7 +539,7 @@ def extended_cluster(draw, page):
     else:
         w, h = draw.textsize(text='No data', font=font)
         tab = (s.device.width - w) / 2
-        draw.text((tab, 17), 'No data', font=font, fill=get_color('label', 'foreground'))
+        draw.text((tab, 17), 'No data', font=font, fill=get_color('screen', 'foreground'))
 
 # Print display on 128 x 64
 def display_64():
