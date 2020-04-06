@@ -669,6 +669,7 @@ def display_128():
 
             # Propag extended
             elif s.seconde < 40 and len(s.solar_value) != 0:
+                print 'ici'
                 extended_solar(draw, 3)
         
             elif s.seconde < 48 and len(s.solar_value) != 0:
