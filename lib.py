@@ -325,7 +325,7 @@ def get_solar():
     if not os.path.isfile(s.solar_file) or today > modify or len(s.solar_value) == 0:     # if necessary update file
         # Request HTTP on hamqsl
         try:
-            r = requests.get(s.solar_url, verify=False, timeout=2)
+            r = requests.get(s.solar_url, verify=False, timeout=1)
             solar_data = etree.fromstring(r.content)
             f = open(s.solar_file, 'w')
             f.write(r.content)
