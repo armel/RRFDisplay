@@ -499,18 +499,15 @@ def extended_solar(draw, page):
             value['Signal Noise'] = s.solar_value['Signal Noise']
 
             position = 60
-
-        if s.device.height == 128:
-            i = 17
-        else:
-            i = 16
-
+        
+        i = 17
         for j in value_order:
             label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), j, value[j])
-            if s.device.height == 128:
-                i += 11
-            else:
-                i += 10
+            i += 11
+    else:
+        w, h = draw.textsize(text='No data', font=font)
+        tab = (s.device.width - w) / 2
+        draw.text((tab, 17), 'No data', font=font, fill=get_color('label', 'foreground'))
 
 # Print cluster
 def extended_cluster(draw, page):
@@ -523,26 +520,26 @@ def extended_cluster(draw, page):
     tab = (s.device.width - w) / 2
     draw.text((tab, 4), 'Cluster', font=font, fill=get_color('header', 'foreground'))
 
-    if page == 1:
-        position = 42
+    if len(s.cluster_value) != 0:
 
-    if s.device.height == 128:
+        if page == 1:
+            position = 42
+
         i = 17
-    else:
-        i = 16
+        
+        for j in s.cluster_value:
+            tmp = s.cluster_value[j].split(' ')
+            label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), tmp[1], tmp[0])
+            k = 108
+            for c in tmp[4][0:5]:
+                legacy.text(draw, (k, i + 4), chr(s.letter[c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
+                k += 4
 
-    for j in s.cluster_value:
-        tmp = s.cluster_value[j].split(' ')
-        label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), tmp[1], tmp[0])
-        k = 108
-        for c in tmp[4][0:5]:
-            legacy.text(draw, (k, i + 4), chr(s.letter[c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
-            k += 4
-
-        if s.device.height == 128:
             i += 11
-        else:
-            i += 10
+    else:
+        w, h = draw.textsize(text='No data', font=font)
+        tab = (s.device.width - w) / 2
+        draw.text((tab, 17), 'No data', font=font, fill=get_color('label', 'foreground'))
 
 # Print display on 128 x 64
 def display_64():
