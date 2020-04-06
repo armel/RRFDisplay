@@ -431,6 +431,7 @@ def get_cluster():
     if not os.path.isfile(s.cluster_file) or today > modify or len(s.cluster_value) == 0:     # if necessary update file
         # Request HTTP on hamqsl
         try:
+            print s.cluster_url + band
             r = requests.get(s.cluster_url + band, verify=False, timeout=1)
             cluster_data = r.json()
             f = open(s.cluster_file, 'w')
