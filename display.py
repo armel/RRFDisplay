@@ -518,9 +518,9 @@ def extended_cluster(draw, page):
 
     draw.text((2, 0), u'\ue803', font=icon, fill=get_color('header', 'foreground'))
 
-    w, h = draw.textsize(text='Cluster ' + s.cluster_band + ' M', font=font)
+    w, h = draw.textsize(text='Cluster', font=font)
     tab = (s.device.width - w) / 2
-    draw.text((tab, 4), 'Cluster ' + s.cluster_band + ' M', font=font, fill=get_color('header', 'foreground'))
+    draw.text((tab, 4), 'Cluster', font=font, fill=get_color('header', 'foreground'))
 
     if page == 1:
         position = 42

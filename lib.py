@@ -330,9 +330,7 @@ def get_solar():
             f = open(s.solar_file, 'w')
             f.write(r.content)
             f.close
-            print 'Solar Refresh', today
         except:
-            print 'Solar Refresh Failed', today
             pass
 
         if solar_data != '': # If valid stream
@@ -406,10 +404,6 @@ def get_solar():
             for value in solar_data.xpath('/solar/solardata/calculatedvhfconditions/phenomenon[@name="E-Skip" and @location="north_america"]'):
                 s.solar_value['E-Skip NA 2m'] = value.text.strip()
                 s.solar_value['E-Skip NA 2m'] = s.solar_value['E-Skip NA 2m'].replace('Band ', '')
-            print 'Solar Read Success'
-
-        else:
-            print 'Solar Read Failed'
 
     return True
 
@@ -422,8 +416,11 @@ def get_cluster():
     now = datetime.now() - timedelta(minutes=2)
     today = format(now, "%Y-%m-%d %H:%M:%S")
 
-    with open('data/band.dat', 'r') as band_file:
-        s.cluster_band = band_file.read().strip()
+    if os.path.isfile(s.cluster_band_file):
+        with open(s.cluster_band_file, 'r') as f:
+            band = f.read().strip()
+    else:
+        band = s.cluster_band
 
     # Check file
     if os.path.isfile(s.cluster_file):
@@ -432,14 +429,12 @@ def get_cluster():
     if not os.path.isfile(s.cluster_file) or today > modify or len(s.cluster_value) == 0:     # if necessary update file
         # Request HTTP on hamqsl
         try:
-            r = requests.get(s.cluster_url + s.cluster_band, verify=False, timeout=1)
+            r = requests.get(s.cluster_url + band, verify=False, timeout=1)
             cluster_data = r.json()
             f = open(s.cluster_file, 'w')
             f.write(r.content)
             f.close
-            print 'Cluster Refresh Success', today
         except:
-            print 'Cluster Refresh Failed', today
             pass
 
         if cluster_data != '':
@@ -455,8 +450,5 @@ def get_cluster():
                 indice += 1
                 if indice == 10:
                     break
-            print 'Cluster Read Success'
-        else:
-            print 'Cluster Read Failded'
 
     return True  
