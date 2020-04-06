@@ -416,19 +416,19 @@ def get_cluster():
     now = datetime.now() - timedelta(minutes=2)
     today = format(now, "%Y-%m-%d %H:%M:%S")
 
-    if os.path.isfile(s.cluster_band_file):
-        with open(s.cluster_band_file, 'r') as f:
-            band = f.read().strip()
-    else:
-        band = s.cluster_band
-
-    print band
-
     # Check file
     if os.path.isfile(s.cluster_file):
         modify = datetime.fromtimestamp(os.path.getmtime(s.cluster_file)).strftime("%Y-%m-%d %H:%M:%S")
 
     if not os.path.isfile(s.cluster_file) or today > modify or len(s.cluster_value) == 0:     # if necessary update file
+        if os.path.isfile(s.cluster_band_file):
+            with open(s.cluster_band_file, 'r') as f:
+                band = f.read().strip()
+        else:
+            band = s.cluster_band
+
+        print band
+
         # Request HTTP on hamqsl
         try:
             print s.cluster_url + band
