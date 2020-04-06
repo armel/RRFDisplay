@@ -102,8 +102,8 @@ def main(argv):
 
     # Lecture initiale de la progation et du cluster
 
-    l.get_solar('refresh')
-    l.get_cluster('refresh')
+    l.get_solar()
+    l.get_cluster()
 
     # Boucle principale
     s.timestamp_start = time.time()
@@ -132,10 +132,10 @@ def main(argv):
                 s.room_current = tmp
 
         if s.minute == 0: # Update solar propagation
-            l.get_solar('refresh')
+            l.get_solar()
 
         if s.seconde == 30: # Update cluster
-            l.get_cluster('refresh')
+            l.get_cluster()
 
         url = s.room[s.room_current]['url']
 

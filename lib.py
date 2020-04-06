@@ -311,36 +311,29 @@ def scan(call):
 
 # Get solar propagation
 
-def get_solar(action = 'refresh'):
+def get_solar():
     solar_data = ''
 
-    if action == 'refresh':
-        # Get date
-        now = datetime.now() - timedelta(minutes=60)
-        today = format(now, "%Y-%m-%d %H:%M:%S")
+    # Get date
+    now = datetime.now() - timedelta(minutes=60)
+    today = format(now, "%Y-%m-%d %H:%M:%S")
 
-        # Check file
-        if os.path.isfile(s.solar_file):
-            modify = datetime.fromtimestamp(os.path.getmtime(s.solar_file)).strftime("%Y-%m-%d %H:%M:%S")
+    # Check file
+    if os.path.isfile(s.solar_file):
+        modify = datetime.fromtimestamp(os.path.getmtime(s.solar_file)).strftime("%Y-%m-%d %H:%M:%S")
 
-        if not os.path.isfile(s.solar_file) or today > modify:     # if necessary update file
-            # Request HTTP on hamqsl
-            try:
-                r = requests.get(s.solar_url, verify=False, timeout=1)
-                solar_data = etree.fromstring(r.content)
-                f = open(s.solar_file, 'w')
-                f.write(r.content)
-                f.close
-                print 'Solar Refresh', today
-            except:
-                pass
-
-    else:
-        if os.path.isfile(s.solar_file):
-            try:
-                solar_data = etree.parse(s.solar_file)
-            except:
-                solar_data = ''
+    if not os.path.isfile(s.solar_file) or today > modify or len(s.solar_value) == 0:     # if necessary update file
+        # Request HTTP on hamqsl
+        try:
+            r = requests.get(s.solar_url, verify=False, timeout=1)
+            solar_data = etree.fromstring(r.content)
+            f = open(s.solar_file, 'w')
+            f.write(r.content)
+            f.close
+            print 'Solar Refresh', today
+        except:
+            print 'Solar Refresh Failed', today
+            pass
 
         if solar_data != '': # If valid stream
             # Page 1
@@ -413,54 +406,44 @@ def get_solar(action = 'refresh'):
             for value in solar_data.xpath('/solar/solardata/calculatedvhfconditions/phenomenon[@name="E-Skip" and @location="north_america"]'):
                 s.solar_value['E-Skip NA 2m'] = value.text.strip()
                 s.solar_value['E-Skip NA 2m'] = s.solar_value['E-Skip NA 2m'].replace('Band ', '')
-        
             print 'Solar Read Success'
 
         else:
-            s.solar_value.clear()
             print 'Solar Read Failed'
 
     return True
 
 # Get cluster
 
-def get_cluster(action = 'refresh'):
+def get_cluster():
     cluster_data = ''
 
-    if action == 'refresh':
-        # Get date
-        now = datetime.now() - timedelta(minutes=2)
-        today = format(now, "%Y-%m-%d %H:%M:%S")
+    # Get date
+    now = datetime.now() - timedelta(minutes=2)
+    today = format(now, "%Y-%m-%d %H:%M:%S")
 
-        with open('data/band.dat', 'r') as band_file:
-            s.cluster_band = band_file.read()
-            s.cluster_url += s.cluster_band
+    with open('data/band.dat', 'r') as band_file:
+        s.cluster_band = band_file.read()
+        s.cluster_url += s.cluster_band
 
-        # Check file
-        if os.path.isfile(s.cluster_file):
-            modify = datetime.fromtimestamp(os.path.getmtime(s.cluster_file)).strftime("%Y-%m-%d %H:%M:%S")
+    # Check file
+    if os.path.isfile(s.cluster_file):
+        modify = datetime.fromtimestamp(os.path.getmtime(s.cluster_file)).strftime("%Y-%m-%d %H:%M:%S")
 
-        if not os.path.isfile(s.cluster_file) or today > modify:     # if necessary update file
-            # Request HTTP on hamqsl
-            try:
-                r = requests.get(s.cluster_url, verify=False, timeout=1)
-                cluster_data = r.json()
-                f = open(s.cluster_file, 'w')
-                f.write(r.content)
-                f.close
-                print 'Cluster Refresh', today
-            except:
-                pass
+    if not os.path.isfile(s.cluster_file) or today > modify or len(s.cluster_value) == 0:     # if necessary update file
+        # Request HTTP on hamqsl
+        try:
+            r = requests.get(s.cluster_url, verify=False, timeout=1)
+            cluster_data = r.json()
+            f = open(s.cluster_file, 'w')
+            f.write(r.content)
+            f.close
+            print 'Cluster Refresh Success', today
+        except:
+            print 'Cluster Refresh Failed', today
+            pass
 
-    else:
-        if os.path.isfile(s.cluster_file):
-            try:
-                with open(s.cluster_file) as f:
-                    cluster_data = json.load(f)
-            except:
-                cluster_data = ''
-
-        if cluster_data != '': # If valid stream
+        if cluster_data != '':
             limit = len(cluster_data)
             indice = 0
             for item in xrange(0, limit):
@@ -471,7 +454,6 @@ def get_cluster(action = 'refresh'):
                         break
             print 'Cluster Read Success'
         else:
-            s.cluster_value.clear()
             print 'Cluster Read Failded'
 
     return True  
