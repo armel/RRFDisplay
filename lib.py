@@ -423,7 +423,7 @@ def get_cluster():
     today = format(now, "%Y-%m-%d %H:%M:%S")
 
     with open('data/band.dat', 'r') as band_file:
-        s.cluster_band = band_file.read()
+        s.cluster_band = band_file.read().strip()
         s.cluster_url += s.cluster_band
 
     # Check file
