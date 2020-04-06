@@ -448,11 +448,15 @@ def get_cluster():
             limit = len(cluster_data)
             indice = 0
             for item in xrange(0, limit):
-                if cluster_data[item][u'freq'] not in s.cluster_exclude[s.cluster_band]:
+                if s.cluster_band in s.cluster_exclude:
+                    if cluster_data[item][u'freq'] not in s.cluster_exclude[s.cluster_band]:
+                        s.cluster_value[indice] = cluster_data[item][u'call'] + ' ' + cluster_data[item][u'freq'] + ' ' + cluster_data[item][u'dxcall'] + ' ' + cluster_data[item][u'time'].encode('utf-8')
+                else:
                     s.cluster_value[indice] = cluster_data[item][u'call'] + ' ' + cluster_data[item][u'freq'] + ' ' + cluster_data[item][u'dxcall'] + ' ' + cluster_data[item][u'time'].encode('utf-8')
-                    indice += 1
-                    if indice == 10:
-                        break
+
+                indice += 1
+                if indice == 10:
+                    break
             print 'Cluster Read Success'
         else:
             print 'Cluster Read Failded'
