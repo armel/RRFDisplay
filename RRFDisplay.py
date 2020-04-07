@@ -107,9 +107,9 @@ def main(argv):
 
     # Lecture initiale de la progation et du cluster
 
-    d.display_init(16, 'Requête Propagation')
+    d.display_init(16, 'Requete Propagation')
     l.get_solar()
-    d.display_init(24, 'Requête Cluster')
+    d.display_init(24, 'Requete Cluster')
     l.get_cluster()
 
     # Boucle principale
