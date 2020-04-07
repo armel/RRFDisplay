@@ -70,6 +70,10 @@ A ce titre, si aucune station n'est en émission, le RRFDisplay affichera :
 * l'historique des 10 noeuds les plus actifs ainsi que la durée cumulée de passage en émission,
 * l'état du Spotnik: architecture, uptime, noyau, charge et fréquence du CPU, température, adresse IP, occupation mémoire et disque, version,
 * la configuration courante.
+* les prévisions de propagation en provenance de [hamqsl](http://www.hamqsl.com/).
+* les *spots* en provenance de [dxcluster](https://www.dxcluster.co.uk/).
+
+> À propos des *spots*, vous pouvez modifier la bande à surveiller en éditant à tous moment le fichier `data/band.dat`. Par défaut, il contient 20 (pour la bande des 20 mètres). Il suffit de remplacer cette valeur par la bande que vous désirez suivre (par exemple 40). À noter aussi que vous pouvez exclure des fréquences dans le tableau `cluster_exclude` du fichier `settings.py`. C'est un moyen pour filtrer, par exemple, les fréquences FT8... À vous de voir. 
 
 Si une station passe en émission, en lieu et place de l'histogramme du trafic, un compte à rebours affichera la durée de passage en émission. C'est plus lisible qu'une jauge.
 
