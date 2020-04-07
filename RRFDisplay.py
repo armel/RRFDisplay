@@ -100,6 +100,8 @@ def main(argv):
     # Let's go
     init_message.append('RRFDisplay ' + s.version)
     init_message.append('')
+    init_message.append('88 et 73 de F4HWN')
+    init_message.append('')
     d.display_init(init_message)
 
     # Lecture du fichier de theme
