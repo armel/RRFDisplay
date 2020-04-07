@@ -99,6 +99,7 @@ def main(argv):
     init_message = []
     # Let's go
     init_message.append('RRFDisplay ' + s.version)
+    init_message.append('')
     d.display_init(init_message)
 
     # Lecture du fichier de theme
@@ -117,8 +118,6 @@ def main(argv):
     d.display_init(init_message)
     l.get_cluster()
 
-    print init_message
-    
     # Boucle principale
     s.timestamp_start = time.time()
 
