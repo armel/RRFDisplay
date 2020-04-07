@@ -100,9 +100,16 @@ def main(argv):
     s.theme = cp.ConfigParser()
     s.theme.read('./themes/' + s.display_theme)
 
+    # Init screen
+    d.display_init()
+    d.display_init(8, 'Chargement Theme')
+
+
     # Lecture initiale de la progation et du cluster
 
+    d.display_init(16, 'Requête Propagation')
     l.get_solar()
+    d.display_init(24, 'Requête Cluster')
     l.get_cluster()
 
     # Boucle principale
