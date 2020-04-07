@@ -14,6 +14,7 @@ import sys
 import getopt
 import json
 import urllib3
+import calendar
 
 urllib3.disable_warnings()
 
@@ -278,6 +279,14 @@ def convert_time_to_string(time):
 
     return time
 
+# Convert time utc to time local
+def utc_to_local(utc_dt):
+    utc_dt = datetime.strptime(utc_dt, '%Y-%m-%d %H:%M:%S')
+    timestamp = calendar.timegm(utc_dt.timetuple())
+    local_dt = datetime.fromtimestamp(timestamp)
+    assert utc_dt.resolution >= timedelta(microseconds=1)
+    return local_dt.replace(microsecond=utc_dt.microsecond)
+
 # Sanitize call
 def sanitize_call(call):
     return call.translate(None, '\\\'!@#$"()[]')
@@ -445,9 +454,9 @@ def get_cluster():
             for item in xrange(0, limit):
                 if s.cluster_band in s.cluster_exclude:
                     if cluster_data[item][u'freq'] not in s.cluster_exclude[s.cluster_band]:
-                        s.cluster_value[indice] = cluster_data[item][u'call'] + ' ' + cluster_data[item][u'freq'] + ' ' + cluster_data[item][u'dxcall'] + ' ' + cluster_data[item][u'time'].encode('utf-8')
+                        s.cluster_value[indice] = cluster_data[item][u'call'] + ' ' + cluster_data[item][u'freq'] + ' ' + cluster_data[item][u'dxcall'] + ' ' + utc_to_local(cluster_data[item][u'time'].encode('utf-8'))
                 else:
-                    s.cluster_value[indice] = cluster_data[item][u'call'] + ' ' + cluster_data[item][u'freq'] + ' ' + cluster_data[item][u'dxcall'] + ' ' + cluster_data[item][u'time'].encode('utf-8')
+                    s.cluster_value[indice] = cluster_data[item][u'call'] + ' ' + cluster_data[item][u'freq'] + ' ' + cluster_data[item][u'dxcall'] + ' ' + utc_to_local(luster_data[item][u'time'].encode('utf-8'))
 
                 indice += 1
                 if indice == 10:
