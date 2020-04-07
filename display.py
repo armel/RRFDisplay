@@ -543,7 +543,7 @@ def extended_cluster(draw, page):
         draw.text((tab, 17), 'No data', font=font, fill=get_color('screen', 'foreground'))
 
 # Print display on 128 x 64
-def display_init(position, message):
+def display_init(position=0, message=''):
     with canvas(s.device) as draw:
         if message =='':
             draw.rectangle((0, 0, s.device.width - 1, s.device.height - 1), fill=get_color('screen', 'background'))
