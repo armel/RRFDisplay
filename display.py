@@ -530,7 +530,7 @@ def extended_cluster(draw, page):
         
         for j in s.cluster_value:
             tmp = s.cluster_value[j].split(' ')
-            label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), tmp[1], tmp[0])
+            label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), tmp[1], tmp[2])
             k = 108
             for c in tmp[4][0:5]:
                 legacy.text(draw, (k, i + 4), chr(s.letter[c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
