@@ -124,19 +124,19 @@ def elsewhere(draw, data):
     i = 79
     for d in data:
         d = d.split('/')
-        tmp = d[2].split(':')
-        if len(tmp) == 2:
-            tmp = '00:' + tmp[0] + ':' + tmp[1]
-            d[2] = tmp
 
         if d[0] == '00:00':
             draw.rectangle((21, i - 1, 126, i + 7), fill=get_color('elsewhere', 'background'))
-            draw.text((24, i), d[2], font=font, fill=get_color('elsewhere', 'foreground'))
-            draw.text((98, i), d[3], font=font, fill=get_color('elsewhere', 'foreground'))
+            if 'h' in d[2]:
+                draw.text((28, i), d[2], font=font, fill=get_color('elsewhere', 'foreground'))
+            else:
+                draw.text((48, i), d[2], font=font, fill=get_color('elsewhere', 'foreground'))
+
+            draw.text((100, i), d[3], font=font, fill=get_color('elsewhere', 'foreground'))
         else:
             draw.rectangle((21, i - 1, 126, i + 7), fill=get_color('elsewhere', 'background_active'))
-            draw.text((24, i), d[2], font=font, fill=get_color('elsewhere', 'foreground_active'))
-            draw.text((98, i), d[3], font=font, fill=get_color('elsewhere', 'foreground_active'))
+            draw.text((28, i), d[2], font=font, fill=get_color('elsewhere', 'foreground_active'))
+            draw.text((100, i), d[3], font=font, fill=get_color('elsewhere', 'foreground_active'))
 
         draw.rectangle((1, i - 1, 19, i + 7), fill=get_color('elsewhere', 'background_active'))
         draw.text(( 2, i), d[1], font=font, fill=get_color('elsewhere', 'foreground_active'))
@@ -212,7 +212,7 @@ def histogram(draw, legacy, position, height = 15):
 def clock_room(draw):
     j = 5
     # Print Room
-    if s.seconde % 2 != 0:
+    if s.seconde % 5 != 0:
         i = 116
 
         for c in s.room_current[:3]:
@@ -330,7 +330,7 @@ def extended_call(draw, limit = 5):
         i = 16
 
     for j in xrange(0, limit):
-        label(draw, i, 44, get_color('label', 'background'), get_color('label', 'foreground'), s.call_time[j], s.call[j])
+        label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), s.call_time[j], s.call[j])
         if s.device.height == 128:
             i += 11
         else:
@@ -432,8 +432,8 @@ def extended_config(draw, page):
         else:
             i += 10
 
-# Print config
-def extended_propagation(draw, page):
+# Print solar propagation
+def extended_solar(draw, page):
     if s.device.height == 128:
         draw.rectangle((0, 1, s.device.height - 1, 13), fill=get_color('header', 'background'))
 
@@ -443,73 +443,116 @@ def extended_propagation(draw, page):
     tab = (s.device.width - w) / 2
     draw.text((tab, 4), 'Propagation', font=font, fill=get_color('header', 'foreground'))
 
-    if page == 1:
-        value = {'Updated': '', 'Solar Flux': '', 'A-Index': '', 'K-Index': '', 'Sun Spots': ''}
-        value_order = ['Updated', 'Solar Flux', 'A-Index', 'K-Index', 'Sun Spots']
+    if len(s.solar_value) != 0:
+        if page == 1:
+            value = {'Updated': '', 'Solar Flux': '', 'A-Index': '', 'K-Index': '', 'Sun Spots': ''}
+            value_order = ['Updated', 'Solar Flux', 'A-Index', 'K-Index', 'Sun Spots']
 
-        value['Updated'] = s.solar_value['Updated']
-        value['Solar Flux'] = s.solar_value['Solar Flux']
-        value['A-Index'] = s.solar_value['A-Index']
-        value['K-Index'] = s.solar_value['K-Index']
-        value['Sun Spots'] = s.solar_value['Sun Spots']
+            value['Updated'] = s.solar_value['Updated']
+            value['Solar Flux'] = s.solar_value['Solar Flux']
+            value['A-Index'] = s.solar_value['A-Index']
+            value['K-Index'] = s.solar_value['K-Index']
+            value['Sun Spots'] = s.solar_value['Sun Spots']
+            
+        elif page == 2:
+            value = {'X-Ray': '', 'Ptn Flux': '', 'Elc Flux': '', 'Mag (BZ)': '', 'Solar Wind': ''}
+            value_order = ['X-Ray', 'Ptn Flux', 'Elc Flux', 'Mag (BZ)', 'Solar Wind']
+
+            value['X-Ray'] = s.solar_value['X-Ray']
+            value['Ptn Flux'] = s.solar_value['Ptn Flux']
+            value['Elc Flux'] = s.solar_value['Elc Flux']
+            value['Mag (BZ)'] = s.solar_value['Mag (BZ)']
+            value['Solar Wind'] = s.solar_value['Solar Wind']
+
+        elif page == 3:
+            value = {'Updated': '', 'Solar Flux': '', 'A-Index': '', 'K-Index': '', 'Sun Spots': '', 'X-Ray': '', 'Ptn Flux': '', 'Elc Flux': '', 'Mag (BZ)': '', 'Solar Wind': ''}
+            value_order = ['Updated', 'Solar Flux', 'A-Index', 'K-Index', 'Sun Spots', 'X-Ray', 'Ptn Flux', 'Elc Flux', 'Mag (BZ)', 'Solar Wind']
+            
+            value['Updated'] = s.solar_value['Updated']
+            value['Solar Flux'] = s.solar_value['Solar Flux']
+            value['A-Index'] = s.solar_value['A-Index']
+            value['K-Index'] = s.solar_value['K-Index']
+            value['Sun Spots'] = s.solar_value['Sun Spots']
+
+            value['X-Ray'] = s.solar_value['X-Ray']
+            value['Ptn Flux'] = s.solar_value['Ptn Flux']
+            value['Elc Flux'] = s.solar_value['Elc Flux']
+            value['Mag (BZ)'] = s.solar_value['Mag (BZ)']
+            value['Solar Wind'] = s.solar_value['Solar Wind']
+
+            position = 50
+
+        elif page == 4:
+            value = {'80m-40m J/N': '', '30m-20m J/N': '', '17m-15m J/N': '', '12m-10m J/N': '', 'VHF Aurora': '', 'E-Skip EU 2m': '', 'E-Skip EU 4m': '', 'E-Skip EU 6m': '', 'Geomag Field': '', 'Signal Noise': ''}
+            value_order = ['80m-40m J/N', '30m-20m J/N', '17m-15m J/N', '12m-10m J/N', 'VHF Aurora', 'E-Skip EU 2m', 'E-Skip EU 4m', 'E-Skip EU 6m', 'Geomag Field', 'Signal Noise']
+            
+            value['80m-40m J/N'] = s.solar_value['80m-40m Day'] + ' / ' + s.solar_value['80m-40m Night']
+            value['30m-20m J/N'] = s.solar_value['30m-20m Day'] + ' / ' + s.solar_value['30m-20m Night']
+            value['17m-15m J/N'] = s.solar_value['17m-15m Day'] + ' / ' + s.solar_value['17m-15m Night']
+            value['12m-10m J/N'] = s.solar_value['12m-10m Day'] + ' / ' + s.solar_value['12m-10m Night']
+            value['VHF Aurora'] = s.solar_value['VHF Aurora']
+
+            value['E-Skip EU 2m'] = s.solar_value['E-Skip EU 2m']
+            value['E-Skip EU 4m'] = s.solar_value['E-Skip EU 4m']
+            value['E-Skip EU 6m'] = s.solar_value['E-Skip EU 6m']
+            value['Geomag Field'] = s.solar_value['Geomag Field']
+            value['Signal Noise'] = s.solar_value['Signal Noise']
+
+            position = 60
         
-    elif page == 2:
-        value = {'X-Ray': '', 'Ptn Flux': '', 'Elc Flux': '', 'Mag (BZ)': '', 'Solar Wind': ''}
-        value_order = ['X-Ray', 'Ptn Flux', 'Elc Flux', 'Mag (BZ)', 'Solar Wind']
-
-        value['X-Ray'] = s.solar_value['X-Ray']
-        value['Ptn Flux'] = s.solar_value['Ptn Flux']
-        value['Elc Flux'] = s.solar_value['Elc Flux']
-        value['Mag (BZ)'] = s.solar_value['Mag (BZ)']
-        value['Solar Wind'] = s.solar_value['Solar Wind']
-
-    elif page == 3:
-        value = {'Updated': '', 'Solar Flux': '', 'A-Index': '', 'K-Index': '', 'Sun Spots': '', 'X-Ray': '', 'Ptn Flux': '', 'Elc Flux': '', 'Mag (BZ)': '', 'Solar Wind': ''}
-        value_order = ['Updated', 'Solar Flux', 'A-Index', 'K-Index', 'Sun Spots', 'X-Ray', 'Ptn Flux', 'Elc Flux', 'Mag (BZ)', 'Solar Wind']
-        
-        value['Updated'] = s.solar_value['Updated']
-        value['Solar Flux'] = s.solar_value['Solar Flux']
-        value['A-Index'] = s.solar_value['A-Index']
-        value['K-Index'] = s.solar_value['K-Index']
-        value['Sun Spots'] = s.solar_value['Sun Spots']
-
-        value['X-Ray'] = s.solar_value['X-Ray']
-        value['Ptn Flux'] = s.solar_value['Ptn Flux']
-        value['Elc Flux'] = s.solar_value['Elc Flux']
-        value['Mag (BZ)'] = s.solar_value['Mag (BZ)']
-        value['Solar Wind'] = s.solar_value['Solar Wind']
-
-        position = 50
-
-    elif page == 4:
-        value = {'80m-40m J/N': '', '30m-20m J/N': '', '17m-15m J/N': '', '12m-10m J/N': '', 'VHF Aurora': '', 'E-Skip EU 2m': '', 'E-Skip EU 4m': '', 'E-Skip EU 6m': '', 'Geomag Field': '', 'Signal Noise': ''}
-        value_order = ['80m-40m J/N', '30m-20m J/N', '17m-15m J/N', '12m-10m J/N', 'VHF Aurora', 'E-Skip EU 2m', 'E-Skip EU 4m', 'E-Skip EU 6m', 'Geomag Field', 'Signal Noise']
-        
-        value['80m-40m J/N'] = s.solar_value['80m-40m Day'] + ' / ' + s.solar_value['80m-40m Night']
-        value['30m-20m J/N'] = s.solar_value['30m-20m Day'] + ' / ' + s.solar_value['30m-20m Night']
-        value['17m-15m J/N'] = s.solar_value['17m-15m Day'] + ' / ' + s.solar_value['17m-15m Night']
-        value['12m-10m J/N'] = s.solar_value['12m-10m Day'] + ' / ' + s.solar_value['12m-10m Night']
-        value['VHF Aurora'] = s.solar_value['VHF Aurora']
-
-        value['E-Skip EU 2m'] = s.solar_value['E-Skip EU 2m']
-        value['E-Skip EU 4m'] = s.solar_value['E-Skip EU 4m']
-        value['E-Skip EU 6m'] = s.solar_value['E-Skip EU 6m']
-        value['Geomag Field'] = s.solar_value['Geomag Field']
-        value['Signal Noise'] = s.solar_value['Signal Noise']
-
-        position = 60
-
-    if s.device.height == 128:
         i = 17
-    else:
-        i = 16
-
-    for j in value_order:
-        label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), j, value[j])
-        if s.device.height == 128:
+        for j in value_order:
+            label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), j, value[j])
             i += 11
-        else:
-            i += 10
+    else:
+        w, h = draw.textsize(text='No data', font=font)
+        tab = (s.device.width - w) / 2
+        draw.text((tab, 17), 'No data', font=font, fill=get_color('screen', 'foreground'))
+
+# Print cluster
+def extended_cluster(draw, page):
+    if s.device.height == 128:
+        draw.rectangle((0, 1, s.device.height - 1, 13), fill=get_color('header', 'background'))
+
+    legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
+    legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
+
+    w, h = draw.textsize(text='Cluster', font=font)
+    tab = (s.device.width - w) / 2
+    draw.text((tab, 4), 'Cluster', font=font, fill=get_color('header', 'foreground'))
+
+    if len(s.cluster_value) != 0:
+
+        if page == 1:
+            position = 42
+
+        i = 17
+        
+        for j in s.cluster_value:
+            tmp = s.cluster_value[j].split(' ')
+            label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), tmp[1], tmp[2])
+            k = 108
+            for c in tmp[4][0:5]:
+                legacy.text(draw, (k, i + 4), chr(s.letter[c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
+                k += 4
+
+            i += 11
+    else:
+        w, h = draw.textsize(text='No data', font=font)
+        tab = (s.device.width - w) / 2
+        draw.text((tab, 17), 'No data', font=font, fill=get_color('screen', 'foreground'))
+
+# Print display on 128 x 64
+def display_init(init_message):
+    with canvas(s.device) as draw:
+        draw.rectangle((0, 0, s.device.width - 1, s.device.height - 1), fill='black')
+
+        position = 0
+        for message in init_message:
+            w, h = draw.textsize(text=message, font=font)
+            tab = (s.device.width - w) / 2
+            draw.text((tab, position), message, font=font, fill='white')
+            position += 8
 
 # Print display on 128 x 64
 def display_64():
@@ -609,39 +652,51 @@ def display_128():
         draw.rectangle((0, 0, 127, s.device.height - 1), fill=get_color('screen', 'background'))
         draw.rectangle((0, 1, 127, 13), fill=get_color('header', 'background'))
 
+        draw.line((0, 0, 127, 0), fill=get_color('header', 'border'))
+        draw.line((0, 14, 127, 14), fill=get_color('header', 'border'))
+
+        '''
         for i in xrange(0, 128, 1):
             draw.point((i, 0), fill=get_color('header', 'border'))
             draw.point((i, 14), fill=get_color('header', 'border'))
+        '''
 
-        # System log extended
-        if s.transmit is False and s.minute % 2 == 0 and s.seconde < 10:
-            extended_system(draw, 3)
+        if s.transmit is False and s.minute % 2 == 0:
+            # System log extended
+            if s.seconde < 8:
+                extended_system(draw, 3)
 
-        # Config log extended
-        elif s.transmit is False and s.minute % 2 == 0 and s.seconde < 20:
-            extended_config(draw, 3)
+            # Config log extended
+            elif s.seconde < 16:
+                extended_config(draw, 3)
 
-        # Call log extended
-        elif s.transmit is False and len(s.call) >=5 and s.minute % 2 == 0 and s.seconde < 30:
-            extended_call(draw, len(s.call))
+            # Call log extended
+            elif s.seconde < 24 and len(s.call) >= 5:
+                extended_call(draw, len(s.call))
 
-        # Best log extended
-        elif s.transmit is False and len(s.best) >= 5 and s.minute % 2 == 0 and s.seconde < 40:
-            extended_best(draw, len(s.best))
+            # Best log extended
+            elif s.seconde < 32 and len(s.best) >= 5:
+                extended_best(draw, len(s.best))
 
-        # Propag extended
-        elif s.transmit is False and  s.minute % 2 == 0 and s.seconde < 50:
-            extended_propagation(draw, 3)
-    
-        elif s.transmit is False and  s.minute % 2 == 0 and s.seconde >= 50:
-            extended_propagation(draw, 4)
+            # Propag extended
+            elif s.seconde < 40:
+                extended_solar(draw, 3)
+        
+            elif s.seconde < 48:
+                extended_solar(draw, 4)
+            
+            elif s.seconde >= 48:
+                extended_cluster(draw, 1)
 
         # If not extended
         else:
+            '''
             for i in xrange(0, 128, 2):     # Horizontal
                 draw.point((i, 40), fill=get_color('screen', 'border'))    # Zone haut | Zone Histogramme - TOT
+            '''
+            draw.line((0, 40, 127, 40), fill=get_color('header', 'border'))
 
-            if 'Dernier' in s.message[0]:   # Icon clock (DIY...)
+            if s.message[0] is not None and 'Dernier' in s.message[0]:   # Icon clock (DIY...)
                 legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
                 legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
             else:   # Icon stat
@@ -649,10 +704,12 @@ def display_128():
                 legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
 
             # Icon talk
+            '''
             if s.transmit is True:
                 draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
                 distance(draw)
-
+            '''
+                
             # Print data
             i = 4
             j = 0
@@ -685,6 +742,9 @@ def display_128():
                     j += 1
 
             if s.transmit is True and s.duration > 0:
+                # Draw icon and distance
+                draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
+                distance(draw)
                 # Draw tot
                 tot(draw, legacy, s.duration, 69)
                 if s.duration < 10:

@@ -190,10 +190,10 @@ Par défaut, sans argument, le RRFDisplay va démarrer avec les paramètres suiv
 
 - i2c port = 0
 - i2c address = 0x3C
-- display = sh1106
+- display = ssd1327
 - display width = 128
-- display height = 64
-- display_theme = theme.cfg 
+- display height = 128
+- display_theme = gray.cfg
 - follow = RRF
 - refresh = 1
 - latitude = 48.8483808
@@ -203,7 +203,7 @@ Par défaut, sans argument, le RRFDisplay va démarrer avec les paramètres suiv
 
 Cela revient à lancer le RRFDisplay avec les arguments suivants,
 
-`python /opt/RRFDisplay/RRFDisplay.py --i2c-port 0 --i2c-address 0x3C --display sh1106 --display-width 128 --display-height 64 --display_theme theme.cfg --follow RRF --latitude 48.8483808 --longitude 2.2704347`
+`python /opt/RRFDisplay/RRFDisplay.py --i2c-port 0 --i2c-address 0x3C --display ssd1327 --display-width 128 --display-height 128 --display_theme gray.cfg --follow RRF --latitude 48.8483808 --longitude 2.2704347`
 
 Il est donc possible de modifier les paramètres, notamment en fonction de ce que vous retournera la commande `i2cdetect` décrite ci dessus.
 
@@ -214,13 +214,17 @@ Par exemple, avec les paramètres suivants,
 - display = ssd1306
 - display width = 128
 - display height = 64
+- display_theme = mono.cfg
 - follow = TECHNIQUE
+- refresh = 1
+- latitude = 48.8483808
+- longitude = 2.2704347  
 
 Il vous suffira de lancer le RRFDisplay avec les arguments suivants,
 
-`python /opt/RRFDisplay/RRFDisplay.py --i2c-port 1 --display ssd1306 --follow TECHNIQUE`
+`python /opt/RRFDisplay/RRFDisplay.py --i2c-port 1 --display ssd1306 --display-height 64 --display_theme mono.cfg --follow TECHNIQUE`
 
-Notez qu'il n'est pas nécessaire de préciser l'i2c-address, le display-width et display-height puisque ce sont déjà les valeurs par défaut. Idem pour la latitude et la longitude, qui par défaut sont les miennes...
+Notez qu'il n'est pas nécessaire de préciser l'i2c-address, le display-width et le refresh puisque ce sont déjà les valeurs par défaut. Idem pour la latitude et la longitude, qui par défaut sont les miennes...
 
 Point important, il est aussi possible de préciser un indicatif de link à suivre, plutôt qu'un salon. Par exemple, si vous désirez suivre le F1ZPX, il suffit de préciser,
 
@@ -228,9 +232,11 @@ Point important, il est aussi possible de préciser un indicatif de link à suiv
 
 Dès lors, le RRFDisplay affichera les informations du salon sur lequel se trouvre le link F1ZPX et le suivra automatiquement au grès de ses QSY.
 
+> Si vous avez plusieurs links avec le même call, vous pouvez préciser plus finement le nom du link à suivre en précisant, par exemple --follow '(75) F1ZPX V' (notez l'utilisation des quotes).
+
 Enfin, si vous voulez le laisser tourner en tache de fond, utilisez la commande `nohup` et l'_esperluette_ ;) Par exemple, 
 
-`nohup python /opt/RRFDisplay/RRFDisplay.py --i2c-port 1 --display ssd1306 --follow TECHNIQUE &`
+`nohup python /opt/RRFDisplay/RRFDisplay.py --i2c-port 1 --display ssd1306 --display-height 64 --display_theme mono.cfg --follow TECHNIQUE &`
 
 Et voilà ;)
 

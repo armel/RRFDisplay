@@ -20,13 +20,13 @@ import getopt
 import configparser as cp
 
 from luma.core.interface.serial import i2c, spi
+from luma.core.render import canvas
+
 from luma.oled.device import sh1106
 from luma.oled.device import ssd1306
 from luma.oled.device import ssd1327
 from luma.oled.device import ssd1351
 from luma.lcd.device  import st7735
-
-from luma.core.render import canvas
 
 def main(argv):
 
@@ -96,14 +96,38 @@ def main(argv):
             s.device = st7735(serial, width=s.display_width, height=s.display_height, rotate=3, mode='RGB')
 
 
+    init_message = []
+    # Let's go
+    init_message.append('RRFDisplay ' + s.version)
+    init_message.append('')
+    init_message.append('88 et 73 de F4HWN')
+    init_message.append('')
+    d.display_init(init_message)
+
     # Lecture du fichier de theme
+    init_message.append('Chargement Theme')
+    d.display_init(init_message)
     s.theme = cp.ConfigParser()
     s.theme.read('./themes/' + s.display_theme)
+
+
+    # Lecture initiale de la progation et du cluster
+    init_message.append('Requete Propagation')
+    d.display_init(init_message)
+    l.get_solar()
+
+    init_message.append('Requete Cluster')
+    d.display_init(init_message)
+    l.get_cluster()
+
+    init_message.append('Let\'s go')
+    d.display_init(init_message)
 
     # Boucle principale
     s.timestamp_start = time.time()
 
     rrf_data = ''
+    rrf_data_old = ''
 
     #print s.scan
     #print s.callsign
@@ -125,8 +149,11 @@ def main(argv):
                 #print s.now, tmp
                 s.room_current = tmp
 
-        if s.minute == 0 or not s.solar_value: # Update propagation
-            l.get_propagation()
+        if s.minute == 0: # Update solar propagation
+            l.get_solar()
+
+        if s.minute % 4 == 0: # Update cluster
+            l.get_cluster()
 
         url = s.room[s.room_current]['url']
 
@@ -146,7 +173,8 @@ def main(argv):
         except:
             pass
 
-        if rrf_data != '': # Si le flux est valide
+        if rrf_data != '' and rrf_data != rrf_data_old: # Si le flux est valide
+            rrf_data_old = rrf_data
             data_abstract = rrf_data['abstract'][0]
             data_activity = rrf_data['activity']
             data_transmit = rrf_data['transmit'][0]
@@ -170,7 +198,7 @@ def main(argv):
                                 s.transmit_elsewhere = True
                                 s.raptor[i] = l.convert_second_to_time(tmp) + '/' + data[:3] + '/' + l.sanitize_call(rrf_data['elsewhere'][1][data].encode('utf-8')) + '/' + str(rrf_data['elsewhere'][5][data])
                             else:
-                                s.raptor[i] = l.convert_second_to_time(tmp) + '/' + data[:3] + '/' + rrf_data['elsewhere'][3][data] + '/' + str(rrf_data['elsewhere'][5][data])
+                                s.raptor[i] = l.convert_second_to_time(tmp) + '/' + data[:3] + '/' + l.convert_time_to_string(rrf_data['elsewhere'][3][data]) + '/' + str(rrf_data['elsewhere'][5][data])
 
                             i += 1
                 except:
@@ -227,7 +255,10 @@ def main(argv):
                 s.message[0] = 'Links total ' + str(data_abstract[u'Links connectés'])
                 
             elif(s.seconde < 40):   # Total emission
-                s.message[0] = 'BF total ' + data_abstract[u'Emission cumulée']
+                tmp = l.convert_time_to_string(data_abstract[u'Emission cumulée'])
+                if 'h' in tmp:
+                    tmp = tmp[0:6]
+                s.message[0] = 'BF total ' + tmp
 
             elif(s.seconde < 50):   # Last TX
                 s.message[0] = 'Dernier ' + data_last[0][u'Heure']
@@ -236,7 +267,7 @@ def main(argv):
                 if s.scan is True:
                     s.message[0] = 'Suivi de ' + s.callsign
                 else:
-                    s.message[0] = 'Salon ' + s.room_current[:3]         
+                    s.message[0] = 'Salon ' + s.room_current[:3]
 
         # Print screen
         if s.device.height == 128:

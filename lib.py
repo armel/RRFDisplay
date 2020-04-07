@@ -12,6 +12,11 @@ import os
 import requests
 import sys
 import getopt
+import json
+import urllib3
+import calendar
+
+urllib3.disable_warnings()
 
 import settings as s
 
@@ -264,6 +269,24 @@ def convert_time_to_second(time):
     
     return sum([a * b for a, b in zip(format, map(int, time.split(':')))])
 
+# Convert time to second
+def convert_time_to_string(time):
+    if len(time) == 5:
+        time = '00:' + time
+
+    time = time.replace(':', 'h ', 1)
+    time = time.replace(':', 'm ', 1) + 's'
+
+    return time
+
+# Convert time utc to time local
+def utc_to_local(utc_dt):
+    utc_dt = datetime.strptime(utc_dt, '%Y-%m-%d %H:%M:%S')
+    timestamp = calendar.timegm(utc_dt.timetuple())
+    local_dt = datetime.fromtimestamp(timestamp)
+    assert utc_dt.resolution >= timedelta(microseconds=1)
+    return local_dt.replace(microsecond=utc_dt.microsecond)
+
 # Sanitize call
 def sanitize_call(call):
     return call.translate(None, '\\\'!@#$"()[]')
@@ -295,114 +318,148 @@ def scan(call):
     
     return False
 
-# Get propagation
+# Get solar propagation
 
-def get_propagation():
+def get_solar():
     solar_data = ''
 
     # Get date
-    now = datetime.now() - timedelta(minutes=1)
+    now = datetime.now() - timedelta(minutes=60)
     today = format(now, "%Y-%m-%d %H:%M:%S")
-    year = format(now, "%Y")
 
     # Check file
     if os.path.isfile(s.solar_file):
         modify = datetime.fromtimestamp(os.path.getmtime(s.solar_file)).strftime("%Y-%m-%d %H:%M:%S")
 
-    if not os.path.isfile(s.solar_file) or today > modify:     # if necessary update file
+    if not os.path.isfile(s.solar_file) or today > modify or len(s.solar_value) == 0:     # if necessary update file
         # Request HTTP on hamqsl
         try:
-            r = requests.get(s.solar_url, verify=False, timeout=0.30)
-        except requests.exceptions.ConnectionError as errc:
-            #print ('Error Connecting:', errc)
-            solar_data = etree.parse(s.solar_file)
-            pass
-        except requests.exceptions.Timeout as errt:
-            #print ('Timeout Error:', errt)
-            solar_data = etree.parse(s.solar_file)
-            pass
-
-        # Check stream validity
-        try:
+            r = requests.get(s.solar_url, verify=False, timeout=1)
             solar_data = etree.fromstring(r.content)
             f = open(s.solar_file, 'w')
             f.write(r.content)
             f.close
         except:
-            solar_data = etree.parse(s.solar_file)
             pass
-    else:
-        solar_data = etree.parse(s.solar_file)
 
-    if solar_data != '': # If valid stream
-        # Page 1
-        for value in solar_data.xpath('/solar/solardata/updated'):
-            s.solar_value['Updated'] = value.text.strip()
-            
-            tmp = s.solar_value['Updated'].split(' ')
-            tmp = tmp[0] + ' ' + tmp[1] + ' ' + tmp[2] + ' ' + tmp[3]
-            tmp = datetime.strptime(tmp, '%d %b %Y %H%M')
+        if solar_data != '': # If valid stream
+            s.solar_value.clear()
+            # Page 1
+            for value in solar_data.xpath('/solar/solardata/updated'):
+                s.solar_value['Updated'] = value.text.strip()
+                
+                tmp = s.solar_value['Updated'].split(' ')
+                tmp = tmp[0] + ' ' + tmp[1] + ' ' + tmp[2] + ' ' + tmp[3]
+                tmp = datetime.strptime(tmp, '%d %b %Y %H%M')
 
-            s.solar_value['Updated'] = tmp.strftime("%d-%m, %H:%M")
+                s.solar_value['Updated'] = tmp.strftime("%d-%m, %H:%M")
 
-        for value in solar_data.xpath('/solar/solardata/solarflux'):
-            s.solar_value['Solar Flux'] = value.text.strip()
-        for value in solar_data.xpath('/solar/solardata/aindex'):
-            s.solar_value['A-Index'] = value.text.strip()
-        for value in solar_data.xpath('/solar/solardata/kindex'):
-            s.solar_value['K-Index'] = value.text.strip()
-        for value in solar_data.xpath('/solar/solardata/sunspots'):
-            s.solar_value['Sun Spots'] = value.text.strip()
-        for value in solar_data.xpath('/solar/solardata/xray'):
-            s.solar_value['X-Ray'] = value.text.strip()
-        for value in solar_data.xpath('/solar/solardata/protonflux'):
-            s.solar_value['Ptn Flux'] = value.text.strip()
-        for value in solar_data.xpath('/solar/solardata/electonflux'):
-            s.solar_value['Elc Flux'] = value.text.strip()
-        for value in solar_data.xpath('/solar/solardata/magneticfield'):
-            s.solar_value['Mag (BZ)'] = value.text.strip()
-        for value in solar_data.xpath('/solar/solardata/solarwind'):
-            s.solar_value['Solar Wind'] = value.text.strip()
+            for value in solar_data.xpath('/solar/solardata/solarflux'):
+                s.solar_value['Solar Flux'] = value.text.strip()
+            for value in solar_data.xpath('/solar/solardata/aindex'):
+                s.solar_value['A-Index'] = value.text.strip()
+            for value in solar_data.xpath('/solar/solardata/kindex'):
+                s.solar_value['K-Index'] = value.text.strip()
+            for value in solar_data.xpath('/solar/solardata/sunspots'):
+                s.solar_value['Sun Spots'] = value.text.strip()
+            for value in solar_data.xpath('/solar/solardata/xray'):
+                s.solar_value['X-Ray'] = value.text.strip()
+            for value in solar_data.xpath('/solar/solardata/protonflux'):
+                s.solar_value['Ptn Flux'] = value.text.strip()
+            for value in solar_data.xpath('/solar/solardata/electonflux'):
+                s.solar_value['Elc Flux'] = value.text.strip()
+            for value in solar_data.xpath('/solar/solardata/magneticfield'):
+                s.solar_value['Mag (BZ)'] = value.text.strip()
+            for value in solar_data.xpath('/solar/solardata/solarwind'):
+                s.solar_value['Solar Wind'] = value.text.strip()
 
-        # Page 2
-        for value in solar_data.xpath('/solar/solardata/calculatedconditions/band[@name="80m-40m" and @time="day"]'):
-            s.solar_value['80m-40m Day'] = value.text.strip()
-        for value in solar_data.xpath('/solar/solardata/calculatedconditions/band[@name="30m-20m" and @time="day"]'):
-            s.solar_value['30m-20m Day'] = value.text.strip()
-        for value in solar_data.xpath('/solar/solardata/calculatedconditions/band[@name="17m-15m" and @time="day"]'):
-            s.solar_value['17m-15m Day'] = value.text.strip()
-        for value in solar_data.xpath('/solar/solardata/calculatedconditions/band[@name="12m-10m" and @time="day"]'):
-            s.solar_value['12m-10m Day'] = value.text.strip()
+            # Page 2
+            for value in solar_data.xpath('/solar/solardata/calculatedconditions/band[@name="80m-40m" and @time="day"]'):
+                s.solar_value['80m-40m Day'] = value.text.strip()
+            for value in solar_data.xpath('/solar/solardata/calculatedconditions/band[@name="30m-20m" and @time="day"]'):
+                s.solar_value['30m-20m Day'] = value.text.strip()
+            for value in solar_data.xpath('/solar/solardata/calculatedconditions/band[@name="17m-15m" and @time="day"]'):
+                s.solar_value['17m-15m Day'] = value.text.strip()
+            for value in solar_data.xpath('/solar/solardata/calculatedconditions/band[@name="12m-10m" and @time="day"]'):
+                s.solar_value['12m-10m Day'] = value.text.strip()
 
-        for value in solar_data.xpath('/solar/solardata/calculatedconditions/band[@name="80m-40m" and @time="night"]'):
-            s.solar_value['80m-40m Night'] = value.text.strip()
-        for value in solar_data.xpath('/solar/solardata/calculatedconditions/band[@name="30m-20m" and @time="night"]'):
-            s.solar_value['30m-20m Night'] = value.text.strip()
-        for value in solar_data.xpath('/solar/solardata/calculatedconditions/band[@name="17m-15m" and @time="night"]'):
-            s.solar_value['17m-15m Night'] = value.text.strip()
-        for value in solar_data.xpath('/solar/solardata/calculatedconditions/band[@name="12m-10m" and @time="night"]'):
-            s.solar_value['12m-10m Night'] = value.text.strip()
+            for value in solar_data.xpath('/solar/solardata/calculatedconditions/band[@name="80m-40m" and @time="night"]'):
+                s.solar_value['80m-40m Night'] = value.text.strip()
+            for value in solar_data.xpath('/solar/solardata/calculatedconditions/band[@name="30m-20m" and @time="night"]'):
+                s.solar_value['30m-20m Night'] = value.text.strip()
+            for value in solar_data.xpath('/solar/solardata/calculatedconditions/band[@name="17m-15m" and @time="night"]'):
+                s.solar_value['17m-15m Night'] = value.text.strip()
+            for value in solar_data.xpath('/solar/solardata/calculatedconditions/band[@name="12m-10m" and @time="night"]'):
+                s.solar_value['12m-10m Night'] = value.text.strip()
 
-        for value in solar_data.xpath('/solar/solardata/geomagfield'):
-            s.solar_value['Geomag Field'] = value.text.strip()
-        for value in solar_data.xpath('/solar/solardata/signalnoise'):
-            s.solar_value['Signal Noise'] = value.text.strip()
+            for value in solar_data.xpath('/solar/solardata/geomagfield'):
+                s.solar_value['Geomag Field'] = value.text.strip()
+                s.solar_value['Geomag Field'] = s.solar_value['Geomag Field'].title()
+            for value in solar_data.xpath('/solar/solardata/signalnoise'):
+                s.solar_value['Signal Noise'] = value.text.strip()
 
-        # Page 3
-        for value in solar_data.xpath('/solar/solardata/calculatedvhfconditions/phenomenon[@name="vhf-aurora" and @location="northern_hemi"]'):
-            s.solar_value['VHF Aurora'] = value.text.strip()
-            s.solar_value['VHF Aurora'] = s.solar_value['VHF Aurora'].replace('Band ', '')
-        for value in solar_data.xpath('/solar/solardata/calculatedvhfconditions/phenomenon[@name="E-Skip" and @location="europe"]'):
-            s.solar_value['E-Skip EU 2m'] = value.text.strip()
-            s.solar_value['E-Skip EU 2m'] = s.solar_value['E-Skip EU 2m'].replace('Band ', '')
-        for value in solar_data.xpath('/solar/solardata/calculatedvhfconditions/phenomenon[@name="E-Skip" and @location="europe_4m"]'):
-            s.solar_value['E-Skip EU 4m'] = value.text.strip()
-            s.solar_value['E-Skip EU 4m'] = s.solar_value['E-Skip EU 4m'].replace('Band ', '')
-        for value in solar_data.xpath('/solar/solardata/calculatedvhfconditions/phenomenon[@name="E-Skip" and @location="europe_6m"]'):
-            s.solar_value['E-Skip EU 6m'] = value.text.strip()
-            s.solar_value['E-Skip EU 6m'] = s.solar_value['E-Skip EU 6m'].replace('Band ', '')
-        for value in solar_data.xpath('/solar/solardata/calculatedvhfconditions/phenomenon[@name="E-Skip" and @location="north_america"]'):
-            s.solar_value['E-Skip NA 2m'] = value.text.strip()
-            s.solar_value['E-Skip NA 2m'] = s.solar_value['E-Skip NA 2m'].replace('Band ', '')
+            # Page 3
+            for value in solar_data.xpath('/solar/solardata/calculatedvhfconditions/phenomenon[@name="vhf-aurora" and @location="northern_hemi"]'):
+                s.solar_value['VHF Aurora'] = value.text.strip()
+                s.solar_value['VHF Aurora'] = s.solar_value['VHF Aurora'].replace('Band ', '')
+            for value in solar_data.xpath('/solar/solardata/calculatedvhfconditions/phenomenon[@name="E-Skip" and @location="europe"]'):
+                s.solar_value['E-Skip EU 2m'] = value.text.strip()
+                s.solar_value['E-Skip EU 2m'] = s.solar_value['E-Skip EU 2m'].replace('Band ', '')
+            for value in solar_data.xpath('/solar/solardata/calculatedvhfconditions/phenomenon[@name="E-Skip" and @location="europe_4m"]'):
+                s.solar_value['E-Skip EU 4m'] = value.text.strip()
+                s.solar_value['E-Skip EU 4m'] = s.solar_value['E-Skip EU 4m'].replace('Band ', '')
+            for value in solar_data.xpath('/solar/solardata/calculatedvhfconditions/phenomenon[@name="E-Skip" and @location="europe_6m"]'):
+                s.solar_value['E-Skip EU 6m'] = value.text.strip()
+                s.solar_value['E-Skip EU 6m'] = s.solar_value['E-Skip EU 6m'].replace('Band ', '')
+            for value in solar_data.xpath('/solar/solardata/calculatedvhfconditions/phenomenon[@name="E-Skip" and @location="north_america"]'):
+                s.solar_value['E-Skip NA 2m'] = value.text.strip()
+                s.solar_value['E-Skip NA 2m'] = s.solar_value['E-Skip NA 2m'].replace('Band ', '')
+
+    return True
+
+# Get cluster
+
+def get_cluster():
+    cluster_data = ''
+
+    # Get date
+    now = datetime.now() - timedelta(minutes=4)
+    today = format(now, "%Y-%m-%d %H:%M:%S")
+
+    # Check file
+    if os.path.isfile(s.cluster_file):
+        modify = datetime.fromtimestamp(os.path.getmtime(s.cluster_file)).strftime("%Y-%m-%d %H:%M:%S")
+
+    if not os.path.isfile(s.cluster_file) or today > modify or len(s.cluster_value) == 0:     # if necessary update file
+        if os.path.isfile(s.cluster_band_file):
+            with open(s.cluster_band_file, 'r') as f:
+                band = f.read().strip()
+        else:
+            band = s.cluster_band
+
+        # Request HTTP on hamqsl
+        try:
+            r = requests.get(s.cluster_url + band, verify=False, timeout=1)
+            cluster_data = r.json()
+            f = open(s.cluster_file, 'w')
+            f.write(r.content)
+            f.close
+        except:
+            pass
+
+        if cluster_data != '':
+            s.cluster_value.clear()
+            limit = len(cluster_data)
+            indice = 0
+            for item in xrange(0, limit):
+                if s.cluster_band in s.cluster_exclude:
+                    if cluster_data[item][u'freq'] not in s.cluster_exclude[s.cluster_band]:
+                        s.cluster_value[indice] = cluster_data[item][u'call'] + ' ' + cluster_data[item][u'freq'] + ' ' + cluster_data[item][u'dxcall'] + ' ' + str(utc_to_local(cluster_data[item][u'time'].encode('utf-8')))
+                else:
+                    s.cluster_value[indice] = cluster_data[item][u'call'] + ' ' + cluster_data[item][u'freq'] + ' ' + cluster_data[item][u'dxcall'] + ' ' + str(utc_to_local(luster_data[item][u'time'].encode('utf-8')))
+
+                indice += 1
+                if indice == 10:
+                    break
 
     return True  

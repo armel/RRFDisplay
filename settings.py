@@ -10,17 +10,17 @@ Check video about RRFDisplay on https://www.youtube.com/watch?v=rVW8xczVpEo
 
 # Version
 
-version = '5.1.0'
+version = '5.2.1'
 
 # Default i2c_port, i2c_address, display and room
 
 interface = 'i2c'                       # Default value !
 i2c_port = 0                            # Default value ! Check with i2detect
 i2c_address = 0x3C                      # Default value ! Check with i2detect
-display = 'sh1106'                      # Default value !
+display = 'ssd1327'                     # Default value !
 display_width = 128                     # Default value !
-display_height = 64                     # Default value !
-display_theme = 'theme.cfg'             # Default value ! 
+display_height = 128                    # Default value !
+display_theme = 'gray.cfg'              # Default value ! 
 follow = 'RRF'                          # Default value !
 refresh = 1.0                           # Default value !
 latitude = 48.8482855                   # Default value ! Check WGS84 on https://www.coordonnees-gps.fr/
@@ -136,6 +136,7 @@ call_sysop = ''             # Call sysop
 call_latitude = ''          # Call latitude
 call_longitude = ''         # Call longitude
 qso_hour = [0] * 24         # QSO list for histogramm
+duration = 0                # QSO time
 transmit = True             # Detect transmit
 transmit_elsewhere = True   # Detect transmit elsewhere
 history = dict()            # History dict
@@ -160,8 +161,30 @@ hour = ''
 minute = ''
 seconde = ''
 
-# Set propagation
+# Set solar
 
 solar_url = 'http://www.hamqsl.com/solarxml.php'
 solar_file = './data/solar.xml'
 solar_value = {}
+
+# Set cluster
+
+cluster_url = 'http://www.dxcluster.co.uk/api/data_band/'
+cluster_file = './data/cluster.json'
+cluster_band = '10'
+cluster_band_file = './data/band.dat'
+cluster_value = {}
+cluster_exclude = {
+    '2': ['144174'],
+    '6': ['50313'],
+    '10': ['28074', '28080'],
+    '12': ['24915'],
+    '15': ['21074'],
+    '17': ['18100'],
+    '20': ['14074'],
+    '30': ['10136'],
+    '40': ['7074'],
+    '60': ['5357'],
+    '80': ['3573'],
+    '160': ['1840']
+}
