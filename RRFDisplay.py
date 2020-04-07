@@ -118,6 +118,9 @@ def main(argv):
     d.display_init(init_message)
     l.get_cluster()
 
+    init_message.append('Let\'s go')
+    d.display_init(init_message)
+
     # Boucle principale
     s.timestamp_start = time.time()
 
