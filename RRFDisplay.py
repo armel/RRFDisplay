@@ -95,8 +95,8 @@ def main(argv):
         elif s.display == 'st7735':
             s.device = st7735(serial, width=s.display_width, height=s.display_height, rotate=3, mode='RGB')
 
-
     init_message = []
+
     # Let's go
     init_message.append('RRFDisplay ' + s.version)
     init_message.append('')
@@ -109,7 +109,6 @@ def main(argv):
     d.display_init(init_message)
     s.theme = cp.ConfigParser()
     s.theme.read('./themes/' + s.display_theme)
-
 
     # Lecture initiale de la progation et du cluster
     init_message.append('Requete Propagation')
