@@ -547,7 +547,7 @@ def display_init(init_message):
     with canvas(s.device) as draw:
         draw.rectangle((0, 0, s.device.width - 1, s.device.height - 1), fill='black')
 
-        position = 8
+        position = 0
         for message in init_message:
             w, h = draw.textsize(text=message, font=font)
             tab = (s.device.width - w) / 2
