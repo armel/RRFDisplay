@@ -96,25 +96,25 @@ def main(argv):
             s.device = st7735(serial, width=s.display_width, height=s.display_height, rotate=3, mode='RGB')
 
 
-    boot = []
+    init_message = []
     # Let's go
-    boot.append('RRFDisplay ' + s.version)
-    d.display_init()
+    init_message.append('RRFDisplay ' + s.version)
+    d.display_init(init_message)
 
     # Lecture du fichier de theme
-    boot.append('Chargement Theme')
-    d.display_init()
+    init_message.append('Chargement Theme')
+    d.display_init(init_message)
     s.theme = cp.ConfigParser()
     s.theme.read('./themes/' + s.display_theme)
 
 
     # Lecture initiale de la progation et du cluster
-    boot.append('Requete Propagation')
-    d.display_init()
+    init_message.append('Requete Propagation')
+    d.display_init(init_message)
     l.get_solar()
 
-    boot.append('Requete Cluster')
-    d.display_init()
+    init_message.append('Requete Cluster')
+    d.display_init(init_message)
     l.get_cluster()
 
     # Boucle principale
