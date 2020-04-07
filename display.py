@@ -546,13 +546,14 @@ def extended_cluster(draw, page):
 def display_init(init_message):
     with canvas(s.device) as draw:
         draw.rectangle((0, 0, s.device.width - 1, s.device.height - 1), fill='black')
-    position = 8
-    print init_message
-    for message in init_message:
-        w, h = draw.textsize(text=message, font=font)
-        tab = (s.device.width - w) / 2
-        draw.text((tab, position), message, font=font, fill='white')
-        position += 8
+        
+        position = 8
+        print init_message
+        for message in init_message:
+            w, h = draw.textsize(text=message, font=font)
+            tab = (s.device.width - w) / 2
+            draw.text((tab, position), message, font=font, fill='white')
+            position += 8
 
 # Print display on 128 x 64
 def display_64():
