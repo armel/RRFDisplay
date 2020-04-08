@@ -765,7 +765,7 @@ def display_128():
                     # Draw call
                     tmp = s.call_current.split(' ')
                     if len(tmp) == 3:
-                        tmp = tmp[1] + 'X'
+                        tmp = tmp[1]
                     else:
                         tmp = 'RTFM'
 
