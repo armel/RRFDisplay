@@ -706,6 +706,7 @@ def display_128():
             s.call_current = '977 FG5ABC T10M'
             s.call_latitude = 48.8482855
             s.call_longitude = 2.2708201
+            print s.duration
 
             if s.transmit is False or s.duration % 5 == 0:
                 # Print data
