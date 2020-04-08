@@ -714,7 +714,6 @@ def display_128():
             s.call_longitude = 2.2708201
             s.transmit = True
             print s.duration
-            '''
 
             if s.transmit is True and s.duration % 5 == 0:
                 # Draw call
@@ -728,7 +727,9 @@ def display_128():
                 tab = (s.device.width - w) / 2
                 draw.text((tab, 15), tmp, font=font_big, fill=get_color('log', 'call_last'))
 
-            else:
+            '''
+            
+            if s.transmit is False or s.duration % 5 != 0:
                 # Print data
                 i = 16
                 j = 1
@@ -757,19 +758,31 @@ def display_128():
                     # Draw icon and distance
                     draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
                     distance(draw)
-
-                    # Draw tot
-                    tot(draw, legacy, s.duration, 69)
-                    if s.duration < 10:
-                        # Whois
-                        whois(draw)
-                    else:
-                        # Elsewhere
-                        elsewhere(draw, s.raptor)
-
                 else:
                     # Draw stats histogram
                     histogram(draw, legacy, 69, 28)
+                    # Elsewhere
+                    elsewhere(draw, s.raptor)
+
+            elif  s.transmit is True or s.duration % 5 == 0:
+                # Draw call
+                tmp = s.call_current.split(' ')
+                if len(tmp) == 3:
+                    tmp = tmp[1]
+                else:
+                    tmp = 'RTFM'
+
+                w, h = draw.textsize(text=tmp, font=font_big)
+                tab = (s.device.width - w) / 2
+                draw.text((tab, 15), tmp, font=font_big, fill=get_color('log', 'call_last'))
+                
+            else:
+                # Draw tot
+                tot(draw, legacy, s.duration, 69)
+                if s.duration < 10:
+                    # Whois
+                    whois(draw)
+                else:
                     # Elsewhere
                     elsewhere(draw, s.raptor)
 
