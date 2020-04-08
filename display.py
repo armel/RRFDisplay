@@ -31,9 +31,10 @@ def get_color(section, value):
 
 # Draw title
 def title(message):
-    w, h = draw.textsize(text=message, font=font)
-    tab = (s.device.width - w) / 2
-    draw.text((tab, 4), message, font=font, fill=get_color('header', 'foreground'))
+    with canvas(s.device) as draw:
+        w, h = draw.textsize(text=message, font=font)
+        tab = (s.device.width - w) / 2
+        draw.text((tab, 4), message, font=font, fill=get_color('header', 'foreground'))
 
 # Draw label
 def label(draw, position, width, bg_color, fg_color, label, value, fixed = 0):
