@@ -755,7 +755,7 @@ def display_128():
                     if len(tmp) == 3:
                         tmp = tmp[1]
                     else:
-                        tmp = 'ERROR'
+                        tmp = 'RTFM'
 
                     w, h = draw.textsize(text=tmp, font=font_big)
                     tab = (s.device.width - w) / 2
