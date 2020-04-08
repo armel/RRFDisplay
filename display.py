@@ -750,7 +750,7 @@ def display_128():
                 tmp = s.call_current.split(' ')
                 w, h = draw.textsize(text=tmp[1], font=font_big)
                 tab = (s.device.width - w) / 2
-                draw.text((tab, 14), s.call_current, font=font_big, fill=get_color('log', 'call_last'))
+                draw.text((tab, 14), tmp[1], font=font_big, fill=get_color('log', 'call_last'))
 
                 # Draw tot
                 tot(draw, legacy, s.duration, 69)
