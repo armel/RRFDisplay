@@ -703,6 +703,7 @@ def display_128():
             # Draw title
             title(draw, s.message[0])
     
+            '''
             import random
             s.duration = random.randint(9,11)
             s.call_current = 'FG5ABC'
@@ -710,7 +711,8 @@ def display_128():
             s.call_longitude = 2.2708201
             s.transmit = True
             print s.duration
-
+            '''
+            
             if s.transmit is False or s.duration % 5 == 0:
                 # Print data
                 i = 16
