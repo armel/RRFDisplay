@@ -19,9 +19,9 @@ from PIL import ImageFont
 
 icon = ImageFont.truetype('./fonts/fontello.ttf', 14)     # Icon font
 font = ImageFont.truetype('./fonts/7x5.ttf', 8)           # Text font
-#font_tot = ImageFont.truetype('./fonts/astro.ttf', 52)    # Text font
 #font_big = ImageFont.truetype('./fonts/dot.ttf', 30)    # Text font
 font_big = ImageFont.truetype('./fonts/dot.ttf', 30)    # Text font
+#font_tot = ImageFont.truetype('./fonts/astro.ttf', 52)    # Text font
 font_tot = ImageFont.truetype('./fonts/rounded_led_board.ttf', 20)    # Text font
 
 # Manage color
@@ -715,7 +715,7 @@ def display_128():
             s.transmit = True
             print s.duration
             '''
-            
+
             if s.transmit is False or s.duration % 5 == 0:
                 # Print data
                 i = 16
@@ -741,11 +741,6 @@ def display_128():
                         i += h
                         j += 1
 
-                if s.duration % 5 == 0:
-                    # Draw icon and distance
-                    draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
-                    distance(draw)
-
             if s.transmit is True:
                 if  s.duration % 5 != 0:
                     # Draw call
@@ -758,6 +753,11 @@ def display_128():
                     w, h = draw.textsize(text=tmp, font=font_big)
                     tab = (s.device.width - w) / 2
                     draw.text((tab, 15), tmp, font=font_big, fill=get_color('log', 'call_last'))
+
+                    else:
+                        # Draw icon and distance
+                        draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
+                        distance(draw)
 
                 # Draw tot
                 tot(draw, legacy, s.duration, 69)
