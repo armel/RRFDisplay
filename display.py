@@ -120,7 +120,7 @@ def tot(draw, legacy, duration, position):
         tmp = l.convert_second_to_time(duration)
         w, h = draw.textsize(text=tmp, font=font_tot)
         tab = (s.device.width - w) / 2
-        draw.text((tab, 58), tmp, font=font_tot, fill=get_color('screen', 'foreground'))
+        draw.text((tab, 57), tmp, font=font_tot, fill=get_color('screen', 'foreground'))
 
 
 # Print elsewhere
@@ -706,7 +706,7 @@ def display_128():
             title(draw, s.message[0])
     
             import random
-            s.duration = random.randint(9,11)
+            s.duration = random.randint(5,16)
             s.call_current = '977 FG5ABC V'
             s.call_latitude = 48.8482855
             s.call_longitude = 2.2708201
@@ -756,7 +756,7 @@ def display_128():
 
                     w, h = draw.textsize(text=tmp, font=font_big)
                     tab = (s.device.width - w) / 2
-                    draw.text((tab, 24), tmp, font=font_big, fill=get_color('log', 'call_last'))
+                    draw.text((tab, 18), tmp, font=font_big, fill=get_color('log', 'call_last'))
 
                 # Draw tot
                 tot(draw, legacy, s.duration, 69)
