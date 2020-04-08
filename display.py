@@ -758,19 +758,20 @@ def display_128():
                     draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
                     distance(draw)
 
-                # Draw tot
-                tot(draw, legacy, s.duration, 69)
-                if s.duration < 10:
-                    # Whois
-                    whois(draw)
+                    # Draw tot
+                    tot(draw, legacy, s.duration, 69)
+                    if s.duration < 10:
+                        # Whois
+                        whois(draw)
+                    else:
+                        # Elsewhere
+                        elsewhere(draw, s.raptor)
+
                 else:
+                    # Draw stats histogram
+                    histogram(draw, legacy, 69, 28)
                     # Elsewhere
                     elsewhere(draw, s.raptor)
-            else:
-                # Draw stats histogram
-                histogram(draw, legacy, 69, 28)
-                # Elsewhere
-                elsewhere(draw, s.raptor)
 
         # Finaly, print clock and room
         clock_room(draw)
