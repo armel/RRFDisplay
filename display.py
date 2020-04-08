@@ -761,11 +761,6 @@ def display_128():
                 elsewhere(draw, s.raptor)
 
             elif s.transmit is True:
-                # Draw message
-                last(draw, s.message[1:])
-                # Draw icon and distance
-                draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
-                distance(draw)
                 # Draw tot
                 tot(draw, legacy, s.duration, 69)
                 if s.duration < 10:
@@ -782,6 +777,11 @@ def display_128():
                     # Whois
                     whois(draw)
                 else:
+                    # Draw message
+                    last(draw, s.message[1:])
+                    # Draw icon and distance
+                    draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
+                    distance(draw)
                     # Elsewhere
                     elsewhere(draw, s.raptor)
 
