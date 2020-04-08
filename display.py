@@ -754,10 +754,10 @@ def display_128():
                     tab = (s.device.width - w) / 2
                     draw.text((tab, 15), tmp, font=font_big, fill=get_color('log', 'call_last'))
 
-                    else:
-                        # Draw icon and distance
-                        draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
-                        distance(draw)
+                else:
+                    # Draw icon and distance
+                    draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
+                    distance(draw)
 
                 # Draw tot
                 tot(draw, legacy, s.duration, 69)
