@@ -761,7 +761,14 @@ def display_128():
                 elsewhere(draw, s.raptor)
 
             elif s.transmit is True:
-                if s.duration % 5 == 0:
+                # Draw message
+                last(draw, s.message[1:])
+                # Draw icon and distance
+                draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
+                distance(draw)
+                # Draw tot
+                tot(draw, legacy, s.duration, 69)
+                if s.duration < 10:
                     # Draw call
                     tmp = s.call_current.split(' ')
                     if len(tmp) == 3:
@@ -772,16 +779,6 @@ def display_128():
                     w, h = draw.textsize(text=tmp, font=font_big)
                     tab = (s.device.width - w) / 2
                     draw.text((tab, 14), tmp, font=font_big, fill=get_color('log', 'call_last'))
-                else:
-                    # Draw message
-                    last(draw, s.message[1:])
-                    # Draw icon and distance
-                    draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
-                    distance(draw)
-
-                # Draw tot
-                tot(draw, legacy, s.duration, 69)
-                if s.duration < 10:
                     # Whois
                     whois(draw)
                 else:
