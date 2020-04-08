@@ -30,11 +30,10 @@ def get_color(section, value):
         return color
 
 # Draw title
-def title(message):
-    with canvas(s.device) as draw:
-        w, h = draw.textsize(text=message, font=font)
-        tab = (s.device.width - w) / 2
-        draw.text((tab, 4), message, font=font, fill=get_color('header', 'foreground'))
+def title(draw, message):
+    w, h = draw.textsize(text=message, font=font)
+    tab = (s.device.width - w) / 2
+    draw.text((tab, 4), message, font=font, fill=get_color('header', 'foreground'))
 
 # Draw label
 def label(draw, position, width, bg_color, fg_color, label, value, fixed = 0):
@@ -259,7 +258,7 @@ def extended_system(draw, page):
     legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CPU)
     legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CPU)
 
-    title('Infos Spotnik')
+    title(draw, 'Infos Spotnik')
 
     if page == 1:
         sys = {'Arch': '', 'Kernel': '', 'Uptime': '', 'Load': '', 'Freq': ''}
@@ -325,7 +324,7 @@ def extended_call(draw, limit = 5):
     legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
     legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
 
-    title('Derniers TX')
+    title(draw, 'Derniers TX')
 
     if s.device.height == 128:
         i = 17
@@ -347,7 +346,7 @@ def extended_best(draw, limit = 5):
     legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
     legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
 
-    title('Top links')
+    title(draw, 'Top links')
 
     best_min = min(s.best_time)
     best_max = max(s.best_time)
@@ -381,7 +380,7 @@ def extended_config(draw, page):
 
     draw.text((2, 0), u'\ue800', font=icon, fill=get_color('header', 'foreground'))
 
-    title('Config Display')
+    title(draw, 'Config Display')
 
     if page == 1:
         sys = {'I2C Port': '', 'I2C Address': '', 'Display': '', 'Width': '', 'Height': ''}
@@ -438,7 +437,7 @@ def extended_solar(draw, page):
 
     draw.text((2, 0), u'\ue803', font=icon, fill=get_color('header', 'foreground'))
 
-    title('Propagation')
+    title(draw,'Propagation')
 
     if len(s.solar_value) != 0:
         if page == 1:
@@ -514,7 +513,7 @@ def extended_cluster(draw, page):
     legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
     legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
 
-    title('Cluster')
+    title(draw, 'Cluster')
 
     if len(s.cluster_value) != 0:
 
@@ -699,7 +698,7 @@ def display_128():
                 legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
 
             # Draw title
-            title(s.message[0])
+            title(draw, s.message[0])
     
             # Print data
             i = 16
