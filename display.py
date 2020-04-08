@@ -745,18 +745,18 @@ def display_128():
                     distance(draw)
                 '''
 
-            if s.transmit is True and s.duration % 5 != 0:
-                # Draw call
-                tmp = s.call_current.split(' ')
-                if len(tmp) == 3:
-                    tmp = tmp[1]
-                else:
-                    tmp = 'BAD CALL'
+            if s.transmit is True:
+                if  s.duration % 5 != 0
+                    # Draw call
+                    tmp = s.call_current.split(' ')
+                    if len(tmp) == 3:
+                        tmp = tmp[1]
+                    else:
+                        tmp = 'BAD CALL'
 
-                w, h = draw.textsize(text=tmp, font=font_big)
-                tab = (s.device.width - w) / 2
-                draw.text((tab, 14), tmp, font=font_big, fill=get_color('log', 'call_last'))
-
+                    w, h = draw.textsize(text=tmp, font=font_big)
+                    tab = (s.device.width - w) / 2
+                    draw.text((tab, 15), tmp, font=font_big, fill=get_color('log', 'call_last'))
 
                 # Draw tot
                 tot(draw, legacy, s.duration, 69)
