@@ -20,6 +20,7 @@ from PIL import ImageFont
 icon = ImageFont.truetype('./fonts/fontello.ttf', 14)     # Icon font
 font = ImageFont.truetype('./fonts/7x5.ttf', 8)           # Text font
 font_tot = ImageFont.truetype('./fonts/astro.ttf', 52)    # Text font
+font_big = ImageFont.truetype('./fonts/astro.ttf', 26)    # Text font
 
 # Manage color
 def get_color(section, value):
@@ -700,34 +701,46 @@ def display_128():
             # Draw title
             title(draw, s.message[0])
     
-            # Print data
-            i = 16
-            j = 1
+            s.duration = 10
+            s.call_current = '977 FG5ABC T10M'
 
-            for m in s.message[1:]:
-                if m is not None:
-                    w, h = draw.textsize(text=m, font=font)
-                    tab = (s.device.width - w) / 2
-                    if j == 1:
-                        color = get_color('log', 'call_last')
-                    else:
-                        color = get_color('log', 'call')
+            if s.transmit is False or s.duration % 5 == 0:
+                # Print data
+                i = 16
+                j = 1
 
-                    draw.text((tab, i), m, font=font, fill=color)
-                    legacy.text(draw, (16, i + 1), chr(s.letter[str(j)]), font=s.SMALL_BITMAP_FONT, fill=color)
-                    if s.transmit is False:
-                        k = 108
-                        for c in s.call_time[j - 1]:
-                            legacy.text(draw, (k, i + 1), chr(s.letter[c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
-                            k += 4
+                for m in s.message[1:]:
+                    if m is not None:
+                        w, h = draw.textsize(text=m, font=font)
+                        tab = (s.device.width - w) / 2
+                        if j == 1:
+                            color = get_color('log', 'call_last')
+                        else:
+                            color = get_color('log', 'call')
 
-                    i += h
-                    j += 1
+                        draw.text((tab, i), m, font=font, fill=color)
+                        legacy.text(draw, (16, i + 1), chr(s.letter[str(j)]), font=s.SMALL_BITMAP_FONT, fill=color)
+                        if s.transmit is False:
+                            k = 108
+                            for c in s.call_time[j - 1]:
+                                legacy.text(draw, (k, i + 1), chr(s.letter[c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
+                                k += 4
+
+                        i += h
+                        j += 1
+
+                if s.duration % 5 == 0:
+                    # Draw icon and distance
+                    draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
+                    distance(draw)
+
 
             if s.transmit is True and s.duration > 0:
-                # Draw icon and distance
-                draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
-                distance(draw)
+                # Draw call
+                w, h = draw.textsize(text=s.call_current, font=font_big)
+                tab = (s.device.width - w) / 2
+                draw.text((tab, 24), m, font=font_big, fill=color)
+
                 # Draw tot
                 tot(draw, legacy, s.duration, 69)
                 if s.duration < 10:
