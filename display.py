@@ -705,6 +705,7 @@ def display_128():
             # Draw title
             title(draw, s.message[0])
     
+            '''
             import random
             s.duration = random.randint(5,16)
             s.call_current = '977 FG5ABC V'
@@ -712,7 +713,8 @@ def display_128():
             s.call_longitude = 2.2708201
             s.transmit = True
             print s.duration
-
+            '''
+            
             if s.transmit is False or s.duration % 5 == 0:
                 # Print data
                 i = 16
@@ -756,7 +758,7 @@ def display_128():
 
                     w, h = draw.textsize(text=tmp, font=font_big)
                     tab = (s.device.width - w) / 2
-                    draw.text((tab, 14), tmp, font=font_big, fill=get_color('log', 'call_last'))
+                    draw.text((tab, 15), tmp, font=font_big, fill=get_color('log', 'call_last'))
 
                 # Draw tot
                 tot(draw, legacy, s.duration, 69)
