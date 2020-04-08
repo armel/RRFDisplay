@@ -707,7 +707,7 @@ def display_128():
     
             import random
             s.duration = random.randint(9,11)
-            s.call_current = 'FG5ABC'
+            s.call_current = '977 FG5ABC V'
             s.call_latitude = 48.8482855
             s.call_longitude = 2.2708201
             s.transmit = True
@@ -752,7 +752,7 @@ def display_128():
                     if len(tmp) == 3:
                         tmp = tmp[1]
                     else:
-                        tmp = 'BAD CALL'
+                        tmp = 'Oops'
 
                     w, h = draw.textsize(text=tmp, font=font_big)
                     tab = (s.device.width - w) / 2
