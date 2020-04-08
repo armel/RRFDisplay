@@ -753,13 +753,13 @@ def display_128():
                     # Draw call
                     tmp = s.call_current.split(' ')
                     if len(tmp) == 3:
-                        tmp = tmp[1] + 'X'
+                        tmp = tmp[1]
                     else:
-                        tmp = 'Oops'
+                        tmp = 'ERROR'
 
                     w, h = draw.textsize(text=tmp, font=font_big)
                     tab = (s.device.width - w) / 2
-                    draw.text((tab, 16), tmp, font=font_big, fill=get_color('log', 'call_last'))
+                    draw.text((tab, 14), tmp, font=font_big, fill=get_color('log', 'call_last'))
 
                 # Draw tot
                 tot(draw, legacy, s.duration, 69)
