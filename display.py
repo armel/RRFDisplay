@@ -765,13 +765,13 @@ def display_128():
                     # Draw call
                     tmp = s.call_current.split(' ')
                     if len(tmp) == 3:
-                        tmp = tmp[1]
+                        tmp = tmp[1] + 'X'
                     else:
                         tmp = 'RTFM'
 
                     w, h = draw.textsize(text=tmp, font=font_big)
                     tab = (s.device.width - w) / 2
-                    draw.text((tab, 15), tmp, font=font_big, fill=get_color('log', 'call_last'))
+                    draw.text((tab, 14), tmp, font=font_big, fill=get_color('log', 'call_last'))
                 else:
                     # Draw message
                     last(draw, s.message[1:])
