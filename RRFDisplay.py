@@ -158,7 +158,7 @@ def main(argv):
 
         # Requete HTTP vers le flux json du salon produit par le RRFDisplay 
         try:
-            r = requests.get(url, verify=False, timeout=0.30)
+            r = requests.get(url, verify=False, timeout=0.5)
         except requests.exceptions.ConnectionError as errc:
             #print ('Error Connecting:', errc)
             pass
