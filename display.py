@@ -712,7 +712,7 @@ def display_128():
             s.transmit = True
             print s.duration
             '''
-            
+
             if s.transmit is False or s.duration % 5 == 0:
                 # Print data
                 i = 16
@@ -747,7 +747,8 @@ def display_128():
 
             if s.transmit is True and s.duration % 5 != 0:
                 # Draw call
-                w, h = draw.textsize(text=s.call_current, font=font_big)
+                tmp = s.call_current.split(' ')
+                w, h = draw.textsize(text=tmp[1], font=font_big)
                 tab = (s.device.width - w) / 2
                 draw.text((tab, 14), s.call_current, font=font_big, fill=get_color('log', 'call_last'))
 
