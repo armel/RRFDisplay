@@ -38,6 +38,32 @@ def title(draw, message):
     tab = (s.device.width - w) / 2
     draw.text((tab, 4), message, font=font, fill=get_color('header', 'foreground'))
 
+# Draw last call
+def last(draw):
+    # Print last_call
+    i = 16
+    j = 1
+
+    for m in s.message[1:]:
+        if m is not None:
+            w, h = draw.textsize(text=m, font=font)
+            tab = (s.device.width - w) / 2
+            if j == 1:
+                color = get_color('log', 'call_last')
+            else:
+                color = get_color('log', 'call')
+
+            draw.text((tab, i), m, font=font, fill=color)
+            legacy.text(draw, (16, i + 1), chr(s.letter[str(j)]), font=s.SMALL_BITMAP_FONT, fill=color)
+            if s.transmit is False:
+                k = 108
+                for c in s.call_time[j - 1]:
+                    legacy.text(draw, (k, i + 1), chr(s.letter[c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
+                    k += 4
+
+            i += h
+            j += 1
+
 # Draw label
 def label(draw, position, width, bg_color, fg_color, label, value, fixed = 0):
     if s.device.height == 128:
@@ -123,7 +149,6 @@ def tot(draw, legacy, duration, position):
         tab = (s.device.width - w) / 2
         draw.text((tab, 57), tmp, font=font_tot, fill=get_color('screen', 'foreground'))
 
-
 # Print elsewhere
 def elsewhere(draw, data):
     draw.rectangle((0, 77, 127, 127), outline=get_color('elsewhere', 'border'), fill=get_color('elsewhere', 'background'))
@@ -159,7 +184,6 @@ def elsewhere(draw, data):
 
     draw.line((20, 77, 20, 127), fill=get_color('elsewhere', 'border'))
     draw.line((94, 77, 94, 127), fill=get_color('elsewhere', 'border'))
-
 
 # Print whois
 def whois(draw):
@@ -730,30 +754,8 @@ def display_128():
             '''
             
             if s.transmit is False:
-                # Print data
-                i = 16
-                j = 1
-
-                for m in s.message[1:]:
-                    if m is not None:
-                        w, h = draw.textsize(text=m, font=font)
-                        tab = (s.device.width - w) / 2
-                        if j == 1:
-                            color = get_color('log', 'call_last')
-                        else:
-                            color = get_color('log', 'call')
-
-                        draw.text((tab, i), m, font=font, fill=color)
-                        legacy.text(draw, (16, i + 1), chr(s.letter[str(j)]), font=s.SMALL_BITMAP_FONT, fill=color)
-                        if s.transmit is False:
-                            k = 108
-                            for c in s.call_time[j - 1]:
-                                legacy.text(draw, (k, i + 1), chr(s.letter[c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
-                                k += 4
-
-                        i += h
-                        j += 1
-                        
+                # Draw message
+                last(draw)
                 # Draw stats histogram
                 histogram(draw, legacy, 69, 28)
                 # Elsewhere
@@ -772,6 +774,8 @@ def display_128():
                     tab = (s.device.width - w) / 2
                     draw.text((tab, 15), tmp, font=font_big, fill=get_color('log', 'call_last'))
                 else:
+                    # Draw message
+                    last(draw)
                     # Draw icon and distance
                     draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
                     distance(draw)
