@@ -29,6 +29,12 @@ def get_color(section, value):
     else:
         return color
 
+# Draw title
+def title(message):
+    w, h = draw.textsize(text=message, font=font)
+    tab = (s.device.width - w) / 2
+    draw.text((tab, 4), message, font=font, fill=get_color('header', 'foreground'))
+
 # Draw label
 def label(draw, position, width, bg_color, fg_color, label, value, fixed = 0):
     if s.device.height == 128:
@@ -252,9 +258,7 @@ def extended_system(draw, page):
     legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CPU)
     legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CPU)
 
-    w, h = draw.textsize(text='Infos Spotnik', font=font)
-    tab = (s.device.width - w) / 2
-    draw.text((tab, 4), 'Infos Spotnik', font=font, fill=get_color('header', 'foreground'))
+    title('Infos Spotnik')
 
     if page == 1:
         sys = {'Arch': '', 'Kernel': '', 'Uptime': '', 'Load': '', 'Freq': ''}
@@ -320,9 +324,7 @@ def extended_call(draw, limit = 5):
     legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
     legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
 
-    w, h = draw.textsize(text='Derniers TX', font=font)
-    tab = (s.device.width - w) / 2
-    draw.text((tab, 4), 'Derniers TX', font=font, fill=get_color('header', 'foreground'))
+    title('Derniers TX')
 
     if s.device.height == 128:
         i = 17
@@ -344,9 +346,7 @@ def extended_best(draw, limit = 5):
     legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
     legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
 
-    w, h = draw.textsize(text='Top links', font=font)
-    tab = (s.device.width - w) / 2
-    draw.text((tab, 4), 'Top links', font=font, fill=get_color('header', 'foreground'))
+    title('Top links')
 
     best_min = min(s.best_time)
     best_max = max(s.best_time)
@@ -380,9 +380,7 @@ def extended_config(draw, page):
 
     draw.text((2, 0), u'\ue800', font=icon, fill=get_color('header', 'foreground'))
 
-    w, h = draw.textsize(text='Config Display', font=font)
-    tab = (s.device.width - w) / 2
-    draw.text((tab, 4), 'Config Display', font=font, fill=get_color('header', 'foreground'))
+    title('Config Display')
 
     if page == 1:
         sys = {'I2C Port': '', 'I2C Address': '', 'Display': '', 'Width': '', 'Height': ''}
@@ -439,9 +437,7 @@ def extended_solar(draw, page):
 
     draw.text((2, 0), u'\ue803', font=icon, fill=get_color('header', 'foreground'))
 
-    w, h = draw.textsize(text='Propagation', font=font)
-    tab = (s.device.width - w) / 2
-    draw.text((tab, 4), 'Propagation', font=font, fill=get_color('header', 'foreground'))
+    title('Propagation')
 
     if len(s.solar_value) != 0:
         if page == 1:
@@ -517,9 +513,7 @@ def extended_cluster(draw, page):
     legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
     legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
 
-    w, h = draw.textsize(text='Cluster', font=font)
-    tab = (s.device.width - w) / 2
-    draw.text((tab, 4), 'Cluster', font=font, fill=get_color('header', 'foreground'))
+    title('Cluster')
 
     if len(s.cluster_value) != 0:
 
@@ -703,42 +697,31 @@ def display_128():
                 legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
                 legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
 
-            # Icon talk
-            '''
-            if s.transmit is True:
-                draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
-                distance(draw)
-            '''
-                
+            # Draw title
+            title(s.message[0])
+    
             # Print data
-            i = 4
-            j = 0
+            i = 16
+            j = 1
 
-            for m in s.message:
+            for m in s.message[1:]:
                 if m is not None:
                     w, h = draw.textsize(text=m, font=font)
                     tab = (s.device.width - w) / 2
-                    vide = ' ' * 22     # Hack to speed clear screen line...
-                    if j == 0:
-                        color = get_color('header', 'foreground')
-                    elif j == 1:
+                    if j == 1:
                         color = get_color('log', 'call_last')
                     else:
                         color = get_color('log', 'call')
 
-                    draw.text((0, i), vide, font=font, fill=get_color('header', 'background'))
                     draw.text((tab, i), m, font=font, fill=color)
-                    if j > 0:
-                        legacy.text(draw, (16, i + 1), chr(s.letter[str(j)]), font=s.SMALL_BITMAP_FONT, fill=color)
-                        if s.transmit is False:
-                            k = 108
-                            for c in s.call_time[j - 1]:
-                                legacy.text(draw, (k, i + 1), chr(s.letter[c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
-                                k += 4
+                    legacy.text(draw, (16, i + 1), chr(s.letter[str(j)]), font=s.SMALL_BITMAP_FONT, fill=color)
+                    if s.transmit is False:
+                        k = 108
+                        for c in s.call_time[j - 1]:
+                            legacy.text(draw, (k, i + 1), chr(s.letter[c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
+                            k += 4
 
                     i += h
-                    if i == 12:
-                        i = 16
                     j += 1
 
             if s.transmit is True and s.duration > 0:
