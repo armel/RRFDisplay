@@ -118,7 +118,7 @@ def tot(draw, legacy, duration, position):
     else:
         w, h = draw.textsize(text=l.convert_second_to_time(duration), font=font_big)
         tab = (s.device.width - w) / 2
-        draw.text((tab, 32), l.convert_second_to_time(duration), font=font_big, fill=get_color('tot', 'foreground'))
+        draw.text((tab, 40), l.convert_second_to_time(duration), font=font_big, fill=get_color('screen', 'foreground'))
 
 
 # Print elsewhere
@@ -705,7 +705,7 @@ def display_128():
     
             import random
             s.duration = random.randint(9,11)
-            s.call_current = '977 FG5ABC T10M'
+            s.call_current = 'FG5ABC'
             s.call_latitude = 48.8482855
             s.call_longitude = 2.2708201
             s.transmit = True
