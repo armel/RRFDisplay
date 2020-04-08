@@ -709,7 +709,7 @@ def display_128():
             
             import random
             s.duration = random.randint(5,16)
-            s.call_current = '974 FR4NP U'
+            s.call_current = 'QC VA2NRJ V'
             s.call_latitude = 48.8482855
             s.call_longitude = 2.2708201
             s.transmit = True
