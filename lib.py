@@ -452,9 +452,8 @@ def get_cluster():
             limit = len(cluster_data)
             indice = 0
             for item in xrange(0, limit):
-                if s.cluster_band in s.cluster_exclude:
-                    print 'oui', s.cluster_band
-                    if cluster_data[item][u'freq'] not in s.cluster_exclude[s.cluster_band]:
+                if band in s.cluster_exclude:
+                    if cluster_data[item][u'freq'] not in s.cluster_exclude[band]:
                         s.cluster_value[indice] = cluster_data[item][u'call'] + ' ' + cluster_data[item][u'freq'] + ' ' + cluster_data[item][u'dxcall'] + ' ' + str(utc_to_local(cluster_data[item][u'time'].encode('utf-8')))
                 else:
                     s.cluster_value[indice] = cluster_data[item][u'call'] + ' ' + cluster_data[item][u'freq'] + ' ' + cluster_data[item][u'dxcall'] + ' ' + str(utc_to_local(luster_data[item][u'time'].encode('utf-8')))
