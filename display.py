@@ -119,7 +119,7 @@ def tot(draw, legacy, duration, position):
         tmp = l.convert_second_to_time(duration)
         w, h = draw.textsize(text=tmp, font=font_big)
         tab = (s.device.width - w) / 2
-        draw.text((tab, 44), tmp, font=font_big, fill=get_color('screen', 'foreground'))
+        draw.text((tab, 54), tmp, font=font_big, fill=get_color('screen', 'foreground'))
 
 
 # Print elsewhere
@@ -757,7 +757,7 @@ def display_128():
 
                     w, h = draw.textsize(text=tmp, font=font_big)
                     tab = (s.device.width - w) / 2
-                    draw.text((tab, 15), tmp, font=font_big, fill=get_color('log', 'call_last'))
+                    draw.text((tab, 20), tmp, font=font_big, fill=get_color('log', 'call_last'))
 
                 # Draw tot
                 tot(draw, legacy, s.duration, 69)
