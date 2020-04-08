@@ -21,7 +21,7 @@ icon = ImageFont.truetype('./fonts/fontello.ttf', 14)     # Icon font
 font = ImageFont.truetype('./fonts/7x5.ttf', 8)           # Text font
 #font_tot = ImageFont.truetype('./fonts/astro.ttf', 52)    # Text font
 #font_big = ImageFont.truetype('./fonts/dot.ttf', 30)    # Text font
-font_big = ImageFont.truetype('./fonts/bold.ttf', 18)    # Text font
+font_big = ImageFont.truetype('./fonts/bold.ttf', 30)    # Text font
 font_tot = ImageFont.truetype('./fonts/rounded_led_board.ttf', 20)    # Text font
 
 # Manage color
@@ -759,7 +759,7 @@ def display_128():
 
                     w, h = draw.textsize(text=tmp, font=font_big)
                     tab = (s.device.width - w) / 2
-                    draw.text((tab, 24), tmp, font=font_big, fill=get_color('log', 'call_last'))
+                    draw.text((tab, 16), tmp, font=font_big, fill=get_color('log', 'call_last'))
 
                 # Draw tot
                 tot(draw, legacy, s.duration, 69)
