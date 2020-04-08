@@ -716,7 +716,19 @@ def display_128():
             print s.duration
             '''
 
-            if s.transmit is False or s.duration % 5 == 0:
+            if s.transmit is True and s.duration % 5 == 0:
+                # Draw call
+                tmp = s.call_current.split(' ')
+                if len(tmp) == 3:
+                    tmp = tmp[1]
+                else:
+                    tmp = 'RTFM'
+
+                w, h = draw.textsize(text=tmp, font=font_big)
+                tab = (s.device.width - w) / 2
+                draw.text((tab, 15), tmp, font=font_big, fill=get_color('log', 'call_last'))
+
+            else:
                 # Print data
                 i = 16
                 j = 1
@@ -741,20 +753,7 @@ def display_128():
                         i += h
                         j += 1
 
-            if s.transmit is True:
-                if  s.duration % 5 != 0:
-                    # Draw call
-                    tmp = s.call_current.split(' ')
-                    if len(tmp) == 3:
-                        tmp = tmp[1]
-                    else:
-                        tmp = 'RTFM'
-
-                    w, h = draw.textsize(text=tmp, font=font_big)
-                    tab = (s.device.width - w) / 2
-                    draw.text((tab, 15), tmp, font=font_big, fill=get_color('log', 'call_last'))
-
-                else:
+                if s.transmit is True:
                     # Draw icon and distance
                     draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
                     distance(draw)
