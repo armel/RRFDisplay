@@ -706,6 +706,7 @@ def display_128():
             s.call_current = '977 FG5ABC T10M'
             s.call_latitude = 48.8482855
             s.call_longitude = 2.2708201
+            s.transmit = True
             print s.duration
 
             if s.transmit is False or s.duration % 5 == 0:
@@ -740,7 +741,7 @@ def display_128():
                     distance(draw)
                 '''
 
-            if s.transmit is True and s.duration % 5 != 0 :
+            if s.transmit is True and s.duration % 5 != 0:
                 # Draw call
                 w, h = draw.textsize(text=s.call_current, font=font_big)
                 tab = (s.device.width - w) / 2
