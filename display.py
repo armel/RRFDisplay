@@ -729,7 +729,7 @@ def display_128():
 
             '''
             
-            if s.transmit is False or s.duration % 5 != 0:
+            if s.transmit is False:
                 # Print data
                 i = 16
                 j = 1
@@ -753,11 +753,11 @@ def display_128():
 
                         i += h
                         j += 1
-                if s.transmit is False:
-                    # Draw stats histogram
-                    histogram(draw, legacy, 69, 28)
-                    # Elsewhere
-                    elsewhere(draw, s.raptor)
+                        
+                # Draw stats histogram
+                histogram(draw, legacy, 69, 28)
+                # Elsewhere
+                elsewhere(draw, s.raptor)
 
             elif s.transmit is True:
                 if s.duration % 5 == 0:
