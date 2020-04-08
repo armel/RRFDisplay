@@ -698,6 +698,7 @@ def display_128():
                 legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
 
             # Draw title
+            print s.message
             title(draw, s.message[0])
     
             # Print data
