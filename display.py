@@ -20,7 +20,8 @@ from PIL import ImageFont
 icon = ImageFont.truetype('./fonts/fontello.ttf', 14)     # Icon font
 font = ImageFont.truetype('./fonts/7x5.ttf', 8)           # Text font
 #font_tot = ImageFont.truetype('./fonts/astro.ttf', 52)    # Text font
-font_big = ImageFont.truetype('./fonts/dot.ttf', 30)    # Text font
+#font_big = ImageFont.truetype('./fonts/dot.ttf', 30)    # Text font
+font_big = ImageFont.truetype('./fonts/rounded_led_board.ttf', 20)    # Text font
 font_tot = ImageFont.truetype('./fonts/rounded_led_board.ttf', 20)    # Text font
 
 # Manage color
@@ -714,7 +715,7 @@ def display_128():
             s.transmit = True
             print s.duration
             '''
-            
+
             if s.transmit is False or s.duration % 5 == 0:
                 # Print data
                 i = 16
