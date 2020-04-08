@@ -270,7 +270,7 @@ def main(argv):
 
         # Print screen
         if s.device.height == 128:
-            print s.message
+            print s.message, s.seconde
             d.display_128()
         else:
             d.display_64()
