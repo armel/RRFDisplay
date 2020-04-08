@@ -20,7 +20,7 @@ from PIL import ImageFont
 icon = ImageFont.truetype('./fonts/fontello.ttf', 14)     # Icon font
 font = ImageFont.truetype('./fonts/7x5.ttf', 8)           # Text font
 font_tot = ImageFont.truetype('./fonts/astro.ttf', 52)    # Text font
-font_big = ImageFont.truetype('./fonts/astro.ttf', 26)    # Text font
+font_big = ImageFont.truetype('./fonts/astro.ttf', 18)    # Text font
 
 # Manage color
 def get_color(section, value):
@@ -745,7 +745,7 @@ def display_128():
                 # Draw call
                 w, h = draw.textsize(text=s.call_current, font=font_big)
                 tab = (s.device.width - w) / 2
-                draw.text((tab, 24), s.call_current, font=font_big, fill=get_color('log', 'call_last'))
+                draw.text((tab, 12), s.call_current, font=font_big, fill=get_color('log', 'call_last'))
 
                 # Draw tot
                 tot(draw, legacy, s.duration, 69)
