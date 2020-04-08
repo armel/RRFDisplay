@@ -746,7 +746,7 @@ def display_128():
                 '''
 
             if s.transmit is True:
-                if  s.duration % 5 != 0
+                if  s.duration % 5 != 0:
                     # Draw call
                     tmp = s.call_current.split(' ')
                     if len(tmp) == 3:
