@@ -19,9 +19,9 @@ from PIL import ImageFont
 
 icon = ImageFont.truetype('./fonts/fontello.ttf', 14)     # Icon font
 font = ImageFont.truetype('./fonts/7x5.ttf', 8)           # Text font
-font_tot = ImageFont.truetype('./fonts/astro.ttf', 52)    # Text font
-#font_big = ImageFont.truetype('./fonts/rounded_led_board.ttf', 20)    # Text font
-font_big = ImageFont.truetype('./fonts/rounded_led_board.ttf', 18)    # Text font
+#font_tot = ImageFont.truetype('./fonts/astro.ttf', 52)    # Text font
+font_big = ImageFont.truetype('./fonts/rounded_led_board.ttf', 20)    # Text font
+font_tot = ImageFont.truetype('./fonts/rounded_led_board.ttf', 22)    # Text font
 
 # Manage color
 def get_color(section, value):
@@ -118,9 +118,9 @@ def tot(draw, legacy, duration, position):
         legacy.text(draw, (60 + tab, position + 2), msg, fill=get_color('screen', 'foreground'), font=s.SMALL_BITMAP_FONT)
     else:
         tmp = l.convert_second_to_time(duration)
-        w, h = draw.textsize(text=tmp, font=font_big)
+        w, h = draw.textsize(text=tmp, font=font_tot)
         tab = (s.device.width - w) / 2
-        draw.text((tab, 54), tmp, font=font_big, fill=get_color('screen', 'foreground'))
+        draw.text((tab, 54), tmp, font=font_tot, fill=get_color('screen', 'foreground'))
 
 
 # Print elsewhere
