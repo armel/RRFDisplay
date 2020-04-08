@@ -39,26 +39,26 @@ def title(draw, message):
     draw.text((tab, 4), message, font=font, fill=get_color('header', 'foreground'))
 
 # Draw last call
-def last(draw):
+def last(draw, call):
     # Print last_call
     i = 16
     j = 1
 
-    for m in s.message[1:]:
-        if m is not None:
-            w, h = draw.textsize(text=m, font=font)
+    for c in call:
+        if c is not None:
+            w, h = draw.textsize(text=c, font=font)
             tab = (s.device.width - w) / 2
             if j == 1:
                 color = get_color('log', 'call_last')
             else:
                 color = get_color('log', 'call')
 
-            draw.text((tab, i), m, font=font, fill=color)
+            draw.text((tab, i), c, font=font, fill=color)
             legacy.text(draw, (16, i + 1), chr(s.letter[str(j)]), font=s.SMALL_BITMAP_FONT, fill=color)
             if s.transmit is False:
                 k = 108
-                for c in s.call_time[j - 1]:
-                    legacy.text(draw, (k, i + 1), chr(s.letter[c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
+                for l in s.call_time[j - 1]:
+                    legacy.text(draw, (k, i + 1), chr(s.letter[l]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
                     k += 4
 
             i += h
@@ -755,7 +755,7 @@ def display_128():
             
             if s.transmit is False:
                 # Draw message
-                last(draw)
+                last(draw, s.message[1:])
                 # Draw stats histogram
                 histogram(draw, legacy, 69, 28)
                 # Elsewhere
@@ -775,7 +775,7 @@ def display_128():
                     draw.text((tab, 15), tmp, font=font_big, fill=get_color('log', 'call_last'))
                 else:
                     # Draw message
-                    last(draw)
+                    last(draw, s.message[1:])
                     # Draw icon and distance
                     draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
                     distance(draw)
