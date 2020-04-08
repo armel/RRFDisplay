@@ -702,7 +702,7 @@ def display_128():
             title(draw, s.message[0])
     
             import random
-            s.duration = random.randint(9,10)
+            s.duration = random.randint(9,11)
             s.call_current = '977 FG5ABC T10M'
             s.call_latitude = 48.8482855
             s.call_longitude = 2.2708201
