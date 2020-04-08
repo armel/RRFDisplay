@@ -117,7 +117,7 @@ def tot(draw, legacy, duration, position):
         legacy.text(draw, (60 + tab, position + 2), msg, fill=get_color('screen', 'foreground'), font=s.SMALL_BITMAP_FONT)
     else:
         tmp = l.convert_second_to_time(duration)
-        tmp = tmp.replace(':', '\' ')
+        tmp = tmp.replace(':', '\'')
         tmp += '\'\''
         w, h = draw.textsize(text=tmp, font=font_big)
         tab = (s.device.width - w) / 2
