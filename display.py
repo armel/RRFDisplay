@@ -729,29 +729,7 @@ def display_128():
             # Draw title
             title(draw, s.message[0])
     
-            '''
-            import random
-            s.duration = random.randint(5,16)
-            s.call_current = 'QC VA2NRJ V'
-            s.call_latitude = 48.8482855
-            s.call_longitude = 2.2708201
-            s.transmit = True
-            print s.duration
-
-            if s.transmit is True and s.duration % 5 == 0:
-                # Draw call
-                tmp = s.call_current.split(' ')
-                if len(tmp) == 3:
-                    tmp = tmp[1]
-                else:
-                    tmp = 'RTFM'
-
-                w, h = draw.textsize(text=tmp, font=font_big)
-                tab = (s.device.width - w) / 2
-                draw.text((tab, 15), tmp, font=font_big, fill=get_color('log', 'call_last'))
-
-            '''
-            
+            # And after...            
             if s.transmit is False:
                 # Draw message
                 last(draw, s.message[1:])
