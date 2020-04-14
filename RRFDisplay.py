@@ -213,6 +213,7 @@ def main(argv):
                 s.call_tone = data_transmit[u'Tone'].encode('utf-8')
                 s.call_locator = data_transmit[u'Locator'].encode('utf-8')
                 s.call_sysop = data_transmit[u'Sysop'].encode('utf-8')
+                s.call_prenom = data_transmit[u'Prenom'].encode('utf-8')
                 s.call_latitude = data_transmit[u'Latitude']
                 s.call_longitude = data_transmit[u'Longitude']
 

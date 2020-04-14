@@ -213,8 +213,12 @@ def whois(draw):
     draw.text((2, 109), 'Locator', font=font, fill=get_color('whois', 'foreground_active'))
     draw.text((50, 109), s.call_locator, font=font, fill=get_color('whois', 'foreground'))
 
-    draw.text((2, 119), 'Sysop', font=font, fill=get_color('whois', 'foreground_active'))
-    draw.text((50, 119), s.call_sysop, font=font, fill=get_color('whois', 'foreground'))
+    if s.call_type == 'Hotspot':
+        draw.text((2, 119), 'Prenom', font=font, fill=get_color('whois', 'foreground_active'))
+        draw.text((50, 119), s.call_prenom, font=font, fill=get_color('whois', 'foreground'))
+    else:
+        draw.text((2, 119), 'Sysop', font=font, fill=get_color('whois', 'foreground_active'))
+        draw.text((50, 119), s.call_sysop, font=font, fill=get_color('whois', 'foreground'))
 
 # Draw histogram
 def histogram(draw, legacy, position, height = 15):

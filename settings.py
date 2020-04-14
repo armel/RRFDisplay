@@ -10,7 +10,7 @@ Check video about RRFDisplay on https://www.youtube.com/watch?v=rVW8xczVpEo
 
 # Version
 
-version = '5.3.0'
+version = '5.3.1'
 
 # Default i2c_port, i2c_address, display and room
 
