@@ -63,12 +63,12 @@ def main(argv):
                 s.room_current = arg
             else:
                 s.room_current = 'RRF'
-                tmp = l.scan(arg.encode('utf-8'))
+                tmp = l.scan(arg)
                 if tmp is False:
                     s.room_current = 'RRF'
                 else:
                     s.room_current = tmp
-                    s.callsign = arg.encode('utf-8')
+                    s.callsign = arg
                     s.scan = True
         elif opt in ('--refresh'):
             s.refresh = float(arg)
@@ -265,7 +265,7 @@ def main(argv):
 
             elif(s.seconde < 60):   # Scan
                 if s.scan is True:
-                    s.message[0] = 'Suivi de ' + str(s.callsign)
+                    s.message[0] = 'Suivi de ' + s.callsign
                 else:
                     s.message[0] = 'Salon ' + s.room_current[:3]
 
