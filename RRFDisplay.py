@@ -63,7 +63,7 @@ def main(argv):
                 s.room_current = arg
             else:
                 s.room_current = 'RRF'
-                tmp = l.scan(arg.encode('utf-8'))
+                tmp = l.scan(arg)
                 if tmp is False:
                     s.room_current = 'RRF'
                 else:
@@ -143,7 +143,7 @@ def main(argv):
         s.seconde = int(s.now[-2:])
 
         if s.seconde % 15 == 0 and s.scan == True: # On scan
-            tmp = l.scan(s.callsign.encode('utf-8'))
+            tmp = l.scan(s.callsign)
             if tmp is not False:
                 #print s.now, tmp
                 s.room_current = tmp
