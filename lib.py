@@ -281,7 +281,7 @@ def convert_time_to_string(time):
 
 # Convert time utc to time local
 def utc_to_local(utc_dt):
-    utc_dt = datetime.strptime(str(utc_dt), '%Y-%m-%d %H:%M:%S')
+    utc_dt = datetime.strptime(utc_dt, '%Y-%m-%d %H:%M:%S')
     timestamp = calendar.timegm(utc_dt.timetuple())
     local_dt = datetime.fromtimestamp(timestamp)
     assert utc_dt.resolution >= timedelta(microseconds=1)
@@ -454,9 +454,9 @@ def get_cluster():
             for item in range(0, limit):
                 if band in s.cluster_exclude:
                     if str(int(float(cluster_data[item]['freq']))) not in s.cluster_exclude[band]:
-                        s.cluster_value[indice] = cluster_data[item]['call'] + ' ' + cluster_data[item]['freq'] + ' ' + cluster_data[item]['dxcall'] + ' ' + utc_to_local(cluster_data[item]['time'].encode('utf-8'))
+                        s.cluster_value[indice] = cluster_data[item]['call'] + ' ' + cluster_data[item]['freq'] + ' ' + cluster_data[item]['dxcall'] + ' ' + utc_to_local(cluster_data[item]['time'])
                 else:
-                    s.cluster_value[indice] = cluster_data[item]['call'] + ' ' + cluster_data[item]['freq'] + ' ' + cluster_data[item]['dxcall'] + ' ' + utc_to_local(luster_data[item]['time'].encode('utf-8'))
+                    s.cluster_value[indice] = cluster_data[item]['call'] + ' ' + cluster_data[item]['freq'] + ' ' + cluster_data[item]['dxcall'] + ' ' + utc_to_local(luster_data[item]['time'])
 
                 indice += 1
                 if indice == 10:
