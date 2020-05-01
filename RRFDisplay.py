@@ -42,7 +42,7 @@ def main(argv):
             sys.exit()
         elif opt in ('--interface'):
             if arg not in ['i2c', 'spi']:
-                print 'Unknown interface type (choose between \'i2c\' and \'spi\')'
+                print('Unknown interface type (choose between \'i2c\' and \'spi\')')
                 sys.exit()
             s.interface = arg
         elif opt in ('--i2c-port'):
@@ -51,7 +51,7 @@ def main(argv):
             s.i2c_address = int(arg, 16)
         elif opt in ('--display'):
             if arg not in ['sh1106', 'ssd1306', 'ssd1327', 'ssd1351', 'st7735']:
-                print 'Unknown display type (choose between \'sh1106\', \'ssd1306\',  \'ssd1327\', \'ssd1351\' and \'st7735\')'
+                print('Unknown display type (choose between \'sh1106\', \'ssd1306\',  \'ssd1327\', \'ssd1351\' and \'st7735\')')
                 sys.exit()
             s.display = arg
         elif opt in ('--display-width'):
@@ -180,9 +180,9 @@ def main(argv):
             data_last = rrf_data['last']
             data_all = rrf_data['all']
 
-            s.message[1] = l.sanitize_call(data_last[0][u'Indicatif'].encode('utf-8'))
-            s.message[2] = l.sanitize_call(data_last[1][u'Indicatif'].encode('utf-8'))
-            s.message[3] = l.sanitize_call(data_last[2][u'Indicatif'].encode('utf-8'))
+            s.message[1] = l.sanitize_call(data_last[0]['Indicatif'].encode('utf-8'))
+            s.message[2] = l.sanitize_call(data_last[1]['Indicatif'].encode('utf-8'))
+            s.message[3] = l.sanitize_call(data_last[2]['Indicatif'].encode('utf-8'))
 
             if s.device.height == 128:      # Only if place...
                 try:
@@ -207,61 +207,61 @@ def main(argv):
                 if s.transmit is False:      # Wake up screen...
                     s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
 
-                s.call_current = l.sanitize_call(data_transmit[u'Indicatif'].encode('utf-8'))
-                s.call_type = data_transmit[u'Type'].encode('utf-8')
-                s.call_description = data_transmit[u'Description'].encode('utf-8')
-                s.call_tone = data_transmit[u'Tone'].encode('utf-8')
-                s.call_locator = data_transmit[u'Locator'].encode('utf-8')
-                s.call_sysop = data_transmit[u'Sysop'].encode('utf-8')
-                s.call_prenom = data_transmit[u'Prenom'].encode('utf-8')
-                s.call_latitude = data_transmit[u'Latitude']
-                s.call_longitude = data_transmit[u'Longitude']
+                s.call_current = l.sanitize_call(data_transmit['Indicatif'].encode('utf-8'))
+                s.call_type = data_transmit['Type'].encode('utf-8')
+                s.call_description = data_transmit['Description'].encode('utf-8')
+                s.call_tone = data_transmit['Tone'].encode('utf-8')
+                s.call_locator = data_transmit['Locator'].encode('utf-8')
+                s.call_sysop = data_transmit['Sysop'].encode('utf-8')
+                s.call_prenom = data_transmit['Prenom'].encode('utf-8')
+                s.call_latitude = data_transmit['Latitude']
+                s.call_longitude = data_transmit['Longitude']
 
-                s.duration = data_transmit[u'TOT']
+                s.duration = data_transmit['TOT']
 
             else:
                 if s.transmit is True:       # Sleep screen...
                     s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
 
                 # Load Histogram
-                for q in xrange(0, 24):
-                    s.qso_hour[q] = data_activity[q][u'TX']
+                for q in range(0, 24):
+                    s.qso_hour[q] = data_activity[q]['TX']
 
                 # Load Last
                 limit = len(rrf_data['last'])
                 s.call = [''] * 10 
                 s.call_time = [''] * 10 
 
-                for q in xrange(0, limit):
-                    s.call[q] = l.sanitize_call(rrf_data['last'][q][u'Indicatif'].encode('utf-8'))
-                    s.call_time[q] = rrf_data['last'][q][u'Heure']
+                for q in range(0, limit):
+                    s.call[q] = l.sanitize_call(rrf_data['last'][q]['Indicatif'].encode('utf-8'))
+                    s.call_time[q] = rrf_data['last'][q]['Heure']
 
                 # Load Best
                 limit = len(rrf_data['all'])
                 s.best = [''] * 10 
                 s.best_time = [0] * 10 
 
-                for q in xrange(0, limit):
-                    s.best[q] = l.sanitize_call(rrf_data['all'][q][u'Indicatif'].encode('utf-8'))
-                    s.best_time[q] = l.convert_time_to_second(rrf_data['all'][q][u'Durée'])
+                for q in range(0, limit):
+                    s.best[q] = l.sanitize_call(rrf_data['all'][q]['Indicatif'].encode('utf-8'))
+                    s.best_time[q] = l.convert_time_to_second(rrf_data['all'][q]['Durée'])
 
             if(s.seconde < 10):     # TX today
-                s.message[0] = 'TX total ' + str(data_abstract[u'TX total'])
+                s.message[0] = 'TX total ' + str(data_abstract['TX total'])
 
             elif(s.seconde < 20):   # Active node
-                s.message[0] = 'Links actifs ' + str(data_abstract[u'Links actifs'])
+                s.message[0] = 'Links actifs ' + str(data_abstract['Links actifs'])
 
             elif(s.seconde < 30):   # Online node
-                s.message[0] = 'Links total ' + str(data_abstract[u'Links connectés'])
+                s.message[0] = 'Links total ' + str(data_abstract['Links connectés'])
                 
             elif(s.seconde < 40):   # Total emission
-                tmp = l.convert_time_to_string(data_abstract[u'Emission cumulée'])
+                tmp = l.convert_time_to_string(data_abstract['Emission cumulée'])
                 if 'h' in tmp:
                     tmp = tmp[0:6]
                 s.message[0] = 'BF total ' + tmp
 
             elif(s.seconde < 50):   # Last TX
-                s.message[0] = 'Dernier ' + data_last[0][u'Heure']
+                s.message[0] = 'Dernier ' + data_last[0]['Heure']
 
             elif(s.seconde < 60):   # Scan
                 if s.scan is True:

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 '''
-http://adventofcode.com/
-Day 1: Chronal Calibration
+Clean tools
+2to3 -w -x apply clean.py
 '''
 
 import time
@@ -22,15 +22,15 @@ def main():
     for l in data:
         l = l.split(' ')
         if l[0] in link:
-            print l
+            print(l)
         else:
             link.append(l[0])
 
-    print link
+    print(link)
 
     # Affichage du resultat
 
-    print "Temps d'execution : %.1f secondes" % (time.time() - start)
+    print("Temps d'execution : %.1f secondes" % (time.time() - start))
 
 if __name__ == '__main__':
     main()

@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+
+'''
+Parse kml
+2to3 -w -x apply parse_kml.py
+'''
+
 import re
 from math import cos, asin, sqrt
 
@@ -26,12 +33,12 @@ while(position < limit):
     elif start is True:
         if '<name>' in line:
             match= re.findall(r'\w+', line)
-            print match[2],
+            print(match[2], end=' ')
             position += 1
         elif '<coordinates>' in line:
             position += 1
             tmp = data[position].split(',')
-            print tmp[1], tmp[0]
+            print(tmp[1], tmp[0])
             # print distance(F4HWN_lat, F4HWN_lon, float(tmp[1]), float(tmp[0]))
             position += 1
         else:
