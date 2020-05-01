@@ -43,7 +43,7 @@ def last(draw, call):
     i = 16
     j = 1
 
-    for c in str(call):
+    for c in call:
         if c is not None:
             w, h = draw.textsize(text=c, font=font)
             tab = (s.device.width - w) / 2
@@ -53,7 +53,7 @@ def last(draw, call):
                 color = get_color('log', 'call')
 
             draw.text((tab, i), c, font=font, fill=color)
-            ##legacy.text(draw, (16, i + 1), chr(s.letter[str(j)]), font=s.SMALL_BITMAP_FONT, fill=color)
+            legacy.text(draw, (16, i + 1), chr(s.letter[str(j)]), font=s.SMALL_BITMAP_FONT, fill=color)
             if s.transmit is False:
                 k = 108
                 for l in s.call_time[j - 1]:
@@ -369,7 +369,7 @@ def extended_call(draw, limit = 5):
         i = 16
 
     for j in range(0, limit):
-        label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), s.call_time[j].encode('utf-8'), s.call[j].encode('utf-8'))
+        label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), s.call_time[j], s.call[j])
         if s.device.height == 128:
             i += 11
         else:

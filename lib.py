@@ -83,7 +83,7 @@ def calc_uptime(n):
 
 # Save stats to get most active link
 def save_stat(history, call):
-    if call.encode('utf-8') in history:
+    if call in history:
         history[call] += 1
     else:
         history[call] = 1
@@ -281,7 +281,7 @@ def convert_time_to_string(time):
 
 # Convert time utc to time local
 def utc_to_local(utc_dt):
-    utc_dt = datetime.strptime(utc_dt.decode('utf-8'), '%Y-%m-%d %H:%M:%S')
+    utc_dt = datetime.strptime(utc_dt, '%Y-%m-%d %H:%M:%S')
     timestamp = calendar.timegm(utc_dt.timetuple())
     local_dt = datetime.fromtimestamp(timestamp)
     assert utc_dt.resolution >= timedelta(microseconds=1)
@@ -289,14 +289,14 @@ def utc_to_local(utc_dt):
 
 # Sanitize call
 def sanitize_call(call):
-    return call.translate(None, '\\\'!@#$"()[]'.encode('utf-8'))
+    return call.translate(None, '\\\'!@#$"()[]')
 
 # Scan
 def scan(call):
     try:
         r = requests.get(s.room[s.room_current]['api'], verify=False, timeout=10)
         page = r.content
-        if call.encode('utf-8') in page:
+        if call in page:
             return s.room_current
     except requests.exceptions.ConnectionError as errc:
         return False
@@ -309,7 +309,7 @@ def scan(call):
                 try:
                     r = requests.get(s.room[q]['api'], verify=False, timeout=10)
                     page = r.content
-                    if call.encode('utf-8') in page:
+                    if call in page:
                         return q
                 except requests.exceptions.ConnectionError as errc:
                     return False
