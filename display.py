@@ -43,7 +43,7 @@ def last(draw, call):
     i = 16
     j = 1
 
-    for c in call:
+    for c in call.decode('utf-8'):
         if c is not None:
             w, h = draw.textsize(text=c, font=font)
             tab = (s.device.width - w) / 2
