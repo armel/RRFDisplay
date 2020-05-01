@@ -68,7 +68,7 @@ def main(argv):
                     s.room_current = 'RRF'
                 else:
                     s.room_current = tmp
-                    s.callsign = arg
+                    s.callsign = arg.encode('utf-8')
                     s.scan = True
         elif opt in ('--refresh'):
             s.refresh = float(arg)
