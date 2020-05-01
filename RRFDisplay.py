@@ -233,7 +233,7 @@ def main(argv):
                 s.call_time = [''] * 10 
 
                 for q in range(0, limit):
-                    s.call[q] = l.sanitize_call(rrf_data['last'][q]['Indicatif'].encode('utf-8'))
+                    s.call[q] = l.sanitize_call(rrf_data['last'][q]['Indicatif'])
                     s.call_time[q] = rrf_data['last'][q]['Heure']
 
                 # Load Best
