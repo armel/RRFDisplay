@@ -83,7 +83,7 @@ def calc_uptime(n):
 
 # Save stats to get most active link
 def save_stat(history, call):
-    if call in history:
+    if call.encode('utf-8') in history:
         history[call] += 1
     else:
         history[call] = 1
@@ -296,7 +296,7 @@ def scan(call):
     try:
         r = requests.get(s.room[s.room_current]['api'], verify=False, timeout=10)
         page = r.content
-        if call in page:
+        if call.encode('utf-8') in page:
             return s.room_current
     except requests.exceptions.ConnectionError as errc:
         return False
@@ -309,7 +309,7 @@ def scan(call):
                 try:
                     r = requests.get(s.room[q]['api'], verify=False, timeout=10)
                     page = r.content
-                    if call in page:
+                    if call.encode('utf-8') in page:
                         return q
                 except requests.exceptions.ConnectionError as errc:
                     return False
