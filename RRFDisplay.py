@@ -208,12 +208,12 @@ def main(argv):
                     s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
 
                 s.call_current = l.sanitize_call(data_transmit['Indicatif'])
-                s.call_type = data_transmit['Type'].encode('utf-8')
-                s.call_description = data_transmit['Description'].encode('utf-8')
-                s.call_tone = data_transmit['Tone'].encode('utf-8')
-                s.call_locator = data_transmit['Locator'].encode('utf-8')
-                s.call_sysop = data_transmit['Sysop'].encode('utf-8')
-                s.call_prenom = data_transmit['Prenom'].encode('utf-8')
+                s.call_type = data_transmit['Type']
+                s.call_description = data_transmit['Description']
+                s.call_tone = data_transmit['Tone']
+                s.call_locator = data_transmit['Locator']
+                s.call_sysop = data_transmit['Sysop']
+                s.call_prenom = data_transmit['Prenom']
                 s.call_latitude = data_transmit['Latitude']
                 s.call_longitude = data_transmit['Longitude']
 
