@@ -281,7 +281,7 @@ def convert_time_to_string(time):
 
 # Convert time utc to time local
 def utc_to_local(utc_dt):
-    utc_dt = datetime.strptime(utc_dt, '%Y-%m-%d %H:%M:%S')
+    utc_dt = datetime.strptime(utc_dt, str('%Y-%m-%d %H:%M:%S'))
     timestamp = calendar.timegm(utc_dt.timetuple())
     local_dt = datetime.fromtimestamp(timestamp)
     assert utc_dt.resolution >= timedelta(microseconds=1)
