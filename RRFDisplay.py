@@ -63,6 +63,8 @@ def main(argv):
                 s.room_current = arg
             else:
                 s.room_current = 'RRF'
+                print(arg)
+                exit
                 tmp = l.scan(arg)
                 if tmp is False:
                     s.room_current = 'RRF'
