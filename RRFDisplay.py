@@ -207,7 +207,7 @@ def main(argv):
                 if s.transmit is False:      # Wake up screen...
                     s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
 
-                s.call_current = l.sanitize_call(data_transmit['Indicatif'].encode('utf-8'))
+                s.call_current = l.sanitize_call(data_transmit['Indicatif'])
                 s.call_type = data_transmit['Type'].encode('utf-8')
                 s.call_description = data_transmit['Description'].encode('utf-8')
                 s.call_tone = data_transmit['Tone'].encode('utf-8')
