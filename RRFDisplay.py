@@ -242,7 +242,7 @@ def main(argv):
                 s.best_time = [0] * 10 
 
                 for q in range(0, limit):
-                    s.best[q] = l.sanitize_call(rrf_data['all'][q]['Indicatif'].encode('utf-8'))
+                    s.best[q] = l.sanitize_call(rrf_data['all'][q]['Indicatif'])
                     s.best_time[q] = l.convert_time_to_second(rrf_data['all'][q]['Durée'])
 
             if(s.seconde < 10):     # TX today
