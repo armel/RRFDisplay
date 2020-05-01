@@ -180,9 +180,9 @@ def main(argv):
             data_last = rrf_data['last']
             data_all = rrf_data['all']
 
-            s.message[1] = l.sanitize_call(data_last[0]['Indicatif'])
-            s.message[2] = l.sanitize_call(data_last[1]['Indicatif'])
-            s.message[3] = l.sanitize_call(data_last[2]['Indicatif'])
+            s.message[1] = l.sanitize_call(data_last[0]['Indicatif'].encode('utf-8'))
+            s.message[2] = l.sanitize_call(data_last[1]['Indicatif'].encode('utf-8'))
+            s.message[3] = l.sanitize_call(data_last[2]['Indicatif'].encode('utf-8'))
 
             if s.device.height == 128:      # Only if place...
                 try:
