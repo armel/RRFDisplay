@@ -103,9 +103,13 @@ Il faut également procéder à l'installation de quelques paquets complémentai
 
 `sudo pip install requests`
 
-`sudo pip install luma.oled luma.lcd`
-
 `sudo pip install configparser`
+
+`pip2 install "luma.core==1.13.0"`
+
+`pip2 install "luma.oled==3.4.0"`
+
+`pip2 install "luma.lcd==2.3.0"`
 
 Enfin, si ce n'est pas déjà fait, il reste à activer le support du protocole I2C afin de pouvoir dialoguer avec l'écran OLED. Ce sera l'étape la plus compliquée...
 
