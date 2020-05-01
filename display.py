@@ -53,7 +53,7 @@ def last(draw, call):
                 color = get_color('log', 'call')
 
             draw.text((tab, i), c, font=font, fill=color)
-            legacy.text(draw, (16, i + 1), chr(s.letter[str(j)]), font=s.SMALL_BITMAP_FONT, fill=color)
+            ##legacy.text(draw, (16, i + 1), chr(s.letter[str(j)]), font=s.SMALL_BITMAP_FONT, fill=color)
             if s.transmit is False:
                 k = 108
                 for l in s.call_time[j - 1]:
