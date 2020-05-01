@@ -309,7 +309,7 @@ def scan(call):
                 try:
                     r = requests.get(s.room[q]['api'], verify=False, timeout=10)
                     page = r.content
-                    if call in page.decode('utf-8'):
+                    if call in page:
                         return q
                 except requests.exceptions.ConnectionError as errc:
                     return False

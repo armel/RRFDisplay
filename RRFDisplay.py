@@ -63,7 +63,7 @@ def main(argv):
                 s.room_current = arg
             else:
                 s.room_current = 'RRF'
-                tmp = l.scan(arg)
+                tmp = l.scan(arg.encode('utf-8'))
                 if tmp is False:
                     s.room_current = 'RRF'
                 else:
