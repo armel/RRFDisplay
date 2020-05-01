@@ -454,9 +454,9 @@ def get_cluster():
             for item in range(0, limit):
                 if band in s.cluster_exclude:
                     if str(int(float(cluster_data[item]['freq']))) not in s.cluster_exclude[band]:
-                        s.cluster_value[indice] = cluster_data[item]['call'] + ' ' + cluster_data[item]['freq'] + ' ' + cluster_data[item]['dxcall'] + ' ' + utc_to_local(cluster_data[item]['time'])
+                        s.cluster_value[indice] = cluster_data[item]['call'] + ' ' + cluster_data[item]['freq'] + ' ' + cluster_data[item]['dxcall'] + ' ' + str(utc_to_local(cluster_data[item]['time'].encode('utf-8')))
                 else:
-                    s.cluster_value[indice] = cluster_data[item]['call'] + ' ' + cluster_data[item]['freq'] + ' ' + cluster_data[item]['dxcall'] + ' ' + utc_to_local(luster_data[item]['time'])
+                    s.cluster_value[indice] = cluster_data[item]['call'] + ' ' + cluster_data[item]['freq'] + ' ' + cluster_data[item]['dxcall'] + ' ' + str(utc_to_local(luster_data[item]['time'].encode('utf-8')))
 
                 indice += 1
                 if indice == 10:
