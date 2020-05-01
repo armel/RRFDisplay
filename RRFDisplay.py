@@ -265,7 +265,7 @@ def main(argv):
 
             elif(s.seconde < 60):   # Scan
                 if s.scan is True:
-                    s.message[0] = 'Suivi de ' + s.callsign
+                    s.message[0] = 'Suivi de ' + str(s.callsign)
                 else:
                     s.message[0] = 'Salon ' + s.room_current[:3]
 
