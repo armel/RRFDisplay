@@ -289,7 +289,6 @@ def utc_to_local(utc_dt):
 
 # Sanitize call
 def sanitize_call(call):
-    call = call.encode('utf-8')
     return call.translate(str.maketrans('', '', '\\\'!@#$"()[]'))
 
 # Scan
