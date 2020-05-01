@@ -143,7 +143,7 @@ def main(argv):
         s.seconde = int(s.now[-2:])
 
         if s.seconde % 15 == 0 and s.scan == True: # On scan
-            tmp = l.scan(s.callsign)
+            tmp = l.scan(s.callsign.encode('utf-8'))
             if tmp is not False:
                 #print s.now, tmp
                 s.room_current = tmp
