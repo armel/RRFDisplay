@@ -296,12 +296,7 @@ def scan(call):
     try:
         r = requests.get(s.room[s.room_current]['api'], verify=False, timeout=10)
         page = r.content.decode('utf-8')
-        print(page)
-        print(call)
-        print('-----')
         if call in page:
-            print(call)
-            print(s.room_current)
             return s.room_current
     except requests.exceptions.ConnectionError as errc:
         return False
@@ -315,8 +310,6 @@ def scan(call):
                     r = requests.get(s.room[q]['api'], verify=False, timeout=10)
                     page = r.content.decode('utf-8')
                     if call in page:
-                        print(call)
-                        print(q)
                         return q
                 except requests.exceptions.ConnectionError as errc:
                     return False
