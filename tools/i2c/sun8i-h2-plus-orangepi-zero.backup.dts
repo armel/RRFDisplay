@@ -896,7 +896,6 @@
 			#address-cells = < 0x01 >;
 			#size-cells = < 0x00 >;
 			phandle = < 0x5c >;
-			clock-frequency = <0xF4240>;
 		};
 
 		i2c@1c2b000 {
@@ -911,7 +910,6 @@
 			#address-cells = < 0x01 >;
 			#size-cells = < 0x00 >;
 			phandle = < 0x5d >;
-			clock-frequency = <0x61A80>; 
 		};
 
 		i2c@1c2b400 {
@@ -926,7 +924,6 @@
 			#address-cells = < 0x01 >;
 			#size-cells = < 0x00 >;
 			phandle = < 0x5e >;
-			clock-frequency = <0x61A80>; 
 		};
 
 		interrupt-controller@1c81000 {
