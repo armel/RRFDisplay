@@ -298,6 +298,7 @@ def scan(call):
         page = r.content
         print(type(page))
         print(type(call))
+        print(type(str(page)))
         if call in page:
             return s.room_current
     except requests.exceptions.ConnectionError as errc:
