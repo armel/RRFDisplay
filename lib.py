@@ -296,10 +296,9 @@ def scan(call):
     try:
         r = requests.get(s.room[s.room_current]['api'], verify=False, timeout=10)
         page = r.content.decode('utf-8')
-        print(type(page))
-        print(type(call))
         print(page)
         print(call)
+        print '-----'
         if call in page:
             print(call)
             print(s.room_current)
