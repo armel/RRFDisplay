@@ -298,7 +298,7 @@ def scan(call):
         page = r.content.decode('utf-8')
         print(page)
         print(call)
-        print '-----'
+        print('-----')
         if call in page:
             print(call)
             print(s.room_current)
