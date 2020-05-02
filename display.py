@@ -430,12 +430,15 @@ def extended_config(draw, page):
         sys['Height'] = str(s.display_height)
 
     elif page == 2:
-        sys = {'Scan': '', 'Follow': '', 'Indicatif': '', 'Latitude': '', 'Longitude': ''}
-        sys_order = ['Scan', 'Follow', 'Indicatif', 'Latitude', 'Longitude']
+        sys = {'Scan': '', 'Follow': '', 'Refresh': '', 'Latitude': '', 'Longitude': ''}
+        sys_order = ['Scan', 'Follow', 'Refresh', 'Latitude', 'Longitude']
 
         sys['Scan'] = str(s.scan)
-        sys['Follow'] = str(s.follow)
-        sys['Indicatif'] = s.callsign
+        if s.scan is True:
+            sys['Follow'] = s.callsign
+        else:
+            sys['Follow'] = s.room_current
+        sys['Refresh'] = str(s.refresh) + 's'
         sys['Latitude'] = str(s.latitude)
         sys['Longitude'] = str(s.longitude)
 

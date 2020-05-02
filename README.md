@@ -275,7 +275,7 @@ cd /boot/dtb
 dtc -I dtb -O dts sun8i-h2-plus-orangepi-zero.dtb -o sun8i-h2-plus-orangepi-zero.dts
 ```
 
-Editez le fichier .dts et ajouter une fréquence aux sections i2c0 (i2c@01c2ac00), i2c1 (i2c@01c2b000) et i2c2 (i2c@01c2b400). La valeur suivante correspond à 400 KHz (400 000 Hz).
+Editez le fichier .dts et ajouter une fréquence aux sections i2c0 (i2c@01c2ac00), i2c1 (i2c@01c2b000) et i2c2 (i2c@01c2b400). La valeur suivante correspond à 400 kHz (400 000 Hz).
 
 ```
 clock-frequency = <0x61A80>; 
@@ -289,7 +289,7 @@ dtc -I dts -O dtb sun8i-h2-plus-orangepi-zero.dts -o sun8i-h2-plus-orangepi-zero
 
 Vous n'avez plus qu'à rebooter.
 
-Au cas ou, dans le répertoire `tools/i2c` du projet, se trouve un script shell qui permet de faire cette modification. 
+Au cas ou, dans le répertoire `i2c` du projet, se trouve un script shell qui permet de faire cette modification. Il suffit de le lancer en passant la vitesse souhaitée en argument (100k, 200k, 400k ou 1000k). Par exemple `./change.sh 400k` passera la vitesse du bus I2C à 400 kHz. 
 
 
 ## Cablage I2C
