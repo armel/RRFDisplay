@@ -296,6 +296,7 @@ def scan(call):
     try:
         r = requests.get(s.room[s.room_current]['api'], verify=False, timeout=10)
         page = r.content
+        print(r.encoding)
         print(type(page))
         print(type(call))
         print(type(str(page)))
