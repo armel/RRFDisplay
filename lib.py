@@ -295,8 +295,12 @@ def sanitize_call(call):
 def scan(call):
     try:
         r = requests.get(s.room[s.room_current]['api'], verify=False, timeout=10)
-        page = r.content
-        if call in page.decode('utf-8'):
+        page = r.content.decode('utf-8')
+        print(type(page))
+        print(type(call))
+        print(page)
+        print(call)
+        if call in page:
             print(call)
             print(s.room_current)
             return s.room_current
@@ -310,8 +314,8 @@ def scan(call):
             if q != s.room:
                 try:
                     r = requests.get(s.room[q]['api'], verify=False, timeout=10)
-                    page = r.content
-                    if call in page.decode('utf-8'):
+                    page = r.content.decode('utf-8')
+                    if call in page:
                         print(call)
                         print(q)
                         return q
