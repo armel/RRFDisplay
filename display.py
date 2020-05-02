@@ -443,8 +443,8 @@ def extended_config(draw, page):
         sys['Longitude'] = str(s.longitude)
 
     else:
-        sys = {'I2C Port': '', 'I2C Address': '', 'Display': '', 'Width': '', 'Height': '', 'Scan': '', 'Follow': '', 'Indicatif': '', 'Latitude': '', 'Longitude': ''}
-        sys_order = ['I2C Port', 'I2C Address', 'Display', 'Width', 'Height', 'Scan', 'Follow', 'Indicatif', 'Latitude', 'Longitude']
+        sys = {'I2C Port': '', 'I2C Address': '', 'Display': '', 'Width': '', 'Height': '', 'Scan': '', 'Follow': '', 'Refresh': '', 'Latitude': '', 'Longitude': ''}
+        sys_order = ['I2C Port', 'I2C Address', 'Display', 'Width', 'Height', 'Scan', 'Follow', 'Refresh', 'Latitude', 'Longitude']
         
         sys['I2C Port'] = str(s.i2c_port)
         sys['I2C Address'] = hex(s.i2c_address)
@@ -453,8 +453,11 @@ def extended_config(draw, page):
         sys['Height'] = str(s.display_height)
 
         sys['Scan'] = str(s.scan)
-        sys['Follow'] = str(s.follow)
-        sys['Indicatif'] = s.callsign
+        if s.scan is True:
+            sys['Follow'] = s.callsign
+        else:
+            sys['Follow'] = s.room_current
+        sys['Refresh'] = str(s.refresh) + 's'
         sys['Latitude'] = str(s.latitude)
         sys['Longitude'] = str(s.longitude)
 
