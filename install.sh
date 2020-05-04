@@ -2,7 +2,7 @@
 echo "+---------------------------+"
 echo "Step 1 - Some apt-get install"
 echo "+---------------------------+"
-apt-get -y install i2c-tools libi2c-dev python-dev python3-lxml
+apt-get -y install i2c-tools libi2c-dev python-dev python-lxml python3-lxml
 apt-get -y install libfreetype6-dev libjpeg-dev build-essential
 echo "+-----------------------+"
 echo "Step 2 - Some pip install"
