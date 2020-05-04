@@ -26,7 +26,7 @@ from datetime import datetime, timedelta
 
 # Usage
 def usage():
-    print('Usage: RRFDisplay.py [options ...]')
+    print('Usage : RRFDisplay.py [options ...]')
     print()
     print('--help               this help')
     print()
