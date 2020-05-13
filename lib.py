@@ -26,30 +26,30 @@ from datetime import datetime, timedelta
 
 # Usage
 def usage():
-    print 'Usage: RRFDisplay.py [options ...]'
-    print
-    print '--help               this help'
-    print
-    print 'Interface settings :'
-    print '  --interface        set interface (default=i2c, choose between [i2c, spi])'
-    print '  --i2c-port         set i2c port (default=0)'
-    print '  --i2c-address      set i2c address (default=0x3C)'
-    print
-    print 'Display settings :'
-    print '  --display          set display (default=sh1106, choose between [sh1106, ssd1306, ssd1327, ssd1351, st7735])'
-    print '  --display-width    set display width (default=128)'
-    print '  --display-height   set display height (default=64)'
-    print '  --display-theme    set display theme (default=theme.cfg)'
-    print
-    print 'Follow settings :'
-    print '  --follow           set room (default=RRF, choose between [RRF, TECHNIQUE, INTERNATIONAL, LOCAL, BAVARDAGE, FON]) or callsign to follow'
-    print '  --refresh          set refresh (default=1, in second)'
-    print
-    print 'WGS84 settings :'
-    print '  --latitude         set latitude (default=48.8483808, format WGS84)'
-    print '  --longitude        set longitude (default=2.2704347, format WGS84)'
-    print
-    print '88 & 73 from F4HWN Armel'
+    print('Usage : RRFDisplay.py [options ...]')
+    print()
+    print('--help               this help')
+    print()
+    print('Interface settings :')
+    print('  --interface        set interface (default=i2c, choose between [i2c, spi])')
+    print('  --i2c-port         set i2c port (default=0)')
+    print('  --i2c-address      set i2c address (default=0x3C)')
+    print()
+    print('Display settings :')
+    print('  --display          set display (default=sh1106, choose between [sh1106, ssd1306, ssd1327, ssd1351, st7735])')
+    print('  --display-width    set display width (default=128)')
+    print('  --display-height   set display height (default=64)')
+    print('  --display-theme    set display theme (default=theme.cfg)')
+    print()
+    print('Follow settings :')
+    print('  --follow           set room (default=RRF, choose between [RRF, TECHNIQUE, INTERNATIONAL, LOCAL, BAVARDAGE, FON]) or callsign to follow')
+    print('  --refresh          set refresh (default=1, in second)')
+    print()
+    print('WGS84 settings :')
+    print('  --latitude         set latitude (default=48.8483808, format WGS84)')
+    print('  --longitude        set longitude (default=2.2704347, format WGS84)')
+    print()
+    print('88 & 73 from F4HWN Armel')
 
 
 # Calculate uptime with a microtime
@@ -110,11 +110,11 @@ def wake_up_screen(device, display, wake_up):
         level_wake_up = 150
 
     if wake_up is True:
-        for i in xrange(level_wake_up, level_sleep, -1):
+        for i in range(level_wake_up, level_sleep, -1):
             device.contrast(i)         # No Transmitter
         return False
     else:
-        for i in xrange(level_sleep, level_wake_up):
+        for i in range(level_sleep, level_wake_up):
             device.contrast(i)         # Transmitter
         return True
 
@@ -267,7 +267,7 @@ def convert_time_to_second(time):
     else:
         format = [60, 1]        
     
-    return sum([a * b for a, b in zip(format, map(int, time.split(':')))])
+    return sum([a * b for a, b in zip(format, list(map(int, time.split(':'))))])
 
 # Convert time to second
 def convert_time_to_string(time):
@@ -289,13 +289,13 @@ def utc_to_local(utc_dt):
 
 # Sanitize call
 def sanitize_call(call):
-    return call.translate(None, '\\\'!@#$"()[]')
+    return call.translate(str.maketrans('', '', '\\\'!@#$"()[]'))
 
 # Scan
 def scan(call):
     try:
         r = requests.get(s.room[s.room_current]['api'], verify=False, timeout=10)
-        page = r.content
+        page = r.content.decode('utf-8')
         if call in page:
             return s.room_current
     except requests.exceptions.ConnectionError as errc:
@@ -308,7 +308,7 @@ def scan(call):
             if q != s.room:
                 try:
                     r = requests.get(s.room[q]['api'], verify=False, timeout=10)
-                    page = r.content
+                    page = r.content.decode('utf-8')
                     if call in page:
                         return q
                 except requests.exceptions.ConnectionError as errc:
@@ -451,12 +451,12 @@ def get_cluster():
             s.cluster_value.clear()
             limit = len(cluster_data)
             indice = 0
-            for item in xrange(0, limit):
+            for item in range(0, limit):
                 if band in s.cluster_exclude:
-                    if str(int(float(cluster_data[item][u'freq']))) not in s.cluster_exclude[band]:
-                        s.cluster_value[indice] = cluster_data[item][u'call'] + ' ' + cluster_data[item][u'freq'] + ' ' + cluster_data[item][u'dxcall'] + ' ' + str(utc_to_local(cluster_data[item][u'time'].encode('utf-8')))
+                    if str(int(float(cluster_data[item]['freq']))) not in s.cluster_exclude[band]:
+                        s.cluster_value[indice] = cluster_data[item]['call'] + ' ' + cluster_data[item]['freq'] + ' ' + cluster_data[item]['dxcall'] + ' ' + str(utc_to_local(cluster_data[item]['time']))
                 else:
-                    s.cluster_value[indice] = cluster_data[item][u'call'] + ' ' + cluster_data[item][u'freq'] + ' ' + cluster_data[item][u'dxcall'] + ' ' + str(utc_to_local(luster_data[item][u'time'].encode('utf-8')))
+                    s.cluster_value[indice] = cluster_data[item]['call'] + ' ' + cluster_data[item]['freq'] + ' ' + cluster_data[item]['dxcall'] + ' ' + str(utc_to_local(luster_data[item]['time']))
 
                 indice += 1
                 if indice == 10:

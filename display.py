@@ -95,7 +95,7 @@ def tot(draw, legacy, duration, position):
 
         duration_min = 0
 
-        timer = [i for i in xrange(60, 360, 60)]
+        timer = [i for i in range(60, 360, 60)]
 
         for i in timer:
             if duration < i:
@@ -107,10 +107,10 @@ def tot(draw, legacy, duration, position):
         h = l.interpolation(duration, duration_min, duration_max, 0, 120)
 
         draw.rectangle((0, j, 128, j - k), fill=get_color('screen', 'background'))
-        for i in xrange(3, h, 2):
+        for i in range(3, h, 2):
             draw.rectangle((i, j, i, j - k), fill=get_color('screen', 'foreground'))
 
-        for i in xrange(0, 128, 4):
+        for i in range(0, 128, 4):
             draw.line((i, position, i + 1, position), fill=get_color('screen', 'foreground'))
 
         # Duration min
@@ -368,7 +368,7 @@ def extended_call(draw, limit = 5):
     else:
         i = 16
 
-    for j in xrange(0, limit):
+    for j in range(0, limit):
         label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), s.call_time[j], s.call[j])
         if s.device.height == 128:
             i += 11
@@ -393,7 +393,7 @@ def extended_best(draw, limit = 5):
     else:
         i = 16
 
-    for j in xrange(0, limit):
+    for j in range(0, limit):
         c = s.best[j]
         n = int(s.best_time[j])
 
@@ -415,7 +415,7 @@ def extended_config(draw, page):
     if s.device.height == 128:
         draw.rectangle((0, 1, s.device.height - 1, 13), fill=get_color('header', 'background'))
 
-    draw.text((2, 0), u'\ue800', font=icon, fill=get_color('header', 'foreground'))
+    draw.text((2, 0), '\ue800', font=icon, fill=get_color('header', 'foreground'))
 
     title(draw, 'Config Display')
 
@@ -430,18 +430,21 @@ def extended_config(draw, page):
         sys['Height'] = str(s.display_height)
 
     elif page == 2:
-        sys = {'Scan': '', 'Follow': '', 'Indicatif': '', 'Latitude': '', 'Longitude': ''}
-        sys_order = ['Scan', 'Follow', 'Indicatif', 'Latitude', 'Longitude']
+        sys = {'Scan': '', 'Follow': '', 'Refresh': '', 'Latitude': '', 'Longitude': ''}
+        sys_order = ['Scan', 'Follow', 'Refresh', 'Latitude', 'Longitude']
 
         sys['Scan'] = str(s.scan)
-        sys['Follow'] = str(s.follow)
-        sys['Indicatif'] = s.callsign
+        if s.scan is True:
+            sys['Follow'] = s.callsign
+        else:
+            sys['Follow'] = s.room_current
+        sys['Refresh'] = str(s.refresh) + 's'
         sys['Latitude'] = str(s.latitude)
         sys['Longitude'] = str(s.longitude)
 
     else:
-        sys = {'I2C Port': '', 'I2C Address': '', 'Display': '', 'Width': '', 'Height': '', 'Scan': '', 'Follow': '', 'Indicatif': '', 'Latitude': '', 'Longitude': ''}
-        sys_order = ['I2C Port', 'I2C Address', 'Display', 'Width', 'Height', 'Scan', 'Follow', 'Indicatif', 'Latitude', 'Longitude']
+        sys = {'I2C Port': '', 'I2C Address': '', 'Display': '', 'Width': '', 'Height': '', 'Scan': '', 'Follow': '', 'Refresh': '', 'Latitude': '', 'Longitude': ''}
+        sys_order = ['I2C Port', 'I2C Address', 'Display', 'Width', 'Height', 'Scan', 'Follow', 'Refresh', 'Latitude', 'Longitude']
         
         sys['I2C Port'] = str(s.i2c_port)
         sys['I2C Address'] = hex(s.i2c_address)
@@ -450,8 +453,11 @@ def extended_config(draw, page):
         sys['Height'] = str(s.display_height)
 
         sys['Scan'] = str(s.scan)
-        sys['Follow'] = str(s.follow)
-        sys['Indicatif'] = s.callsign
+        if s.scan is True:
+            sys['Follow'] = s.callsign
+        else:
+            sys['Follow'] = s.room_current
+        sys['Refresh'] = str(s.refresh) + 's'
         sys['Latitude'] = str(s.latitude)
         sys['Longitude'] = str(s.longitude)
 
@@ -472,7 +478,7 @@ def extended_solar(draw, page):
     if s.device.height == 128:
         draw.rectangle((0, 1, s.device.height - 1, 13), fill=get_color('header', 'background'))
 
-    draw.text((2, 0), u'\ue803', font=icon, fill=get_color('header', 'foreground'))
+    draw.text((2, 0), '\ue803', font=icon, fill=get_color('header', 'foreground'))
 
     title(draw,'Propagation')
 
@@ -591,7 +597,7 @@ def display_64():
         draw.rectangle((0, 0, 127, s.device.height - 1), fill=get_color('screen', 'background'))
         draw.rectangle((0, 1, 127, 13), fill=get_color('header', 'background'))
 
-        for i in xrange(0, 128, 2):
+        for i in range(0, 128, 2):
             draw.point((i,  0), fill=get_color('header', 'border'))
             draw.point((i, 14), fill=get_color('header', 'border'))
 
@@ -621,7 +627,7 @@ def display_64():
 
         # If not extended
         else:
-            for i in xrange(0, 128, 2):     # Horizontal
+            for i in range(0, 128, 2):     # Horizontal
                 draw.point((i, 40), fill=get_color('screen', 'border'))    # Zone haut | Zone Histogramme - TOT
 
             if 'Dernier' in s.message[0]:   # Icon clock (DIY...)
@@ -633,7 +639,7 @@ def display_64():
 
             # Icon talk
             if s.transmit is True:
-                draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'text'))
+                draw.text((2, 21), '\uf130', font=icon, fill=get_color('tot', 'text'))
                 distance(draw)
 
             # Print data
@@ -766,7 +772,7 @@ def display_128():
                     # Draw message
                     last(draw, s.message[1:])
                     # Draw icon and distance
-                    draw.text((2, 21), u'\uf130', font=icon, fill=get_color('tot', 'foreground'))
+                    draw.text((2, 21), '\uf130', font=icon, fill=get_color('tot', 'foreground'))
                     distance(draw)
                     # Elsewhere
                     elsewhere(draw, s.raptor)

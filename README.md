@@ -5,7 +5,7 @@ Suivi temps réel de l'activité du réseau [RRF](https://f5nlg.wordpress.com/20
 
 Cette version du RRFDisplay et une évolution d'un [premier projet](https://github.com/armel/RRFLcd) réalisé mi novembre 2018 à partir d'un Nodemcu ESP8266 et d'un écran LCD 16x2.
 
-Il permet de suivre en temps réel l'activité du réseau [RRF](https://f5nlg.wordpress.com/2015/12/28/nouveau-reseau-french-repeater-network/) (Réseau des Répéteurs Francophones), mais également du [FON](http://www.f1tzo.com/) (French Open Networks), en utilisant un Raspberry Pi 3 ou un Orange Pi Zero et 
+Il permet de suivre en temps réel l'activité du réseau [RRF](https://f5nlg.wordpress.com/2015/12/28/nouveau-reseau-french-repeater-network/) (Réseau des Répéteurs Francophones), mais également du [FON](http://www.f1tzo.com/) (French Open Networks), en utilisant un Raspberry Pi 3 ou un Orange Pi Zero et : 
 
 - un écran type SH1106, SSD1306 ou SSD1327 piloté par I2C
 - un écran de type SSD1351 ou ST7735 piloté par SPI
@@ -49,11 +49,11 @@ Sur les 3 lignes suivantes, au milieu de l'écran, figure les 3 derniers indicat
 
 Enfin, en bas de l'écran, on retrouve l'histogramme du trafic dans la journée, heure par heure.
 
-Alternativement, si aucune station n'est en émission, le RRFDisplay affichera différents écrans complémentaires:
+Alternativement, si aucune station n'est en émission, le RRFDisplay affichera différents écrans complémentaires :
 
 * l'historique des 5 derniers noeuds étant passés en émission ainsi que l'horodatage,
 * l'historique des 5 noeuds les plus actifs ainsi que la durée cumulée de passage en émission,
-* l'état du Spotnik (sur 2 pages): architecture, uptime, noyau, charge et fréquence du CPU, température, adresse IP, occupation mémoire et disque, version,
+* l'état du Spotnik (sur 2 pages) : architecture, uptime, noyau, charge et fréquence du CPU, température, adresse IP, occupation mémoire et disque, version,
 * la configuration courante (sur 2 pages).
 
 Enfin, si une station passe en émission, en lieu et place de l'histogramme du trafic, une jauge affichera la durée de passage en émission, par tranche de 60 secondes. 
@@ -68,7 +68,7 @@ A ce titre, si aucune station n'est en émission, le RRFDisplay affichera :
 
 * l'historique des 10 derniers noeuds étant passés en émission ainsi que l'horodatage,
 * l'historique des 10 noeuds les plus actifs ainsi que la durée cumulée de passage en émission,
-* l'état du Spotnik: architecture, uptime, noyau, charge et fréquence du CPU, température, adresse IP, occupation mémoire et disque, version,
+* l'état du Spotnik : architecture, uptime, noyau, charge et fréquence du CPU, température, adresse IP, occupation mémoire et disque, version,
 * la configuration courante.
 * les prévisions de propagation en provenance de [hamqsl](http://www.hamqsl.com/).
 * les *spots* en provenance de [dxcluster](https://www.dxcluster.co.uk/).
@@ -83,7 +83,7 @@ Enfin, sur la partie basse de l'écran, figure un tableau listant l'activité su
 
 ### Installation de paquets complémentaires
 
-En partant de la version 3.0 de Spotnik, commencez par cloner ce projet dans le répertoire /opt. Donc, depuis une connexion SSH, lancez les commandes suivantes:
+En partant de la version 3.0 ou supérieure de la distribution Spotnik, commencez par cloner le projet dans le répertoire `/opt`. Donc, depuis une connexion SSH, lancez les commandes suivantes :
 
 `cd /opt`
 
@@ -91,25 +91,11 @@ Puis,
 
 `git clone https://github.com/armel/RRFDisplay.git`
 
-Il faut également procéder à l'installation de quelques paquets complémentaires. Toujours depuis une connexion SSH, lancez les commandes suivantes:
+Il faut également procéder à l'installation de quelques paquets complémentaires. Toujours depuis une connexion SSH, lancez le script d'installation :
 
-`sudo apt-get update`
+`cd /opt/RRFDisplay`
 
-`sudo apt-get install i2c-tools libi2c-dev python-smbus python-pip python-dev python-pil python-lxml`
-
-`sudo apt-get install libfreetype6-dev libjpeg-dev build-essential`
-
-`sudo pip install --upgrade setuptools`
-
-`sudo pip install requests`
-
-`sudo pip install configparser`
-
-`pip2 install "luma.core==1.13.0"`
-
-`pip2 install "luma.oled==3.4.0"`
-
-`pip2 install "luma.lcd==2.3.0"`
+`./install.sh`
 
 Enfin, si ce n'est pas déjà fait, il reste à activer le support du protocole I2C afin de pouvoir dialoguer avec l'écran OLED. Ce sera l'étape la plus compliquée...
 
@@ -137,11 +123,11 @@ Rebootez.
 
 ### Vérification
 
-Pour finir et vérifier que tout est pret, une fois l'écran connecté (voir schéma), exécutez la commande suivante:
+Pour finir et vérifier que tout est pret, une fois l'écran connecté (voir schéma), exécutez la commande suivante :
 
 `i2cdetect -y 0`
 
-Cette commande devrait retourner quelque chose comme:
+Cette commande devrait retourner quelque chose comme :
 
 ```
      0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
@@ -155,7 +141,7 @@ Cette commande devrait retourner quelque chose comme:
 70: -- -- -- -- -- -- -- --
 ```
 
-Votre écran est bien raccordé. Et il utilise le port 0 et l'adresse 3c. Si la commande n'a pas fonctionné, essayez:
+Votre écran est bien raccordé. Et il utilise le port 0 et l'adresse 3c. Si la commande n'a pas fonctionné, essayez :
 
 `i2cdetect -y 1`
 
@@ -165,31 +151,28 @@ Le script `RRFDisplay.py` peut recevoir des arguments au lancement afin d'affine
 
 ```
 root@spotnik:/opt/RRFDisplay# python RRFDisplay.py -h
-Usage: RRFDisplay.py [options ...]
+Usage : RRFDisplay.py [options ...]
 
 --help               this help
 
-Interface settings:
+Interface settings :
   --interface        set interface (default=i2c, choose between [i2c, spi])
   --i2c-port         set i2c port (default = 0)
   --i2c-address      set i2c address (default = 0x3C)
 
-Display settings:
+Display settings :
   --display          set display (default=sh1106, choose between [sh1106, ssd1306, ssd1327, ssd1351])
   --display-width    set display width (default = 128)
   --display-height   set display height (default = 64)
   --display-theme    set display theme (default=theme.cfg)
 
-Follow settings:
+Follow settings :
   --follow           set room (default=RRF, choose between [RRF, TECHNIQUE, INTERNATIONAL, LOCAL, BAVARDAGE, FON]) or callsign to follow
   --refresh          set refresh (default=1, in second)
   
-WGS84 settings:
+WGS84 settings :
   --latitude         set latitude (default=48.8483808, format WGS84)
   --longitude        set longitude (default=2.2704347, format WGS84)
-
-Log settings:
-  --log              enable log
 
 88 & 73 from F4HWN Armel
 ```
@@ -254,7 +237,7 @@ Je vous suggère de regarder les scripts de démarrages (fichier shell portant l
 
 ## Liste des composants
 
-Voici la liste des composants dont vous aurez besoin:
+Voici la liste des composants dont vous aurez besoin :
 
 * 1 Raspberry Pi 3 ou 1 Orange Pi Zero
 * 1 écran OLED 128 x 128 (1.5" type SSD1327 ou SSD1351) ou 128 x 64 (1.30" ou 0.96" type SH1106 ou SSD1306)
@@ -275,7 +258,7 @@ cd /boot/dtb
 dtc -I dtb -O dts sun8i-h2-plus-orangepi-zero.dtb -o sun8i-h2-plus-orangepi-zero.dts
 ```
 
-Editez le fichier .dts et ajouter une fréquence aux sections i2c0 (i2c@01c2ac00), i2c1 (i2c@01c2b000) et i2c2 (i2c@01c2b400). La valeur suivante correspond à 400 KHz (400 000 Hz).
+Editez le fichier .dts et ajouter une fréquence aux sections i2c0 (i2c@01c2ac00), i2c1 (i2c@01c2b000) et i2c2 (i2c@01c2b400). La valeur suivante correspond à 400 kHz (400 000 Hz).
 
 ```
 clock-frequency = <0x61A80>; 
@@ -289,7 +272,7 @@ dtc -I dts -O dtb sun8i-h2-plus-orangepi-zero.dts -o sun8i-h2-plus-orangepi-zero
 
 Vous n'avez plus qu'à rebooter.
 
-Au cas ou, dans le répertoire `tools/i2c` du projet, se trouve un script shell qui permet de faire cette modification. 
+Au cas ou, dans le répertoire `i2c` du projet, se trouve un script shell qui permet de faire cette modification. Il suffit de le lancer en passant la vitesse souhaitée en argument (100k, 200k, 400k ou 1000k). Par exemple `./change.sh 400k` passera la vitesse du bus I2C à 400 kHz. 
 
 
 ## Cablage I2C

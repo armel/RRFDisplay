@@ -7,7 +7,7 @@ cd ..
 case "$1" in
     start)
         echo "Starting RRFDisplay: SPI"
-        nohup python $PATH_SCRIPT --interface spi --display ssd1351 --display-height 128 --display-theme blue.cfg --follow F1ZPX > $PATH_PID/RRFDisplay_0.log 2>&1 & echo $! > $PATH_PID/RRFDisplay_0.pid
+        nohup python3 $PATH_SCRIPT --interface spi --display ssd1351 --display-height 128 --display-theme blue.cfg --follow F1ZPX > $PATH_PID/RRFDisplay_0.log 2>&1 & echo $! > $PATH_PID/RRFDisplay_0.pid
         ;;
     stop) 
         echo "Stopping RRFDisplay: SPI"
