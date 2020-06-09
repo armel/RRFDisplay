@@ -140,7 +140,7 @@ duration = 0                # QSO time
 transmit = True             # Detect transmit
 transmit_elsewhere = True   # Detect transmit elsewhere
 history = dict()            # History dict
-message = [None] * 10       # Message list
+message = [''] * 10         # Message list
 raptor = [None] * 5         # Message list
 
 # Set special color for SSD1327
