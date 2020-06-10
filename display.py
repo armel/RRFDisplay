@@ -44,7 +44,7 @@ def last(draw, call):
     j = 1
 
     for c in call:
-        if c is not None:
+        if c is not '':
             w, h = draw.textsize(text=c, font=font)
             tab = (s.device.width - w) / 2
             if j == 1:
