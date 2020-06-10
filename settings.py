@@ -135,6 +135,7 @@ call_locator = ''           # Call locator
 call_sysop = ''             # Call sysop
 call_latitude = ''          # Call latitude
 call_longitude = ''         # Call longitude
+call_prenom = ''            # Call prenom
 qso_hour = [0] * 24         # QSO list for histogramm
 duration = 0                # QSO time
 transmit = True             # Detect transmit
