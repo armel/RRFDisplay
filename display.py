@@ -696,7 +696,6 @@ def display_128():
         for i in xrange(0, 128, 1):
             draw.point((i, 0), fill=get_color('header', 'border'))
             draw.point((i, 14), fill=get_color('header', 'border'))
-        '''
 
         if s.transmit is False and s.minute % 2 == 0:
             # System log extended
@@ -724,7 +723,32 @@ def display_128():
             
             elif s.seconde >= 48:
                 extended_cluster(draw, 1)
+        '''
 
+        if s.transmit is False and s.minute % 2 == 0:
+            # System log extended
+            if s.seconde < 10:
+                extended_system(draw, 3)
+
+            # Config log extended
+            elif s.seconde < 20:
+                extended_config(draw, 3)
+
+            # Call log extended
+            elif s.seconde < 30 and len(s.call) >= 5:
+                extended_call(draw, len(s.call))
+
+            # Best log extended
+            elif s.seconde < 40 and len(s.best) >= 5:
+                extended_best(draw, len(s.best))
+
+            # Propag extended
+            elif s.seconde < 50:
+                extended_solar(draw, 3)
+        
+            elif s.seconde >= 55:
+                extended_solar(draw, 4)
+            
         # If not extended
         else:
             '''
