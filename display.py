@@ -746,7 +746,7 @@ def display_128():
             elif s.seconde < 50:
                 extended_solar(draw, 3)
         
-            elif s.seconde >= 55:
+            elif s.seconde < 55:
                 extended_solar(draw, 4)
             
         # If not extended
