@@ -18,6 +18,7 @@ import time
 import sys
 import getopt
 import configparser as cp
+import RPi.GPIO as GPIO
 
 from luma.core.interface.serial import i2c, spi
 from luma.core.render import canvas
@@ -79,6 +80,8 @@ def main(argv):
             s.longitude = float(arg)
         elif opt in ('--display-theme'):
             s.display_theme = arg
+
+    GPIO.cleanup()
 
     # Set serial
     if s.interface == 'i2c':
