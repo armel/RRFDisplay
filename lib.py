@@ -150,6 +150,7 @@ def system_info(value):
         tmp = tmp.split()
 
         mem = tmp[1]
+        print(mem)
         #mem_total = int(tmp[1][:-1])
         #mem_use = int(tmp[2][:-1])
 
