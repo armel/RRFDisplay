@@ -81,8 +81,6 @@ def main(argv):
         elif opt in ('--display-theme'):
             s.display_theme = arg
 
-    GPIO.cleanup()
-
     # Set serial
     if s.interface == 'i2c':
         serial = i2c(port=s.i2c_port, address=s.i2c_address)
@@ -291,6 +289,7 @@ def main(argv):
         #sys.stdout.flush()
 
         time.sleep(sleep)
+        GPIO.cleanup()
 
 if __name__ == '__main__':
     try:
