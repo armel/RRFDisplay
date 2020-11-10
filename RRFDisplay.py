@@ -186,7 +186,7 @@ def main(argv):
             s.message[2] = l.sanitize_call(data_last[1]['Indicatif'])
             s.message[3] = l.sanitize_call(data_last[2]['Indicatif'])
 
-            if s.device.height == 128:      # Only if place...
+            if s.device.height >= 128:      # Only if place...
                 try:
                     data_elsewhere = rrf_data['elsewhere'][0]
 
