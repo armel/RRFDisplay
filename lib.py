@@ -154,6 +154,12 @@ def system_info(value):
         mem_total = float(tmp[1][:-2])
         mem_use = float(tmp[2][:-2])
 
+        if 'Gi' in tmp[1]:
+            mem_total *= 1000
+
+        if 'Gi' in tmp[2]:
+            mem_use *= 1000
+
         return str(int((float(mem_use) / float(mem_total)) * 100)), str(mem)
 
     elif value == 'disk':
