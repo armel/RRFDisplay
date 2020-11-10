@@ -32,6 +32,7 @@ def usage():
     print()
     print('Interface settings :')
     print('  --interface        set interface (default=i2c, choose between [i2c, spi])')
+    print('  --spi-device       set spi device (default=0)')
     print('  --i2c-port         set i2c port (default=0)')
     print('  --i2c-address      set i2c address (default=0x3C)')
     print()

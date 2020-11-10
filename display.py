@@ -65,7 +65,7 @@ def last(draw, call):
 
 # Draw label
 def label(draw, position, width, bg_color, fg_color, label, value, fixed = 0):
-    if s.device.height == 128:
+    if s.device.height >= 128:
         position += 3
         draw.rectangle((0, position - 1, width, position + 8), fill=bg_color)
         draw.line((width + 1, position, width + 1, position + 7), fill=bg_color)
@@ -159,6 +159,9 @@ def elsewhere(draw, data):
 
     i = 79
     for d in data:
+        if d is None:
+            d = '00:00/FON/00h 00m 00s/0'
+            
         d = d.split('/')
 
         if d[0] == '00:00':
@@ -289,7 +292,7 @@ def distance(draw):
 
 # Print System Log Extended
 def extended_system(draw, page):
-    if s.device.height == 128:
+    if s.device.height >= 128:
         draw.rectangle((0, 1, s.device.height - 1, 13), fill=get_color('header', 'background'))
 
     legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CPU)
@@ -341,21 +344,21 @@ def extended_system(draw, page):
         sys['Disk'] = percent + ' of ' + disk
         sys['Version'] = s.version
 
-    if s.device.height == 128:
+    if s.device.height >= 128:
         i = 17
     else:
         i = 16
 
     for j in sys_order:
         label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), j, sys[j])
-        if s.device.height == 128:
+        if s.device.height >= 128:
             i += 11
         else:
             i += 10
 
 # Print Call Log Extended
 def extended_call(draw, limit = 5):
-    if s.device.height == 128:
+    if s.device.height >= 128:
         draw.rectangle((0, 1, s.device.height - 1, 13), fill=get_color('header', 'background'))
 
     legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
@@ -363,21 +366,21 @@ def extended_call(draw, limit = 5):
 
     title(draw, 'Derniers TX')
 
-    if s.device.height == 128:
+    if s.device.height >= 128:
         i = 17
     else:
         i = 16
 
     for j in range(0, limit):
         label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), s.call_time[j], s.call[j])
-        if s.device.height == 128:
+        if s.device.height >= 128:
             i += 11
         else:
             i += 10
 
 # Print Best Log Extended
 def extended_best(draw, limit = 5):
-    if s.device.height == 128:
+    if s.device.height >= 128:
         draw.rectangle((0, 1, s.device.height - 1, 13), fill=get_color('header', 'background'))
 
     legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
@@ -388,7 +391,7 @@ def extended_best(draw, limit = 5):
     best_min = min(s.best_time)
     best_max = max(s.best_time)
 
-    if s.device.height == 128:
+    if s.device.height >= 128:
         i = 17
     else:
         i = 16
@@ -405,14 +408,14 @@ def extended_best(draw, limit = 5):
             t = 42
 
         label(draw, i, t, get_color('label', 'background'), get_color('label', 'foreground'), l.convert_second_to_time(n), c, 54)
-        if s.device.height == 128:
+        if s.device.height >= 128:
             i += 11
         else:
             i += 10
 
 # Print config
 def extended_config(draw, page):
-    if s.device.height == 128:
+    if s.device.height >= 128:
         draw.rectangle((0, 1, s.device.height - 1, 13), fill=get_color('header', 'background'))
 
     draw.text((2, 0), '\ue800', font=icon, fill=get_color('header', 'foreground'))
@@ -461,21 +464,21 @@ def extended_config(draw, page):
         sys['Latitude'] = str(s.latitude)
         sys['Longitude'] = str(s.longitude)
 
-    if s.device.height == 128:
+    if s.device.height >= 128:
         i = 17
     else:
         i = 16
 
     for j in sys_order:
         label(draw, i, 63, get_color('label', 'background'), get_color('label', 'foreground'), j, sys[j])
-        if s.device.height == 128:
+        if s.device.height >= 128:
             i += 11
         else:
             i += 10
 
 # Print solar propagation
 def extended_solar(draw, page):
-    if s.device.height == 128:
+    if s.device.height >= 128:
         draw.rectangle((0, 1, s.device.height - 1, 13), fill=get_color('header', 'background'))
 
     draw.text((2, 0), '\ue803', font=icon, fill=get_color('header', 'foreground'))
@@ -550,7 +553,7 @@ def extended_solar(draw, page):
 
 # Print cluster
 def extended_cluster(draw, page):
-    if s.device.height == 128:
+    if s.device.height >= 128:
         draw.rectangle((0, 1, s.device.height - 1, 13), fill=get_color('header', 'background'))
 
     legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
@@ -692,39 +695,6 @@ def display_128():
         draw.line((0, 0, 127, 0), fill=get_color('header', 'border'))
         draw.line((0, 14, 127, 14), fill=get_color('header', 'border'))
 
-        '''
-        for i in xrange(0, 128, 1):
-            draw.point((i, 0), fill=get_color('header', 'border'))
-            draw.point((i, 14), fill=get_color('header', 'border'))
-
-        if s.transmit is False and s.minute % 2 == 0:
-            # System log extended
-            if s.seconde < 8:
-                extended_system(draw, 3)
-
-            # Config log extended
-            elif s.seconde < 16:
-                extended_config(draw, 3)
-
-            # Call log extended
-            elif s.seconde < 24 and len(s.call) >= 5:
-                extended_call(draw, len(s.call))
-
-            # Best log extended
-            elif s.seconde < 32 and len(s.best) >= 5:
-                extended_best(draw, len(s.best))
-
-            # Propag extended
-            elif s.seconde < 40:
-                extended_solar(draw, 3)
-        
-            elif s.seconde < 48:
-                extended_solar(draw, 4)
-            
-            elif s.seconde >= 48:
-                extended_cluster(draw, 1)
-        '''
-
         if s.transmit is False and s.minute % 2 == 0:
             # System log extended
             if s.seconde < 10:
@@ -751,10 +721,6 @@ def display_128():
             
         # If not extended
         else:
-            '''
-            for i in xrange(0, 128, 2):     # Horizontal
-                draw.point((i, 40), fill=get_color('screen', 'border'))    # Zone haut | Zone Histogramme - TOT
-            '''
             draw.line((0, 40, 127, 40), fill=get_color('header', 'border'))
 
             if s.message[0] is not None and 'Dernier' in s.message[0]:   # Icon clock (DIY...)

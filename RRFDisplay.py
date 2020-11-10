@@ -32,7 +32,7 @@ def main(argv):
 
     # Check and get arguments
     try:
-        options, remainder = getopt.getopt(argv, '', ['help', 'interface=', 'i2c-port=', 'i2c-address=', 'display=', 'display-width=', 'display-height=', 'display-theme=', 'follow=', 'refresh=', 'latitude=', 'longitude='])
+        options, remainder = getopt.getopt(argv, '', ['help', 'interface=', 'spi-device=', 'i2c-port=', 'i2c-address=', 'display=', 'display-width=', 'display-height=', 'display-theme=', 'follow=', 'refresh=', 'latitude=', 'longitude='])
     except getopt.GetoptError:
         l.usage()
         sys.exit(2)
@@ -45,6 +45,8 @@ def main(argv):
                 print('Unknown interface type (choose between \'i2c\' and \'spi\')')
                 sys.exit()
             s.interface = arg
+        elif opt in ('--spi-device'):
+            s.spi_device = int(arg)
         elif opt in ('--i2c-port'):
             s.i2c_port = int(arg)
         elif opt in ('--i2c-address'):
@@ -88,7 +90,7 @@ def main(argv):
         elif s.display == 'ssd1327':
             s.device = ssd1327(serial, width=s.display_width, height=s.display_height, rotate=0, mode='RGB')
     else:
-        serial = spi(device=0, port=0)
+        serial = spi(device=s.spi_device, port=0)
         if s.display == 'ssd1351':        
             s.device = ssd1351(serial, width=s.display_width, height=s.display_height, rotate=1, mode='RGB', bgr=True)
         elif s.display == 'st7735':
@@ -269,7 +271,9 @@ def main(argv):
                     s.message[0] = 'Salon ' + s.room_current[:3]
 
         # Print screen
-        if s.device.height == 128:
+        if s.device.height == 160:
+            d.display_128()
+        elif s.device.height == 128:
             d.display_128()
         else:
             d.display_64()

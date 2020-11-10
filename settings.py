@@ -15,6 +15,7 @@ version = '5.4.2'
 # Default i2c_port, i2c_address, display and room
 
 interface = 'i2c'                       # Default value !
+spi_device = 0                          # Default value !
 i2c_port = 0                            # Default value ! Check with i2detect
 i2c_address = 0x3C                      # Default value ! Check with i2detect
 display = 'ssd1327'                     # Default value !
