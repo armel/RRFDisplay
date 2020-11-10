@@ -19,7 +19,6 @@ from PIL import ImageFont
 
 icon = ImageFont.truetype('./fonts/fontello.ttf', 14)     # Icon font
 font = ImageFont.truetype('./fonts/7x5.ttf', 8)           # Text font
-#font_big = ImageFont.truetype('./fonts/dot.ttf', 30)    # Text font
 font_big = ImageFont.truetype('./fonts/bold.ttf', 30)    # Text font
 font_tot = ImageFont.truetype('./fonts/rounded_led_board.ttf', 20)    # Text font
 
@@ -159,9 +158,6 @@ def elsewhere(draw, data):
 
     i = 79
     for d in data:
-        if d is None:
-            d = '00:00/FON/00h 00m 00s/0'
-            
         d = d.split('/')
 
         if d[0] == '00:00':
@@ -304,45 +300,26 @@ def extended_system(draw, page):
         sys = {'Arch': '', 'Kernel': '', 'Uptime': '', 'Load': '', 'Freq': ''}
         sys_order = ['Arch', 'Kernel', 'Uptime', 'Load', 'Freq']
 
-        sys['Arch'] = l.system_info('arch')
-        sys['Kernel'] = l.system_info('kernel')
-        sys['Uptime'] = l.system_info('up')
-        sys['Load'] = l.system_info('load')
-        sys['Freq'] = l.system_info('freq') + ' MHz'
-
     elif page == 2:
         sys = {'IP': '', 'Temp': '', 'Mem': '', 'Disk': '', 'Version': ''}
         sys_order = ['IP', 'Temp', 'Mem', 'Disk', 'Version']
-
-        sys['IP'] = l.system_info('ip')
-        sys['Temp'] = l.system_info('temp') + ' C'
-
-        percent, mem = l.system_info('mem')
-        sys['Mem'] = percent + '% of ' + mem
-
-        percent, disk = l.system_info('disk')
-        sys['Disk'] = percent + ' of ' + disk
-        sys['Version'] = s.version
 
     else:
         sys = {'Arch': '', 'Kernel': '', 'Uptime': '', 'Load': '', 'Freq': '', 'IP': '', 'Temp': '', 'Mem': '', 'Disk': '', 'Version': ''}
         sys_order = ['Arch', 'Kernel', 'Uptime', 'Load', 'Freq', 'IP', 'Temp', 'Mem', 'Disk', 'Version']
         
-        sys['Arch'] = l.system_info('arch')
-        sys['Kernel'] = l.system_info('kernel')
-        sys['Uptime'] = l.system_info('up')
-        sys['Load'] = l.system_info('load')
-        sys['Freq'] = l.system_info('freq') + ' MHz'
-
-        sys['IP'] = l.system_info('ip')
-        sys['Temp'] = l.system_info('temp') + ' C'
-
-        percent, mem = l.system_info('mem')
-        sys['Mem'] = percent + '% of ' + mem
-
-        percent, disk = l.system_info('disk')
-        sys['Disk'] = percent + ' of ' + disk
-        sys['Version'] = s.version
+    sys['Arch'] = l.system_info('arch')
+    sys['Kernel'] = l.system_info('kernel')
+    sys['Uptime'] = l.system_info('up')
+    sys['Load'] = l.system_info('load')
+    sys['Freq'] = l.system_info('freq') + ' MHz'
+    sys['IP'] = l.system_info('ip')
+    sys['Temp'] = l.system_info('temp') + ' C'
+    percent, mem = l.system_info('mem')
+    sys['Mem'] = percent + '% of ' + mem
+    percent, disk = l.system_info('disk')
+    sys['Disk'] = percent + ' of ' + disk
+    sys['Version'] = s.version
 
     if s.device.height >= 128:
         i = 17
@@ -426,43 +403,27 @@ def extended_config(draw, page):
         sys = {'I2C Port': '', 'I2C Address': '', 'Display': '', 'Width': '', 'Height': ''}
         sys_order = ['I2C Port', 'I2C Address', 'Display', 'Width', 'Height']
 
-        sys['I2C Port'] = str(s.i2c_port)
-        sys['I2C Address'] = hex(s.i2c_address)
-        sys['Display'] = s.display
-        sys['Width'] = str(s.display_width)
-        sys['Height'] = str(s.display_height)
-
     elif page == 2:
         sys = {'Scan': '', 'Follow': '', 'Refresh': '', 'Latitude': '', 'Longitude': ''}
         sys_order = ['Scan', 'Follow', 'Refresh', 'Latitude', 'Longitude']
-
-        sys['Scan'] = str(s.scan)
-        if s.scan is True:
-            sys['Follow'] = s.callsign
-        else:
-            sys['Follow'] = s.room_current
-        sys['Refresh'] = str(s.refresh) + 's'
-        sys['Latitude'] = str(s.latitude)
-        sys['Longitude'] = str(s.longitude)
 
     else:
         sys = {'I2C Port': '', 'I2C Address': '', 'Display': '', 'Width': '', 'Height': '', 'Scan': '', 'Follow': '', 'Refresh': '', 'Latitude': '', 'Longitude': ''}
         sys_order = ['I2C Port', 'I2C Address', 'Display', 'Width', 'Height', 'Scan', 'Follow', 'Refresh', 'Latitude', 'Longitude']
         
-        sys['I2C Port'] = str(s.i2c_port)
-        sys['I2C Address'] = hex(s.i2c_address)
-        sys['Display'] = s.display
-        sys['Width'] = str(s.display_width)
-        sys['Height'] = str(s.display_height)
-
-        sys['Scan'] = str(s.scan)
-        if s.scan is True:
-            sys['Follow'] = s.callsign
-        else:
-            sys['Follow'] = s.room_current
-        sys['Refresh'] = str(s.refresh) + 's'
-        sys['Latitude'] = str(s.latitude)
-        sys['Longitude'] = str(s.longitude)
+    sys['I2C Port'] = str(s.i2c_port)
+    sys['I2C Address'] = hex(s.i2c_address)
+    sys['Display'] = s.display
+    sys['Width'] = str(s.display_width)
+    sys['Height'] = str(s.display_height)
+    sys['Scan'] = str(s.scan)
+    if s.scan is True:
+        sys['Follow'] = s.callsign
+    else:
+        sys['Follow'] = s.room_current
+    sys['Refresh'] = str(s.refresh) + 's'
+    sys['Latitude'] = str(s.latitude)
+    sys['Longitude'] = str(s.longitude)
 
     if s.device.height >= 128:
         i = 17
@@ -489,27 +450,22 @@ def extended_solar(draw, page):
         if page == 1:
             value = {'Updated': '', 'Solar Flux': '', 'A-Index': '', 'K-Index': '', 'Sun Spots': ''}
             value_order = ['Updated', 'Solar Flux', 'A-Index', 'K-Index', 'Sun Spots']
-
-            value['Updated'] = s.solar_value['Updated']
-            value['Solar Flux'] = s.solar_value['Solar Flux']
-            value['A-Index'] = s.solar_value['A-Index']
-            value['K-Index'] = s.solar_value['K-Index']
-            value['Sun Spots'] = s.solar_value['Sun Spots']
             
         elif page == 2:
             value = {'X-Ray': '', 'Ptn Flux': '', 'Elc Flux': '', 'Mag (BZ)': '', 'Solar Wind': ''}
             value_order = ['X-Ray', 'Ptn Flux', 'Elc Flux', 'Mag (BZ)', 'Solar Wind']
 
-            value['X-Ray'] = s.solar_value['X-Ray']
-            value['Ptn Flux'] = s.solar_value['Ptn Flux']
-            value['Elc Flux'] = s.solar_value['Elc Flux']
-            value['Mag (BZ)'] = s.solar_value['Mag (BZ)']
-            value['Solar Wind'] = s.solar_value['Solar Wind']
-
         elif page == 3:
             value = {'Updated': '', 'Solar Flux': '', 'A-Index': '', 'K-Index': '', 'Sun Spots': '', 'X-Ray': '', 'Ptn Flux': '', 'Elc Flux': '', 'Mag (BZ)': '', 'Solar Wind': ''}
             value_order = ['Updated', 'Solar Flux', 'A-Index', 'K-Index', 'Sun Spots', 'X-Ray', 'Ptn Flux', 'Elc Flux', 'Mag (BZ)', 'Solar Wind']
             
+        else:
+            value = {'80m-40m J/N': '', '30m-20m J/N': '', '17m-15m J/N': '', '12m-10m J/N': '', 'VHF Aurora': '', 'E-Skip EU 2m': '', 'E-Skip EU 4m': '', 'E-Skip EU 6m': '', 'Geomag Field': '', 'Signal Noise': ''}
+            value_order = ['80m-40m J/N', '30m-20m J/N', '17m-15m J/N', '12m-10m J/N', 'VHF Aurora', 'E-Skip EU 2m', 'E-Skip EU 4m', 'E-Skip EU 6m', 'Geomag Field', 'Signal Noise']
+            
+        if page <= 3:
+            position = 50
+
             value['Updated'] = s.solar_value['Updated']
             value['Solar Flux'] = s.solar_value['Solar Flux']
             value['A-Index'] = s.solar_value['A-Index']
@@ -521,13 +477,9 @@ def extended_solar(draw, page):
             value['Elc Flux'] = s.solar_value['Elc Flux']
             value['Mag (BZ)'] = s.solar_value['Mag (BZ)']
             value['Solar Wind'] = s.solar_value['Solar Wind']
+        else:
+            position = 60
 
-            position = 50
-
-        elif page == 4:
-            value = {'80m-40m J/N': '', '30m-20m J/N': '', '17m-15m J/N': '', '12m-10m J/N': '', 'VHF Aurora': '', 'E-Skip EU 2m': '', 'E-Skip EU 4m': '', 'E-Skip EU 6m': '', 'Geomag Field': '', 'Signal Noise': ''}
-            value_order = ['80m-40m J/N', '30m-20m J/N', '17m-15m J/N', '12m-10m J/N', 'VHF Aurora', 'E-Skip EU 2m', 'E-Skip EU 4m', 'E-Skip EU 6m', 'Geomag Field', 'Signal Noise']
-            
             value['80m-40m J/N'] = s.solar_value['80m-40m Day'] + ' / ' + s.solar_value['80m-40m Night']
             value['30m-20m J/N'] = s.solar_value['30m-20m Day'] + ' / ' + s.solar_value['30m-20m Night']
             value['17m-15m J/N'] = s.solar_value['17m-15m Day'] + ' / ' + s.solar_value['17m-15m Night']
@@ -539,43 +491,10 @@ def extended_solar(draw, page):
             value['E-Skip EU 6m'] = s.solar_value['E-Skip EU 6m']
             value['Geomag Field'] = s.solar_value['Geomag Field']
             value['Signal Noise'] = s.solar_value['Signal Noise']
-
-            position = 60
         
         i = 17
         for j in value_order:
             label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), j, value[j])
-            i += 11
-    else:
-        w, h = draw.textsize(text='No data', font=font)
-        tab = (s.device.width - w) / 2
-        draw.text((tab, 17), 'No data', font=font, fill=get_color('screen', 'foreground'))
-
-# Print cluster
-def extended_cluster(draw, page):
-    if s.device.height >= 128:
-        draw.rectangle((0, 1, s.device.height - 1, 13), fill=get_color('header', 'background'))
-
-    legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
-    legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
-
-    title(draw, 'Cluster')
-
-    if len(s.cluster_value) != 0:
-
-        if page == 1:
-            position = 42
-
-        i = 17
-        
-        for j in s.cluster_value:
-            tmp = s.cluster_value[j].split(' ')
-            label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), tmp[1], tmp[2])
-            k = 108
-            for c in tmp[4][0:5]:
-                legacy.text(draw, (k, i + 4), chr(s.letter[c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
-                k += 4
-
             i += 11
     else:
         w, h = draw.textsize(text='No data', font=font)
