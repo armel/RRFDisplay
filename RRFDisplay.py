@@ -31,8 +31,6 @@ from luma.lcd.device  import st7735
 
 def main(argv):
 
-    GPIO.setmode(GPIO.BCM)
-
     # Check and get arguments
     try:
         options, remainder = getopt.getopt(argv, '', ['help', 'interface=', 'spi-device=', 'i2c-port=', 'i2c-address=', 'display=', 'display-width=', 'display-height=', 'display-theme=', 'follow=', 'refresh=', 'latitude=', 'longitude='])
@@ -291,7 +289,7 @@ def main(argv):
         #sys.stdout.flush()
 
         time.sleep(sleep)
-        GPIO.cleanup()
+        #GPIO.cleanup()
 
 if __name__ == '__main__':
     try:
