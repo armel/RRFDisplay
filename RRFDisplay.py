@@ -135,7 +135,6 @@ def main(argv):
     #print s.room_current
 
     while(True):
-        GPIO.setwarnings(False)
         chrono_start = time.time()
 
         tmp = datetime.datetime.now()
