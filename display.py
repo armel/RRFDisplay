@@ -691,12 +691,10 @@ def display_128():
 
         if s.device.height == 160:
 
-            draw.line((0, 127, 127, 127), fill=get_color('header', 'border'))
-
-            if s.seconde < 30 and s.seconde % 2 != 0:
+            if s.seconde < 30:
                 tmp = s.now[0:5]
-            elif s.seconde < 30 and s.seconde % 2 == 0:
-                tmp = s.now[0:5].replace(':', ' ')
+                if s.seconde % 2 == 0:
+                    draw.rectangle((90, 128, 110, 160), fill=get_color('header', 'background'))
             else:
                 tmp = s.room_current[0:3]
 
