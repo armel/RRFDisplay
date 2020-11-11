@@ -693,8 +693,6 @@ def display_128():
 
             if s.seconde < 30:
                 tmp = s.now[0:5]
-                if s.seconde % 2 == 0:
-                    draw.rectangle((90, 128, 110, 160), fill=get_color('header', 'background'))
             else:
                 tmp = s.room_current[0:3]
 
@@ -702,3 +700,5 @@ def display_128():
             tab = (s.device.width - w) / 2
             draw.text((tab, 130), tmp, font=font_big, fill=get_color('log', 'call_last'))
 
+            if s.seconde < 30 and s.seconde % 2 == 0:
+                draw.rectangle((60, 128, 68, 160), fill=get_color('header', 'background'))
