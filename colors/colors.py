@@ -46,7 +46,7 @@ def main():
         w = 4
         with canvas(device, dither=True) as draw:
             for i in range(device.width // w):
- 				r = int(math.sin(0.3 * i + 0) * 127) + 128
+                r = int(math.sin(0.3 * i + 0) * 127) + 128
                 g = int(math.sin(0.3 * i + 2) * 127) + 128
                 b = int(math.sin(0.3 * i + 4) * 127) + 128
                 rgb = (r << 16) | (g << 8) | b
