@@ -701,4 +701,4 @@ def display_128():
             draw.text((tab, 130), tmp, font=font_big, fill=get_color('log', 'call_last'))
 
             if s.seconde < 30 and s.seconde % 2 == 0:
-                draw.rectangle((60, 128, 68, 160), fill=get_color('header', 'background'))
+                draw.rectangle((58, 128, 64, 160), fill=get_color('screen', 'background'))
