@@ -688,15 +688,19 @@ def display_128():
 
         # Finaly, print clock and room
         clock_room(draw)
-        # Last
-        if s.seconde < 30 and s.seconde % 2 != 0:
-            tmp = s.now[0:5]
-        elif s.seconde < 30 and s.seconde % 2 == 0:
-            tmp = s.now[0:5].replace(':', ' ')
-        else:
-            tmp = s.room_current[0:3]
 
-        w, h = draw.textsize(text=tmp, font=font_big)
-        tab = (s.device.width - w) / 2
-        draw.text((tab, 130), tmp, font=font_big, fill=get_color('log', 'call_last'))
+        if s.device.height == 160:
+
+            draw.line((0, 127, 127, 127), fill=get_color('header', 'border'))
+
+            if s.seconde < 30 and s.seconde % 2 != 0:
+                tmp = s.now[0:5]
+            elif s.seconde < 30 and s.seconde % 2 == 0:
+                tmp = s.now[0:5].replace(':', ' ')
+            else:
+                tmp = s.room_current[0:3]
+
+            w, h = draw.textsize(text=tmp, font=font_big)
+            tab = (s.device.width - w) / 2
+            draw.text((tab, 130), tmp, font=font_big, fill=get_color('log', 'call_last'))
 
