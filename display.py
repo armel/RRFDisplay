@@ -521,7 +521,7 @@ def display_init(init_message):
     with canvas(s.device) as draw:
         print ('ici', s.device.width, s.device.height)
         s.device.clear()
-        draw.rectangle((0, 0, s.device.width - 1, s.device.height - 1), fill='black')
+        draw.rectangle((0, 0, s.device.width - 1, s.device.height - 1), fill='red')
 
         position = 0
         for message in init_message:
