@@ -692,5 +692,5 @@ def display_128():
         tmp = "00:00"
         w, h = draw.textsize(text=tmp, font=font_big)
         tab = (s.device.width - w) / 2
-        draw.text((tab, 80), tmp, font=font_big, fill=get_color('log', 'call_last'))
+        draw.text((tab, 120), tmp, font=font_big, fill=get_color('log', 'call_last'))
 
