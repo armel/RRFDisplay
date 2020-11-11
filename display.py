@@ -708,14 +708,26 @@ def display_128():
 
             draw.line((0, 127, 127, 127), fill=get_color('header', 'border'))
 
-            if s.seconde < 30:
-                tmp = s.now[0:5]
+            if s.transmit is True and s.duration >= 10:
+                # Draw call
+                tmp = s.call_current.split(' ')
+                if len(tmp) == 3:
+                    tmp = tmp[1]
+                else:
+                    tmp = 'RTFM'
+
+                w, h = draw.textsize(text=tmp, font=font_big)
+                tab = (s.device.width - w) / 2
+                draw.text((tab, 130), tmp, font=font_big, fill=get_color('log', 'call_last'))
             else:
-                tmp = s.room_current[0:3]
+                if s.seconde < 30:
+                    tmp = s.now[0:5]
+                else:
+                    tmp = s.room_current[0:3]
 
-            w, h = draw.textsize(text=tmp, font=font_big)
-            tab = (s.device.width - w) / 2
-            draw.text((tab, 130), tmp, font=font_big, fill=get_color('log', 'call_last'))
+                w, h = draw.textsize(text=tmp, font=font_big)
+                tab = (s.device.width - w) / 2
+                draw.text((tab, 130), tmp, font=font_big, fill=get_color('log', 'call_last'))
 
-            if s.seconde < 30 and s.seconde % 2 == 0:
-                draw.rectangle((58, 128, 64, 160), fill=get_color('screen', 'background'))
+                if s.seconde < 30 and s.seconde % 2 == 0:
+                    draw.rectangle((58, 128, 64, 160), fill=get_color('screen', 'background'))
