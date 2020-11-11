@@ -519,7 +519,6 @@ def extended_solar(draw, page):
 # Print display on 128 x 64
 def display_init(init_message):
     with canvas(s.device) as draw:
-        print ('ici', s.device.width, s.device.height)
         s.device.clear()
         draw.rectangle((0, 0, s.device.width - 1, s.device.height - 1), fill='black')
 
@@ -706,7 +705,6 @@ def display_128():
         # Finaly, print clock and room
         clock_room(draw)
 
-        '''
         if s.device.height == 160:
             draw.line((0, 127, 127, 127), fill=get_color('header', 'border'))
 
@@ -733,4 +731,3 @@ def display_128():
 
                 if s.seconde < 30 and s.seconde % 2 == 0:
                     draw.rectangle((58, 128, 64, 160), fill=get_color('screen', 'background'))
-        '''
