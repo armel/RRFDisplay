@@ -35,10 +35,6 @@ lightslategray
 lightslategrey
 gray
 grey
-x11gray
-x11grey
-webgray
-webgrey
 lightgrey
 lightgray
 midnightblue
@@ -81,8 +77,6 @@ springgreen
 lawngreen
 green
 lime
-x11green
-webgreen
 chartreuse
 mediumspringgreen
 greenyellow
@@ -129,8 +123,6 @@ pink
 lightpink
 palevioletred
 maroon
-x11maroon
-webmaroon
 mediumvioletred
 violetred
 magenta
@@ -143,8 +135,6 @@ darkorchid
 darkviolet
 blueviolet
 purple
-x11purple
-webpurple
 mediumpurple
 thistle
 snow1
