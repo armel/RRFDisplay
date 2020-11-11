@@ -347,10 +347,13 @@ def extended_call(draw, limit = 5):
 
     title(draw, 'Derniers TX')
 
+    '''
     if s.device.height >= 128:
         i = 17
     else:
         i = 16
+    '''
+    i = 16
 
     for j in range(0, limit):
         label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), s.call_time[j], s.call[j])
@@ -372,10 +375,14 @@ def extended_best(draw, limit = 5):
     best_min = min(s.best_time)
     best_max = max(s.best_time)
 
+    '''
     if s.device.height >= 128:
         i = 17
     else:
         i = 16
+    '''
+
+    i = 16
 
     for j in range(0, limit):
         c = s.best[j]
@@ -429,11 +436,15 @@ def extended_config(draw, page):
     sys['Latitude'] = str(s.latitude)
     sys['Longitude'] = str(s.longitude)
 
+    '''
     if s.device.height >= 128:
         i = 17
     else:
         i = 16
+    '''
 
+    i = 16
+    
     for j in sys_order:
         label(draw, i, 63, get_color('label', 'background'), get_color('label', 'foreground'), j, sys[j])
         if s.device.height >= 128:
