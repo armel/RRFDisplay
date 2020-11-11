@@ -328,7 +328,7 @@ def extended_system(draw, page):
         i = 16
     '''
 
-    i = 16
+    i = 15
 
     for j in sys_order:
         label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), j, sys[j])
@@ -353,7 +353,7 @@ def extended_call(draw, limit = 5):
     else:
         i = 16
     '''
-    i = 16
+    i = 15
 
     for j in range(0, limit):
         label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), s.call_time[j], s.call[j])
@@ -382,7 +382,7 @@ def extended_best(draw, limit = 5):
         i = 16
     '''
 
-    i = 16
+    i = 15
 
     for j in range(0, limit):
         c = s.best[j]
@@ -443,8 +443,8 @@ def extended_config(draw, page):
         i = 16
     '''
 
-    i = 16
-    
+    i = 15
+
     for j in sys_order:
         label(draw, i, 63, get_color('label', 'background'), get_color('label', 'foreground'), j, sys[j])
         if s.device.height >= 128:
@@ -507,7 +507,7 @@ def extended_solar(draw, page):
             value['Geomag Field'] = s.solar_value['Geomag Field']
             value['Signal Noise'] = s.solar_value['Signal Noise']
         
-        i = 17
+        i = 15
         for j in value_order:
             label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), j, value[j])
             i += 11
