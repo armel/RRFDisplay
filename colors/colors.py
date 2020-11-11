@@ -18,7 +18,7 @@ from PIL import Image
 
 
 def main():
-    img_path = str(Path(__file__).resolve().parent.joinpath('images', 'balloon.png'))
+    img_path = str(Path(__file__).resolve().parent.joinpath('images', 'sun.png'))
     balloon = Image.open(img_path) \
         .transform(device.size, Image.AFFINE, (1, 0, 0, 0, 1, 0), Image.BILINEAR) \
         .convert(device.mode)
