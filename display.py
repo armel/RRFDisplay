@@ -692,7 +692,7 @@ def display_128():
         if s.seconde < 30 and s.seconde % 2 != 0:
             tmp = s.now[0:5]
         elif s.seconde < 30 and s.seconde % 2 == 0:
-            tmp = s.now[0:5].replace(':', '')
+            tmp = s.now[0:5].replace(':', ' ')
         else:
             tmp = s.room_current[0:3]
 
