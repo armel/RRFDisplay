@@ -519,7 +519,7 @@ def extended_solar(draw, page):
 # Print display on 128 x 64
 def display_init(init_message):
     with canvas(s.device) as draw:
-        print ('ici, s.device.width, s.device.height)
+        print ('ici', s.device.width, s.device.height)
         draw.rectangle((0, 0, s.device.width - 1, s.device.height - 1), fill='black')
 
         position = 0
