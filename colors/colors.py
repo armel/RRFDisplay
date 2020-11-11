@@ -29,7 +29,7 @@ def main():
         time.sleep(5)
 
         # Cycle through some primary colours
-        for color in ["indianred", "lightcorak", "salmon", "darksalmon", "crimson", "red", "darked"]:
+        for color in ["indianred", "lightcoral", "salmon", "darksalmon", "crimson", "red", "darked"]:
             with canvas(device, dither=True) as draw:
                 draw.rectangle(device.bounding_box, fill=color)
                 size = draw.textsize(color)
