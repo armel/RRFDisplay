@@ -689,7 +689,11 @@ def display_128():
         # Finaly, print clock and room
         clock_room(draw)
         # Last
-        tmp = "00:00"
+        if s.seconde < 30:
+            tmp = s.now
+        else:
+            tmp = s.room_current
+            
         w, h = draw.textsize(text=tmp, font=font_big)
         tab = (s.device.width - w) / 2
         draw.text((tab, 130), tmp, font=font_big, fill=get_color('log', 'call_last'))
