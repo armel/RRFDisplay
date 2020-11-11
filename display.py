@@ -623,8 +623,7 @@ def display_64():
 # Print display on 128 x 128 
 def display_128():
     with canvas(s.device, dither=True) as draw:
-        #draw.rectangle((0, 0, 127, s.device.height - 1), fill=get_color('screen', 'background'))
-        draw.rectangle((0, 0, 127, s.device.height - 1), fill='dimgray')
+        draw.rectangle((0, 0, 127, s.device.height - 1), fill=get_color('screen', 'background'))
         draw.rectangle((0, 1, 127, 13), fill=get_color('header', 'background'))
 
         draw.line((0, 0, 127, 0), fill=get_color('header', 'border'))
