@@ -43,6 +43,26 @@ def main():
 
             time.sleep(0.1)
 
+        # Rainbow Gray
+        w = 4
+        with canvas(device, dither=True) as draw:
+            for i in range(device.width // w):
+                r = i
+                g = i
+                b = i
+                rgb = (r << 16) | (g << 8) | b
+                draw.rectangle((i * w, 0, (i + 1) * w, device.height), fill=rgb)
+
+            size = draw.textsize("rainbow")
+            left = (device.width - size[0]) // 2
+            top = (device.height - size[1]) // 2
+            right = left + size[0]
+            bottom = top + size[1]
+            draw.rectangle((left - 1, top, right, bottom), fill="black")
+            draw.text((left, top), text="rainbow", fill="white")
+
+        time.sleep(5)
+
         # Rainbow
         w = 4
         with canvas(device, dither=True) as draw:
