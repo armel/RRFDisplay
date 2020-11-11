@@ -321,10 +321,14 @@ def extended_system(draw, page):
     sys['Disk'] = percent + ' of ' + disk
     sys['Version'] = s.version
 
+    '''
     if s.device.height >= 128:
         i = 17
     else:
         i = 16
+    '''
+
+    i = 16
 
     for j in sys_order:
         label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), j, sys[j])
@@ -690,6 +694,8 @@ def display_128():
         clock_room(draw)
 
         if s.device.height == 160:
+
+            draw.line((0, 127, 127, 127), fill=get_color('header', 'border'))
 
             if s.seconde < 30:
                 tmp = s.now[0:5]
