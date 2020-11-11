@@ -705,7 +705,7 @@ def display_128():
         clock_room(draw)
 
         if s.device.height == 160:
-
+            draw.rectangle((0, 128, 128, 160), fill=get_color('screen', 'background'))
             draw.line((0, 127, 127, 127), fill=get_color('header', 'border'))
 
             if s.transmit is True and s.duration >= 10:
