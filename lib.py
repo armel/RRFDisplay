@@ -106,6 +106,9 @@ def wake_up_screen(device, display, wake_up):
     elif 'ssd1351' in display:
         level_sleep = 50
         level_wake_up = 150
+    elif 'st7735' in display:
+        level_sleep = 50
+        level_wake_up = 150
     else:
         level_sleep = 4
         level_wake_up = 150
