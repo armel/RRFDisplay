@@ -41,7 +41,7 @@ def main():
                 draw.rectangle((left - 1, top, right, bottom), fill="black")
                 draw.text((left, top), text=color, fill="white")
 
-            time.sleep(0.5)
+            time.sleep(0.1)
 
         # Rainbow
         w = 4
