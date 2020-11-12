@@ -656,7 +656,7 @@ def display_128():
             
         # If not extended
         else:
-            draw.rectangle((0, 14, 127, 40), fill=get_color('elsewhere', 'background'))
+            draw.rectangle((0, 14, 127, 40), fill=get_color('log', 'background'))
             draw.line((0, 40, 127, 40), fill=get_color('header', 'border'))
 
             if s.message[0] is not None and 'Dernier' in s.message[0]:   # Icon clock (DIY...)
