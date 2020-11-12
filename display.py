@@ -625,7 +625,6 @@ def display_64():
 def display_128():
     with canvas(s.device, dither=True) as draw:
         draw.rectangle((0, 0, 127, s.device.height - 1), fill=get_color('screen', 'background'))
-        draw.rectangle((0, 14, 127, 40), fill=get_color('elsewhere', 'background'))
         draw.rectangle((0, 1, 127, 13), fill=get_color('header', 'background'))
 
         draw.line((0, 0, 127, 0), fill=get_color('header', 'border'))
@@ -657,6 +656,7 @@ def display_128():
             
         # If not extended
         else:
+            draw.rectangle((0, 14, 127, 40), fill=get_color('elsewhere', 'background'))
             draw.line((0, 40, 127, 40), fill=get_color('header', 'border'))
 
             if s.message[0] is not None and 'Dernier' in s.message[0]:   # Icon clock (DIY...)
