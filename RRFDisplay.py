@@ -284,7 +284,7 @@ def main(argv):
         if s.device.height == 240:
             print(s.device.height, s.device.width)
             d.display_240()
-        if s.device.height == 160:
+        elif s.device.height == 160:
             d.display_128()
         elif s.device.height == 128:
             d.display_128()
