@@ -20,7 +20,7 @@ import getopt
 import configparser as cp
 import RPi.GPIO as GPIO
 
-from luma.core.interface.serial import i2c, spi, noop
+from luma.core.interface.serial import i2c, spi
 from luma.core.render import canvas
 
 from luma.oled.device import sh1106
@@ -28,7 +28,7 @@ from luma.oled.device import ssd1306
 from luma.oled.device import ssd1327
 from luma.oled.device import ssd1351
 from luma.lcd.device  import st7735
-import luma.core.framebuffer
+from luma.core import cmdline, error
 
 def main(argv):
 
@@ -100,9 +100,8 @@ def main(argv):
         elif s.display == 'st7735':
             s.device = st7735(serial, width=s.display_width, height=s.display_height, rotate=3, mode='RGB')
     else:
-        serial = noop()
-        if s.display == 'linux_framebuffer':
-            s.device = linux_framebuffer(framebuffer_device= s.framebuffer_device)
+        args = ['--display=' + s.display, '--framebuffer-device=' + s.framebuffer-device, '--interface=' + s.interface]
+        device = cmdline.create_device(args)
 
     init_message = []
 
