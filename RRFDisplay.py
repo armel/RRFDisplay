@@ -102,7 +102,7 @@ def main(argv):
             s.device = st7735(serial, width=s.display_width, height=s.display_height, rotate=3, mode='RGB')
     else:
         config = ['--display=' + s.display, '--framebuffer-device=' + s.framebuffer_device, '--interface=' + s.interface]
-        parser = cmdline.create_parser()
+        parser = cmdline.create_parser(description='RRFDisplay')
         args = parser.parse_args(config)
         device = cmdline.create_device(args)
 
