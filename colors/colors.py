@@ -31,9 +31,9 @@ def main():
     while True:
         # Image display
         device.display(balloon)
-        time.sleep(5)
+        time.sleep(10)
         device.display(greyline)
-        time.sleep(5)
+        time.sleep(60)
 
         # Cycle through some primary colours
         data = [line.strip() for line in open('rgb.dat')]
