@@ -104,7 +104,7 @@ def main(argv):
         config = ['--display=' + s.display, '--framebuffer-device=' + s.framebuffer_device, '--interface=' + s.interface]
         parser = cmdline.create_parser(description='RRFDisplay')
         args = parser.parse_args(config)
-        device = cmdline.create_device(args)
+        s.device = cmdline.create_device(args)
 
     init_message = []
 
