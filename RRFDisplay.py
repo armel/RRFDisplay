@@ -20,7 +20,7 @@ import getopt
 import configparser as cp
 import RPi.GPIO as GPIO
 
-from luma.core.interface.serial import i2c, spi
+from luma.core.interface.serial import i2c, spi, noop
 from luma.core.render import canvas
 
 from luma.oled.device import sh1106
@@ -28,6 +28,7 @@ from luma.oled.device import ssd1306
 from luma.oled.device import ssd1327
 from luma.oled.device import ssd1351
 from luma.lcd.device  import st7735
+from luma.lcd.device  import linux_framebuffer
 
 def main(argv):
 
