@@ -281,6 +281,9 @@ def main(argv):
                     s.message[0] = 'Salon ' + s.room_current[:3]
 
         # Print screen
+        if s.device.height == 240:
+            print(s.device.height, s.device.width)
+            d.display_240()
         if s.device.height == 160:
             d.display_128()
         elif s.device.height == 128:
