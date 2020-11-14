@@ -23,9 +23,16 @@ def main():
         .transform(device.size, Image.AFFINE, (1, 0, 0, 0, 1, 0), Image.BILINEAR) \
         .convert(device.mode)
 
+    img_path = str(Path(__file__).resolve().parent.joinpath('images', 'greyline.jpg'))
+    greyline = Image.open(img_path) \
+        .transform(device.size, Image.AFFINE, (1, 0, 0, 0, 1, 0), Image.BILINEAR) \
+        .convert(device.mode)
+
     while True:
         # Image display
         device.display(balloon)
+        time.sleep(5)
+        device.display(greyline)
         time.sleep(5)
 
         # Cycle through some primary colours
