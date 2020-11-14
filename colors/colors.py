@@ -35,7 +35,7 @@ def main():
         device.display(greyline)
         for i in range(250):
             device.contrast(i)
-            sleep(1)
+            time.sleep(1)
         time.sleep(60)
 
         # Cycle through some primary colours
