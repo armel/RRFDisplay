@@ -33,7 +33,7 @@ def main(argv):
 
     # Check and get arguments
     try:
-        options, remainder = getopt.getopt(argv, '', ['help', 'interface=', 'spi-device=', 'i2c-port=', 'i2c-address=', 'display=', 'display-width=', 'display-height=', 'display-theme=', 'follow=', 'refresh=', 'latitude=', 'longitude='])
+        options, remainder = getopt.getopt(argv, '', ['help', 'interface=', 'spi-device=', 'i2c-port=', 'i2c-address=', 'framebuffer-device=', 'display=', 'display-width=', 'display-height=', 'display-theme=', 'follow=', 'refresh=', 'latitude=', 'longitude='])
     except getopt.GetoptError:
         l.usage()
         sys.exit(2)
@@ -42,10 +42,12 @@ def main(argv):
             l.usage()
             sys.exit()
         elif opt in ('--interface'):
-            if arg not in ['i2c', 'spi']:
-                print('Unknown interface type (choose between \'i2c\' and \'spi\')')
+            if arg not in ['i2c', 'spi', 'noop']:
+                print('Unknown interface type (choose between \'i2c\', \'spi\' and \'noop\')')
                 sys.exit()
             s.interface = arg
+        elif opt in ('--framebuffer-device'):
+            s.framebuffer_device = arg
         elif opt in ('--spi-device'):
             s.spi_device = int(arg)
         elif opt in ('--i2c-port'):
@@ -54,7 +56,7 @@ def main(argv):
             s.i2c_address = int(arg, 16)
         elif opt in ('--display'):
             if arg not in ['sh1106', 'ssd1306', 'ssd1327', 'ssd1351', 'st7735']:
-                print('Unknown display type (choose between \'sh1106\', \'ssd1306\',  \'ssd1327\', \'ssd1351\' and \'st7735\')')
+                print('Unknown display type (choose between \'sh1106\', \'ssd1306\',  \'ssd1327\', \'ssd1351\', \'st7735\' and \'linux_framebuffer\')')
                 sys.exit()
             s.display = arg
         elif opt in ('--display-width'):
@@ -90,12 +92,16 @@ def main(argv):
             s.device = ssd1306(serial, width=s.display_width, height=s.display_height, rotate=0)
         elif s.display == 'ssd1327':
             s.device = ssd1327(serial, width=s.display_width, height=s.display_height, rotate=0, mode='RGB')
-    else:
+    elif s.interface == 'spi':
         serial = spi(device=s.spi_device, port=0)
         if s.display == 'ssd1351':        
             s.device = ssd1351(serial, width=s.display_width, height=s.display_height, rotate=1, mode='RGB', bgr=True)
         elif s.display == 'st7735':
             s.device = st7735(serial, width=s.display_width, height=s.display_height, rotate=3, mode='RGB')
+    else:
+        serial = noop()
+        if s.display == 'linux_framebuffer':
+            s.device = linux_framebuffer(framebuffer_device= s.framebuffer_device)
 
     init_message = []
 

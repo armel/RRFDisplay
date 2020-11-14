@@ -19,6 +19,7 @@ spi_device = 0                          # Default value !
 i2c_port = 0                            # Default value ! Check with i2detect
 i2c_address = 0x3C                      # Default value ! Check with i2detect
 display = 'ssd1327'                     # Default value !
+framebuffer_device = '/dev/fb0'         # Default value !
 display_width = 128                     # Default value !
 display_height = 128                    # Default value !
 display_theme = 'gray.cfg'              # Default value ! 
