@@ -100,8 +100,8 @@ def main(argv):
         elif s.display == 'st7735':
             s.device = st7735(serial, width=s.display_width, height=s.display_height, rotate=3, mode='RGB')
     else:
-        args = ['--display=' + s.display, '--framebuffer-device=' + s.framebuffer_device, '--interface=' + s.interface]
-        print(args)
+        config = ['--display=' + s.display, '--framebuffer-device=' + s.framebuffer_device, '--interface=' + s.interface]
+        args = parser.parse_args(config)
         device = cmdline.create_device(args)
 
     init_message = []
