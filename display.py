@@ -18,7 +18,8 @@ from luma.core import legacy
 from PIL import ImageFont
 
 icon = ImageFont.truetype('./fonts/fontello.ttf', 14)     # Icon font
-font = ImageFont.truetype('./fonts/7x5.ttf', 13)           # Text font
+#font = ImageFont.truetype('./fonts/7x5.ttf', 8)           # Text font
+font = ImageFont.truetype('./fonts/freepixel.ttf', 16)           # Text font
 font_big = ImageFont.truetype('./fonts/bold.ttf', 30)    # Text font
 font_tot = ImageFont.truetype('./fonts/rounded_led_board.ttf', 20)    # Text font
 
