@@ -55,7 +55,7 @@ def main(argv):
         elif opt in ('--i2c-address'):
             s.i2c_address = int(arg, 16)
         elif opt in ('--display'):
-            if arg not in ['sh1106', 'ssd1306', 'ssd1327', 'ssd1351', 'st7735']:
+            if arg not in ['sh1106', 'ssd1306', 'ssd1327', 'ssd1351', 'st7735', 'linux_framebuffer']:
                 print('Unknown display type (choose between \'sh1106\', \'ssd1306\',  \'ssd1327\', \'ssd1351\', \'st7735\' and \'linux_framebuffer\')')
                 sys.exit()
             s.display = arg
