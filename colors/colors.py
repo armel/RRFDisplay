@@ -33,7 +33,7 @@ def main():
         device.display(balloon)
         time.sleep(10)
         device.display(greyline)
-        for i in xrange(250):
+        for i in range(250):
             device.contrast(i)
             sleep(1)
         time.sleep(60)
