@@ -16,6 +16,7 @@ import requests
 import datetime
 import time
 import sys
+import logging
 import getopt
 import configparser as cp
 import RPi.GPIO as GPIO
