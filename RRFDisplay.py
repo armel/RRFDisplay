@@ -28,7 +28,7 @@ from luma.oled.device import ssd1306
 from luma.oled.device import ssd1327
 from luma.oled.device import ssd1351
 from luma.lcd.device  import st7735
-from luma.lcd.device  import linux_framebuffer
+import luma.core.framebuffer
 
 def main(argv):
 
