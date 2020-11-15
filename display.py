@@ -103,7 +103,9 @@ def label(draw, position, width, bg_color, fg_color, label, value, fixed = 0):
         draw.text((fixed, position), value, font=font, fill=get_color('screen', 'foreground'))        
 
 # Draw tot
-def tot(draw, legacy, duration, position):
+def tot(draw, legacy, duration, position, width=0):
+    if width == 0:
+        width = s.device.width
     #duration += (duration / 60)     # Reajust time latence
     if s.device.height < 128:
         j = 54
@@ -161,7 +163,7 @@ def tot(draw, legacy, duration, position):
     else:
         tmp = l.convert_second_to_time(duration)
         w, h = draw.textsize(text=tmp, font=font_tot)
-        tab = (s.device.width - w) / 2
+        tab = (width - w) / 2
         draw.text((tab, 57), tmp, font=font_tot, fill=get_color('screen', 'foreground'))
 
 # Print elsewhere
@@ -819,7 +821,7 @@ def display_320_240(draw):
                 whois(draw)
             else:
                 # Draw message
-                last(draw, s.message[1:])
+                last(draw, s.message[1:], 128)
                 # Draw icon and distance
                 draw.text((2, 21), '\uf130', font=icon, fill=get_color('tot', 'foreground'))
                 distance(draw)
