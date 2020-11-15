@@ -17,15 +17,16 @@ from luma.core import legacy
 
 from PIL import ImageFont
 
-if s.device.height > 160:
-    icon = ImageFont.truetype('./fonts/fontello.ttf', 14)     # Icon font
-    font = ImageFont.truetype('./fonts/7x5.ttf', 8)           # Text font
-else :
-    icon = ImageFont.truetype('./fonts/fontello.ttf', 14)     # Icon font
-    font = ImageFont.truetype('./fonts/freepixel.ttf', 16)    # Text font
+with canvas(s.device, dither=True) as draw:
+    if s.device.height > 160:
+        icon = ImageFont.truetype('./fonts/fontello.ttf', 14)     # Icon font
+        font = ImageFont.truetype('./fonts/7x5.ttf', 8)           # Text font
+    else:
+        icon = ImageFont.truetype('./fonts/fontello.ttf', 14)     # Icon font
+        font = ImageFont.truetype('./fonts/freepixel.ttf', 16)    # Text font
 
-font_big = ImageFont.truetype('./fonts/bold.ttf', 30)     # Text font
-font_tot = ImageFont.truetype('./fonts/rounded_led_board.ttf', 20)    # Text font
+    font_big = ImageFont.truetype('./fonts/bold.ttf', 30)     # Text font
+    font_tot = ImageFont.truetype('./fonts/rounded_led_board.ttf', 20)    # Text font
 
 # Manage color
 def get_color(section, value):
