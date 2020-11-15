@@ -282,7 +282,7 @@ def clock_room(draw):
     else:
         i = 108
 
-        for c in s.now[:3]:
+        for c in s.now[:5]:
             legacy.text(draw, (i, j), chr(s.letter[c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
             i += 4
 
