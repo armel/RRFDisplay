@@ -638,12 +638,12 @@ def display_128_64():
 def display_128():
     with canvas(s.device, dither=True) as draw:
         if s.device.height == 128:
-            display_128_128()
+            display_128_128(draw)
         elif s.device.height == 160:
-            display_128_160()
+            display_128_160(draw)
 
 # Print display on 128 x 128 
-def display_128_128():
+def display_128_128(draw):
     draw.rectangle((0, 0, 127, s.device.height - 1), fill=get_color('screen', 'background'))
     draw.rectangle((0, 1, 127, 13), fill=get_color('header', 'background'))
 
@@ -727,7 +727,7 @@ def display_128_128():
     clock_room(draw)
 
 # Print display on 128 x 160 
-def display_128_160():
+def display_128_160(draw):
 
     display_128_128()
 
