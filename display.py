@@ -9,6 +9,7 @@ Check video about RRFDisplay on https://www.youtube.com/watch?v=rVW8xczVpEo
 '''
 
 import settings as s
+import display as d
 import lib as l
 import time
 
