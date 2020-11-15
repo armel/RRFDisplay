@@ -304,11 +304,14 @@ def distance(draw):
 
 
 # Print System Log Extended
-def extended_system(draw, page):
+def extended_system(draw, page, width=0):
+    if width == 0:
+        width = s.device.width
+
     legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CPU)
     legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CPU)
 
-    title(draw, 'Infos Spotnik')
+    title(draw, 'Infos Spotnik', width)
 
     if page == 1:
         sys = {'Arch': '', 'Kernel': '', 'Uptime': '', 'Load': '', 'Freq': ''}
@@ -346,10 +349,13 @@ def extended_system(draw, page):
 
 # Print Call Log Extended
 def extended_call(draw, limit = 5):
+    if width == 0:
+        width = s.device.width
+
     legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
     legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
 
-    title(draw, 'Derniers TX')
+    title(draw, 'Derniers TX', width)
 
     i = 15
 
@@ -362,10 +368,13 @@ def extended_call(draw, limit = 5):
 
 # Print Best Log Extended
 def extended_best(draw, limit = 5):
+    if width == 0:
+        width = s.device.width
+
     legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
     legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
 
-    title(draw, 'Top links')
+    title(draw, 'Top links', width)
 
     best_min = min(s.best_time)
     best_max = max(s.best_time)
@@ -390,10 +399,13 @@ def extended_best(draw, limit = 5):
             i += 10
 
 # Print config
-def extended_config(draw, page):
+def extended_config(draw, page, width):
+    if width == 0:
+        width = s.device.width
+
     draw.text((2, 0), '\ue800', font=icon, fill=get_color('header', 'foreground'))
 
-    title(draw, 'Config Display')
+    title(draw, 'Config Display', width)
 
     if page == 1:
         sys = {'I2C Port': '', 'I2C Address': '', 'Display': '', 'Width': '', 'Height': ''}
@@ -431,10 +443,13 @@ def extended_config(draw, page):
             i += 10
 
 # Print solar propagation
-def extended_solar(draw, page):
+def extended_solar(draw, page, width):
+    if width == 0:
+        width = s.device.width
+
     draw.text((2, 0), '\ue803', font=icon, fill=get_color('header', 'foreground'))
 
-    title(draw,'Propagation')
+    title(draw,'Propagation', width)
 
     if len(s.solar_value) != 0:
         if page == 1:
@@ -738,26 +753,26 @@ def display_320_240(draw):
 
         # System log extended
         if s.seconde < 10:
-            extended_system(draw, 3)
+            extended_system(draw, 3, 128)
 
         # Config log extended
         elif s.seconde < 20:
-            extended_config(draw, 3)
+            extended_config(draw, 3, 128)
 
         # Call log extended
         elif s.seconde < 30 and len(s.call) >= 5:
-            extended_call(draw, len(s.call))
+            extended_call(draw, len(s.call), 128)
 
         # Best log extended
         elif s.seconde < 40 and len(s.best) >= 5:
-            extended_best(draw, len(s.best))
+            extended_best(draw, len(s.best), 128)
 
         # Propag extended
         elif s.seconde < 50:
-            extended_solar(draw, 3)
+            extended_solar(draw, 3, 128)
     
         elif s.seconde < 60:
-            extended_solar(draw, 4)
+            extended_solar(draw, 4, 128)
         
     # If not extended
     else:
