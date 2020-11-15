@@ -17,9 +17,13 @@ from luma.core import legacy
 
 from PIL import ImageFont
 
-icon = ImageFont.truetype('./fonts/fontello.ttf', 14)     # Icon font
-font = ImageFont.truetype('./fonts/7x5.ttf', 8)           # Text font
-#font = ImageFont.truetype('./fonts/freepixel.ttf', 16)    # Text font
+if s.device.height > 160:
+    icon = ImageFont.truetype('./fonts/fontello.ttf', 14)     # Icon font
+    font = ImageFont.truetype('./fonts/7x5.ttf', 8)           # Text font
+else :
+    icon = ImageFont.truetype('./fonts/fontello.ttf', 14)     # Icon font
+    font = ImageFont.truetype('./fonts/freepixel.ttf', 16)    # Text font
+
 font_big = ImageFont.truetype('./fonts/bold.ttf', 30)     # Text font
 font_tot = ImageFont.truetype('./fonts/rounded_led_board.ttf', 20)    # Text font
 
@@ -531,7 +535,7 @@ def display_init(init_message):
             position += 8
 
 # Print display on 128 x 64
-def display_64():
+def display_128_64():
     with canvas(s.device) as draw:
         draw.rectangle((0, 0, 127, s.device.height - 1), fill=get_color('screen', 'background'))
         draw.rectangle((0, 1, 127, 13), fill=get_color('header', 'background'))
@@ -623,7 +627,7 @@ def display_64():
         clock_room(draw)
 
 # Print display on 128 x 128 
-def display_128():
+def display_128_128():
     with canvas(s.device, dither=True) as draw:
         draw.rectangle((0, 0, 127, s.device.height - 1), fill=get_color('screen', 'background'))
         draw.rectangle((0, 1, 127, 13), fill=get_color('header', 'background'))
@@ -707,29 +711,35 @@ def display_128():
         # Finaly, print clock and room
         clock_room(draw)
 
-        if s.device.height == 160:
-            draw.line((0, 127, 127, 127), fill=get_color('header', 'border'))
+# Print display on 128 x 160 
+def display_128_160():
 
-            if s.transmit is True and s.duration >= 10:
-                # Draw call
-                tmp = s.call_current.split(' ')
-                if len(tmp) == 3:
-                    tmp = tmp[1]
-                else:
-                    tmp = 'RTFM'
+    display_128_128()
 
-                w, h = draw.textsize(text=tmp, font=font_big)
-                tab = (s.device.width - w) / 2
-                draw.text((tab, 130), tmp, font=font_big, fill=get_color('log', 'call_last'))
+    with canvas(s.device, dither=True) as draw:
+
+        draw.line((0, 127, 127, 127), fill=get_color('header', 'border'))
+
+        if s.transmit is True and s.duration >= 10:
+            # Draw call
+            tmp = s.call_current.split(' ')
+            if len(tmp) == 3:
+                tmp = tmp[1]
             else:
-                if s.seconde < 30:
-                    tmp = s.now[0:5]
-                else:
-                    tmp = s.room_current[0:3]
+                tmp = 'RTFM'
 
-                w, h = draw.textsize(text=tmp, font=font_big)
-                tab = (s.device.width - w) / 2
-                draw.text((tab, 130), tmp, font=font_big, fill=get_color('log', 'call_last'))
+            w, h = draw.textsize(text=tmp, font=font_big)
+            tab = (s.device.width - w) / 2
+            draw.text((tab, 130), tmp, font=font_big, fill=get_color('log', 'call_last'))
+        else:
+            if s.seconde < 30:
+                tmp = s.now[0:5]
+            else:
+                tmp = s.room_current[0:3]
 
-                if s.seconde < 30 and s.seconde % 2 == 0:
-                    draw.rectangle((58, 128, 64, 160), fill=get_color('screen', 'background'))
+            w, h = draw.textsize(text=tmp, font=font_big)
+            tab = (s.device.width - w) / 2
+            draw.text((tab, 130), tmp, font=font_big, fill=get_color('log', 'call_last'))
+
+            if s.seconde < 30 and s.seconde % 2 == 0:
+                draw.rectangle((58, 128, 64, 160), fill=get_color('screen', 'background'))

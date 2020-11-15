@@ -282,11 +282,11 @@ def main(argv):
 
         # Print screen
         if s.device.height == 160:
-            d.display_128()
+            d.display_128_160()
         elif s.device.height == 128:
-            d.display_128()
+            d.display_128_128()
         else:
-            d.display_64()
+            d.display_128_64()
 
         chrono_stop = time.time()
         chrono_time = chrono_stop - chrono_start
