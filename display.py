@@ -348,7 +348,7 @@ def extended_system(draw, page, width=0):
             i += 10
 
 # Print Call Log Extended
-def extended_call(draw, limit = 5):
+def extended_call(draw, limit = 5, width=0):
     if width == 0:
         width = s.device.width
 
@@ -367,7 +367,7 @@ def extended_call(draw, limit = 5):
             i += 10
 
 # Print Best Log Extended
-def extended_best(draw, limit = 5):
+def extended_best(draw, limit = 5, width=0):
     if width == 0:
         width = s.device.width
 
@@ -399,7 +399,7 @@ def extended_best(draw, limit = 5):
             i += 10
 
 # Print config
-def extended_config(draw, page, width):
+def extended_config(draw, page, width=0):
     if width == 0:
         width = s.device.width
 
@@ -421,7 +421,10 @@ def extended_config(draw, page, width):
         
     sys['I2C Port'] = str(s.i2c_port)
     sys['I2C Address'] = hex(s.i2c_address)
-    sys['Display'] = s.display
+    if 'frame' in s.display:
+        sys['Display'] = 'FrameBuffer'
+    else:
+        sys['Display'] = s.display    
     sys['Width'] = str(s.display_width)
     sys['Height'] = str(s.display_height)
     sys['Scan'] = str(s.scan)
@@ -443,7 +446,7 @@ def extended_config(draw, page, width):
             i += 10
 
 # Print solar propagation
-def extended_solar(draw, page, width):
+def extended_solar(draw, page, width=0):
     if width == 0:
         width = s.device.width
 
