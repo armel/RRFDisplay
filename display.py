@@ -72,7 +72,7 @@ def last(draw, call, width=0):
             legacy.text(draw, (16, i + 1), chr(s.letter[str(j)]), font=s.SMALL_BITMAP_FONT, fill=color)
             if s.transmit is False:
                 k = 108
-                for l in s.call_time[j - 1][0:5]:
+                for l in s.call_time[j - 1][:5]:
                     legacy.text(draw, (k, i + 1), chr(s.letter[l]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
                     k += 4
 
@@ -282,7 +282,7 @@ def clock_room(draw):
     else:
         i = 108
 
-        for c in s.now:
+        for c in s.now[:3]:
             legacy.text(draw, (i, j), chr(s.letter[c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
             i += 4
 
