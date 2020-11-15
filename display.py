@@ -749,7 +749,7 @@ def display_320_240(draw):
     draw.line((0, 14, 127, 14), fill=get_color('header', 'border'))
 
     if s.transmit is False and s.minute % 2 == 0:
-        draw.rectangle((0, 1, s.device.height - 1, 13), fill=get_color('header', 'background'))
+        draw.rectangle((0, 1, 128 - 1, 13), fill=get_color('header', 'background'))
 
         # System log extended
         if s.seconde < 10:
