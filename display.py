@@ -422,7 +422,7 @@ def extended_config(draw, page, width=0):
     sys['I2C Port'] = str(s.i2c_port)
     sys['I2C Address'] = hex(s.i2c_address)
     if 'frame' in s.display:
-        sys['Display'] = 'FrameBuffer'
+        sys['Display'] = '/dev/fb0'
     else:
         sys['Display'] = s.display    
     sys['Width'] = str(s.display_width)
