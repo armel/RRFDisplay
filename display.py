@@ -542,8 +542,18 @@ def display_init(init_message):
             draw.text((tab, position), message, font=font, fill='white')
             position += 8
 
+# Display gateway
+def display_gateway():
+    with canvas(s.device, dither=True) as draw:
+        if s.device.height == 64:
+            display_128_64(draw)
+        elif s.device.height == 128:
+            display_128_128(draw)
+        elif s.device.height == 160:
+            display_128_160(draw)
+
 # Print display on 128 x 64
-def display_128_64():
+def display_128_64(draw):
     with canvas(s.device) as draw:
         draw.rectangle((0, 0, 127, s.device.height - 1), fill=get_color('screen', 'background'))
         draw.rectangle((0, 1, 127, 13), fill=get_color('header', 'background'))
@@ -633,14 +643,6 @@ def display_128_64():
 
         # Finaly, print clock and room
         clock_room(draw)
-
-# Print display on 128 x  
-def display_128():
-    with canvas(s.device, dither=True) as draw:
-        if s.device.height == 128:
-            display_128_128(draw)
-        elif s.device.height == 160:
-            display_128_160(draw)
 
 # Print display on 128 x 128 
 def display_128_128(draw):
