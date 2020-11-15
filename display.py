@@ -44,7 +44,9 @@ def get_color(section, value):
         return color
 
 # Draw title
-def title(draw, message, width=s.device.width):
+def title(draw, message, width=0):
+    if width == 0:
+        width = s.device.width
     w, h = draw.textsize(text=message, font=font)
     tab = (width - w) / 2
     draw.text((tab, 4), message, font=font, fill=get_color('header', 'foreground'))
