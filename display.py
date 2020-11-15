@@ -9,7 +9,6 @@ Check video about RRFDisplay on https://www.youtube.com/watch?v=rVW8xczVpEo
 '''
 
 import settings as s
-import display as d
 import lib as l
 import time
 
@@ -18,6 +17,7 @@ from luma.core import legacy
 
 from PIL import ImageFont
 
+'''
 with canvas(s.device, dither=True) as draw:
     if s.device.height > 160:
         icon = ImageFont.truetype('./fonts/fontello.ttf', 14)     # Icon font
@@ -28,6 +28,12 @@ with canvas(s.device, dither=True) as draw:
 
     font_big = ImageFont.truetype('./fonts/bold.ttf', 30)     # Text font
     font_tot = ImageFont.truetype('./fonts/rounded_led_board.ttf', 20)    # Text font
+'''
+
+icon = ImageFont.truetype('./fonts/fontello.ttf', 14)     # Icon font
+font = ImageFont.truetype('./fonts/7x5.ttf', 8)           # Text font
+font_big = ImageFont.truetype('./fonts/bold.ttf', 30)     # Text font
+font_tot = ImageFont.truetype('./fonts/rounded_led_board.ttf', 20)    # Text font
 
 # Manage color
 def get_color(section, value):
