@@ -729,7 +729,7 @@ def display_128_128(draw):
 # Print display on 128 x 160 
 def display_128_160(draw):
 
-    display_128_128()
+    display_128_128(draw)
 
     draw.line((0, 127, 127, 127), fill=get_color('header', 'border'))
 
