@@ -281,12 +281,12 @@ def main(argv):
                     s.message[0] = 'Salon ' + s.room_current[:3]
 
         # Print screen
-        if s.device.height == 160:
-            d.display_128_160()
-        elif s.device.height == 128:
-            d.display_128_128()
-        else:
+        if s.device.height == 64:
             d.display_128_64()
+        elif s.device.height == 128:
+            d.display_128()
+        elif s.device.height == 160:
+            d.display_128()            
 
         chrono_stop = time.time()
         chrono_time = chrono_stop - chrono_start
