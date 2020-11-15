@@ -727,11 +727,11 @@ def display_128_160(draw):
 
 # Print display on 320 x 240
 def display_320_240(draw):
-    draw.rectangle((0, 0, 159, s.device.height - 1), fill=get_color('screen', 'background'))
-    draw.rectangle((0, 1, 159, 13), fill=get_color('header', 'background'))
+    draw.rectangle((0, 0, 127, s.device.height - 1), fill=get_color('screen', 'background'))
+    draw.rectangle((0, 1, 127, 13), fill=get_color('header', 'background'))
 
-    draw.line((0, 0, 159, 0), fill=get_color('header', 'border'))
-    draw.line((0, 14, 159, 14), fill=get_color('header', 'border'))
+    draw.line((0, 0, 127, 0), fill=get_color('header', 'border'))
+    draw.line((0, 14, 127, 14), fill=get_color('header', 'border'))
 
     if s.transmit is False and s.minute % 2 == 0:
         draw.rectangle((0, 1, s.device.height - 1, 13), fill=get_color('header', 'background'))
@@ -761,8 +761,8 @@ def display_320_240(draw):
         
     # If not extended
     else:
-        draw.rectangle((0, 15, 159, 40), fill=get_color('log', 'background'))
-        draw.line((0, 40, 159, 40), fill=get_color('header', 'border'))
+        draw.rectangle((0, 15, 127, 40), fill=get_color('log', 'background'))
+        draw.line((0, 40, 127, 40), fill=get_color('header', 'border'))
 
         if s.message[0] is not None and 'Dernier' in s.message[0]:   # Icon clock (DIY...)
             legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
@@ -772,12 +772,12 @@ def display_320_240(draw):
             legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
 
         # Draw title
-        title(draw, s.message[0], 160)
+        title(draw, s.message[0], 128)
 
         # And after...            
         if s.transmit is False:
             # Draw message
-            last(draw, s.message[1:], 160)
+            last(draw, s.message[1:], 128)
             # Draw stats histogram
             histogram(draw, legacy, 69, 28)
             # Elsewhere
