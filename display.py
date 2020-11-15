@@ -805,7 +805,7 @@ def display_320_240(draw):
 
         elif s.transmit is True:
             # Draw tot
-            tot(draw, legacy, s.duration, 69)
+            tot(draw, legacy, s.duration, 69, 128)
             if s.duration < 10:
                 # Draw call
                 tmp = s.call_current.split(' ')
