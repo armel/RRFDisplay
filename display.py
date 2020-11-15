@@ -52,7 +52,9 @@ def title(draw, message, width=0):
     draw.text((tab, 4), message, font=font, fill=get_color('header', 'foreground'))
 
 # Draw last call
-def last(draw, call):
+def last(draw, call, width=0):
+    if width == 0:
+        width = s.device.width
     # Print last_call
     i = 16
     j = 1
@@ -60,7 +62,7 @@ def last(draw, call):
     for c in call:
         if c is not '':
             w, h = draw.textsize(text=c, font=font)
-            tab = (s.device.width - w) / 2
+            tab = (width - w) / 2
             if j == 1:
                 color = get_color('log', 'call_last')
             else:
@@ -775,7 +777,7 @@ def display_320_240(draw):
         # And after...            
         if s.transmit is False:
             # Draw message
-            last(draw, s.message[1:])
+            last(draw, s.message[1:], 160)
             # Draw stats histogram
             histogram(draw, legacy, 69, 28)
             # Elsewhere
