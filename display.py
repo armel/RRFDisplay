@@ -813,7 +813,7 @@ def display_320_240(draw):
                     tmp = 'RTFM'
 
                 w, h = draw.textsize(text=tmp, font=font_big)
-                tab = (s.device.width - w) / 2
+                tab = (128 - w) / 2
                 draw.text((tab, 14), tmp, font=font_big, fill=get_color('log', 'call_last'))
                 # Whois
                 whois(draw)
