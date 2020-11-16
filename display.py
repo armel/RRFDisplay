@@ -354,8 +354,8 @@ def extended_call(draw, limit = 5, width=0, offset=0):
     if width == 0:
         width = s.device.width
 
-    legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
-    legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
+    legacy.text(draw, (0 + offset, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
+    legacy.text(draw, (0 + offset, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
 
     title(draw, 'Derniers TX', width, offset)
 
