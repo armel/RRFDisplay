@@ -644,26 +644,26 @@ def display_128_128(draw, width=0, offset=0):
 
         # System log extended
         if s.seconde < 10:
-            extended_system(draw, 3, width)
+            extended_system(draw, 3, width, offset)
 
         # Config log extended
         elif s.seconde < 20:
-            extended_config(draw, 3, width)
+            extended_config(draw, 3, width, offset)
 
         # Call log extended
         elif s.seconde < 30 and len(s.call) >= 5:
-            extended_call(draw, len(s.call), width)
+            extended_call(draw, len(s.call), width, offset)
 
         # Best log extended
         elif s.seconde < 40 and len(s.best) >= 5:
-            extended_best(draw, len(s.best), width)
+            extended_best(draw, len(s.best), width, offset)
 
         # Propag extended
         elif s.seconde < 50:
-            extended_solar(draw, 3, width)
+            extended_solar(draw, 3, width, offset)
     
         elif s.seconde < 60:
-            extended_solar(draw, 4, width)
+            extended_solar(draw, 4, width, offset)
         
     # If not extended
     else:
