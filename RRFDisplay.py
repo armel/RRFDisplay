@@ -282,8 +282,8 @@ def main(argv):
 
         # Print screen
         with canvas(s.device, dither=True) as draw:
-            d.display_gateway(draw, 30)
-            d.display_gateway(draw, 170)
+            d.display_gateway(draw, 28)
+            d.display_gateway(draw, 184)
            
         chrono_stop = time.time()
         chrono_time = chrono_stop - chrono_start
