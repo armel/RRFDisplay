@@ -52,7 +52,7 @@ def title(draw, message, width=0, offset=0):
     draw.text((tab + offset, 4), message, font=font, fill=get_color('header', 'foreground'))
 
 # Draw last call
-def last(draw, call, width=0):
+def last(draw, call, width=0, offset=0):
     if width == 0:
         width = s.device.width
     # Print last_call
@@ -68,39 +68,39 @@ def last(draw, call, width=0):
             else:
                 color = get_color('log', 'call')
 
-            draw.text((tab, i), c, font=font, fill=color)
-            legacy.text(draw, (16, i + 1), chr(s.letter[str(j)]), font=s.SMALL_BITMAP_FONT, fill=color)
+            draw.text((tab + offset, i), c, font=font, fill=color)
+            legacy.text(draw, (16 + offset, i + 1), chr(s.letter[str(j)]), font=s.SMALL_BITMAP_FONT, fill=color)
             if s.transmit is False:
                 k = 108
                 for l in s.call_time[j - 1][:5]:
-                    legacy.text(draw, (k, i + 1), chr(s.letter[l]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
+                    legacy.text(draw, (k + offset, i + 1), chr(s.letter[l]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
                     k += 4
 
             i += h
             j += 1
 
 # Draw label
-def label(draw, position, width, bg_color, fg_color, label, value, fixed = 0):
+def label(draw, position, width, bg_color, fg_color, label, value, fixed=0, offset=0):
     if s.device.height >= 128:
         position += 3
-        draw.rectangle((0, position - 1, width, position + 8), fill=bg_color)
-        draw.line((width + 1, position, width + 1, position + 7), fill=bg_color)
-        draw.line((width + 2, position + 1, width + 2, position + 6), fill=bg_color)
-        draw.line((width + 3, position + 2, width + 3, position + 5), fill=bg_color)
-        draw.line((width + 4, position + 3, width + 4, position + 4), fill=bg_color)
+        draw.rectangle((0 + offset, position - 1, width + offset, position + 8), fill=bg_color)
+        draw.line((width + offset + 1, position, width + offset + 1, position + 7), fill=bg_color)
+        draw.line((width + offset + 2, position + 1, width + offset + 2, position + 6), fill=bg_color)
+        draw.line((width + offset + 3, position + 2, width + offset + 3, position + 5), fill=bg_color)
+        draw.line((width + offset + 4, position + 3, width + offset + 4, position + 4), fill=bg_color)
     else:
-        draw.rectangle((0, position - 1, width, position + 7), fill=bg_color)
-        draw.line((width + 1, position, width + 1, position + 6), fill=bg_color)
-        draw.line((width + 2, position + 1, width + 2, position + 5), fill=bg_color)
-        draw.line((width + 3, position + 2, width + 3, position + 4), fill=bg_color)
-        draw.line((width + 4, position + 3, width + 4, position + 3), fill=bg_color)
+        draw.rectangle((0 + offset, position - 1, width + offset, position + 7), fill=bg_color)
+        draw.line((width + offset + 1, position, width + offset + 1, position + 6), fill=bg_color)
+        draw.line((width + offset + 2, position + 1, width + offset + 2, position + 5), fill=bg_color)
+        draw.line((width + offset + 3, position + 2, width + offset + 3, position + 4), fill=bg_color)
+        draw.line((width + offset + 4, position + 3, width + offset + 4, position + 3), fill=bg_color)
         #draw.point((width + 4, position + 4), fill=bg_color)
 
     draw.text((1, position), label, font=font, fill=fg_color)
     if fixed == 0:
-        draw.text((width + 10, position), value, font=font, fill=get_color('screen', 'foreground'))
+        draw.text((width + offset + 10, position), value, font=font, fill=get_color('screen', 'foreground'))
     else:
-        draw.text((fixed, position), value, font=font, fill=get_color('screen', 'foreground'))        
+        draw.text((fixed + offset, position), value, font=font, fill=get_color('screen', 'foreground'))        
 
 # Draw tot
 def tot(draw, legacy, duration, position, width=0):
@@ -203,44 +203,44 @@ def elsewhere(draw, data, offset=0):
     draw.line((94 + offset, 77, 94 + offset, 127), fill=get_color('elsewhere', 'border'))
 
 # Print whois
-def whois(draw):
-    draw.rectangle((0, 77, 127, 127), outline=get_color('whois', 'border'), fill=get_color('whois', 'background'))
-    draw.rectangle((1, 78,  47, 126), fill=get_color('whois', 'background_active'))
+def whois(draw, offset=0):
+    draw.rectangle((0 + offset, 77, 127 + offset, 127), outline=get_color('whois', 'border'), fill=get_color('whois', 'background'))
+    draw.rectangle((1 + offset, 78,  47 + offset, 126), fill=get_color('whois', 'background_active'))
 
     # Vertical
 
-    draw.line((48, 77,  48, 127), fill=get_color('whois', 'border'))
+    draw.line((48 + offset, 77,  48 + offset, 127), fill=get_color('whois', 'border'))
 
     # Horizontal
 
     for i in [87, 97, 107, 117]:
-        draw.line((0,  i, 127,  i), fill=get_color('whois', 'border'))
+        draw.line((0 + offset,  i, 127 + offset,  i), fill=get_color('whois', 'border'))
 
-    draw.text((2, 79), 'Type', font=font, fill=get_color('whois', 'foreground_active'))
-    draw.text((50, 79), s.call_type, font=font, fill=get_color('whois', 'foreground'))
+    draw.text((2 + offset, 79), 'Type', font=font, fill=get_color('whois', 'foreground_active'))
+    draw.text((50 + offset, 79), s.call_type, font=font, fill=get_color('whois', 'foreground'))
 
-    draw.text((2, 89), 'Detail', font=font, fill=get_color('whois', 'foreground_active'))
+    draw.text((2 + offset, 89), 'Detail', font=font, fill=get_color('whois', 'foreground_active'))
     if len(s.call_description) > 14:
-        draw.text((50, 89), s.call_description[:14] + '...', font=font, fill=get_color('whois', 'foreground'))
+        draw.text((50 + offset, 89), s.call_description[:14] + '...', font=font, fill=get_color('whois', 'foreground'))
     else:
-        draw.text((50, 89), s.call_description, font=font, fill=get_color('whois', 'foreground'))
+        draw.text((50 + offset, 89), s.call_description, font=font, fill=get_color('whois', 'foreground'))
 
-    draw.text((2, 99), 'Tone', font=font, fill=get_color('whois', 'foreground_active'))
-    draw.text((50, 99), s.call_tone, font=font, fill=get_color('whois', 'foreground'))
+    draw.text((2 + offset, 99), 'Tone', font=font, fill=get_color('whois', 'foreground_active'))
+    draw.text((50 + offset, 99), s.call_tone, font=font, fill=get_color('whois', 'foreground'))
 
-    draw.text((2, 109), 'Locator', font=font, fill=get_color('whois', 'foreground_active'))
-    draw.text((50, 109), s.call_locator, font=font, fill=get_color('whois', 'foreground'))
+    draw.text((2 + offset, 109), 'Locator', font=font, fill=get_color('whois', 'foreground_active'))
+    draw.text((50 + offset, 109), s.call_locator, font=font, fill=get_color('whois', 'foreground'))
 
     if s.call_sysop == '':
         if s.call_prenom != '':
-            draw.text((2, 119), 'Prenom', font=font, fill=get_color('whois', 'foreground_active'))
-            draw.text((50, 119), s.call_prenom, font=font, fill=get_color('whois', 'foreground'))
+            draw.text((2 + offset, 119), 'Prenom', font=font, fill=get_color('whois', 'foreground_active'))
+            draw.text((50 + offset, 119), s.call_prenom, font=font, fill=get_color('whois', 'foreground'))
         else:
-            draw.text((2, 119), 'Sysop', font=font, fill=get_color('whois', 'foreground_active'))
-            draw.text((50, 119), s.call_sysop, font=font, fill=get_color('whois', 'foreground'))
+            draw.text((2 + offset, 119), 'Sysop', font=font, fill=get_color('whois', 'foreground_active'))
+            draw.text((50 + offset, 119), s.call_sysop, font=font, fill=get_color('whois', 'foreground'))
     else:
-        draw.text((2, 119), 'Sysop', font=font, fill=get_color('whois', 'foreground_active'))
-        draw.text((50, 119), s.call_sysop, font=font, fill=get_color('whois', 'foreground'))
+        draw.text((2 + offset, 119), 'Sysop', font=font, fill=get_color('whois', 'foreground_active'))
+        draw.text((50 + offset, 119), s.call_sysop, font=font, fill=get_color('whois', 'foreground'))
 
 # Draw histogram
 def histogram(draw, legacy, position, height = 15):
@@ -683,11 +683,11 @@ def display_128_128(draw, width=0, offset=0):
         # And after...            
         if s.transmit is False:
             # Draw message
-            last(draw, s.message[1:], width)
+            last(draw, s.message[1:], width, offset)
             # Draw stats histogram
             histogram(draw, legacy, 69, 28)
             # Elsewhere
-            elsewhere(draw, s.raptor)
+            elsewhere(draw, s.raptor, offset)
 
         elif s.transmit is True:
             # Draw tot
