@@ -44,12 +44,12 @@ def get_color(section, value):
         return color
 
 # Draw title
-def title(draw, message, width=0):
+def title(draw, message, width=0, offset=0):
     if width == 0:
         width = s.device.width
     w, h = draw.textsize(text=message, font=font)
     tab = (width - w) / 2
-    draw.text((tab, 4), message, font=font, fill=get_color('header', 'foreground'))
+    draw.text((tab + offset, 4), message, font=font, fill=get_color('header', 'foreground'))
 
 # Draw last call
 def last(draw, call, width=0):
@@ -678,7 +678,7 @@ def display_128_128(draw, width=0, offset=0):
             legacy.text(draw, (0 + offset, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
 
         # Draw title
-        title(draw, s.message[0], width)
+        title(draw, s.message[0], width, offset)
 
         # And after...            
         if s.transmit is False:
