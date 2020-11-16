@@ -722,7 +722,7 @@ def display_128_160(draw, width=0, offset=0):
     if width == 0:
         width = s.device.width
 
-    display_128_128(draw, width)
+    display_128_128(draw, width, offset)
 
     draw.line((0, 127, 127, 127), fill=get_color('header', 'border'))
 
