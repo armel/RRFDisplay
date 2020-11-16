@@ -703,7 +703,7 @@ def display_128_128(draw, width=0, offset=0):
                 tab = (width - w) / 2
                 draw.text((tab + offset, 14), tmp, font=font_big, fill=get_color('log', 'call_last'))
                 # Whois
-                whois(draw)
+                whois(draw, offset)
             else:
                 # Draw message
                 last(draw, s.message[1:], width, offset)

@@ -299,17 +299,17 @@ def main(argv):
                 else:
                     d.display_gateway(draw, 170)
                    
-                chrono_stop = time.time()
-                chrono_time = chrono_stop - chrono_start
-                if chrono_time < s.refresh:
-                    sleep = s.refresh - chrono_time
-                else:
-                    sleep = 0
-                #print "Temps d'execution : %.2f %.2f secondes" % (chrono_time, sleep)
-                #sys.stdout.flush()
+            chrono_stop = time.time()
+            chrono_time = chrono_stop - chrono_start
+            if chrono_time < s.refresh:
+                sleep = s.refresh - chrono_time
+            else:
+                sleep = 0
+            #print "Temps d'execution : %.2f %.2f secondes" % (chrono_time, sleep)
+            #sys.stdout.flush()
 
-                time.sleep(sleep)
-                #GPIO.cleanup()
+            time.sleep(sleep)
+            #GPIO.cleanup()
 
 if __name__ == '__main__':
     try:
