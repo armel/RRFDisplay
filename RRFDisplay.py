@@ -144,6 +144,7 @@ def main(argv):
     rrf_data_old = ''
 
     print (follow_list)
+    exit()
     #print s.scan
     #print s.callsign
     #print s.room_current
