@@ -724,7 +724,7 @@ def display_128_160(draw, width=0, offset=0):
 
     display_128_128(draw, width, offset)
 
-    draw.line((0, 127, 127, 127), fill=get_color('header', 'border'))
+    draw.line((0 + offset, 127, 127 + offset, 127), fill=get_color('header', 'border'))
 
     if s.transmit is True and s.duration >= 10:
         # Draw call
@@ -736,7 +736,7 @@ def display_128_160(draw, width=0, offset=0):
 
         w, h = draw.textsize(text=tmp, font=font_big)
         tab = (width - w) / 2
-        draw.text((tab, 130), tmp, font=font_big, fill=get_color('log', 'call_last'))
+        draw.text((tab + offset, 130), tmp, font=font_big, fill=get_color('log', 'call_last'))
     else:
         if s.seconde < 30:
             tmp = s.now[0:5]
@@ -745,10 +745,10 @@ def display_128_160(draw, width=0, offset=0):
 
         w, h = draw.textsize(text=tmp, font=font_big)
         tab = (width - w) / 2
-        draw.text((tab, 130), tmp, font=font_big, fill=get_color('log', 'call_last'))
+        draw.text((tab + offset, 130), tmp, font=font_big, fill=get_color('log', 'call_last'))
 
         if s.seconde < 30 and s.seconde % 2 == 0:
-            draw.rectangle((58, 128, 64, 160), fill=get_color('screen', 'background'))
+            draw.rectangle((58 + offset, 128, 64 + offset, 160), fill=get_color('screen', 'background'))
 
 # Print display on 320 x 240
 def display_320_240(draw):
