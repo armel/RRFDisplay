@@ -167,7 +167,7 @@ def tot(draw, legacy, duration, position, width=0):
         draw.text((tab, 57), tmp, font=font_tot, fill=get_color('screen', 'foreground'))
 
 # Print elsewhere
-def elsewhere(draw, data, offset):
+def elsewhere(draw, data, offset=0):
     draw.rectangle((0 + offset, 77, 127 + offset, 127), outline=get_color('elsewhere', 'border'), fill=get_color('elsewhere', 'background'))
 
     # Horizontal
