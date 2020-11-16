@@ -70,6 +70,7 @@ def main(argv):
                 s.room_current = arg
             else:
                 follow = arg.split('/')
+                print(follow)
                 follow_list = {}
                 for f in follow :
                     tmp = l.scan(arg)
