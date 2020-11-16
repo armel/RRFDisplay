@@ -306,14 +306,14 @@ def distance(draw, offset=0):
 
 
 # Print System Log Extended
-def extended_system(draw, page, width=0):
+def extended_system(draw, page, width=0, offset=0):
     if width == 0:
         width = s.device.width
 
-    legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CPU)
-    legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CPU)
+    legacy.text(draw, (0 + offset, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CPU)
+    legacy.text(draw, (0 + offset, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CPU)
 
-    title(draw, 'Infos Spotnik', width)
+    title(draw, 'Infos Spotnik', width, offset)
 
     if page == 1:
         sys = {'Arch': '', 'Kernel': '', 'Uptime': '', 'Load': '', 'Freq': ''}
@@ -343,7 +343,7 @@ def extended_system(draw, page, width=0):
     i = 15
 
     for j in sys_order:
-        label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), j, sys[j])
+        label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), j, sys[j], offset)
         if s.device.height >= 128:
             i += 11
         else:
