@@ -155,6 +155,9 @@ def main(argv):
             for f in follow_list:
                 f_indice += 1
                 (s.room_current, s.callsign) = follow_list[f]
+                print(s.room_current, s.callsign)
+                if i > 2:
+                    exit()
 
                 chrono_start = time.time()
 
