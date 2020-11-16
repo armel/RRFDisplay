@@ -69,13 +69,17 @@ def main(argv):
             if arg in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
                 s.room_current = arg
             else:
-                tmp = l.scan(arg)
-                if tmp is False:
-                    s.room_current = 'RRF'
-                else:
-                    s.room_current = tmp
-                    s.callsign = arg
-                    s.scan = True
+                follow = arg.split('/')
+                follow_list = {}
+                for f in follow :
+                    tmp = l.scan(arg)
+                    if tmp is False:
+                        s.room_current = 'RRF'
+                    else:
+                        s.room_current = tmp
+                        s.callsign = arg
+                        s.scan = True
+                        follow_list[f] = (tmp, f)
         elif opt in ('--refresh'):
             s.refresh = float(arg)
         elif opt in ('--latitude'):
@@ -139,6 +143,7 @@ def main(argv):
     rrf_data = ''
     rrf_data_old = ''
 
+    print follow_list
     #print s.scan
     #print s.callsign
     #print s.room_current
