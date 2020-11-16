@@ -281,8 +281,9 @@ def main(argv):
                     s.message[0] = 'Salon ' + s.room_current[:3]
 
         # Print screen
-        d.display_gateway(30)
-        d.display_gateway(170)
+        with canvas(s.device, dither=True) as draw:
+            d.display_gateway(draw, 30)
+            d.display_gateway(draw, 170)
            
         chrono_stop = time.time()
         chrono_time = chrono_stop - chrono_start

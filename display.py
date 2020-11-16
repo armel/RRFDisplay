@@ -525,16 +525,15 @@ def display_init(init_message):
             position += 8
 
 # Display gateway
-def display_gateway(offset=0):
-    with canvas(s.device, dither=True) as draw:
-        if s.device.height == 64:
-            display_128_64(draw)
-        elif s.device.height == 128:
-            display_128_128(draw)
-        elif s.device.height == 160:
-            display_128_160(draw)
-        elif s.device.height == 240:
-            display_320_240(draw, offset)
+def display_gateway(draw, offset=0):
+    if s.device.height == 64:
+        display_128_64(draw)
+    elif s.device.height == 128:
+        display_128_128(draw)
+    elif s.device.height == 160:
+        display_128_160(draw)
+    elif s.device.height == 240:
+        display_320_240(draw, offset)
 
 # Print display on 128 x 64
 def display_128_64(draw):
