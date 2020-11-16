@@ -718,7 +718,7 @@ def display_128_128(draw, width=0, offset=0):
     clock_room(draw) 
 
 # Print display on 128 x 160 
-def display_128_160(draw, width=0):
+def display_128_160(draw, width=0, offset=0):
     if width == 0:
         width = s.device.width
 
