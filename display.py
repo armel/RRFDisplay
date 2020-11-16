@@ -96,7 +96,7 @@ def label(draw, position, width, bg_color, fg_color, label, value, fixed=0, offs
         draw.line((width + offset + 4, position + 3, width + offset + 4, position + 3), fill=bg_color)
         #draw.point((width + 4, position + 4), fill=bg_color)
 
-    draw.text((1, position), label, font=font, fill=fg_color)
+    draw.text((1 + offset, position), label, font=font, fill=fg_color)
     if fixed == 0:
         draw.text((width + offset + 10, position), value, font=font, fill=get_color('screen', 'foreground'))
     else:
