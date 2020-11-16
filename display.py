@@ -362,7 +362,7 @@ def extended_call(draw, limit = 5, width=0, offset=0):
     i = 15
 
     for j in range(0, limit):
-        label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), s.call_time[j], s.call[j], offset)
+        label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), s.call_time[j], s.call[j], 0, offset)
         if s.device.height >= 128:
             i += 11
         else:
