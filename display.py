@@ -629,7 +629,10 @@ def display_128_64(draw):
         clock_room(draw)
 
 # Print display on 128 x 128 
-def display_128_128(draw):
+def display_128_128(draw, width=0):
+    if width == 0:
+        width = s.device.width
+    
     draw.rectangle((0, 0, 127, s.device.height - 1), fill=get_color('screen', 'background'))
     draw.rectangle((0, 1, 127, 13), fill=get_color('header', 'background'))
 
@@ -637,30 +640,30 @@ def display_128_128(draw):
     draw.line((0, 14, 127, 14), fill=get_color('header', 'border'))
 
     if s.transmit is False and s.minute % 2 == 0:
-        draw.rectangle((0, 1, s.device.height - 1, 13), fill=get_color('header', 'background'))
+        draw.rectangle((0, 1, 128 - 1, 13), fill=get_color('header', 'background'))
 
         # System log extended
         if s.seconde < 10:
-            extended_system(draw, 3)
+            extended_system(draw, 3, width)
 
         # Config log extended
         elif s.seconde < 20:
-            extended_config(draw, 3)
+            extended_config(draw, 3, width)
 
         # Call log extended
         elif s.seconde < 30 and len(s.call) >= 5:
-            extended_call(draw, len(s.call))
+            extended_call(draw, len(s.call), width)
 
         # Best log extended
         elif s.seconde < 40 and len(s.best) >= 5:
-            extended_best(draw, len(s.best))
+            extended_best(draw, len(s.best), width)
 
         # Propag extended
         elif s.seconde < 50:
-            extended_solar(draw, 3)
+            extended_solar(draw, 3, width)
     
         elif s.seconde < 60:
-            extended_solar(draw, 4)
+            extended_solar(draw, 4, width)
         
     # If not extended
     else:
@@ -675,12 +678,12 @@ def display_128_128(draw):
             legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
 
         # Draw title
-        title(draw, s.message[0])
+        title(draw, s.message[0], width)
 
         # And after...            
         if s.transmit is False:
             # Draw message
-            last(draw, s.message[1:])
+            last(draw, s.message[1:], width)
             # Draw stats histogram
             histogram(draw, legacy, 69, 28)
             # Elsewhere
@@ -688,7 +691,7 @@ def display_128_128(draw):
 
         elif s.transmit is True:
             # Draw tot
-            tot(draw, legacy, s.duration, 69)
+            tot(draw, legacy, s.duration, 69, width)
             if s.duration < 10:
                 # Draw call
                 tmp = s.call_current.split(' ')
@@ -698,13 +701,13 @@ def display_128_128(draw):
                     tmp = 'RTFM'
 
                 w, h = draw.textsize(text=tmp, font=font_big)
-                tab = (s.device.width - w) / 2
+                tab = (width - w) / 2
                 draw.text((tab, 14), tmp, font=font_big, fill=get_color('log', 'call_last'))
                 # Whois
                 whois(draw)
             else:
                 # Draw message
-                last(draw, s.message[1:])
+                last(draw, s.message[1:], width)
                 # Draw icon and distance
                 draw.text((2, 21), '\uf130', font=icon, fill=get_color('tot', 'foreground'))
                 distance(draw)
@@ -712,12 +715,14 @@ def display_128_128(draw):
                 elsewhere(draw, s.raptor)
 
     # Finaly, print clock and room
-    clock_room(draw)
+    clock_room(draw) 
 
 # Print display on 128 x 160 
-def display_128_160(draw):
+def display_128_160(draw, width=0):
+    if width == 0:
+        width = s.device.width
 
-    display_128_128(draw)
+    display_128_128(draw, width)
 
     draw.line((0, 127, 127, 127), fill=get_color('header', 'border'))
 
@@ -730,7 +735,7 @@ def display_128_160(draw):
             tmp = 'RTFM'
 
         w, h = draw.textsize(text=tmp, font=font_big)
-        tab = (s.device.width - w) / 2
+        tab = (width - w) / 2
         draw.text((tab, 130), tmp, font=font_big, fill=get_color('log', 'call_last'))
     else:
         if s.seconde < 30:
@@ -739,7 +744,7 @@ def display_128_160(draw):
             tmp = s.room_current[0:3]
 
         w, h = draw.textsize(text=tmp, font=font_big)
-        tab = (s.device.width - w) / 2
+        tab = (width - w) / 2
         draw.text((tab, 130), tmp, font=font_big, fill=get_color('log', 'call_last'))
 
         if s.seconde < 30 and s.seconde % 2 == 0:
@@ -747,87 +752,4 @@ def display_128_160(draw):
 
 # Print display on 320 x 240
 def display_320_240(draw):
-    draw.rectangle((0, 0, 127, s.device.height - 1), fill=get_color('screen', 'background'))
-    draw.rectangle((0, 1, 127, 13), fill=get_color('header', 'background'))
-
-    draw.line((0, 0, 127, 0), fill=get_color('header', 'border'))
-    draw.line((0, 14, 127, 14), fill=get_color('header', 'border'))
-
-    if s.transmit is False and s.minute % 2 == 0:
-        draw.rectangle((0, 1, 128 - 1, 13), fill=get_color('header', 'background'))
-
-        # System log extended
-        if s.seconde < 10:
-            extended_system(draw, 3, 128)
-
-        # Config log extended
-        elif s.seconde < 20:
-            extended_config(draw, 3, 128)
-
-        # Call log extended
-        elif s.seconde < 30 and len(s.call) >= 5:
-            extended_call(draw, len(s.call), 128)
-
-        # Best log extended
-        elif s.seconde < 40 and len(s.best) >= 5:
-            extended_best(draw, len(s.best), 128)
-
-        # Propag extended
-        elif s.seconde < 50:
-            extended_solar(draw, 3, 128)
-    
-        elif s.seconde < 60:
-            extended_solar(draw, 4, 128)
-        
-    # If not extended
-    else:
-        draw.rectangle((0, 15, 127, 40), fill=get_color('log', 'background'))
-        draw.line((0, 40, 127, 40), fill=get_color('header', 'border'))
-
-        if s.message[0] is not None and 'Dernier' in s.message[0]:   # Icon clock (DIY...)
-            legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
-            legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
-        else:   # Icon stat
-            legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
-            legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
-
-        # Draw title
-        title(draw, s.message[0], 128)
-
-        # And after...            
-        if s.transmit is False:
-            # Draw message
-            last(draw, s.message[1:], 128)
-            # Draw stats histogram
-            histogram(draw, legacy, 69, 28)
-            # Elsewhere
-            elsewhere(draw, s.raptor)
-
-        elif s.transmit is True:
-            # Draw tot
-            tot(draw, legacy, s.duration, 69, 128)
-            if s.duration < 10:
-                # Draw call
-                tmp = s.call_current.split(' ')
-                if len(tmp) == 3:
-                    tmp = tmp[1]
-                else:
-                    tmp = 'RTFM'
-
-                w, h = draw.textsize(text=tmp, font=font_big)
-                tab = (128 - w) / 2
-                draw.text((tab, 14), tmp, font=font_big, fill=get_color('log', 'call_last'))
-                # Whois
-                whois(draw)
-            else:
-                # Draw message
-                last(draw, s.message[1:], 128)
-                # Draw icon and distance
-                draw.text((2, 21), '\uf130', font=icon, fill=get_color('tot', 'foreground'))
-                distance(draw)
-                # Elsewhere
-                elsewhere(draw, s.raptor)
-
-    # Finaly, print clock and room
-    clock_room(draw) 
-
+    display_128_160(draw, 128)
