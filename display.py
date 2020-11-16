@@ -243,7 +243,7 @@ def whois(draw, offset=0):
         draw.text((50 + offset, 119), s.call_sysop, font=font, fill=get_color('whois', 'foreground'))
 
 # Draw histogram
-def histogram(draw, legacy, position, height = 15):
+def histogram(draw, legacy, position, height=15, offset=0):
     qso_hour_max = max(s.qso_hour)
 
     i = 5
@@ -255,29 +255,29 @@ def histogram(draw, legacy, position, height = 15):
         else:
             h = 0
 
-        draw.rectangle((0 + i, position, i + 2, (position - height)), fill=get_color('screen', 'background'))
+        draw.rectangle((0 + offset + i, position, i + offset + 2, (position - height)), fill=get_color('screen', 'background'))
         if t == s.hour:
             color = get_color('histogram', 'column_current')
         else:
             color = get_color('histogram', 'column')
 
-        draw.rectangle((0 + i, position, i + 2, (position - h)), fill=color)
+        draw.rectangle((0 + offset + i, position, i + offset + 2, (position - h)), fill=color)
         
         j += 5
         i += 5
 
     for i, j, k in [(1, 0, 0), (33, 0, 6), (63, 1, 2), (93, 1, 8), (120, 2, 3)]:
-        legacy.text(draw, (i, position + 2), chr(j) + chr(k), fill=get_color('histogram', 'legend'), font=s.SMALL_BITMAP_FONT)
+        legacy.text(draw, (i + offset, position + 2), chr(j) + chr(k), fill=get_color('histogram', 'legend'), font=s.SMALL_BITMAP_FONT)
 
 # Print clock and room
-def clock_room(draw):
+def clock_room(draw, offset=0):
     j = 5
     # Print Room
     if s.seconde % 5 != 0:
         i = 116
 
         for c in s.room_current[:3]:
-            legacy.text(draw, (i, j), chr(s.letter[c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
+            legacy.text(draw, (i + offset, j), chr(s.letter[c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
             i += 4
 
     # Print Clock
@@ -285,11 +285,11 @@ def clock_room(draw):
         i = 108
 
         for c in s.now[:5]:
-            legacy.text(draw, (i, j), chr(s.letter[c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
+            legacy.text(draw, (i + offset, j), chr(s.letter[c]), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_FONT)
             i += 4
 
 # Print distance
-def distance(draw):
+def distance(draw, offset=0):
     d = l.calc_distance(s.message[1], s.latitude, s.longitude)
     j = 18
 
@@ -301,7 +301,7 @@ def distance(draw):
     i = 128 - len(d) * 4
 
     for c in d:
-        legacy.text(draw, (i, j), chr(s.letter[c]), fill=get_color('screen', 'foreground'), font=s.SMALL_BITMAP_FONT)
+        legacy.text(draw, (i + offset, j), chr(s.letter[c]), fill=get_color('screen', 'foreground'), font=s.SMALL_BITMAP_FONT)
         i += 4
 
 
@@ -685,13 +685,13 @@ def display_128_128(draw, width=0, offset=0):
             # Draw message
             last(draw, s.message[1:], width, offset)
             # Draw stats histogram
-            histogram(draw, legacy, 69, 28)
+            histogram(draw, legacy, 69, 28, offset)
             # Elsewhere
             elsewhere(draw, s.raptor, offset)
 
         elif s.transmit is True:
             # Draw tot
-            tot(draw, legacy, s.duration, 69, width)
+            tot(draw, legacy, s.duration, 69, width, offset)
             if s.duration < 10:
                 # Draw call
                 tmp = s.call_current.split(' ')
@@ -707,15 +707,15 @@ def display_128_128(draw, width=0, offset=0):
                 whois(draw)
             else:
                 # Draw message
-                last(draw, s.message[1:], width)
+                last(draw, s.message[1:], width, offset)
                 # Draw icon and distance
                 draw.text((2 + offset, 21), '\uf130', font=icon, fill=get_color('tot', 'foreground'))
-                distance(draw)
+                distance(draw, offset)
                 # Elsewhere
                 elsewhere(draw, s.raptor, offset)
 
     # Finaly, print clock and room
-    clock_room(draw) 
+    clock_room(draw, offset) 
 
 # Print display on 128 x 160 
 def display_128_160(draw, width=0, offset=0):
