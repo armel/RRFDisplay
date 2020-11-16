@@ -525,7 +525,7 @@ def display_init(init_message):
             position += 8
 
 # Display gateway
-def display_gateway():
+def display_gateway(offset=0):
     with canvas(s.device, dither=True) as draw:
         if s.device.height == 64:
             display_128_64(draw)
@@ -534,7 +534,7 @@ def display_gateway():
         elif s.device.height == 160:
             display_128_160(draw)
         elif s.device.height == 240:
-            display_320_240(draw)
+            display_320_240(draw, offset)
 
 # Print display on 128 x 64
 def display_128_64(draw):
@@ -751,5 +751,5 @@ def display_128_160(draw, width=0, offset=0):
             draw.rectangle((58 + offset, 128, 64 + offset, 160), fill=get_color('screen', 'background'))
 
 # Print display on 320 x 240
-def display_320_240(draw):
-    display_128_160(draw, 128, 60)
+def display_320_240(draw, offset):
+    display_128_160(draw, 128, offset)

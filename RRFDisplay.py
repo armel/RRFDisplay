@@ -281,7 +281,8 @@ def main(argv):
                     s.message[0] = 'Salon ' + s.room_current[:3]
 
         # Print screen
-        d.display_gateway()
+        d.display_gateway(30)
+        d.display_gateway(170)
            
         chrono_stop = time.time()
         chrono_time = chrono_stop - chrono_start
