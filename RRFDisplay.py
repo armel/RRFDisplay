@@ -284,8 +284,8 @@ def main(argv):
         with canvas(s.device, dither=True) as draw:
             draw.rectangle((0, 0, s.device.width - 1, s.device.height - 1), fill='red')
 
-            d.display_gateway(draw, 28)
-            d.display_gateway(draw, 184)
+            d.display_gateway(draw, 20)
+            d.display_gateway(draw, 170)
            
         chrono_stop = time.time()
         chrono_time = chrono_stop - chrono_start
