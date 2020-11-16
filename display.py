@@ -629,18 +629,18 @@ def display_128_64(draw):
         clock_room(draw)
 
 # Print display on 128 x 128 
-def display_128_128(draw, width=0):
+def display_128_128(draw, width=0, offset=0):
     if width == 0:
         width = s.device.width
     
-    draw.rectangle((0, 0, 127, s.device.height - 1), fill=get_color('screen', 'background'))
-    draw.rectangle((0, 1, 127, 13), fill=get_color('header', 'background'))
+    draw.rectangle((0 + offset, 0, 127 + offset, s.device.height - 1), fill=get_color('screen', 'background'))
+    draw.rectangle((0 + offset, 1, 127 + offset, 13), fill=get_color('header', 'background'))
 
-    draw.line((0, 0, 127, 0), fill=get_color('header', 'border'))
-    draw.line((0, 14, 127, 14), fill=get_color('header', 'border'))
+    draw.line((0 + offset, 0, 127 + offset, 0), fill=get_color('header', 'border'))
+    draw.line((0 + offset, 14, 127 + offset, 14), fill=get_color('header', 'border'))
 
     if s.transmit is False and s.minute % 2 == 0:
-        draw.rectangle((0, 1, 128 - 1, 13), fill=get_color('header', 'background'))
+        draw.rectangle((0 + offset, 1, 128 - 1 + offset, 13), fill=get_color('header', 'background'))
 
         # System log extended
         if s.seconde < 10:
@@ -667,15 +667,15 @@ def display_128_128(draw, width=0):
         
     # If not extended
     else:
-        draw.rectangle((0, 15, 127, 40), fill=get_color('log', 'background'))
-        draw.line((0, 40, 127, 40), fill=get_color('header', 'border'))
+        draw.rectangle((0 + offset, 15, 127 + offset, 40), fill=get_color('log', 'background'))
+        draw.line((0 + offset, 40, 127 + offset, 40), fill=get_color('header', 'border'))
 
         if s.message[0] is not None and 'Dernier' in s.message[0]:   # Icon clock (DIY...)
-            legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
-            legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
+            legacy.text(draw, (0 + offset, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
+            legacy.text(draw, (0 + offset, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
         else:   # Icon stat
-            legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
-            legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
+            legacy.text(draw, (0 + offset, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
+            legacy.text(draw, (0 + offset, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
 
         # Draw title
         title(draw, s.message[0], width)
@@ -702,14 +702,14 @@ def display_128_128(draw, width=0):
 
                 w, h = draw.textsize(text=tmp, font=font_big)
                 tab = (width - w) / 2
-                draw.text((tab, 14), tmp, font=font_big, fill=get_color('log', 'call_last'))
+                draw.text((tab + offset, 14), tmp, font=font_big, fill=get_color('log', 'call_last'))
                 # Whois
                 whois(draw)
             else:
                 # Draw message
                 last(draw, s.message[1:], width)
                 # Draw icon and distance
-                draw.text((2, 21), '\uf130', font=icon, fill=get_color('tot', 'foreground'))
+                draw.text((2 + offset, 21), '\uf130', font=icon, fill=get_color('tot', 'foreground'))
                 distance(draw)
                 # Elsewhere
                 elsewhere(draw, s.raptor)
@@ -752,4 +752,4 @@ def display_128_160(draw, width=0):
 
 # Print display on 320 x 240
 def display_320_240(draw):
-    display_128_160(draw, 128)
+    display_128_160(draw, 128, 60)
