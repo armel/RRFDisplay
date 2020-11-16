@@ -155,9 +155,6 @@ def main(argv):
             for f in follow_list:
                 f_indice += 1
                 (s.room_current, s.callsign) = follow_list[f]
-                print(s.room_current, s.callsign)
-                if f_indice == 2:
-                    exit()
 
                 chrono_start = time.time()
 
@@ -172,6 +169,7 @@ def main(argv):
                     tmp = l.scan(s.callsign)
                     if tmp is not False:
                         #print s.now, tmp
+                        follow_list[f] = (tmp, s.callsign)
                         s.room_current = tmp
 
                 if s.minute == 0: # Update solar propagation
