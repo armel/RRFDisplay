@@ -282,7 +282,7 @@ def main(argv):
 
         # Print screen
         with canvas(s.device, dither=True) as draw:
-            draw.rectangle((0, 0, s.device.width - 1, s.device.height - 1), fill='red')
+            draw.rectangle((0, 0, s.device.width - 1, s.device.height - 1), fill='dimgray')
 
             d.display_gateway(draw, 20)
             d.display_gateway(draw, 170)
