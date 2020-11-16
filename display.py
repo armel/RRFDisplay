@@ -343,7 +343,7 @@ def extended_system(draw, page, width=0, offset=0):
     i = 15
 
     for j in sys_order:
-        label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), j, sys[j], offset)
+        label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), j, sys[j], 0, offset)
         if s.device.height >= 128:
             i += 11
         else:
@@ -441,7 +441,7 @@ def extended_config(draw, page, width=0, offset=0):
     i = 15
 
     for j in sys_order:
-        label(draw, i, 63, get_color('label', 'background'), get_color('label', 'foreground'), j, sys[j], offset)
+        label(draw, i, 63, get_color('label', 'background'), get_color('label', 'foreground'), j, sys[j], 0, offset)
         if s.device.height >= 128:
             i += 11
         else:
@@ -504,7 +504,7 @@ def extended_solar(draw, page, width=0, offset=0):
         
         i = 15
         for j in value_order:
-            label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), j, value[j], offset)
+            label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), j, value[j], 0, offset)
             i += 11
     else:
         w, h = draw.textsize(text='No data', font=font)
