@@ -103,7 +103,7 @@ def label(draw, position, width, bg_color, fg_color, label, value, fixed=0, offs
         draw.text((fixed + offset, position), value, font=font, fill=get_color('screen', 'foreground'))        
 
 # Draw tot
-def tot(draw, legacy, duration, position, width=0):
+def tot(draw, legacy, duration, position, width=0, offset=0):
     if width == 0:
         width = s.device.width
     #duration += (duration / 60)     # Reajust time latence
@@ -164,7 +164,7 @@ def tot(draw, legacy, duration, position, width=0):
         tmp = l.convert_second_to_time(duration)
         w, h = draw.textsize(text=tmp, font=font_tot)
         tab = (width - w) / 2
-        draw.text((tab, 57), tmp, font=font_tot, fill=get_color('screen', 'foreground'))
+        draw.text((tab + offset, 57), tmp, font=font_tot, fill=get_color('screen', 'foreground'))
 
 # Print elsewhere
 def elsewhere(draw, data, offset=0):
@@ -350,33 +350,33 @@ def extended_system(draw, page, width=0):
             i += 10
 
 # Print Call Log Extended
-def extended_call(draw, limit = 5, width=0):
+def extended_call(draw, limit = 5, width=0, offset=0):
     if width == 0:
         width = s.device.width
 
     legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
     legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_CLOCK)
 
-    title(draw, 'Derniers TX', width)
+    title(draw, 'Derniers TX', width, offset)
 
     i = 15
 
     for j in range(0, limit):
-        label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), s.call_time[j], s.call[j])
+        label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), s.call_time[j], s.call[j], offset)
         if s.device.height >= 128:
             i += 11
         else:
             i += 10
 
 # Print Best Log Extended
-def extended_best(draw, limit = 5, width=0):
+def extended_best(draw, limit = 5, width=0, offset=0):
     if width == 0:
         width = s.device.width
 
-    legacy.text(draw, (0, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
-    legacy.text(draw, (0, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
+    legacy.text(draw, (0 + offset, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
+    legacy.text(draw, (0 + offset, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
 
-    title(draw, 'Top links', width)
+    title(draw, 'Top links', width, offset)
 
     best_min = min(s.best_time)
     best_max = max(s.best_time)
@@ -394,20 +394,20 @@ def extended_best(draw, limit = 5, width=0):
         if t == 0:
             t = 42
 
-        label(draw, i, t, get_color('label', 'background'), get_color('label', 'foreground'), l.convert_second_to_time(n), c, 54)
+        label(draw, i, t, get_color('label', 'background'), get_color('label', 'foreground'), l.convert_second_to_time(n), c, 54, offset)
         if s.device.height >= 128:
             i += 11
         else:
             i += 10
 
 # Print config
-def extended_config(draw, page, width=0):
+def extended_config(draw, page, width=0, offset=0):
     if width == 0:
         width = s.device.width
 
-    draw.text((2, 0), '\ue800', font=icon, fill=get_color('header', 'foreground'))
+    draw.text((2 + offset, 0), '\ue800', font=icon, fill=get_color('header', 'foreground'))
 
-    title(draw, 'Config Display', width)
+    title(draw, 'Config Display', width, offset)
 
     if page == 1:
         sys = {'I2C Port': '', 'I2C Address': '', 'Display': '', 'Width': '', 'Height': ''}
@@ -441,20 +441,20 @@ def extended_config(draw, page, width=0):
     i = 15
 
     for j in sys_order:
-        label(draw, i, 63, get_color('label', 'background'), get_color('label', 'foreground'), j, sys[j])
+        label(draw, i, 63, get_color('label', 'background'), get_color('label', 'foreground'), j, sys[j], offset)
         if s.device.height >= 128:
             i += 11
         else:
             i += 10
 
 # Print solar propagation
-def extended_solar(draw, page, width=0):
+def extended_solar(draw, page, width=0, offset=0):
     if width == 0:
         width = s.device.width
 
-    draw.text((2, 0), '\ue803', font=icon, fill=get_color('header', 'foreground'))
+    draw.text((2 + offset, 0), '\ue803', font=icon, fill=get_color('header', 'foreground'))
 
-    title(draw,'Propagation', width)
+    title(draw,'Propagation', width, offset)
 
     if len(s.solar_value) != 0:
         if page == 1:
@@ -504,12 +504,12 @@ def extended_solar(draw, page, width=0):
         
         i = 15
         for j in value_order:
-            label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), j, value[j])
+            label(draw, i, position, get_color('label', 'background'), get_color('label', 'foreground'), j, value[j], offset)
             i += 11
     else:
         w, h = draw.textsize(text='No data', font=font)
         tab = (s.device.width - w) / 2
-        draw.text((tab, 17), 'No data', font=font, fill=get_color('screen', 'foreground'))
+        draw.text((tab + offset, 17), 'No data', font=font, fill=get_color('screen', 'foreground'))
 
 # Print display on 128 x 64
 def display_init(init_message):
