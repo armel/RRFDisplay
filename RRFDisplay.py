@@ -154,6 +154,12 @@ def main(argv):
             f_indice = 0
             for f in follow_list:
                 f_indice += 1
+                s.theme = cp.ConfigParser()
+                if f_indice == 1:
+                    s.theme.read('./themes/blue_new.cfg')
+                else:
+                    s.theme.read('./themes/orange_new.cfg')
+
                 (s.room_current, s.callsign) = follow_list[f]
 
                 chrono_start = time.time()
