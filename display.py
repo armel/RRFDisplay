@@ -167,40 +167,40 @@ def tot(draw, legacy, duration, position, width=0):
         draw.text((tab, 57), tmp, font=font_tot, fill=get_color('screen', 'foreground'))
 
 # Print elsewhere
-def elsewhere(draw, data):
-    draw.rectangle((0, 77, 127, 127), outline=get_color('elsewhere', 'border'), fill=get_color('elsewhere', 'background'))
+def elsewhere(draw, data, offset):
+    draw.rectangle((0 + offset, 77, 127 + offset, 127), outline=get_color('elsewhere', 'border'), fill=get_color('elsewhere', 'background'))
 
     # Horizontal
 
     for i in [87, 97, 107, 117]:
-        draw.line((0,  i, 127,  i), fill=get_color('elsewhere', 'border'))
+        draw.line((0 + offset,  i, 127 + offset,  i), fill=get_color('elsewhere', 'border'))
 
     i = 79
     for d in data:
         d = d.split('/')
 
         if d[0] == '00:00':
-            draw.rectangle((21, i - 1, 126, i + 7), fill=get_color('elsewhere', 'background'))
+            draw.rectangle((21 + offset, i - 1, 126 + offset, i + 7), fill=get_color('elsewhere', 'background'))
             if 'h' in d[2]:
-                draw.text((28, i), d[2], font=font, fill=get_color('elsewhere', 'foreground'))
+                draw.text((28 + offset, i), d[2], font=font, fill=get_color('elsewhere', 'foreground'))
             else:
-                draw.text((48, i), d[2], font=font, fill=get_color('elsewhere', 'foreground'))
+                draw.text((48 + offset, i), d[2], font=font, fill=get_color('elsewhere', 'foreground'))
 
-            draw.text((100, i), d[3], font=font, fill=get_color('elsewhere', 'foreground'))
+            draw.text((100 + offset, i), d[3], font=font, fill=get_color('elsewhere', 'foreground'))
         else:
-            draw.rectangle((21, i - 1, 126, i + 7), fill=get_color('elsewhere', 'background_active'))
-            draw.text((28, i), d[2], font=font, fill=get_color('elsewhere', 'foreground_active'))
-            draw.text((100, i), d[3], font=font, fill=get_color('elsewhere', 'foreground_active'))
+            draw.rectangle((21 + offset, i - 1, 126 + offset, i + 7), fill=get_color('elsewhere', 'background_active'))
+            draw.text((28 + offset, i), d[2], font=font, fill=get_color('elsewhere', 'foreground_active'))
+            draw.text((100 + offset, i), d[3], font=font, fill=get_color('elsewhere', 'foreground_active'))
 
-        draw.rectangle((1, i - 1, 19, i + 7), fill=get_color('elsewhere', 'background_active'))
-        draw.text(( 2, i), d[1], font=font, fill=get_color('elsewhere', 'foreground_active'))
+        draw.rectangle((1 + offset, i - 1, 19 + offset, i + 7), fill=get_color('elsewhere', 'background_active'))
+        draw.text((2 + offset, i), d[1], font=font, fill=get_color('elsewhere', 'foreground_active'))
 
         i += 10
 
     # Vertical
 
-    draw.line((20, 77, 20, 127), fill=get_color('elsewhere', 'border'))
-    draw.line((94, 77, 94, 127), fill=get_color('elsewhere', 'border'))
+    draw.line((20 + offset, 77, 20 + offset, 127), fill=get_color('elsewhere', 'border'))
+    draw.line((94 + offset, 77, 94 + offset, 127), fill=get_color('elsewhere', 'border'))
 
 # Print whois
 def whois(draw):
@@ -712,7 +712,7 @@ def display_128_128(draw, width=0, offset=0):
                 draw.text((2 + offset, 21), '\uf130', font=icon, fill=get_color('tot', 'foreground'))
                 distance(draw)
                 # Elsewhere
-                elsewhere(draw, s.raptor)
+                elsewhere(draw, s.raptor, offset)
 
     # Finaly, print clock and room
     clock_room(draw) 
