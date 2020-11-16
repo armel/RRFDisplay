@@ -73,7 +73,7 @@ def main(argv):
                 print(follow)
                 follow_list = {}
                 for f in follow :
-                    tmp = l.scan(arg)
+                    tmp = l.scan(f)
                     if tmp is False:
                         s.room_current = 'RRF'
                     else:
