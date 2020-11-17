@@ -90,6 +90,7 @@ def main(argv):
             theme = arg.split('/')
             for f in s.follow_list:
                 (follow, indicatif) = s.follow_list[f]
+                print(f)
                 s.theme_list[indicatif] = cp.ConfigParser()
                 s.theme_list[indicatif].read('./themes/' + theme[i])
                 indice += 1
