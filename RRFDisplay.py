@@ -94,6 +94,7 @@ def main(argv):
                 s.theme_list[indicatif].read('./themes/' + theme[i])
                 indice += 1
 
+    print(s.theme_list)
     # Set serial
     if s.interface == 'i2c':
         serial = i2c(port=s.i2c_port, address=s.i2c_address)
