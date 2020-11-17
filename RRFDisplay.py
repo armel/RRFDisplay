@@ -89,9 +89,9 @@ def main(argv):
             i = 0
             theme = arg.split('/')
             for t in theme:
+                i += 1
                 s.theme_list[i] = cp.ConfigParser()
                 s.theme_list[i].read('./themes/' + t)
-                i += 1
 
     print(s.theme_list)
     print(s.follow_list)
