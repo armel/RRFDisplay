@@ -150,11 +150,11 @@ def main(argv):
     while(True):
         with canvas(s.device, dither=True) as draw:
             f_indice = 0
-            for f in follow_list:
+            for f in s.follow_list:
                 f_indice += 1
                 s.theme = s.theme_list[f]
 
-                (s.room_current, s.callsign) = follow_list[f]
+                (s.room_current, s.callsign) = s.follow_list[f]
 
                 chrono_start = time.time()
 
