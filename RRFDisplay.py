@@ -88,6 +88,8 @@ def main(argv):
         elif opt in ('--display-theme'):
             indice = 0
             theme = arg.split('/')
+            print(theme)
+            print(s.follow_list)
             for f in s.follow_list:
                 (follow, indicatif) = s.follow_list[f]
                 print(f)
