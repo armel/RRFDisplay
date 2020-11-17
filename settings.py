@@ -124,6 +124,8 @@ letter = {
 room_current = 'RRF'        # Current Room
 callsign = 'F4HWN'          # Callsign if follow
 scan = False                # Scan mode
+follow_list = {}            # Follow list
+theme_list = {}             # Theme list
 
 call = [''] * 10            # Call list
 call_time = [''] * 10       # Call time list

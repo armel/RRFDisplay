@@ -5,7 +5,7 @@ PATH_PID='/tmp'
 case "$1" in
     start)
         echo "Starting RRFDisplay: FB"
-        nohup python3 $PATH_SCRIPT --interface noop --display linux_framebuffer --display-theme orange_new.cfg --follow F1ZPX/F4HWN > $PATH_PID/RRFDisplay_0.log 2>&1 & echo $! > $PATH_PID/RRFDisplay_0.pid
+        nohup python3 $PATH_SCRIPT --interface noop --display linux_framebuffer --display-theme blue_new.cfg/orange_new.cfg --follow F1ZPX/F4HWN > $PATH_PID/RRFDisplay_0.log 2>&1 & echo $! > $PATH_PID/RRFDisplay_0.pid
        ;;
     stop) 
         echo "Stopping RRFDisplay FB"

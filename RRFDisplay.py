@@ -70,8 +70,6 @@ def main(argv):
                 s.room_current = arg
             else:
                 follow = arg.split('/')
-                print(follow)
-                follow_list = {}
                 for f in follow :
                     tmp = l.scan(f)
                     if tmp is False:
@@ -80,7 +78,7 @@ def main(argv):
                         s.room_current = tmp
                         s.callsign = arg
                         s.scan = True
-                        follow_list[f] = (tmp, f)
+                        s.follow_list[f] = (tmp, f)
         elif opt in ('--refresh'):
             s.refresh = float(arg)
         elif opt in ('--latitude'):
@@ -88,7 +86,13 @@ def main(argv):
         elif opt in ('--longitude'):
             s.longitude = float(arg)
         elif opt in ('--display-theme'):
-            s.display_theme = arg
+            indice = 0
+            theme = arg.split('/')
+            for f in s.follow_list:
+                (follow, indicatif) = s.follow_list[f]
+                s.theme_list[f] = cp.ConfigParser()
+                s.theme_list[f].read('./themes/' + theme[i])
+                indice += 1
 
     # Set serial
     if s.interface == 'i2c':
@@ -120,12 +124,6 @@ def main(argv):
     init_message.append('')
     d.display_init(init_message)
 
-    # Lecture du fichier de theme
-    init_message.append('Chargement Theme')
-    d.display_init(init_message)
-    s.theme = cp.ConfigParser()
-    s.theme.read('./themes/' + s.display_theme)
-
     # Lecture initiale de la progation et du cluster
     init_message.append('Requete Propagation')
     d.display_init(init_message)
@@ -154,11 +152,7 @@ def main(argv):
             f_indice = 0
             for f in follow_list:
                 f_indice += 1
-                s.theme = cp.ConfigParser()
-                if f_indice == 1:
-                    s.theme.read('./themes/blue_new.cfg')
-                else:
-                    s.theme.read('./themes/orange_new.cfg')
+                s.theme = s.theme_list[f]
 
                 (s.room_current, s.callsign) = follow_list[f]
 
