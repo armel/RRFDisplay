@@ -88,16 +88,13 @@ def main(argv):
         elif opt in ('--display-theme'):
             indice = 0
             theme = arg.split('/')
-            print(theme)
-            print(s.follow_list)
-            for f in s.follow_list:
-                (follow, indicatif) = s.follow_list[f]
-                print(f)
-                s.theme_list[indicatif] = cp.ConfigParser()
-                s.theme_list[indicatif].read('./themes/' + theme[i])
+            for t in theme:
+                s.theme_list[indice] = cp.ConfigParser()
+                s.theme_list[indice].read('./themes/' + t)
                 indice += 1
 
     print(s.theme_list)
+    print(s.follow_list)
     # Set serial
     if s.interface == 'i2c':
         serial = i2c(port=s.i2c_port, address=s.i2c_address)
