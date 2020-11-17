@@ -99,9 +99,9 @@ def main(argv):
                 i += 1
                 s.offset_list[i] = int(o)
 
-    print(s.theme_list)
-    print(s.follow_list)
-    print(s.offset_list)
+    #print(s.theme_list)
+    #print(s.follow_list)
+    #print(s.offset_list)
 
     # Set serial
     if s.interface == 'i2c':
