@@ -86,12 +86,12 @@ def main(argv):
         elif opt in ('--longitude'):
             s.longitude = float(arg)
         elif opt in ('--display-theme'):
-            indice = 0
+            i = 0
             theme = arg.split('/')
             for t in theme:
-                s.theme_list[indice] = cp.ConfigParser()
-                s.theme_list[indice].read('./themes/' + t)
-                indice += 1
+                s.theme_list[i] = cp.ConfigParser()
+                s.theme_list[i].read('./themes/' + t)
+                i += 1
 
     print(s.theme_list)
     print(s.follow_list)
@@ -153,7 +153,7 @@ def main(argv):
             f_indice = 0
             for f in s.follow_list:
                 f_indice += 1
-                s.theme = s.theme_list[f]
+                s.theme = s.theme_list[f_indice]
 
                 (s.room_current, s.callsign) = s.follow_list[f]
 
