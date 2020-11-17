@@ -67,7 +67,7 @@ def main(argv):
             s.display_height = int(arg)
         elif opt in ('--follow'):
             if arg in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
-                s.room_current = arg
+                s.follow_list[arg] = (arg, arg)
             else:
                 follow = arg.split('/')
                 for f in follow :
