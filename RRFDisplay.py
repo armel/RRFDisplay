@@ -159,13 +159,13 @@ def main(argv):
     while(True):
         with canvas(s.device, dither=True) as draw:
             f_indice = 0
+            chrono_start = time.time()
+
             for f in s.follow_list:
                 f_indice += 1
                 s.theme = s.theme_list[f_indice]
 
                 (s.room_current, s.callsign) = s.follow_list[f]
-
-                chrono_start = time.time()
 
                 tmp = datetime.datetime.now()
                 s.day = tmp.strftime('%Y-%m-%d')
@@ -315,7 +315,6 @@ def main(argv):
             #sys.stdout.flush()
 
             time.sleep(sleep)
-            #GPIO.cleanup()
 
 if __name__ == '__main__':
     try:
