@@ -126,6 +126,7 @@ callsign = 'F4HWN'          # Callsign if follow
 scan = False                # Scan mode
 follow_list = {}            # Follow list
 theme_list = {}             # Theme list
+offset_list = {}            # Screen offset
 
 call = [''] * 10            # Call list
 call_time = [''] * 10       # Call time list

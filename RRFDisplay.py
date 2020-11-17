@@ -35,7 +35,7 @@ def main(argv):
 
     # Check and get arguments
     try:
-        options, remainder = getopt.getopt(argv, '', ['help', 'interface=', 'spi-device=', 'i2c-port=', 'i2c-address=', 'framebuffer-device=', 'display=', 'display-width=', 'display-height=', 'display-theme=', 'follow=', 'refresh=', 'latitude=', 'longitude='])
+        options, remainder = getopt.getopt(argv, '', ['help', 'interface=', 'spi-device=', 'i2c-port=', 'i2c-address=', 'framebuffer-device=', 'display=', 'display-width=', 'display-height=', 'display-theme=', 'display-offset=', 'follow=', 'refresh=', 'latitude=', 'longitude='])
     except getopt.GetoptError:
         l.usage()
         sys.exit(2)
@@ -92,6 +92,12 @@ def main(argv):
                 i += 1
                 s.theme_list[i] = cp.ConfigParser()
                 s.theme_list[i].read('./themes/' + t)
+        elif opt in ('--display-offset'):
+            i = 0
+            offset = arg.split('/')
+            for o in offset:
+                i += 1
+                s.offset_list[i] = o
 
     print(s.theme_list)
     print(s.follow_list)
@@ -170,7 +176,7 @@ def main(argv):
                     tmp = l.scan(s.callsign)
                     if tmp is not False:
                         #print s.now, tmp
-                        follow_list[f] = (tmp, s.callsign)
+                        s.follow_list[f] = (tmp, s.callsign)
                         s.room_current = tmp
 
                 if s.minute == 0: # Update solar propagation
@@ -295,10 +301,7 @@ def main(argv):
                             s.message[0] = 'Salon ' + s.room_current[:3]
 
                 # Print screen
-                if f_indice == 1:
-                    d.display_gateway(draw, 20)
-                else:
-                    d.display_gateway(draw, 170)
+                d.display_gateway(draw, s.offset_list[f_indice])
                    
             chrono_stop = time.time()
             chrono_time = chrono_stop - chrono_start
