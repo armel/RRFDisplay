@@ -97,7 +97,7 @@ def main(argv):
             offset = arg.split('/')
             for o in offset:
                 i += 1
-                s.offset_list[i] = o
+                s.offset_list[i] = int(o)
 
     print(s.theme_list)
     print(s.follow_list)
