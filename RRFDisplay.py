@@ -101,6 +101,8 @@ def main(argv):
 
     print(s.theme_list)
     print(s.follow_list)
+    print(s.offset_list)
+
     # Set serial
     if s.interface == 'i2c':
         serial = i2c(port=s.i2c_port, address=s.i2c_address)
