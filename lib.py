@@ -474,7 +474,7 @@ def get_cluster():
 
 # Get image
 
-def get_image(url)
+def get_image(url):
     with open(s.solar_image, 'wb') as f:
         response = requests.get(url, stream=True)
 
