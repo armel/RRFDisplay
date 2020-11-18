@@ -763,5 +763,5 @@ def display_320_240(draw, offset):
             .transform(device.size, Image.AFFINE, (1, 0, 0, 0, 1, 0), Image.BILINEAR) \
             .convert(device.mode)
 
-        device.display(greyline)
+        s.device.display(greyline)
 
