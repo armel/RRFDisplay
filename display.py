@@ -754,7 +754,7 @@ def display_128_160(draw, width=0, offset=0):
 
 # Print display on 320 x 240
 def display_320_240(draw, offset):
-    if s.minute % 10 == 0 and s.seconde == 0:
+    if s.minute % 5 == 0 and s.seconde == 0:
         l.get_image()
 
     if s.minute % 2 != 0 and s.seconde > 45 and s.transmit is False:
