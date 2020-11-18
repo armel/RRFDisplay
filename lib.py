@@ -24,6 +24,7 @@ import settings as s
 from math import cos, asin, sqrt, ceil
 from lxml import etree
 from datetime import datetime, timedelta
+from PIL import Image
 
 # Usage
 def usage():
