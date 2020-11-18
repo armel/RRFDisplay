@@ -171,8 +171,12 @@ seconde = ''
 
 solar_url = 'http://www.hamqsl.com/solarxml.php'
 solar_file = './data/solar.xml'
-solar_image = './data/greyline.jpg'
 solar_value = {}
+
+# Set greyline
+
+greyline_url = 'https://dx.qsl.net/propagation/greyline.html'
+greyline_image = './data/greyline.jpg'
 
 # Set cluster
 

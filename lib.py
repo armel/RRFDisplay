@@ -15,6 +15,7 @@ import getopt
 import json
 import urllib3
 import calendar
+import lxml.html
 
 urllib3.disable_warnings()
 
@@ -475,7 +476,16 @@ def get_cluster():
 # Get image
 
 def get_image(url):
-    with open(s.solar_image, 'wb') as f:
+    # Request HTTP on hamqsl
+    try:
+        tree = lxml.html.parse(s.greyline_url)
+        images = tree.xpath("//img/@src")
+    except:
+        pass
+
+    print(images)
+
+    with open(s.greyline_image, 'wb') as f:
         response = requests.get(url, stream=True)
 
         for bit in response.iter_content(1024):

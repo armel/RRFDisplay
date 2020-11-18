@@ -756,7 +756,7 @@ def display_320_240(draw, offset):
     display_128_160(draw, 128, offset)
 
     if offset < 160:
-        l.get_image('https://dx.qsl.net/images/greyline-23677.jpg')
+        l.get_image()
 
         img_path = str(Path(__file__).resolve().parent.joinpath('data', 'greyline.jpg'))
         greyline = Image.open(img_path) \
