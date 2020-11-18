@@ -477,11 +477,8 @@ def get_cluster():
 
 def get_image():
     # Request HTTP on hamqsl
-    try:
-        tree = lxml.html.parse(s.greyline_url)
-        image = tree.xpath("//img/@src")
-    except:
-        pass
+    tree = lxml.html.parse(s.greyline_url)
+    image = tree.xpath("//img/@src")
 
     print(image)
 
