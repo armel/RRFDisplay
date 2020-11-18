@@ -765,7 +765,7 @@ def display_320_240(draw, offset):
             .convert(s.device.mode)
         '''
 
-        greyline = Image.open(img_path).convert(s.device.mode)
+        greyline = Image.open(img_path)
 
 
         '''
