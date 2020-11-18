@@ -767,7 +767,7 @@ def display_320_240(draw, offset):
 
         w, h = draw.textsize(text='greyline', font=font_big)
         tab = (s.device.width - w) / 2
-        draw.text((tab + offset, 200), tmp, font=font_big, fill=get_color('log', 'call_last'))
+        draw.text((tab + offset, 200), 'greyline', font=font_big, fill=get_color('log', 'call_last'))
 
         time.sleep(15)
 
