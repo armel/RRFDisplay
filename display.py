@@ -758,13 +758,14 @@ def display_320_240(draw, offset):
         print ('Reload')
         l.get_image()
 
-    if s.minute % 2 != 0 and s.seconde > 30 and s.transmit is False:
+    if s.minute % 2 != 0 and s.seconde > 45 and s.transmit is False:
         img_path = str(Path(__file__).resolve().parent.joinpath('data', 'greyline.jpg'))
         greyline = Image.open(img_path) \
             .transform(s.device.size, Image.AFFINE, (1, 0, 0, 0, 1, 0), Image.BILINEAR) \
             .convert(s.device.mode)
 
         s.device.display(greyline)
+        sleep(15)
 
     else:
         display_128_160(draw, 128, offset)
