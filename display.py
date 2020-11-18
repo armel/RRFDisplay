@@ -757,7 +757,7 @@ def display_320_240(draw, offset):
     if offset < 160:
         l.get_image('https://dx.qsl.net/images/greyline-23677.jpg')
 
-        img_path = s.solar_image
+        img_path = str(Path(__file__).resolve().parent.joinpath('data', 'greyline.jpg'))
         greyline = Image.open(img_path) \
             .transform(device.size, Image.AFFINE, (1, 0, 0, 0, 1, 0), Image.BILINEAR) \
             .convert(device.mode)

@@ -171,7 +171,7 @@ seconde = ''
 
 solar_url = 'http://www.hamqsl.com/solarxml.php'
 solar_file = './data/solar.xml'
-solar_image = './data/image.jpg'
+solar_image = './data/greyline.jpg'
 solar_value = {}
 
 # Set cluster
