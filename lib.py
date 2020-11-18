@@ -489,3 +489,8 @@ def get_image():
                 break
 
             f.write(bit)
+
+    image = Image.open(s.greyline_image)
+    image.thumbnail((320, 240), Image.ANTIALIAS)
+    image.save(s.greyline_image, 'JPEG', quality=88)
+
