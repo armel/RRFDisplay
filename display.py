@@ -760,8 +760,8 @@ def display_320_240(draw, offset):
 
         img_path = str(Path(__file__).resolve().parent.joinpath('data', 'greyline.jpg'))
         greyline = Image.open(img_path) \
-            .transform(device.size, Image.AFFINE, (1, 0, 0, 0, 1, 0), Image.BILINEAR) \
-            .convert(device.mode)
+            .transform(s.device.size, Image.AFFINE, (1, 0, 0, 0, 1, 0), Image.BILINEAR) \
+            .convert(s.device.mode)
 
         s.device.display(greyline)
 
