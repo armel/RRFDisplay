@@ -11,7 +11,6 @@ Check video about RRFDisplay on https://www.youtube.com/watch?v=rVW8xczVpEo
 import settings as s
 import lib as l
 import time
-import datetime
 import os
 
 from luma.core.render import canvas
@@ -755,12 +754,10 @@ def display_128_160(draw, width=0, offset=0):
 
 # Print display on 320 x 240
 def display_320_240(draw, offset):
-    display_128_160(draw, 128, offset)
-
     if offset < 160:
-        l.get_image()
-        t = os.path.getmtime(s.greyline_image)
-        print(datetime.datetime.fromtimestamp(t))
+        if s.minute % 2 == 0 and s.seconde == 0:
+            print ('Reload')
+            l.get_image()
 
         if s.seconde < 10:
             img_path = str(Path(__file__).resolve().parent.joinpath('data', 'greyline.jpg'))
@@ -769,4 +766,7 @@ def display_320_240(draw, offset):
                 .convert(s.device.mode)
 
             s.device.display(greyline)
+
+        else:
+            display_128_160(draw, 128, offset)
 
