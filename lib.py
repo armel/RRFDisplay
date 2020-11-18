@@ -481,10 +481,8 @@ def get_image():
     tree = lxml.etree.fromstring(page, parser=lxml.etree.HTMLParser())
     image = tree.xpath('//img/@src')
 
-    print(image)
-
     with open(s.greyline_image, 'wb') as f:
-        response = requests.get(url, stream=True)
+        response = requests.get(image[0], stream=True)
 
         for bit in response.iter_content(1024):
             if not bit:
