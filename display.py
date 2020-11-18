@@ -14,6 +14,7 @@ import time
 
 from luma.core.render import canvas
 from luma.core import legacy
+from pathlib import Path
 
 from PIL import ImageFont
 from PIL import Image
