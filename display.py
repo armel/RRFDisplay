@@ -757,7 +757,7 @@ def display_320_240(draw, offset):
     display_128_160(draw, 128, offset)
 
     if offset < 160:
-        print(time.ctime(os.path.getmtime(s.greyline_file)))
+        print(time.ctime(os.path.getmtime(s.greyline_image)))
         #l.get_image()
 
         if s.seconde < 10:
