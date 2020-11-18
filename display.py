@@ -756,9 +756,8 @@ def display_320_240(draw, offset):
     display_128_160(draw, 128, offset)
 
     if offset < 160:
-        if s.minute % 5 == 0:
-            print('reload')
-            l.get_image()
+        print(time.ctime(os.path.getmtime(s.greyline_file))
+        #l.get_image()
 
         if s.seconde < 10:
             img_path = str(Path(__file__).resolve().parent.joinpath('data', 'greyline.jpg'))
