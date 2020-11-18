@@ -470,4 +470,16 @@ def get_cluster():
                 if indice == 10:
                     break
 
-    return True  
+    return True
+
+# Get image
+
+def get_image(url)
+    with open(s.solar_image, 'wb') as f:
+        response = requests.get(url, stream=True)
+
+        for bit in response.iter_content(1024):
+            if not bit:
+                break
+
+            f.write(bit)

@@ -752,3 +752,14 @@ def display_128_160(draw, width=0, offset=0):
 # Print display on 320 x 240
 def display_320_240(draw, offset):
     display_128_160(draw, 128, offset)
+
+    if offset < 160:
+        l.get_image('https://dx.qsl.net/images/greyline-23677.jpg')
+
+        img_path = str(Path(__file__).resolve().parent.joinpath('images', s.solar_image))
+        greyline = Image.open(img_path) \
+            .transform(device.size, Image.AFFINE, (1, 0, 0, 0, 1, 0), Image.BILINEAR) \
+            .convert(device.mode)
+
+        device.display(greyline)
+
