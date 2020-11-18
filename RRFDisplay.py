@@ -19,7 +19,9 @@ import sys
 import logging
 import getopt
 import configparser as cp
-import RPi.GPIO as GPIO
+
+from pathlib import Path
+from PIL import Image
 
 from luma.core.interface.serial import i2c, spi
 from luma.core.render import canvas
