@@ -156,8 +156,8 @@ def main(argv):
     #print s.callsign
     #print s.room_current
 
-    while(True):
-        with canvas(s.device, dither=True) as draw:
+    with canvas(s.device, dither=True) as draw:
+        while(True):
             f_indice = 0
             chrono_start = time.time()
 
