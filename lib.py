@@ -475,7 +475,7 @@ def get_cluster():
 
 # Get image
 
-def get_image(url):
+def get_image():
     # Request HTTP on hamqsl
     try:
         tree = lxml.html.parse(s.greyline_url)
