@@ -757,11 +757,16 @@ def display_320_240(draw, offset):
     if s.minute % 10 == 0 and s.seconde == 0:
         l.get_image()
 
-    if s.minute % 2 != 0 and s.seconde > 45 and s.transmit is False:
+    if s.minute % 2 != 0 and s.seconde > 10 and s.transmit is False:
         img_path = str(Path(__file__).resolve().parent.joinpath('data', 'greyline.jpg'))
+        '''
         greyline = Image.open(img_path) \
             .transform(s.device.size, Image.AFFINE, (1, 0, 0, 0, 1, 0), Image.BILINEAR) \
             .convert(s.device.mode)
+        '''
+
+        greyline = Image.open(img_path).convert(s.device.mode)
+
 
         '''
         w, h = draw.textsize(text='greyline', font=font_big)
