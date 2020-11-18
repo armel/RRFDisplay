@@ -756,12 +756,15 @@ def display_320_240(draw, offset):
     display_128_160(draw, 128, offset)
 
     if offset < 160:
-        l.get_image()
+        if s.minute % 5 == 0:
+            print('reload')
+            l.get_image()
 
-        img_path = str(Path(__file__).resolve().parent.joinpath('data', 'greyline.jpg'))
-        greyline = Image.open(img_path) \
-            .transform(s.device.size, Image.AFFINE, (1, 0, 0, 0, 1, 0), Image.BILINEAR) \
-            .convert(s.device.mode)
+        if s.seconde < 10:
+            img_path = str(Path(__file__).resolve().parent.joinpath('data', 'greyline.jpg'))
+            greyline = Image.open(img_path) \
+                .transform(s.device.size, Image.AFFINE, (1, 0, 0, 0, 1, 0), Image.BILINEAR) \
+                .convert(s.device.mode)
 
-        s.device.display(greyline)
+            s.device.display(greyline)
 
