@@ -477,8 +477,9 @@ def get_cluster():
 
 def get_image():
     # Request HTTP on hamqsl
-    tree = etree.parse(s.greyline_url)
-    image = etree.xpath("//img/@src")
+    page = requests.get(s.greyline_url).text
+    tree = lxml.etree.fromstring(page, parser=lxml.etree.HTMLParser())
+    image = tree.xpath('//img/@src')
 
     print(image)
 
