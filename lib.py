@@ -479,11 +479,11 @@ def get_image():
     # Request HTTP on hamqsl
     try:
         tree = lxml.html.parse(s.greyline_url)
-        images = tree.xpath("//img/@src")
+        image = tree.xpath("//img/@src")
     except:
         pass
 
-    print(images)
+    print(image)
 
     with open(s.greyline_image, 'wb') as f:
         response = requests.get(url, stream=True)
