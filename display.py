@@ -16,6 +16,7 @@ from luma.core.render import canvas
 from luma.core import legacy
 
 from PIL import ImageFont
+from PIL import Image
 
 '''
 with canvas(s.device, dither=True) as draw:
