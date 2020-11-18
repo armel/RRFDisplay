@@ -15,7 +15,7 @@ import getopt
 import json
 import urllib3
 import calendar
-from lxml import etree
+import lxml.etree
 
 urllib3.disable_warnings()
 
