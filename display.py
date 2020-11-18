@@ -11,6 +11,7 @@ Check video about RRFDisplay on https://www.youtube.com/watch?v=rVW8xczVpEo
 import settings as s
 import lib as l
 import time
+import datetime
 import os
 
 from luma.core.render import canvas
