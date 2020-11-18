@@ -754,19 +754,18 @@ def display_128_160(draw, width=0, offset=0):
 
 # Print display on 320 x 240
 def display_320_240(draw, offset):
-    if offset < 160:
-        if s.minute % 2 == 0 and s.seconde == 0:
-            print ('Reload')
-            l.get_image()
+    if s.minute % 2 == 0 and s.seconde == 0:
+        print ('Reload')
+        l.get_image()
 
-        if s.seconde < 10:
-            img_path = str(Path(__file__).resolve().parent.joinpath('data', 'greyline.jpg'))
-            greyline = Image.open(img_path) \
-                .transform(s.device.size, Image.AFFINE, (1, 0, 0, 0, 1, 0), Image.BILINEAR) \
-                .convert(s.device.mode)
+    if s.minute % 2 != 0 and s.seconde > 30 and s.transmit is False:
+        img_path = str(Path(__file__).resolve().parent.joinpath('data', 'greyline.jpg'))
+        greyline = Image.open(img_path) \
+            .transform(s.device.size, Image.AFFINE, (1, 0, 0, 0, 1, 0), Image.BILINEAR) \
+            .convert(s.device.mode)
 
-            s.device.display(greyline)
+        s.device.display(greyline)
 
-        else:
-            display_128_160(draw, 128, offset)
+    else:
+        display_128_160(draw, 128, offset)
 
