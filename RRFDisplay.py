@@ -20,9 +20,6 @@ import logging
 import getopt
 import configparser as cp
 
-from pathlib import Path
-from PIL import Image
-
 from luma.core.interface.serial import i2c, spi
 from luma.core.render import canvas
 
@@ -305,17 +302,7 @@ def main(argv):
                             s.message[0] = 'Salon ' + s.room_current[:3]
 
                 # Print screen
-                if s.minute % 2 != 0 and s.seconde > 45 and s.transmit is False:
-                    img_path = str(Path(__file__).resolve().parent.joinpath('data', 'greyline.jpg'))
-                    greyline = Image.open(img_path) \
-                        .transform(s.device.size, Image.AFFINE, (1, 0, 0, 0, 1, 0), Image.BILINEAR) \
-                        .convert(s.device.mode)
-
-                    s.device.display(greyline)
-
-                    time.sleep(15)
-                else:
-                    d.display_gateway(draw, s.offset_list[f_indice])
+                d.display_gateway(draw, s.offset_list[f_indice])
                    
             chrono_stop = time.time()
             chrono_time = chrono_stop - chrono_start

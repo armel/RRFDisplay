@@ -15,8 +15,10 @@ import os
 
 from luma.core.render import canvas
 from luma.core import legacy
+from pathlib import Path
 
 from PIL import ImageFont
+from PIL import Image
 
 '''
 with canvas(s.device, dither=True) as draw:
@@ -755,5 +757,23 @@ def display_320_240(draw, offset):
     if s.minute % 5 == 0 and s.seconde == 0:
         l.get_image()
 
-    display_128_160(draw, 128, offset)
+    if s.minute % 2 != 0 and s.seconde > 45 and s.transmit is False:
+        img_path = str(Path(__file__).resolve().parent.joinpath('data', 'greyline.jpg'))
+
+        greyline = Image.open(img_path) \
+            .transform(s.device.size, Image.AFFINE, (1, 0, 0, 0, 1, 0), Image.BILINEAR) \
+            .convert(s.device.mode)
+
+        '''
+        w, h = draw.textsize(text='greyline', font=font_big)
+        tab = (s.device.width - w) / 2
+        draw.text((tab + offset, 160), 'greyline', font=font_big, fill=get_color('log', 'call_last'))
+        '''
+
+        s.device.display(greyline)
+
+        time.sleep(15)
+
+    else:
+        display_128_160(draw, 128, offset)
 
