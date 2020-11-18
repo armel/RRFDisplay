@@ -15,7 +15,7 @@ import getopt
 import json
 import urllib3
 import calendar
-import lxml.html
+from lxml import etree
 
 urllib3.disable_warnings()
 
@@ -477,8 +477,8 @@ def get_cluster():
 
 def get_image():
     # Request HTTP on hamqsl
-    tree = lxml.html.parse(s.greyline_url)
-    image = tree.xpath("//img/@src")
+    tree = etree.parse(s.greyline_url)
+    image = etree.xpath("//img/@src")
 
     print(image)
 
