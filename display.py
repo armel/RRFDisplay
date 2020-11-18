@@ -755,7 +755,6 @@ def display_128_160(draw, width=0, offset=0):
 # Print display on 320 x 240
 def display_320_240(draw, offset):
     if s.minute % 10 == 0 and s.seconde == 0:
-        print ('Reload')
         l.get_image()
 
     if s.minute % 2 != 0 and s.seconde > 45 and s.transmit is False:
@@ -765,6 +764,11 @@ def display_320_240(draw, offset):
             .convert(s.device.mode)
 
         s.device.display(greyline)
+
+        w, h = draw.textsize(text='greyline', font=font_big)
+        tab = (width - w) / 2
+        draw.text((tab + offset, 130), tmp, font=font_big, fill=get_color('log', 'call_last'))
+
         time.sleep(15)
 
     else:
