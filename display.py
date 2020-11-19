@@ -771,8 +771,8 @@ def display_320_240(draw, offset):
         '''
 
         s.device.display(greyline)
-
         time.sleep(15)
+        s.switch = 0
 
     else:
         display_128_160(draw, 128, offset)
