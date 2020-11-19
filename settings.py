@@ -127,7 +127,6 @@ scan = False                # Scan mode
 follow_list = {}            # Follow list
 theme_list = {}             # Theme list
 offset_list = {1: 0}        # Screen offset
-switch = 0                  # Switch if greyline
 
 call = [''] * 10            # Call list
 call_time = [''] * 10       # Call time list

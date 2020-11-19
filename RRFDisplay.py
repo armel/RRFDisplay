@@ -163,7 +163,6 @@ def main(argv):
             for f in s.follow_list:
                 f_indice += 1
                 s.theme = s.theme_list[f_indice]
-                s.switch += 1
 
                 (s.room_current, s.callsign) = s.follow_list[f]
 
@@ -303,9 +302,7 @@ def main(argv):
                             s.message[0] = 'Salon ' + s.room_current[:3]
 
                 # Print screen
-                if s.switch > 1:
-                    print(s.switch)
-                    d.display_gateway(draw, s.offset_list[f_indice])
+                d.display_gateway(draw, s.offset_list[f_indice])
                    
             chrono_stop = time.time()
             chrono_time = chrono_stop - chrono_start
