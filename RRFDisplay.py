@@ -304,6 +304,7 @@ def main(argv):
 
                 # Print screen
                 if s.switch > 1:
+                    print(s.switch)
                     d.display_gateway(draw, s.offset_list[f_indice])
                    
             chrono_stop = time.time()
