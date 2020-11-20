@@ -279,8 +279,8 @@ def main(argv):
 
                         # Load Iptable
                         limit = len(rrf_data['iptable'])
-                        s.iptable = [''] * 10 
-                        s.iptable_by = [''] * 10 
+                        s.iptable = [''] * 5 
+                        s.iptable_by = [''] * 5 
 
                         for q in range(0, limit):
                             s.iptable[q] = l.sanitize_call(rrf_data['iptable'][q]['Indicatif'])
