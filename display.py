@@ -793,4 +793,4 @@ def display_320_240(draw, offset):
         display_128_160(draw, 128, offset)
     '''
     display_128_160(draw, 128, offset)
-    extended_iptable(draw, len(s.iptable), offset)
+    extended_iptable(draw, len(s.iptable), width, offset)
