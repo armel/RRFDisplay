@@ -34,7 +34,7 @@ with canvas(s.device, dither=True) as draw:
 '''
 
 icon = ImageFont.truetype('./fonts/fontello.ttf', 14)     # Icon font
-font = ImageFont.truetype('./fonts/sf.ttf', 10)           # Text font
+font = ImageFont.truetype('./fonts/7x5.ttf', 8)           # Text font
 font_big = ImageFont.truetype('./fonts/bold.ttf', 30)     # Text font
 font_tot = ImageFont.truetype('./fonts/rounded_led_board.ttf', 20)    # Text font
 
@@ -772,4 +772,4 @@ def display_320_240(draw, offset):
     else:
         display_128_160(draw, 128, offset)
     '''
-    display_128_160(draw, 160, offset)
+    display_128_160(draw, 128, offset)
