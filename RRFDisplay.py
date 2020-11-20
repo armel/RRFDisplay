@@ -284,7 +284,12 @@ def main(argv):
 
                         for q in range(0, limit):
                             s.iptable[q] = l.sanitize_call(rrf_data['iptable'][q]['Indicatif'])
-                            s.iptable_by[q] = rrf_data['iptable'][q]['Type']
+                            tmp = rrf_data['iptable'][q]['Type']
+                            if '(' in tmp:
+                                s.iptable_by[q] = tmp[tmp.find('(')+1:tmp.find(')')]
+                            else:
+                                s.iptable_by[q] = tmp
+
 
                     if(s.seconde < 10):     # TX today
                         s.message[0] = 'TX total ' + str(data_abstract['TX total'])
