@@ -277,6 +277,15 @@ def main(argv):
                             s.best[q] = l.sanitize_call(rrf_data['all'][q]['Indicatif'])
                             s.best_time[q] = l.convert_time_to_second(rrf_data['all'][q]['Durée'])
 
+                        # Load Iptable
+                        limit = len(rrf_data['iptable'])
+                        s.iptable = [''] * 10 
+                        s.iptable_by = [''] * 10 
+
+                        for q in range(0, limit):
+                            s.iptable[q] = l.sanitize_call(rrf_data['iptable'][q]['Indicatif'])
+                            s.iptable_by[q] = rrf_data['iptable'][q]['Type']
+
                     if(s.seconde < 10):     # TX today
                         s.message[0] = 'TX total ' + str(data_abstract['TX total'])
 

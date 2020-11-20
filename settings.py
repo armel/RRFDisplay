@@ -132,6 +132,9 @@ call = [''] * 10            # Call list
 call_time = [''] * 10       # Call time list
 best = [''] * 10            # Best list
 best_time = [0] * 10        # Best time list
+iptable = [''] * 10         # Iptable list
+iptable_by = [''] * 10      # Iptable by list
+
 call_current = call[0]      # Call current
 call_type = ''              # Call type
 call_description = ''       # Call description

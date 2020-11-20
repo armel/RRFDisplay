@@ -401,6 +401,25 @@ def extended_best(draw, limit = 5, width=0, offset=0):
         else:
             i += 10
 
+# Print Iptable Log Extended
+def extended_iptable(draw, limit = 5, width=0, offset=0):
+    if width == 0:
+        width = s.device.width
+
+    legacy.text(draw, (160 + offset, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
+    legacy.text(draw, (160 + offset, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
+
+    title(draw, 'Iptable', width, offset)
+
+    i = 175
+
+    for j in range(0, limit):
+        label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), s.iptable[j], s.iptable_type[j], 0, offset)
+        if s.device.height >= 128:
+            i += 11
+        else:
+            i += 10
+
 # Print config
 def extended_config(draw, page, width=0, offset=0):
     if width == 0:
@@ -771,3 +790,4 @@ def display_320_240(draw, offset):
         display_128_160(draw, 128, offset)
     '''
     display_128_160(draw, 128, offset)
+    extended_iptable(draw, len(s.iptable), offset)
