@@ -2,6 +2,8 @@
 PATH_SCRIPT='/opt/RRFDisplay/RRFDisplay.py'
 PATH_PID='/tmp'
 
+cd ..
+
 case "$1" in
     start)
         echo "Starting RRFDisplay: FB"
