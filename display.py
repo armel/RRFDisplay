@@ -382,7 +382,7 @@ def extended_iptable(draw, limit = 5, width=0, offset=0):
 
     #title(draw, 'Iptable', width, offset)
 
-    draw.line((157 + offset, 157, 127 + offset, 0), fill=get_color('header', 'border'))
+    draw.line((0 + offset, 157, 127 + offset, 157), fill=get_color('header', 'border'))
 
     i = 160
 
