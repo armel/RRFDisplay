@@ -406,10 +406,10 @@ def extended_iptable(draw, limit = 5, width=0, offset=0):
     if width == 0:
         width = s.device.width
 
-    legacy.text(draw, (160 + offset, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
-    legacy.text(draw, (160 + offset, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
+    #legacy.text(draw, (160 + offset, 1), chr(0) + chr(1), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
+    #legacy.text(draw, (160 + offset, 9), chr(2) + chr(3), fill=get_color('header', 'foreground'), font=s.SMALL_BITMAP_STAT)
 
-    title(draw, 'Iptable', width, offset)
+    #title(draw, 'Iptable', width, offset)
 
     i = 175
 
