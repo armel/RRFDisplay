@@ -385,7 +385,7 @@ def extended_iptable(draw, limit = 5, width=0, offset=0):
     i = 160
 
     for j in range(0, limit):
-        label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), s.iptable[j], s.iptable_by[j], 0, offset)
+        label(draw, i, 60, get_color('label', 'background'), get_color('label', 'foreground'), s.iptable[j], s.iptable_by[j], 0, offset)
         if s.device.height >= 128:
             i += 11
         else:
