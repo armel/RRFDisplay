@@ -81,6 +81,9 @@ def last(draw, call, width=0, offset=0):
             j += 1
 
 # Draw label
+
+#label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), s.iptable[j], s.iptable_by[j], 0, offset)
+
 def label(draw, position, width, bg_color, fg_color, label, value, fixed=0, offset=0):
     if s.device.height >= 128:
         position += 3
@@ -379,7 +382,7 @@ def extended_iptable(draw, limit = 5, width=0, offset=0):
 
     #title(draw, 'Iptable', width, offset)
 
-    i = 175
+    i = 160
 
     for j in range(0, limit):
         label(draw, i, 42, get_color('label', 'background'), get_color('label', 'foreground'), s.iptable[j], s.iptable_by[j], 0, offset)
