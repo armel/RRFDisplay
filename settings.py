@@ -84,30 +84,33 @@ SMALL_BITMAP_FONT = [
 
 # Room list
 
+#where = 'http://rrf.f5nlg.ovh:8080/RRFTracker/'
+where = 'http://192.168.1.101/RRFTracker/'
+
 room = {
     'RRF': {
-        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/RRF-today/rrf_tiny.json',
-        'api': 'http://rrf.f5nlg.ovh/api/svxlink/RRF'
+        'url': where + '/RRF-today/rrf_tiny.json',
+        'api': 'http://rrf2.f5nlg.ovh:4440/nodes'
     }, 
     'TECHNIQUE': {
-        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/TECHNIQUE-today/rrf_tiny.json',
-        'api': 'http://rrf.f5nlg.ovh/api/svxlink/technique'
+        'url':  where + '/TECHNIQUE-today/rrf_tiny.json',
+        'api': 'http://rrf2.f5nlg.ovh:4440/nodes'
     }, 
     'INTERNATIONAL': {
-        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/INTERNATIONAL-today/rrf_tiny.json',
-        'api': 'http://rrf.f5nlg.ovh/api/svxlink/international'
+        'url': where + '/INTERNATIONAL-today/rrf_tiny.json',
+        'api': 'http://rrf2.f5nlg.ovh:4440/nodes'
     }, 
     'LOCAL': {
-        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/LOCAL-today/rrf_tiny.json',
-        'api': 'http://rrf.f5nlg.ovh/api/svxlink/local'
+        'url': where + '/LOCAL-today/rrf_tiny.json',
+        'api': 'http://rrf2.f5nlg.ovh:4440/nodes'
     },  
     'BAVARDAGE': {
-        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/BAVARDAGE-today/rrf_tiny.json',
-        'api': 'http://rrf.f5nlg.ovh/api/svxlink/bavardage'
+        'url': where + '/BAVARDAGE-today/rrf_tiny.json',
+        'api': 'http://rrf2.f5nlg.ovh:4440/nodes'
     },  
     'FON': {
-        'url': 'http://rrf.f5nlg.ovh:8080/RRFTracker/FON-today/rrf_tiny.json',
-        'api': 'http://rrf.f5nlg.ovh/api/svxlink/FON'
+        'url': where + '/FON-today/rrf_tiny.json',
+        'api': 'http://rrf2.f5nlg.ovh:4440/nodes'
     }
 }
 

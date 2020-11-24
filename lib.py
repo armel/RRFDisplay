@@ -313,19 +313,15 @@ def scan(call):
     except requests.exceptions.Timeout as errt:
         return False
 
-    else:
-        for q in ['RRF', 'TECHNIQUE', 'INTERNATIONAL', 'LOCAL', 'BAVARDAGE', 'FON']:
-            if q != s.room:
-                try:
-                    r = requests.get(s.room[q]['api'], verify=False, timeout=10)
-                    page = r.content.decode('utf-8')
-                    if call in page:
-                        return q
-                except requests.exceptions.ConnectionError as errc:
-                    return False
-                except requests.exceptions.Timeout as errt:
-                    return False
-    
+    # Controle de la validité du flux json
+    try:
+        data = r.json()
+        for d in data['nodes']:
+            if d[2] == call:
+                return d[1].upper()
+    except:
+        pass
+
     return False
 
 # Get solar propagation
