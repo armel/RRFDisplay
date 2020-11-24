@@ -314,9 +314,7 @@ def scan(call):
     try:
         data = r.json()
         for d in data['nodes']:
-            print(d, call)
             if call in d[2]:
-                print(d[2], d[1].upper())
                 return d[1].upper()
     except:
         pass
