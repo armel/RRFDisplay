@@ -313,8 +313,8 @@ def scan(call):
     # Controle de la validité du flux json
     try:
         data = r.json()
-        print(data)
         for d in data['nodes']:
+            print(d, call)
             if d[2] == call:
                 print(d[2], d[1].upper())
                 return d[1].upper()
