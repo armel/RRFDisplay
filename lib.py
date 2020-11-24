@@ -305,9 +305,6 @@ def sanitize_call(call):
 def scan(call):
     try:
         r = requests.get(s.room[s.room_current]['api'], verify=False, timeout=10)
-        page = r.content.decode('utf-8')
-        if call in page:
-            return s.room_current
     except requests.exceptions.ConnectionError as errc:
         return False
     except requests.exceptions.Timeout as errt:
@@ -318,6 +315,7 @@ def scan(call):
         data = r.json()
         for d in data['nodes']:
             if d[2] == call:
+                print(d[2], d[1].upper())
                 return d[1].upper()
     except:
         pass
