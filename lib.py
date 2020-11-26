@@ -222,10 +222,13 @@ def system_info(value):
         return str(tmp)
 
     elif value == 'ip':
-        tmp = list(os.popen('hostname -I'))
-        tmp = tmp[0].strip()
-        tmp = tmp.split()
-        tmp = tmp[0]
+        try:
+            tmp = list(os.popen('hostname -I'))
+            tmp = tmp[0].strip()
+            tmp = tmp.split()
+            tmp = tmp[0]
+        except:
+            tmp = '127.0.0.1'
 
         return str(tmp)
 
