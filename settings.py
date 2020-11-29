@@ -84,8 +84,8 @@ SMALL_BITMAP_FONT = [
 
 # Room list
 
-where = 'http://rrf.f5nlg.ovh:8080/RRFTracker/'
-#where = 'http://192.168.1.101/RRFTracker/'
+where = 'http://rrf.f5nlg.ovh:8080/RRFTracker'
+#where = 'http://192.168.1.101/RRFTracker'
 
 room = {
     'RRF': {
