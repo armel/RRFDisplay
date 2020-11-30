@@ -278,11 +278,11 @@ def main(argv):
                             s.best_time[q] = l.convert_time_to_second(rrf_data['all'][q]['Durée'])
 
                         # Load Iptable
-                        limit = len(rrf_data['iptable'])
+                        #limit = len(rrf_data['iptable'])
                         s.iptable = [''] * 5 
                         s.iptable_by = [''] * 5 
 
-                        for q in range(0, limit):
+                        for q in range(0, 5):
                             s.iptable[q] = l.sanitize_call(rrf_data['iptable'][q]['Indicatif'][:12])
                             tmp = rrf_data['iptable'][q]['Type']
                             if '(' in tmp:
