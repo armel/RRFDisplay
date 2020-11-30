@@ -282,6 +282,7 @@ def main(argv):
                         s.iptable = [''] * 5 
                         s.iptable_by = [''] * 5 
 
+                        print(rrf_data['iptable'])
                         for q in range(0, 5):
                             print(q)
                             s.iptable[q] = l.sanitize_call(rrf_data['iptable'][q]['Indicatif'][:12])
