@@ -281,13 +281,13 @@ def main(argv):
                         limit = len(rrf_data['iptable'])
                         if limit > 5:
                             limit = 5
-                            
+
                         s.iptable = [''] * 5 
                         s.iptable_by = [''] * 5 
 
-                        print(rrf_data['iptable'])
+                        #print(rrf_data['iptable'])
                         for q in range(0, limit):
-                            print(rrf_data['iptable'][q]['Indicatif'])
+                            #print(rrf_data['iptable'][q]['Indicatif'])
                             s.iptable[q] = l.sanitize_call(rrf_data['iptable'][q]['Indicatif'][:12])
                             tmp = rrf_data['iptable'][q]['Type']
                             if '(' in tmp:
