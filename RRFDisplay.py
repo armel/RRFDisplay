@@ -87,9 +87,9 @@ def main(argv):
         elif opt in ('--display-theme'):
             i = 0
             if s.display == 'st7735':
-                theme = ['grey_new.cfg']
+                theme = ['gray_new.cfg']
             elif s.display == 'linux_framebuffer':
-                theme = ['gray_new.cfg']                
+                theme = ['grey_new.cfg']                
             theme += arg.split('/')
             for t in theme:
                 s.theme_list[i] = cp.ConfigParser()
