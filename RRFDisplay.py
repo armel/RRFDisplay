@@ -89,20 +89,20 @@ def main(argv):
             theme = ['gray_new.cfg']
             theme += arg.split('/')
             for t in theme:
-                i += 1
                 s.theme_list[i] = cp.ConfigParser()
                 s.theme_list[i].read('./themes/' + t)
+                i += 1
         elif opt in ('--display-offset'):
-            i = 1
+            i = 0
             offset = arg.split('/')
             for o in offset:
                 i += 1
                 s.offset_list[i] = int(o)
 
     #print(s.theme_list)
-    for t in s.theme_list:
-        print(t)
-    exit()
+    #for t in s.theme_list:
+    #    print(t)
+    #exit()
     #print(s.follow_list)
     #print(s.offset_list)
 
@@ -161,7 +161,7 @@ def main(argv):
 
     while(True):
         with canvas(s.device, dither=True) as draw:
-            f_indice = 1
+            f_indice = 0
             chrono_start = time.time()
 
             for f in s.follow_list:
