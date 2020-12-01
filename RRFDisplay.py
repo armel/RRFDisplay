@@ -88,8 +88,6 @@ def main(argv):
             i = 0
             theme = ['gray_new.cfg']
             theme += arg.split('/')
-            print(theme)
-            exit()
             for t in theme:
                 i += 1
                 s.theme_list[i] = cp.ConfigParser()
@@ -165,7 +163,6 @@ def main(argv):
 
             for f in s.follow_list:
                 f_indice += 1
-                s.theme = s.theme_list[f_indice]
 
                 (s.room_current, s.callsign) = s.follow_list[f]
 
@@ -239,6 +236,8 @@ def main(argv):
                             pass
 
                     if data_transmit['Indicatif'] != '':
+                        s.theme = s.theme_list[f_indice]
+
                         if s.transmit is False:      # Wake up screen...
                             s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
 
@@ -255,6 +254,7 @@ def main(argv):
                         s.duration = data_transmit['TOT']
 
                     else:
+                        s.theme = s.theme_list[0]
                         if s.transmit is True:       # Sleep screen...
                             s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
 
