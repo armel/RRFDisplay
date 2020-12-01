@@ -100,6 +100,9 @@ def main(argv):
                 s.offset_list[i] = int(o)
 
     #print(s.theme_list)
+    for t in s.theme_list:
+        print(t)
+    exit()
     #print(s.follow_list)
     #print(s.offset_list)
 
