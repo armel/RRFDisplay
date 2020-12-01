@@ -86,13 +86,16 @@ def main(argv):
             s.longitude = float(arg)
         elif opt in ('--display-theme'):
             i = 0
-            theme = arg.split('/')
+            theme = ['gray_new.cfg']
+            theme += arg.split('/')
+            print(theme)
+            exit()
             for t in theme:
                 i += 1
                 s.theme_list[i] = cp.ConfigParser()
                 s.theme_list[i].read('./themes/' + t)
         elif opt in ('--display-offset'):
-            i = 0
+            i = 1
             offset = arg.split('/')
             for o in offset:
                 i += 1
@@ -157,7 +160,7 @@ def main(argv):
 
     while(True):
         with canvas(s.device, dither=True) as draw:
-            f_indice = 0
+            f_indice = 1
             chrono_start = time.time()
 
             for f in s.follow_list:
