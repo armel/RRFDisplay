@@ -260,7 +260,7 @@ def main(argv):
                         s.duration = data_transmit['TOT']
 
                     else:
-                        s.theme = s.theme_list[0]
+                        #s.theme = s.theme_list[0]
                         if s.transmit is True:       # Sleep screen...
                             s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
 
