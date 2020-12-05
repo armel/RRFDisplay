@@ -286,7 +286,7 @@ def main(argv):
                     s.iptable_by = [''] * 5 
 
                     for q in range(0, limit):
-                        print(rrf_data['iptable'][q]['Indicatif'])
+                        #print(rrf_data['iptable'][q]['Indicatif'])
                         s.iptable[q] = l.sanitize_call(rrf_data['iptable'][q]['Indicatif'][:12])
                         tmp = rrf_data['iptable'][q]['Type']
                         if '(' in tmp:
