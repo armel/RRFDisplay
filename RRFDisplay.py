@@ -13,6 +13,7 @@ import display as d
 import lib as l
 
 import urllib3
+import json
 import datetime
 import time
 import sys
@@ -192,8 +193,6 @@ def main(argv):
                     l.get_cluster()
 
                 url = s.room[s.room_current]['url']
-
-                r = http.request('GET', url, timeout=.5, retries=10)
 
                 # Request HTTP data
                 try:
