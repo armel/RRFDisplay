@@ -250,24 +250,6 @@ def main(argv):
 
                         s.duration = data_transmit['TOT']
 
-                        # Load Iptable
-                        limit = len(rrf_data['iptable'])
-                        if limit > 5:
-                            limit = 5
-
-                        s.iptable = [''] * 5 
-                        s.iptable_by = [''] * 5 
-
-                        #print(rrf_data['iptable'])
-                        for q in range(0, limit):
-                            #print(rrf_data['iptable'][q]['Indicatif'])
-                            s.iptable[q] = l.sanitize_call(rrf_data['iptable'][q]['Indicatif'][:12])
-                            tmp = rrf_data['iptable'][q]['Type']
-                            if '(' in tmp:
-                                s.iptable_by[q] = tmp[tmp.find('(')+1:tmp.find(')')]
-                            else:
-                                s.iptable_by[q] = tmp
-
                     else:
                         s.theme = s.theme_list[0]
                         if s.transmit is True:       # Sleep screen...
@@ -294,6 +276,24 @@ def main(argv):
                         for q in range(0, limit):
                             s.best[q] = l.sanitize_call(rrf_data['all'][q]['Indicatif'])
                             s.best_time[q] = l.convert_time_to_second(rrf_data['all'][q]['Durée'])
+
+                    # Load Iptable
+                    limit = len(rrf_data['iptable'])
+                    if limit > 5:
+                        limit = 5
+
+                    s.iptable = [''] * 5 
+                    s.iptable_by = [''] * 5 
+
+                    #print(rrf_data['iptable'])
+                    for q in range(0, limit):
+                        #print(rrf_data['iptable'][q]['Indicatif'])
+                        s.iptable[q] = l.sanitize_call(rrf_data['iptable'][q]['Indicatif'][:12])
+                        tmp = rrf_data['iptable'][q]['Type']
+                        if '(' in tmp:
+                            s.iptable_by[q] = tmp[tmp.find('(')+1:tmp.find(')')]
+                        else:
+                            s.iptable_by[q] = tmp
 
                     if(s.seconde < 10):     # TX today
                         s.message[0] = 'TX total ' + str(data_abstract['TX total'])
