@@ -108,7 +108,7 @@ def main(argv):
     #exit()
     #print(s.follow_list)
     #print(s.offset_list)
-
+    '''
     # Set serial
     if s.interface == 'i2c':
         serial = i2c(port=s.i2c_port, address=s.i2c_address)
@@ -129,7 +129,7 @@ def main(argv):
         parser = cmdline.create_parser(description='RRFDisplay')
         args = parser.parse_args(config)
         s.device = cmdline.create_device(args)
-
+    
     init_message = []
 
     # Let's go
@@ -150,7 +150,7 @@ def main(argv):
 
     init_message.append('Let\'s go')
     d.display_init(init_message)
-
+    '''
     # Boucle principale
     s.timestamp_start = time.time()
 
@@ -163,7 +163,8 @@ def main(argv):
     #print s.room_current
 
     while(True):
-        with canvas(s.device, dither=True) as draw:
+        with open('/tmp/foo.bar', 'w') as file: 
+        #with canvas(s.device, dither=True) as draw:
             f_indice = 0
             chrono_start = time.time()
 
@@ -222,7 +223,7 @@ def main(argv):
                     s.message[2] = l.sanitize_call(data_last[1]['Indicatif'])
                     s.message[3] = l.sanitize_call(data_last[2]['Indicatif'])
 
-                    if s.device.height >= 128:      # Only if place...
+                    if 128 >= 128:      # Only if place...
                         try:
                             data_elsewhere = rrf_data['elsewhere'][0]
 
@@ -241,8 +242,10 @@ def main(argv):
                         except:
                             pass
 
+                    s.theme = s.theme_list[f_indice]
+
                     if data_transmit['Indicatif'] != '':
-                        s.theme = s.theme_list[f_indice]
+                        #s.theme = s.theme_list[f_indice]
 
                         if s.transmit is False:      # Wake up screen...
                             s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
@@ -260,9 +263,10 @@ def main(argv):
                         s.duration = data_transmit['TOT']
 
                     else:
-                        s.theme = s.theme_list[0]
+                        #s.theme = s.theme_list[0]
                         if s.transmit is True:       # Sleep screen...
-                            s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
+                            a = 1
+                            #s.transmit = l.wake_up_screen(s.device, s.display, s.transmit)
 
                         # Load Histogram
                         for q in range(0, 24):
@@ -330,8 +334,11 @@ def main(argv):
                             s.message[0] = 'Salon ' + s.room_current[:3]
 
                 # Print screen
-                d.display_gateway(draw, s.offset_list[f_indice])
-                   
+                #d.display_gateway(draw, s.offset_list[f_indice])
+                print(f, f_indice, s.follow_list)
+                print(rrf_data['abstract'][0]['Salon'], s.iptable, s.theme.get('header', 'background'))
+                print ('----------')
+            print('========================')  
             chrono_stop = time.time()
             chrono_time = chrono_stop - chrono_start
             if chrono_time < s.refresh:
