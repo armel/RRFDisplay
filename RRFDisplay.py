@@ -277,6 +277,7 @@ def main(argv):
                             s.best[q] = l.sanitize_call(rrf_data['all'][q]['Indicatif'])
                             s.best_time[q] = l.convert_time_to_second(rrf_data['all'][q]['Durée'])
 
+                    '''
                     # Load Iptable
                     limit = len(rrf_data['iptable'])
                     if limit > 5:
@@ -294,6 +295,7 @@ def main(argv):
                             s.iptable_by[q] = tmp[tmp.find('(')+1:tmp.find(')')]
                         else:
                             s.iptable_by[q] = tmp
+                    '''
 
                     if(s.seconde < 10):     # TX today
                         s.message[0] = 'TX total ' + str(data_abstract['TX total'])
