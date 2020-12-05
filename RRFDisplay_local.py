@@ -195,6 +195,8 @@ def main(argv):
 
                 url = s.room[s.room_current]['url']
 
+                rff_data = ''
+
                 # Requete HTTP vers le flux json du salon produit par le RRFDisplay 
                 try:
                     r = requests.get(url, verify=False, timeout=0.5)
