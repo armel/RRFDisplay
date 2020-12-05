@@ -193,6 +193,8 @@ def main(argv):
 
                 url = s.room[s.room_current]['url']
 
+                r = http.request('GET', url, timeout=.5, retries=10)
+
                 # Request HTTP data
                 try:
                     r = http.request('GET', url, timeout=.5, retries=10)
