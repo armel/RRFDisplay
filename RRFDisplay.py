@@ -285,18 +285,14 @@ def main(argv):
                     s.iptable = [''] * 5 
                     s.iptable_by = [''] * 5 
 
-                    '''
-                    #print(rrf_data['iptable'])
                     for q in range(0, limit):
-                        #print(rrf_data['iptable'][q]['Indicatif'])
+                        print(rrf_data['iptable'][q]['Indicatif'])
                         s.iptable[q] = l.sanitize_call(rrf_data['iptable'][q]['Indicatif'][:12])
                         tmp = rrf_data['iptable'][q]['Type']
                         if '(' in tmp:
                             s.iptable_by[q] = tmp[tmp.find('(')+1:tmp.find(')')]
                         else:
                             s.iptable_by[q] = tmp
-
-                    '''
 
                     if(s.seconde < 10):     # TX today
                         s.message[0] = 'TX total ' + str(data_abstract['TX total'])
