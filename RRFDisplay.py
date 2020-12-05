@@ -12,7 +12,7 @@ import settings as s
 import display as d
 import lib as l
 
-import requests
+import urllib3
 import datetime
 import time
 import sys
@@ -102,12 +102,11 @@ def main(argv):
                 i += 1
                 s.offset_list[i] = int(o)
 
-    #print(s.theme_list)
-    #for t in s.theme_list:
-    #    print(t)
-    #exit()
-    #print(s.follow_list)
-    #print(s.offset_list)
+    # Set Urllib3
+    http = urllib3.PoolManager(timeout=1.0)
+    http = urllib3.PoolManager(
+        timeout=urllib3.Timeout(connect=.5, read=.5)
+    )
 
     # Set serial
     if s.interface == 'i2c':
@@ -194,21 +193,12 @@ def main(argv):
 
                 url = s.room[s.room_current]['url']
 
-                # Requete HTTP vers le flux json du salon produit par le RRFDisplay 
+                # Request HTTP data
                 try:
-                    r = requests.get(url, verify=False, timeout=0.5)
-                except requests.exceptions.ConnectionError as errc:
-                    #print ('Error Connecting:', errc)
-                    pass
-                except requests.exceptions.Timeout as errt:
-                    #print ('Timeout Error:', errt)
-                    pass
-
-                # Controle de la validité du flux json
-                try:
-                    rrf_data = r.json()
+                    r = http.request('GET', url, timeout=.5, retries=10)
+                    rrf_data = json.loads(r.data.decode('utf-8'))
                 except:
-                    pass
+                    rrf_data = ''
 
                 if rrf_data != '': # Si le flux est valide
                     rrf_data_old = rrf_data

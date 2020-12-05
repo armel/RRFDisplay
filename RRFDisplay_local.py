@@ -12,7 +12,7 @@ import settings as s
 import display as d
 import lib as l
 
-import requests
+import urllib3
 import datetime
 import time
 import sys
@@ -195,8 +195,6 @@ def main(argv):
 
                 url = s.room[s.room_current]['url']
 
-                rff_data = ''
-
                 # Requete HTTP vers le flux json du salon produit par le RRFDisplay 
                 try:
                     r = requests.get(url, verify=False, timeout=0.5)
@@ -309,7 +307,6 @@ def main(argv):
                                 s.iptable_by[q] = tmp[tmp.find('(')+1:tmp.find(')')]
                             else:
                                 s.iptable_by[q] = tmp
-
 
                     if(s.seconde < 10):     # TX today
                         s.message[0] = 'TX total ' + str(data_abstract['TX total'])
