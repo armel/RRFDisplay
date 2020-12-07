@@ -87,6 +87,7 @@ def main(argv):
             s.longitude = float(arg)
         elif opt in ('--display-theme'):
             i = 0
+            theme = []
             if s.display == 'st7735':
                 theme = ['gray_new.cfg']
             elif s.display == 'linux_framebuffer':
