@@ -542,7 +542,7 @@ def extended_solar(draw, page, width=0, offset=0):
 def display_init(init_message):
     with canvas(s.device) as draw:
         s.device.clear()
-        draw.rectangle((0, 0, s.device.width - 1, s.device.height - 1), fill='red')
+        draw.rectangle((0, 0, s.device.width - 1, s.device.height - 1), fill='white')
 
         position = 0
         for message in init_message:
