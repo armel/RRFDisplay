@@ -87,11 +87,11 @@ def main(argv):
             s.longitude = float(arg)
         elif opt in ('--display-theme'):
             i = 0
-            theme = []
-            if s.display == 'st7735':
+            if s.display == 'linux_framebuffer':
+                theme = ['grey_new.cfg']  
+            else:
                 theme = ['gray_new.cfg']
-            elif s.display == 'linux_framebuffer':
-                theme = ['grey_new.cfg']                
+
             theme += arg.split('/')
             for t in theme:
                 s.theme_list[i] = cp.ConfigParser()
